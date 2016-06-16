@@ -59,4 +59,4 @@ for more information.
 
 Use of TimeSpan objects in the QiStream Metadata dictionary is not supported. Any numeric types stored in QiStream Metadata might be returned as type ``long``.
 
-The Metadata property provides the ability to store information about a stream using a key-value dictionary (specifically, ``IDictionary<string, object>``). QiStream Metadata property values are subject to 'over the wire' serialization limitations. To ensure there is no loss of data fidelity, OSIsoft recommends that you test the value ranges of any type that you plan to use.
+The Metadata property provides the ability to store information about a stream using a key-value dictionary (specifically, ``IDictionary<string, object>``). QiStream Metadata property values are subject to *over-the-wire* serialization limitations. To ensure there is no loss of data fidelity, OSIsoft recommends that you test the value ranges of any type that you plan to use.
