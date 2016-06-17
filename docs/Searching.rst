@@ -29,14 +29,14 @@ stream3         calcA           calculation from     “temperature”,
 
 Using the stream data above, the following table shows the results of a ``GetStreamsAsync`` call with different ``SearchText`` values:
 
-==============     ========================================
-**SearchText**     **Streams returned**
---------------     ----------------------------------------
-“temp*”            stream1 and stream3 returned.
-“calc*”            Only stream3 returned.
-“DeviceA*”         All three streams returned.
-“humidity*”        No streams returned.
-==============     ========================================
+================     ========================================
+**SearchText**       **Streams returned**
+----------------     ----------------------------------------
+``“temp*”``            stream1 and stream3 returned.
+``“calc*”``            Only stream3 returned.
+``“DeviceA*”``         All three streams returned.
+``“humidity*”``        No streams returned.
+================     ========================================
 
 The ``skip`` and ``count`` parameters determine which streams are returned when a large number of streams match the ``searchText`` criteria. 
 
@@ -89,5 +89,5 @@ You can specify search operators in the ``searchText`` string to return more spe
 Qi Stream tags
 --------------
 
-QiStream objects support a collection of strings called *Tags*. Tags allow you to augment QiStreams with additional information, making it easier to classify, identify, and search for individual streams. The example below shows a stream being created that has the tags “Depth”, “Temperature”, and “operations” defined. 
+QiStream objects support a collection of strings called *Tags*. Tags allow you to augment QiStreams with additional information, making it easier to classify, identify, and search for individual streams. The previous example showed a stream being created that has the tags “Depth”, “Temperature”, and “operations” defined. 
 
