@@ -1,0 +1,124 @@
+[{
+    "Title": "Upgrade Complete - Action Required",
+    "Timestamp": "2016-06-17T20:33:00.000Z",
+    "Content": "<h1>Qi Service Upgrade Complete - Action Required<\/h1>OSIsoft has completed today's deployment of the Qi service. At this time the Qi service is functional. Today's deployment included changes to repair and improve the accessibility and stability of the service. There are no changes to the client interfaces. Namespaces, types, streams, and behaviors will need to be recreated and any data previously stored in Qi will no longer be available. We apologize for this inconvenience and will continue to improve the deployment process moving forward."
+  },{
+    "Title": "Upgrade Starting",
+    "Timestamp": "2016-06-17T18:29:00.000Z",
+    "Content": "<h1>Qi Service Upgrade Starting<\/h1>On 9 Jun 2016 UTC 19:00 OSIsoft will be redelpoying the Qi Service. The upgrade is expected to take approximately 2 hours, during which time the service will be unavailable. The upgrade will fully remove the IQiServer interface and might require updates to your client-side code. This version includes many fixes and improvements. There are still some known issues which we will continue to address with later releases."
+  },{
+    "Title": "Upgrade Complete - Action Required",
+    "Timestamp": "2016-06-09T20:30:00.000Z",
+    "Content": "<h1>Qi Service Upgrade Complete - Action Required<\/h1>OSIsoft has completed today's deployment of the Qi service. At this time the Qi service is functional. Today's deployment included changes to repair and improve the accessibility and stability of the service. There are no changes to the client interfaces. Namespaces, types, streams, and behaviors will need to be recreated and any data previously stored in Qi will no longer be available. We apologize for this inconvenience and will continue to improve the deployment process moving forward."
+  },{
+    "Title": "Upgrade Starting",
+    "Timestamp": "2016-06-09T19:05:00.000Z",
+    "Content": "<h1>Qi Service Upgrade Starting<\/h1>On 9 Jun 2016 UTC 19:00 OSIsoft will be redelpoying the Qi Service. The upgrade is expected to take approximately 2 hours, during which time the service will be unavailable. The upgrade will fully remove the IQiServer interface and might require updates to your client-side code. This version includes many fixes and improvements. There are still some known issues which we will continue to address with later releases."
+  },{
+    "Title": "Upgrade Complete - Action Required",
+    "Timestamp": "2016-05-27T20:20:00.000Z",
+    "Content": "<h1>Qi Service Upgrade Complete - Action Required<\/h1>OSIsoft has completed today's deployment of the Qi service. At this time the Qi service is functional. Today's deployment included changes to repair and improve the accessibility and stability of the service. There are no changes to the client interfaces. Namespaces, types, streams, and behaviors will need to be recreated and any data previously stored in Qi will no longer be available. We apologize for this inconvenience and will continue to improve the deployment process moving forward."
+  },{  
+    "Title": "Upgrade Starting",
+    "Timestamp": "2016-05-27T19:00:00.000Z",
+    "Content": "<h1>Qi Service Upgrade Starting<\/h1>On 27 May 2016 UTC 19:00 OSIsoft will be redelpoying the Qi Service. The upgrade is expected to take approximately 2 hours, during which time the service will be unavailable. Data loss will be experienced."
+  },{  
+    "Title": "Upgrade Complete - Action Required",
+    "Timestamp": "2016-05-20T19:30:00.000Z",
+    "Content": "<h1>Qi Service Upgrade Complete - Action Required<\/h1>OSIsoft has completed today's upgrade to the Qi service. At this time the Qi service is functional however the health status displayed on https://qi.osisoft.com/home has not yet been fully restored. Remaining issues with the health status are expected to be resolved by end of business today. In the event that the health status issues are not resolved, an update will be posted to the service blog. Today's upgrade included changes to repair and improve the functionality of the service, a summary of which can be found at: https://qi-docs.readthedocs.io/en/latest/Whats_New.html Namespaces, types, streams, and behaviors will need to be recreated and any data previously stored in Qi will no longer be available. We apologize for this inconvenience and will continue to improve the upgrade process moving forward."
+  },{  
+    "Title": "Upgrade Starting",
+    "Timestamp": "2016-05-20T15:30:00.000Z",
+    "Content": "<h1>Qi Service Upgrade Starting<\/h1>On 20 May 2016 UTC 15:30 OSIsoft will be upgrading the Qi Service. The upgrade is expected to take approximately 2 hours, during which time the service will be unavailable. The upgrade introduces a change to the TCP/IP port for the Qi any client-side code references will need to be changed from port 3380 to port 443. The upgrade also includes changes to the Qi .Net C# Library that might also require updates to your client-side code. Additional details about the changes included in the upgrade can be found here: https://qi-docs.readthedocs.io/en/latest/Whats_New.html. Generally, the changes make it easier to configure services and set up security, and also provide a more manageable programming environment when interacting with the Qi REST endpoint."
+  },{  
+    "Title": "Service Alert",
+    "Timestamp": "2016-05-04T21:50:00.000Z",
+    "Content": "<h1>Qi Service Alert<\/h1> At 21:50 UTC Qi service functionality was restored."
+  },{  
+    "Title": "Service Alert",
+    "Timestamp": "2016-05-04T21:00:00.000Z",
+    "Content": "<h1>Qi Service Alert<\/h1> At 19:50 UTC the Qi service began experiencing issues and we are working to resolve this as soon as possible. We will provide an update by end of day May 4, 2016."
+  },{
+    "Title": "Upgrade Complete - Action required",
+    "Timestamp": "2016-04-27T22:25:00.000Z",
+    "Content": "<h1>Qi Service Upgrade Complete - Action required<\/h1> OSIsoft has performed an upgrade to the Qi service. The upgrade included changes to repair and improve the functionality of the service. Namespaces, types, streams, and behaviors may need to be recreated and any data previously stored in Qi may no longer be available. We apologize for this inconvenience and will continue to improve the upgrade process moving forward."
+  },{  
+    "Title": "Upgrade Starting",
+    "Timestamp": "2016-04-27T20:00:00.000Z",
+    "Content": "<h1>Qi Service Upgrade Starting<\/h1> At 20:00 UTC OSIsoft will begin an upgrade to the Qi service. This upgrade is expected to take approximately 3 hours, and during this time the Qi service will be unavailable. The upgrade includes changes to repair and improve the functionality of the service. Once the upgrade is complete namespaces, types, streams, and behaviors may need to be recreated and any data previously stored in Qi may no longer be available. We apologize for this inconvenience and will continue to improve the upgrade process moving forward."
+  },{  
+    "Title": "Service Alert - Update",
+    "Timestamp": "2016-04-26T01:50:00.000Z",
+    "Content": "<h1>Qi Service Alert<\/h1> The intermittent issues that we are experiencing on the Qi service (beginning 12:45 UTC on April 12, 2016) are still being investigated. We continue to work toward a resolution as soon as possible. We will provide an update to this situation by end of day Thursday (April 28, 2016)."
+  },{  
+    "Title": "Service Alert - Update",
+    "Timestamp": "2016-04-23T02:05:00.000Z",
+    "Content": "<h1>Qi Service Alert<\/h1> The intermittent issues that we are experiencing on the Qi service (beginning 12:45 UTC on April 12, 2016) are still being investigated. We continue to work toward a resolution as soon as possible. We will provide an update to this situation by end of day Tuesday (April 26, 2016)."
+  },{  
+    "Title": "Service Alert - Update",
+    "Timestamp": "2016-04-20T18:40:00.000Z",
+    "Content": "<h1>Qi Service Alert<\/h1> The intermittent issues that we are experiencing on the Qi service (beginning 12:45 UTC on April 12, 2016) are still being investigated. We continue to work toward a resolution as soon as possible. We will provide an update to this situation by end of day Friday (April 22, 2016)."
+  },{  
+    "Title": "Service Alert - Update",
+    "Timestamp": "2016-04-18T23:00:00.000Z",
+    "Content": "<h1>Qi Service Alert<\/h1> The intermittent issues that we are experiencing on the Qi service (beginning 12:45 UTC on April 12, 2016) are still being investigated. We continue to work toward a resolution as soon as possible. We will provide an update to this situation by end of day Wednesday (April 20, 2016)."
+  },{  
+    "Title": "Service Alert - Update",
+    "Timestamp": "2016-04-14T20:30:00.000Z",
+    "Content": "<h1>Qi Service Alert<\/h1> The intermittent issues that we are experiencing on the Qi service (beginning 12:45 UTC on April 12, 2016) are still being investigated. We continue to work toward a resolution as soon as possible. We will provide an update to this situation by end of day Monday (April 18, 2016)."
+  },{  
+    "Title": "Service Alert",
+    "Timestamp": "2016-04-12T21:00:00.000Z",
+    "Content": "<h1>Qi Service Alert<\/h1> At 12:45 UTC the Qi service began experiencing intermittent issues and we are working to resolve this as soon as possible. We will provide an update by end of day Thursday (April 14,2016)."
+  },{
+    "Title": "Upgrade Complete - Action required",
+    "Timestamp": "2016-04-12T16:34:00.000Z",
+    "Content": "<h1>Qi Service Upgrade Complete - Action required<\/h1> OSIsoft has performed an upgrade to the Qi service. The upgrade included changes to repair and improve the functionality of the service. Namespaces, types, streams, and behaviors will need to be recreated and any data previously stored in Qi will no longer be available. We apologize for this inconvenience and will continue to improve the upgrade process moving forward."
+  },{  
+    "Title": "Upgrade Starting",
+    "Timestamp": "2016-04-12T12:45:00.000Z",
+    "Content": "<h1>Qi Service Upgrade Starting<\/h1> At 12:45 UTC OSIsoft will begin an upgrade to the Qi service. This upgrade is expected to take approximately 3 hours, and during this time the Qi service will be unavailable. The upgrade includes changes to repair and improve the functionality of the service. Once the upgrade is complete namespaces, types, streams, and behaviors will need to be recreated and any data previously stored in Qi will no longer be available. We apologize for this inconvenience and will continue to improve the upgrade process moving forward."
+  },{
+    "Title": "Upgrade Complete - Action required",
+    "Timestamp": "2016-04-11T20:20:00.000Z",
+    "Content": "<h1>Qi Service Upgrade Complete - Action required<\/h1> OSIsoft has performed an upgrade to the Qi service. The upgrade included changes to repair and improve the functionality of the service. Namespaces, types, streams, and behaviors will need to be recreated and any data previously stored in Qi will no longer be available. We apologize for this inconvenience and will continue to improve the upgrade process moving forward."
+  },{  
+    "Title": "Upgrade Starting",
+    "Timestamp": "2016-04-11T18:30:00.511Z",
+    "Content": "<h1>Qi Service Upgrade Starting<\/h1> At 18:30 UTC OSIsoft will begin an upgrade to the Qi service. This upgrade is expected to take approximately 2 hours, and during this time the Qi service will be unavailable. The upgrade includes changes to repair and improve the functionality of the service. Once the upgrade is complete namespaces, types, streams, and behaviors will need to be recreated and any data previously stored in Qi will no longer be available. We apologize for this inconvenience and will continue to improve the upgrade process moving forward."
+  },{
+    "Title": "Upgrade Complete - Action required",
+    "Timestamp": "2016-04-04T20:00:00.000Z",
+    "Content": "<h1>Qi Service Upgrade Complete - Action required<\/h1> OSIsoft has performed an upgrade to the Qi service. The upgrade included changes to repair and improve the functionality of the service. Namespaces, types, streams, and behaviors will need to be recreated and any data previously stored in Qi will no longer be available. We apologize for this inconvenience and will continue to improve the upgrade process moving forward."
+  },{
+    "Title": "Upgrade Starting",
+    "Timestamp": "2016-04-04T18:30:00.511Z",
+    "Content": "<h1>Qi Service Upgrade Staring<\/h1> At 18:30 UTC OSIsoft will begin an upgrade to the Qi service. This upgrade is expected to take approximately 2 hours, and during this time the Qi service will be unavailable. The upgrade includes changes to repair and improve the functionality of the service. Once the upgrade is complete namespaces, types, streams, and behaviors will need to be recreated and any data previously stored in Qi will no longer be available. We apologize for this inconvenience and will continue to improve the upgrade process moving forward."
+  },{
+    "Title": "Upgrade Complete - Action required",
+    "Timestamp": "2016-04-01T21:55:00.000Z",
+    "Content": "<h1>Qi Service Upgrade Complete - Action required<\/h1> OSIsoft has performed an upgrade to the Qi service. The upgrade included changes to repair and improve the functionality of the service. Namespaces, types, streams, and behaviors will need to be recreated and any data previously stored in Qi will no longer be available. We apologize for this inconvenience and will continue to improve the upgrade process moving forward."
+  },{
+    "Title": "Upgrade Starting",
+    "Timestamp": "2016-04-01T18:25:00.511Z",
+    "Content": "<h1>Qi Service Upgrade Staring<\/h1> At 18:25 UTC OSIsoft will begin an upgrade to the Qi service. This upgrade is expected to take approximately 3 hours, and during this time the Qi service will be unavailable. The upgrade includes changes to repair and improve the functionality of the service. Once the upgrade is complete namespaces, types, streams, and behaviors will need to be recreated and any data previously stored in Qi will no longer be available. We apologize for this inconvenience and will continue to improve the upgrade process moving forward."
+  },{
+    "Title": "Upgrade Complete - Action required",
+    "Timestamp": "2016-03-29T12:22:43.511Z",
+    "Content": "<h1>Qi Service Upgrade Complete - Action required<\/h1> OSIsoft has performed an upgrade to the Qi service. Namespaces, types, streams, and behaviors will need to be recreated and any data previously stored in Qi will no longer be available. We apologize for this inconvenience and we are working towards resolving all the reported issues."
+  },{
+    "Title": "Upgrade Complete - Action required",
+    "Timestamp": "2016-03-28T17:22:43.511Z",
+    "Content": "<h1>Qi Service Upgrade Complete - Action required<\/h1> OSIsoft has performed an upgrade to the Qi service. The upgrade included critical changes to repair and improve the functionality of the service. Namespaces, types, streams, and behaviors will need to be recreated and any data previously stored in Qi will no longer be available. We apologize for this inconvenience and will continue to improve the upgrade process moving forward."
+  },
+  {
+    "Title": "Service Restored",
+    "Timestamp": "2016-03-24T17:22:43.511Z",
+    "Content": "<h1>Qi Service Update - Downtime Complete<\/h1> At this time a new version of the Qi service is complete and the service is now available.Types, streams, and behaviors will need to be recreated and any data previously stored in Qi will no longer be available. This deployment introduces new service features requiring updates to your client side code. A summary of the new service features as well as references to the documentation to help you resume use of the service can be found below: <h2>Namespaces<\/h2> Namespaces are used to separate tenants into logical entities. The definition of types, streams and behaviors will now be defined at the Namespace level as opposed to the tenant level creating an independent list of Type, Stream and Stream Behavior nobjects for each Namespace within a tenant. It is required that you create at least one Namespace within your tenant. You can reference the Quick start section of the documentation here to create your first Namespace and begin writing to that namespace. Also, the samples within the Qi-Samples repository on GitHub have been updated to reflect the new features of the service. <h2>tenantId Parameter<\/h2> Tenant IDs will now be referenced in all Qi calls. Your tenantID for ************ is: ************ An example of the client side code changes necessary for Namespaces and the tenantID parameter using GetOrCreateType( ) is shown below: <blockquote>     <h3>Qi API<\/h3>     <code>QiType GetOrCreateType(string tenantId, string namespaceId, QiType qitype);          Task<QiType> GetOrCreateTypeAsync(string tenantId, string namespaceId, QiType qitype);<\/code>     <h3>Http<\/h3>     <code>POST Qi\/{tenantId}\/{namespaceId}\/Types<\/code> <\/blockquote>"
+  },
+  {
+    "Title": "Service Outage",
+    "Timestamp": "2016-03-24T15:00:12.511Z",
+    "Content": ":<h1>Qi Service Update - Planned Downtime<\/h1> Today OSIsoft will begin the deployment of a new version of the Qi service. This deployment will require a downtime of approximately 2 hours. Once the deployment is complete types, streams, and behaviors will need to be recreated and any data currently stored in Qi will no longer be available. This deployment will introduce new service features requiring updates to your client side code. You will receive a messaging following the completion of this downtime including updated references to documentation and Samples covering the new service features."
+  }
+]
