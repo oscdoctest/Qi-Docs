@@ -7,11 +7,11 @@ Qi is a highly flexible cloud-based sequential data historian that you use to st
 Getting Started
 ---------------
 
-Perhaps the best way to get started with Qi is to run one or more of the code samples. Code samples are provided in a number of different languages, and are intended to show how easy it is to store and read data using Qi. The samples illustrate primarilly how to use REST calls to interact with Qi. 
+Perhaps the best way to get started with Qi is to run one or more of the code samples. Code samples are provided in a number of different programming languages, and are intended to show how easy it is to store and read data using Qi. The samples illustrate primarilly how to use REST calls to interact with Qi. 
 
-Each sample includes a complete solution or project for you to download as well as a readme file which describes the steps you need to take to get the sample running. Be sure to read through the readme file to understand the steps you need to take. 
+Each sample includes a complete solution or project for you to download as well as a readme file which describes the steps required to run the sample. Be sure to read through the readme.rst file (stored with the samples) to understand how the samples work. 
 
-After you have worked with one (or more) of the samples, OSIsoft recomments that you refer to the `Quick Start <https://qi-docs-rst.readthedocs.org/en/latest/Quick_Start.html>`__ section, which shows how to get started with your application by describing the manner in which QI objects interact.
+After you have worked with one (or more) of the samples, OSIsoft recomments that you refer to the `Quick Start <https://qi-docs-rst.readthedocs.org/en/latest/Quick_Start.html>`__ section, which shows how to get started with your application by describing the interaction of various QI objects.
 
 
 Architecture
