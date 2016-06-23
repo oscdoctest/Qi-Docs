@@ -3,6 +3,17 @@ Introducing Qi
 
 Qi is a highly flexible cloud-based sequential data historian that you use to store, retrieve, and analyze data. You create and write data to *streams* using a simple REST (*REpresentational State Transfer*) API (*Application Programming Interface*). The streams you create are used to store simple or complex data types to suit your application needs. An assortment of methods with customizable behaviors are available to read data and easily obtain needed information.
 
+
+Getting Started
+---------------
+
+Perhaps the best way to get started with Qi is to run one of the code samples. Code samples are provided in a number of different languages, and are intended to show how easy it is to store and read data with Qi. The samples illustrate how to use REST calls  to interact with Qi. 
+
+Each sample includes a complete solution or project for you to download as well as a readme file which describes the steps you need to take to get the sample running. Be sure to read through the readme file to understand the steps you need to take. 
+
+After you have worked with one (or more) of the samples OSIsoft recomments that you refer to the Quick Start section, which shows how to get started with your application by describing the manner in which QI objects interact.
+
+
 Architecture
 ------------
 
