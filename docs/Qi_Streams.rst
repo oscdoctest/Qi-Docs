@@ -41,7 +41,7 @@ set to *all*. See
 `QiStreamBehaviors <https://qi-docs-rst.readthedocs.org/en/latest/Qi_Stream_Behavior.html>`__
 for more information.
 
-**Restrictions and Limitations**
+**Restrictions and limitations**
 
 *QiStream ID*
 
