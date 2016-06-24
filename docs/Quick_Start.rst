@@ -1,7 +1,7 @@
 Quick start
 ###########
 
-As described in `Introducing Qi <https://qi-docs-rst.readthedocs.org/en/latest/Introducing_Qi.html#architecture>`__, the highest-level object in the Qi environment is a *Tenant*. To start working with Qi, OSIsoft provides you a *Tenant Id* and security information which allows you to connect to your tenant on the Qi server. You use your tenant to create and manipulate your Qi objects.
+As described in `Introducing Qi <https://qi-docs-rst.readthedocs.org/en/latest/Introducing_Qi.html#architecture>`__, the highest-level object in the Qi environment is a *Tenant*. To start working with Qi, OSIsoft provides you a *Tenant Id* and security information which allows you to connect to your tenant on the Qi server. It is within the tenant that you create one or more namespaces in which to work. See `Architecture <https://qi-docs.readthedocs.org/en/latest/Introducint_Qi.html#Architecture>`__ for an overview of Qi tenants, namespaces, and other objects.
 
 
 Step 1: Create a Namespace
