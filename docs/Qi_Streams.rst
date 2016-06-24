@@ -41,7 +41,7 @@ set to *all*. See
 `QiStreamBehaviors <https://qi-docs-rst.readthedocs.org/en/latest/Qi_Stream_Behavior.html>`__
 for more information.
 
-**Restrictions and Limitations**
+**Restrictions and limitations**
 
 *QiStream ID*
 
@@ -55,8 +55,7 @@ for more information.
 7. Cannot contain consecutive periods.
 8. Cannot consist of only periods. 
 
-**QiStream Metadata**
 
-Use of TimeSpan objects in the QiStream Metadata dictionary is not supported. Any numeric types stored in QiStream Metadata might be returned as type ``long``.
+**QiStream metadata**
 
 The Metadata property provides the ability to store information about a stream using a key-value dictionary (specifically, ``IDictionary<string, object>``). QiStream Metadata property values are subject to *over-the-wire* serialization limitations. To ensure there is no loss of data fidelity, OSIsoft recommends that you test the value ranges of any type that you plan to use.

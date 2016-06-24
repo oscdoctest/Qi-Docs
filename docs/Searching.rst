@@ -86,8 +86,5 @@ You can specify search operators in the ``searchText`` string to return more spe
          either wifi or luxury (or both).
 =======  ============================================================
 
-Qi Stream tags
---------------
 
-QiStream objects support a collection of strings called *Tags*. Tags allow you to augment QiStreams with additional information, making it easier to classify, identify, and search for individual streams. The previous example showed a stream being created that has the tags “Depth”, “Temperature”, and “operations” defined. 
 
