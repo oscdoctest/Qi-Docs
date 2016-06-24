@@ -11,7 +11,7 @@ Perhaps the best way to get started with Qi is to run one or more of the code sa
 
 Each sample includes a complete solution or project for you to download as well as a readme file which describes the steps required to run the sample. Be sure to read through the readme.rst file (stored with the samples) to understand how the samples work. 
 
-After you have worked with one (or more) of the samples, OSIsoft recomments that you refer to the `Quick Start <https://qi-docs-rst.readthedocs.org/en/latest/Quick_Start.html>`__ section, which shows how to get started with your application by describing the interaction of various QI objects.
+After you have worked with one (or more) of the samples, OSIsoft recommends that you refer to the `Quick Start <https://qi-docs-rst.readthedocs.org/en/latest/Quick_Start.html>`__ section, which shows how to get started with your application by describing the interaction of various Qi objects.
 
 
 Architecture
