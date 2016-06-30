@@ -51,7 +51,7 @@ Security
 ``GetStreamsAsync()``
 ----------------
 
-Returns all streams from the specified namespace or Searches for and returns streams that fit search criteria. Also see `Searching <https://qi-docs-rst.readthedocs.org/en/latest/Searching.html>`__ for information about searching for streams. 
+Returns all streams from the specified namespace or Searches for and returns streams that fit search criteria. Also see `Searching for QiStreams <https://qi-docs-rst.readthedocs.org/en/latest/Searching.html>`__ for information about how to search for streams. 
 
 **Syntax**
 
