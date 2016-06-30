@@ -38,7 +38,7 @@ Using the stream data above, the following table shows the results of a ``GetStr
 ``“humidity*”``        No streams returned.
 ================     ========================================
 
-When searching for a stream, be aware that a string of contiguous characters is indexed as a solid block of text. For example, suppose that a stream contained the string "Tank:ABC". Searching for “Tank:A*” would be found, but searching for “ABC*” would not be found. By inserting spaces within your strings you break up the contiguous block and allow for in-string searching. For example, if the stream contained "Tank ABC" instead of "Tank:ABC" then searches for “Tank A*” or for “ABC*” would both be successful.
+When searching for a stream, be aware that a string of contiguous characters is indexed as a solid block of text. For example, suppose that a stream has the name "Tank:ABC". Searching for “Tank:A*” would find the stream, but searching for “ABC*” would not be found. By inserting spaces you break up the contiguous block and allow for in-string searching. For example, if the stream Name is "Tank ABC" instead of "Tank:ABC" then searches for “Tank A*” or for “ABC*” would both be successful.
 
 The ``skip`` and ``count`` parameters determine which streams are returned when a large number of streams match the ``searchText`` criteria. 
 
