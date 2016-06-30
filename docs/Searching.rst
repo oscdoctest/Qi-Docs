@@ -11,7 +11,7 @@ The syntax of the client libraries method is as follows:
 
 
 The ``GetStreamsAsync`` overload returns QiStreams that match specific search criteria within a given namespace. 
-You use the ``searchText`` parameter to specify a search string. The ``GetStreamsAsync`` method then returns any QiStreams that match the search string ``name``, ``description``, or ``tag`` list. 
+You use the ``searchText`` parameter to specify a search string. The ``GetStreamsAsync`` method then returns any QiStream that matches the search string in the ``name``, ``description``, or ``tag`` list. 
 
 For example, assume that a namespace contains the following Streams:
 
@@ -38,7 +38,7 @@ Using the stream data above, the following table shows the results of a ``GetStr
 ``“humidity*”``        No streams returned.
 ================     ========================================
 
-When searching for a stream, be aware that a string of contiguous characters is indexed as a solid block of text. For example, suppose that a stream has the name "Tank:ABC". Searching for “Tank:A*” would find the stream, but searching for “ABC*” would not be found. By inserting spaces you break up the contiguous block and allow for in-string searching. For example, if the stream Name is "Tank ABC" instead of "Tank:ABC" then searches for “Tank A*” or for “ABC*” would both be successful.
+When searching for a stream, be aware that a string of contiguous characters is indexed as a solid block of text. For example, suppose that a stream has the name "Tank:ABC". Searching for “Tank:A*” would find the stream, but searching for “ABC*” would not find it. By inserting spaces you break up the contiguous block and allow for in-string searching. For example, if the stream Name is "Tank ABC" instead of "Tank:ABC" then searches for “Tank A*” or for “ABC*” would both be successful.
 
 The ``skip`` and ``count`` parameters determine which streams are returned when a large number of streams match the ``searchText`` criteria. 
 
