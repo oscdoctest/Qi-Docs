@@ -15,7 +15,6 @@ interface, which you access using the ``QiService.GetMetadataService( )`` helper
 
 Returns a QiStream object from the specified namespace that matches the specified namespace and streamId.
 
-
 **Syntax**
 
 
@@ -52,7 +51,7 @@ Security
 ``GetStreamsAsync()``
 ----------------
 
-Returns all streams from the specified namespace or Searches for and returns streams that fit search criteria.
+Returns all streams from the specified namespace or Searches for and returns streams that fit search criteria. Also see `Searching <https://qi-docs-rst.readthedocs.org/en/latest/Searching.html>`__ for information about searching for streams. 
 
 **Syntax**
 
