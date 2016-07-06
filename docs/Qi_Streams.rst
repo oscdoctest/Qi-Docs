@@ -26,7 +26,7 @@ The following table shows the required and optional QiStream properties:
 |               |                              |             | classifying and identifying individual     |
 |               |                              |             | streams.                                   |
 +---------------+------------------------------+-------------+--------------------------------------------+
-| Metadata      | iDictionary<string, object>  | Optional    | A dictionary for users to store information|
+| Metadata      | iDictionary<string, string>  | Optional    | A dictionary for users to store information|
 |               |                              |             | that is relevant to the stream             |
 +---------------+------------------------------+-------------+--------------------------------------------+
 | Indexes       | IList<QiStreamIndex>         | Optional    | Used to define secondary indexes for stream|
@@ -56,6 +56,3 @@ for more information.
 8. Cannot consist of only periods. 
 
 
-**QiStream metadata**
-
-The Metadata property provides the ability to store information about a stream using a key-value dictionary (specifically, ``IDictionary<string, object>``). QiStream Metadata property values are subject to *over-the-wire* serialization limitations. To ensure there is no loss of data fidelity, OSIsoft recommends that you test the value ranges of any type that you plan to use.
