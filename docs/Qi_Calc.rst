@@ -12,7 +12,7 @@ can be either of the following types:
 
 
 
-The Qi Calculation API is provided using the ``IQiMetadataService`` interface, which may be accessed via the ``QiService.GetMetadataService( )`` helper.
+The Qi Calculation API is provided using the ``IQiCalculationService`` interface, which may be accessed via the ``QiService.GetCalculationService( )`` helper.
 
 The following table shows the required and optional Qi calculation properties:
 
@@ -40,7 +40,7 @@ The following table shows the required and optional Qi calculation properties:
 +---------------+------------------------------+-------------+--------------------------------------------+
 
 See
-`QiStreamBehaviors <https://qi-docs-rst.readthedocs.org/en/latest/Qi_Stream_Behavior.html>`__
+`Qi Calculation API <https://qi-docs-rst.readthedocs.org/en/latest/Qi_Calc_API.html>`__
 for more information.
 
 **Restrictions and limitations**
