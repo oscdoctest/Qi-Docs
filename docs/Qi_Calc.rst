@@ -5,18 +5,16 @@ The Qi Calculation API allows you to create custom calculations using JavaScript
 can be either of the following types:
 
  - Scheduled
-     Run on periodic schedule
+     Run on periodic schedule.
  - Triggered
      Run whenever a particular input stream receives an event.
 
 
-A QiStream is the fundamental unit of storage in Qi. Each stream
-represents an ordered series of events or observations for a particular
-item of interest.
 
-QiStream management via the Qi Client Libraries is performed through the ``IQiMetadataService`` interface, which may be accessed via the ``QiService.GetMetadataService( )`` helper.
 
-The following table shows the required and optional QiStream properties:
+The Qi Calculation API is provided using the ``IQiMetadataService`` interface, which may be accessed via the ``QiService.GetMetadataService( )`` helper.
+
+The following table shows the required and optional Qi calculation properties:
 
 +---------------+------------------------------+-------------+--------------------------------------------+
 | Property      | Type                         | Optionality |Details                                     |
@@ -41,18 +39,13 @@ The following table shows the required and optional QiStream properties:
 | Indexes       | IList<QiStreamIndex>         | Optional    | Used to define secondary indexes for stream|
 +---------------+------------------------------+-------------+--------------------------------------------+
 
-A stream is always referenced by its Id property. As shown in the preceding table,
-a QiStream must include a unique *ID* as well as a *TypeId* with the ID of
-an existing QiType. The optional *BehaviorId* is set with the ID of an
-existing stream behavior. When BehaviorId is omitted, the stream
-will have a default behavior mode set to *continuous* and *extrapolation*
-set to *all*. See
+See
 `QiStreamBehaviors <https://qi-docs-rst.readthedocs.org/en/latest/Qi_Stream_Behavior.html>`__
 for more information.
 
 **Restrictions and limitations**
 
-*QiStream ID*
+*Qi calculation ID*
 
 1. Is not case sensitive.
 2. Can contain spaces.
