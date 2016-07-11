@@ -2,7 +2,6 @@ Qi Calculation API
 ====================
 
 .. toctree::
-   :maxdepth: 2
 
    Qi_Scripts
    Qi_Timezones
