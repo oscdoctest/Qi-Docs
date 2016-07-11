@@ -1,6 +1,15 @@
 Qi Calculation API
 ====================
 
+.. toctree::
+   :maxdepth: 2
+
+   Qi_Scripts
+   Qi_Timezones
+   Qi_Periodic_Schedules
+
+
+
 The Qi Calculation API allows you to create custom calculations using JavaScript or TypeScript. The scripts you create 
 can be either of the following types:
 
