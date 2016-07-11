@@ -31,6 +31,8 @@ easily obtain needed information.
    Reading_Data_API
    Searching
    Filter Expressions
+   Qi_Calc
+   Qi_Calc_API
    samples
    support
    preview
