@@ -1,6 +1,7 @@
 Qi Calculation API
 ====================
 
+
 .. toctree::
 
    Qi_Scripts
@@ -9,14 +10,12 @@ Qi Calculation API
 
 
 
-The Qi Calculation API allows you to create custom calculations using JavaScript or TypeScript. The scripts you create 
-can be either of the following types:
+The Qi Calculation API allows you to create custom calculations using JavaScript or TypeScript. Calculations can be scheduled to run  periodically or can be triggered whenever a particular input stream receives an event. 
 
  - Scheduled
      Run on periodic schedule.
  - Triggered
      Run whenever a particular input stream receives an event.
-
 
 
 
