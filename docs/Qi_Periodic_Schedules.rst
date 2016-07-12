@@ -27,6 +27,7 @@ Removes a periodic schedule from the namespace.
 **Parameters**
 
 ``string tenantId``
+
   The ID of the tenant.
   
 ``string NamespaceId``
@@ -43,9 +44,9 @@ Security
   
 **Status code**
 
-200 - OK
-400 - BadRequest
-500 - InternalServerError
+  200 - OK
+  400 - BadRequest
+  500 - InternalServerError
  
 
 **********************
