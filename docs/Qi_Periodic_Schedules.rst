@@ -21,13 +21,12 @@ Removes a periodic schedule from the namespace.
 
 ::
 
-    GET "Qi/{tenantId}/Namespaces/{namespaceId}”
+    GET "Qi/{tenantId}/NamespaceId/schedules/periodic{Id}”
 
 
 **Parameters**
 
 ``string tenantId``
-
   The ID of the tenant.
   
 ``string NamespaceId``
