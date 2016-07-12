@@ -6,7 +6,7 @@ The API calls in this section are all used to create, delete, and manage periodi
 ``QiPeriodicSchedule()``
 ----------------------
 
-Removes a periodic schedule from the namespace. 
+Removes a periodic schedule from the specified namespace. 
 
 
 **Syntax**
@@ -52,7 +52,7 @@ Security
 ``QiPeriodicSchedule()``
 -------------------
 
-Retrieves a periodic schedule that is associated with the specified Id. 
+Retrieves a periodic schedule that is associated with a specified Id. 
 
 
 **Syntax**
@@ -97,7 +97,7 @@ Security
 ``QiPeriodicSchedule()``
 -------------------
 
-Retrieves a periodic schedule that is associated with a specified Id. 
+ Returns a list of periodic schedules used by calculations
 
 
 **Syntax**
@@ -140,58 +140,6 @@ Security
   400 - BadRequest
   500 - InternalServerError
 
- 
-
-``QiPeriodicSchedule()``
--------------------
-
- Returns a list of periodic schedules that are used by calculations
-
-
-
-**Syntax**
-
-.. highlight:: none
-
-::
-
-    Task<QiNamespace> GetNamespaceAsync(string namespaceId);
-
-**Http**
-
-::
-
-    GET "/qi/{tenantId}/{namespaceId}/schedules/periodic”
-
-
-**Parameters**
-
-``string Id``
-  Unique Id for this schedule. Used when referencing this schedule or retrieving it.
-``string Name``
-  A name for this schedule.
-``string TimeZoneId`` (optional)
-  The Id of the time zone used for this schedule. Used only when the schedule uses daily, monthly, or yearly schedules.
-``string ScheduleType``
-  Used to determine how the time interval is expressed = ['TimeInterval', 'Daily', 'Monthly', 'Yearly']
-``string Interval`` (optional)
-  The interval expressed as hh:mm[:ss[.ff]] where hh is the number of hours, mm is the number of minutes, ss is the optional number of seconds, and ff is the number of fractional seconds. Used only when the ScheduleType is TimeInterval.
-``string Offset`` (optional)
-  An offset applied to the schedule. If a TimeInterval schedule has an Interval of 01:00, or one hour, and an offset of 00:05, then it will be dispatched at five minutes after the hour, every hour.
- 
-Security
-  Allowed by administrator and user accounts.
-
-**Returns** 
-  Returns a namespace.
-
-**Status code**
-  400 - BadRequest
-  500 - InternalServerError
-
- 
-
-**********************
 
 ``QiPeriodicSchedule()``
 -------------------
@@ -241,5 +189,58 @@ Security
  
 
 **********************
+
+ 
+
+``QiPeriodicSchedule()``
+-------------------
+
+ Updates a periodic schedule in a specified namespace. 
+
+
+**Syntax**
+
+.. highlight:: none
+
+::
+
+    Task<QiNamespace> GetNamespaceAsync(string namespaceId);
+
+**Http**
+
+::
+
+    GET "/qi/{tenantId}/{namespaceId}/schedules/periodic”
+
+
+**Parameters**
+
+``string Id``
+  Unique Id for this schedule. Used when referencing this schedule or retrieving it.
+``string Name``
+  A name for this schedule.
+``string TimeZoneId`` (optional)
+  The Id of the time zone used for this schedule. Used only when the schedule uses daily, monthly, or yearly schedules.
+``string ScheduleType``
+  Used to determine how the time interval is expressed = ['TimeInterval', 'Daily', 'Monthly', 'Yearly']
+``string Interval`` (optional)
+  The interval expressed as hh:mm[:ss[.ff]] where hh is the number of hours, mm is the number of minutes, ss is the optional number of seconds, and ff is the number of fractional seconds. Used only when the ScheduleType is TimeInterval.
+``string Offset`` (optional)
+  An offset applied to the schedule. If a TimeInterval schedule has an Interval of 01:00, or one hour, and an offset of 00:05, then it will be dispatched at five minutes after the hour, every hour.
+ 
+Security
+  Allowed by administrator and user accounts.
+
+**Returns** 
+  Returns a namespace.
+
+**Status code**
+  400 - BadRequest
+  500 - InternalServerError
+
+ 
+
+**********************
+
 
 
