@@ -1,22 +1,12 @@
 Qi Calculation API
 ====================
 
-
-.. toctree::
-
-   Qi_Scripts
-   Qi_Timezones
-   Qi_Periodic_Schedules
-
-
-
 The Qi Calculation API allows you to create custom calculations using JavaScript or TypeScript. Calculations can be scheduled to run  periodically or can be triggered whenever a particular input stream receives an event. 
 
  - Scheduled
      Run on periodic schedule.
  - Triggered
      Run whenever a particular input stream receives an event.
-
 
 
 The Qi Calculation API is provided using the ``IQiCalculationService`` interface, which may be accessed via the ``QiService.GetCalculationService( )`` helper.
@@ -46,10 +36,6 @@ The following table shows the required and optional Qi calculation properties:
 | Indexes       | IList<QiStreamIndex>         | Optional    | Used to define secondary indexes for stream|
 +---------------+------------------------------+-------------+--------------------------------------------+
 
-See
-`Qi Calculation API <https://qi-docs-rst.readthedocs.org/en/latest/Qi_Calc_API.html>`__
-for more information.
-
 **Restrictions and limitations**
 
 *Qi calculation ID*
@@ -65,4 +51,11 @@ for more information.
 8. Cannot consist of only periods. 
 
 
+.. toctree::
+
+   Qi_Scripts
+   Qi_Timezones
+   Qi_Periodic_Schedules
+   
+   
 
