@@ -123,3 +123,123 @@ Security
 
 **********************
 
+``GetScriptAsync()``
+----------------------
+
+Retrieves a script from the namespace with the specified Id.  
+
+
+**Syntax**
+
+.. highlight:: none
+
+::
+
+    Task<QiScript> GetScriptAsync(string scriptId);
+
+**Http**
+
+::
+
+    GET /qi/{tenantId}/{namespaceId}/Scripts/{scriptId}
+
+
+**Parameters**
+
+``string Id``
+  Unique Id for this script. Used when referencing this script in other objects such as calculation types or other scripts.
+ 
+``string name``
+  A Name for this script.
+
+``string Description`` (optional)
+  A Discription of this script.
+
+``string Source``
+  The source code or implementation that represents the script.
+
+``string Type``
+  The language used to write the sript = ['JavaScript', 'TypeScript']
+
+``Array[QiScriptReference] ReferencedScripts`` (optional)
+  Scripts that must be included when compiling and running this script.
+ 
+
+Security
+  Allowed by administrator and user accounts.
+
+**Returns** 
+
+::
+
+
+  
+**Status code**
+
+*  400 - BadRequest
+*  404 - NotFound
+*  500 - InternalServerError
+ 
+
+**********************
+
+``GetScriptsAsync()``
+----------------------
+
+
+Retrieves a list of scripts from the specified namespace. 
+
+
+**Syntax**
+
+.. highlight:: none
+
+::
+
+    Task<QiScript> GetScriptsAsync(string scriptId);
+
+**Http**
+
+::
+
+    GET /qi/{tenantId}/{namespaceId}/Scripts
+
+
+**Parameters**
+
+``string Id``
+  Unique Id for this script. Used when referencing this script in other objects such as calculation types or other scripts.
+ 
+``string name``
+  A Name for this script.
+
+``string Description`` (optional)
+  A Discription of this script.
+
+``string Source``
+  The source code or implementation that represents the script.
+
+``string Type``
+  The language used to write the sript = ['JavaScript', 'TypeScript']
+
+``Array[QiScriptReference] ReferencedScripts`` (optional)
+  Scripts that must be included when compiling and running this script.
+ 
+
+Security
+  Allowed by administrator and user accounts.
+
+**Returns** 
+
+::
+
+
+  
+**Status code**
+
+*  400 - BadRequest
+*  404 - NotFound
+*  500 - InternalServerError
+ 
+
+**********************
