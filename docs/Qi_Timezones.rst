@@ -2,7 +2,7 @@ Qi Timezones
 ============
 
 
-``timezone()``
+``GetTimeZonesAsync()``
 -------------------
 
 Returns a list of timezones.
@@ -13,13 +13,13 @@ Returns a list of timezones.
 
 ::
 
-    timezone(string Id, string Name);
+    Task<IList<QiTimeZone>> GetTimeZonesAsync();
 
 **Http**
 
 ::
 
-    https://calcsdev.osipi.com/qi/timezones
+    GET /qi/TimeZones
 
 
 **Parameters**
