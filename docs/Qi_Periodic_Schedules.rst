@@ -42,9 +42,10 @@ Security
   Returns a namespace.
   
 **Status code**
-  200 - OK
-  400 - BadRequest
-  500 - InternalServerError
+
+*  200 - OK
+*  400 - BadRequest
+*  500 - InternalServerError
  
 
 **********************
@@ -91,6 +92,13 @@ Security
 **Returns** 
   Returns a namespace.
 
+**Status code**
+
+*  200 - OK
+*  404 - BadRequest
+*  500 - InternalServerError
+
+
 **********************
 
 ``GetPeriodicSchedulesAsync()``
@@ -136,8 +144,12 @@ Security
   Returns a namespace.
 
 **Status code**
-  400 - BadRequest
-  500 - InternalServerError
+
+* 400 - BadRequest
+* 500 - InternalServerError
+
+
+*************************
 
 
 ``GetOrCreatePeriodicScheduleAsync()``
@@ -183,7 +195,10 @@ Security
   Returns a namespace.
 
 **Status code**
-  500 - InternalServerError
+
+* 201 - Created
+* 400 - BadRequest
+* 500 - InternalServerError
 
  
 
@@ -234,8 +249,9 @@ Security
   Returns a namespace.
 
 **Status code**
-  400 - BadRequest
-  500 - InternalServerError
+
+* 400 - BadRequest
+* 500 - InternalServerError
 
  
 
