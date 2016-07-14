@@ -1,7 +1,8 @@
 Qi Scripts
 ==========
 
-The API calls in this section are all used to create, delete, and manage scripts.
+You use the API calls in this section create, delete, and manage scripts.
+
 
 ``GetOrCreateScriptAsync()``
 ----------------------
@@ -63,6 +64,53 @@ Security
   QiScriptReference {
   ScriptId (string): The unique Id of the {OSIsoft.Qi.Calculation.Core.QiScript}
 } 
+
+  
+  
+**Status code**
+
+*  200 - OK
+*  400 - BadRequest
+*  500 - InternalServerError
+ 
+
+**********************
+
+``DeleteScriptAsync()``
+----------------------
+
+
+Removes a script from the specified namespace. 
+
+
+**Syntax**
+
+.. highlight:: none
+
+::
+
+    Task DeleteScriptAsync(string scriptId);
+
+**Http**
+
+::
+
+    DELETE /qi/{tenantId}/{namespaceId}/Scripts/{scriptId}
+
+
+**Parameters**
+
+``string Id``
+  Unique Id for this script. Used when referencing this script in other objects such as calculation types or other scripts.
+ 
+
+Security
+  Allowed by administrator and user accounts.
+
+**Returns** 
+
+::
+
 
   
   
