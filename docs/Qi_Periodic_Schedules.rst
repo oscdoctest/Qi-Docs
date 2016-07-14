@@ -3,7 +3,7 @@ Qi Periodic Schedules
 
 The API calls in this section are all used to create, delete, and manage periodic schedules within a namespace. Schedules can be referenced by calculations. 
 
-``QiPeriodicSchedule()``
+``DeletePeriodicScheduleAsync()``
 ----------------------
 
 Removes a periodic schedule from the specified namespace. 
@@ -15,13 +15,13 @@ Removes a periodic schedule from the specified namespace.
 
 ::
 
-    QiPeriodicSchedule(string Id, string namespace, string Id);
+    Task DeletePeriodicScheduleAsync(string scheduleId);
 
 **Http**
 
 ::
 
-    GET "Qi/{tenantId}/NamespaceId/schedules/periodic{Id}”
+    DELETE /qi/{tenantId}/{namespaceId}/Schedules/Periodic/{scheduleId}
 
 
 **Parameters**
@@ -49,7 +49,7 @@ Security
 
 **********************
 
-``QiPeriodicSchedule()``
+``GetPeriodicScheduleAsync()``
 -------------------
 
 Retrieves a periodic schedule that is associated with a specified Id. 
@@ -61,14 +61,13 @@ Retrieves a periodic schedule that is associated with a specified Id.
 
 ::
 
-    Task<QiNamespace> QiPeriodicSchecule(string Id, string Name, sring TimeZoneId, string ScheduleType, string Interval
-                      string Offset);
+   Task<QiPeriodicSchedule> GetPeriodicScheduleAsync(string scheduleId);
 
 **Http**
 
 ::
 
-    GET "/qi/{tenantId}/{namespaceId}/schedules/periodic/{id}"
+    GET /qi/{tenantId}/{namespaceId}/Schedules/Periodic/{scheduleId}
 
 
 **Parameters**
@@ -94,7 +93,7 @@ Security
 
 **********************
 
-``QiPeriodicSchedule()``
+``GetPeriodicSchedulesAsync()``
 -------------------
 
  Returns a list of periodic schedules used by calculations
@@ -106,13 +105,13 @@ Security
 
 ::
 
-    Task<QiNamespace> GetNamespaceAsync(string namespaceId);
+    Task<IList<QiPeriodicSchedule>> GetPeriodicSchedulesAsync();
 
 **Http**
 
 ::
 
-    GET "/qi/{tenantId}/{namespaceId}/schedules/periodic”
+    GET /qi/{tenantId}/{namespaceId}/Schedules/Periodic
 
 
 **Parameters**
@@ -141,7 +140,7 @@ Security
   500 - InternalServerError
 
 
-``QiPeriodicSchedule()``
+``GetOrCreatePeriodicScheduleAsync()``
 -------------------
 
  Inserts a new periodic schedule into the namespace. The schedule can be referenced by calculations. 
@@ -153,13 +152,13 @@ Security
 
 ::
 
-    Task<QiNamespace> GetNamespaceAsync(string namespaceId);
+   Task<QiPeriodicSchedule> GetOrCreatePeriodicScheduleAsync(QiPeriodicSchedule schedule);
 
 **Http**
 
 ::
 
-    GET "/qi/{tenantId}/{namespaceId}/schedules/periodic”
+    POST /qi/{tenantId}/{namespaceId}/Schedules/Periodic
 
 
 **Parameters**
@@ -192,7 +191,7 @@ Security
 
  
 
-``QiPeriodicSchedule()``
+``UpdatePeriodicScheduleAsync()``
 -------------------
 
  Updates a periodic schedule in a specified namespace. 
@@ -204,13 +203,13 @@ Security
 
 ::
 
-    Task<QiNamespace> GetNamespaceAsync(string namespaceId);
+    Task UpdatePeriodicScheduleAsync(QiPeriodicSchedule schedule);
 
 **Http**
 
 ::
 
-    GET "/qi/{tenantId}/{namespaceId}/schedules/periodic”
+   PUT /qi/{tenantId}/{namespaceId}/Schedules/Periodic
 
 
 **Parameters**
