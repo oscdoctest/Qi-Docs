@@ -9,7 +9,7 @@ The Qi Calculation API allows you to create custom calculations using JavaScript
      Run whenever a particular input stream receives an event.
 
 
-The Qi Calculation API is provided using the ``IQiCalculationService`` interface, which may be accessed via the ``QiService.GetCalculationService( )`` helper. For more information see `Qi Calculation API calls <https://qi-docs.readthedocs.org/en/latest/Qi_Cals_API.html>`__.
+The Qi Calculation API is provided using the ``IQiCalculationService`` interface, which may be accessed via the ``QiService.GetCalculationService( )`` helper. For more information see `Qi Calculation API calls <https://qi-docs.readthedocs.org/en/latest/Qi_Calc_API.html>`__.
 
 The following table shows the required and optional Qi calculation properties:
 
