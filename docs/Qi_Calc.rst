@@ -1,4 +1,4 @@
-Qi Calculation API
+Qi Calculations
 ====================
 
 The Qi Calculation API allows you to create custom calculations using JavaScript or TypeScript. Calculations can be scheduled to run  periodically or can be triggered whenever a particular input stream receives an event. 
@@ -51,11 +51,7 @@ The following table shows the required and optional Qi calculation properties:
 8. Cannot consist of only periods. 
 
 
-.. toctree::
 
-   Qi_Scripts
-   Qi_Timezones
-   Qi_Periodic_Schedules
    
    
 
