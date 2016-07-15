@@ -78,10 +78,10 @@ Security
 
 **********************
 
-``GetCalculationAsync()``
+``GetTypeAsync()``
 ----------------------
 
-Retrieves a QiCalculation from the specified namespace. 
+Retrieves a QiCalculationType from a namespace. 
 
 
 **Syntax**
@@ -90,46 +90,43 @@ Retrieves a QiCalculation from the specified namespace.
 
 ::
 
-    Task<QiCalculation> GetCalculationAsync(string calculationId);
+    Task<QiCalculationType> GetTypeAsync(string typeId);
 
 **Http**
 
 ::
 
-   GET /qi/{tenantId}/{namespaceId}/Calculations/{calculationId}
+   GET /qi/{tenantId}/{namespaceId}/CalculationTypes/{typeId}
 
 
 **Parameters**
 
-``string Id``
+``string Id`` (optional)
   
  
-``string name`` (optional)
+``string Name`` (optional)
   
 
 ``string Description`` (optional)
   
 
-``string TypeId``
+``QiScriptReference Script`` (optional)
   
+``string Symbols`` (optional)
+  
+``string Trigger``(optional) = ['Undefined', 'PeriodicSchedule', 'EventTriggeredSchedule', 'Manual']
 
-``string ScheduleId``
-  
-  
-``Array [QiSymbolSettings] SymbolSettings`` (optional)
-  
-  ::
+::
 
-  QiSymbolSettings {
-    SymbolId (string, optional),
-    ProviderSettings (object, optional)
+  QiScriptReference {
+    ScriptId (string): The unique Id of the {OSIsoft.Qi.Calculation.Core.QiScript}
+ 
+  }
+  QiScriptSymbol {
+    Id (string),
+    Name (string, optional),
+    ProviderId (string)
   } 
-  
-  
-``boolean IsEnabled``
-
-``string Status`` = ['Undefined', 'InDevelopment', 'Running', 'InError']
-
 
 
 Security
