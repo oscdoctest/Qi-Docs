@@ -1,14 +1,14 @@
-Qi Calculations
+Qi Calculation types
 ==========
 
 The APIs in this topic are used to create, delete, and update Qi calculation types
 
 
 
-``GetOrCreateCalculationAsync()``
+``GetOrCreateTypeAsync()``
 ----------------------
 
-Retrieves or inserts a QiCalculation in the specified namespace. 
+Retrieves or inserts a QiCalculationType into a namespace. 
 
 
 **Syntax**
@@ -17,13 +17,13 @@ Retrieves or inserts a QiCalculation in the specified namespace.
 
 ::
 
-    Task<QiCalculation> GetOrCreateCalculationAsync(QiCalculation calculation);
+    Task<QiCalculationType> GetOrCreateTypeAsync(QiCalculationType type);
 
 **Http**
 
 ::
 
-    POST /qi/{tenantId}/{namespaceId}/Calculations
+    POST /qi/{tenantId}/{namespaceId}/CalculationTypes
 
 
 **Parameters**
