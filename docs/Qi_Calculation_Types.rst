@@ -215,10 +215,10 @@ Security
 
 
 
-``GetCalculationsAsync()``
+``UpdateTypeAsync()``
 ----------------------
 
-Retrieves a list of QiCalculation objects in a namespace. 
+Updates an existing QiCalculationType in a namespace. 
 
 
 **Syntax**
@@ -227,85 +227,13 @@ Retrieves a list of QiCalculation objects in a namespace.
 
 ::
 
-    Task<IList<QiCalculation>> GetCalculationsAsync();
+    Task UpdateTypeAsync(QiCalculationType type);
 
 **Http**
 
 ::
 
-   GET /qi/{tenantId}/{namespaceId}/Calculations
-
-
-**Parameters**
-
-``string Id``
-  
- 
-``string name`` (optional)
-  
-
-``string Description`` (optional)
-  
-
-``string TypeId``
-  
-
-``string ScheduleId``
-  
-  
-``Array [QiSymbolSettings] SymbolSettings`` (optional)
-  
-  ::
-
-  QiSymbolSettings {
-    SymbolId (string, optional),
-    ProviderSettings (object, optional)
-  } 
-  
-  
-``boolean IsEnabled``
-
-``string Status`` = ['Undefined', 'InDevelopment', 'Running', 'InError']
-
-
-
-Security
-  Allowed by administrator and user accounts.
-
-**Returns** 
-
-
-  
-**Status code**
-
-*  400 - One of the arguments is invalid or a referenced dependent object does not exist.
-*  401 - The user is not authorized to perform this operation.
-*  500 - An unexpected error occurred.
-*  504 - A timeout occurred while trying to execute the operation.
- 
-
-**********************
-
-
-``UpdateCalculationAsync()``
-----------------------
-
-Retrieves or inserts a QiCalculation in the specified namespace. 
-
-
-**Syntax**
-
-.. highlight:: none
-
-::
-
-    Task UpdateCalculationAsync(QiCalculation calculation);
-
-**Http**
-
-::
-
-    PUT /qi/{tenantId}/{namespaceId}/Calculations
+   PUT /qi/{tenantId}/{namespaceId}/CalculationTypes
 
 
 **Parameters**
@@ -360,10 +288,10 @@ Security
 **********************
 
 
-``DeleteCalculationAsync()``
+``DeleteTypeAsync()``
 ----------------------
 
-Removes a QiCalculation from a namespace. 
+Removes a QiCalculationType from a namespace. 
 
 
 **Syntax**
@@ -372,13 +300,13 @@ Removes a QiCalculation from a namespace.
 
 ::
 
-    Task DeleteCalculationAsync(string calculationId);
+    Task DeleteTypeAsync(string typeId);
 
 **Http**
 
 ::
 
-    DELETE /qi/{tenantId}/{namespaceId}/Calculations/{calculationId}
+    DELETE /qi/{tenantId}/{namespaceId}/CalculationTypes/{typeId}
 
 
 **Parameters**
@@ -423,7 +351,6 @@ Security
   
 **Status code**
 
-*  200 - The object was successfully updated.
 *  400 - One of the arguments is invalid or a referenced dependent object does not exist.
 *  401 - The user is not authorized to perform this operation.
 *  500 - An unexpected error occurred.
