@@ -58,7 +58,6 @@ Retrieves or inserts a QiCalculation in the specified namespace.
 
 
 
-
 Security
   Allowed by administrator and user accounts.
 
@@ -77,11 +76,10 @@ Security
 
 **********************
 
-``DeleteScriptAsync()``
+``GetCalculationAsync()``
 ----------------------
 
-
-Removes a script from the specified namespace. 
+Retrieves a QiCalculation from the specified namespace. 
 
 
 **Syntax**
@@ -90,44 +88,69 @@ Removes a script from the specified namespace.
 
 ::
 
-    Task DeleteScriptAsync(string scriptId);
+    Task<QiCalculation> GetCalculationAsync(string calculationId);
 
 **Http**
 
 ::
 
-    DELETE /qi/{tenantId}/{namespaceId}/Scripts/{scriptId}
+   GET /qi/{tenantId}/{namespaceId}/Calculations/{calculationId}
 
 
 **Parameters**
 
 ``string Id``
-  Unique Id for this script. Used when referencing this script in other objects such as calculation types or other scripts.
+  
  
+``string name`` (optional)
+  
+
+``string Description`` (optional)
+  
+
+``string TypeId``
+  
+
+``string ScheduleId``
+  
+  
+``Array [QiSymbolSettings] SymbolSettings`` (optional)
+  
+  ::
+
+  QiSymbolSettings {
+    SymbolId (string, optional),
+    ProviderSettings (object, optional)
+  } 
+  
+  
+``boolean IsEnabled``
+
+``string Status`` = ['Undefined', 'InDevelopment', 'Running', 'InError']
+
+
 
 Security
   Allowed by administrator and user accounts.
 
 **Returns** 
 
-::
 
-
-  
   
 **Status code**
 
-*  200 - OK
-*  400 - BadRequest
-*  500 - InternalServerError
+*  400 - One of the arguments is invalid or a referenced dependent object does not exist.
+*  401 - The user is not authorized to perform this operation.
+*  500 - An unexpected error occurred.
+*  504 - A timeout occurred while trying to execute the operation.
  
 
 **********************
 
-``GetScriptAsync()``
+``GetCalculationsAsync()``
 ----------------------
 
-Retrieves a script from the namespace with the specified Id.  
+Retrieves a list of QiCalculation objects in a namespace. 
 
 
 **Syntax**
@@ -136,59 +159,70 @@ Retrieves a script from the namespace with the specified Id.
 
 ::
 
-    Task<QiScript> GetScriptAsync(string scriptId);
+    Task<IList<QiCalculation>> GetCalculationsAsync();
 
 **Http**
 
 ::
 
-    GET /qi/{tenantId}/{namespaceId}/Scripts/{scriptId}
+   GET /qi/{tenantId}/{namespaceId}/Calculations
 
 
 **Parameters**
 
 ``string Id``
-  Unique Id for this script. Used when referencing this script in other objects such as calculation types or other scripts.
+  
  
-``string name``
-  A Name for this script.
+``string name`` (optional)
+  
 
 ``string Description`` (optional)
-  A Discription of this script.
+  
 
-``string Source``
-  The source code or implementation that represents the script.
+``string TypeId``
+  
 
-``string Type``
-  The language used to write the sript = ['JavaScript', 'TypeScript']
+``string ScheduleId``
+  
+  
+``Array [QiSymbolSettings] SymbolSettings`` (optional)
+  
+  ::
 
-``Array[QiScriptReference] ReferencedScripts`` (optional)
-  Scripts that must be included when compiling and running this script.
- 
+  QiSymbolSettings {
+    SymbolId (string, optional),
+    ProviderSettings (object, optional)
+  } 
+  
+  
+``boolean IsEnabled``
+
+``string Status`` = ['Undefined', 'InDevelopment', 'Running', 'InError']
+
+
 
 Security
   Allowed by administrator and user accounts.
 
 **Returns** 
 
-::
-
 
   
 **Status code**
 
-*  400 - BadRequest
-*  404 - NotFound
-*  500 - InternalServerError
+*  400 - One of the arguments is invalid or a referenced dependent object does not exist.
+*  401 - The user is not authorized to perform this operation.
+*  500 - An unexpected error occurred.
+*  504 - A timeout occurred while trying to execute the operation.
  
 
 **********************
 
-``GetScriptsAsync()``
+
+``UpdateCalculationAsync()``
 ----------------------
 
-
-Retrieves a list of scripts from the specified namespace. 
+Retrieves or inserts a QiCalculation in the specified namespace. 
 
 
 **Syntax**
@@ -197,58 +231,71 @@ Retrieves a list of scripts from the specified namespace.
 
 ::
 
-    Task<QiScript> GetScriptsAsync(string scriptId);
+    Task UpdateCalculationAsync(QiCalculation calculation);
 
 **Http**
 
 ::
 
-    GET /qi/{tenantId}/{namespaceId}/Scripts
+    PUT /qi/{tenantId}/{namespaceId}/Calculations
 
 
 **Parameters**
 
 ``string Id``
-  Unique Id for this script. Used when referencing this script in other objects such as calculation types or other scripts.
+  
  
-``string name``
-  A Name for this script.
+``string name`` (optional)
+  
 
 ``string Description`` (optional)
-  A Discription of this script.
+  
 
-``string Source``
-  The source code or implementation that represents the script.
+``string TypeId``
+  
 
-``string Type``
-  The language used to write the sript = ['JavaScript', 'TypeScript']
+``string ScheduleId``
+  
+  
+``Array [QiSymbolSettings] SymbolSettings`` (optional)
+  
+  ::
 
-``Array[QiScriptReference] ReferencedScripts`` (optional)
-  Scripts that must be included when compiling and running this script.
- 
+  QiSymbolSettings {
+    SymbolId (string, optional),
+    ProviderSettings (object, optional)
+  } 
+  
+  
+``boolean IsEnabled``
+
+``string Status`` = ['Undefined', 'InDevelopment', 'Running', 'InError']
+
+
 
 Security
   Allowed by administrator and user accounts.
 
 **Returns** 
 
-::
-
 
   
 **Status code**
 
-*  400 - BadRequest
-*  404 - NotFound
-*  500 - InternalServerError
+*  200 - The object was successfully updated.
+*  400 - One of the arguments is invalid or a referenced dependent object does not exist.
+*  401 - The user is not authorized to perform this operation.
+*  500 - An unexpected error occurred.
+*  504 - A timeout occurred while trying to execute the operation.
  
 
 **********************
 
-``UpdateScriptAsync()``
+
+``DeleteCalculationAsync()``
 ----------------------
 
-Updates a script in the specified namespace. 
+Removes a QiCalculation from a namespace. 
 
 
 **Syntax**
@@ -257,62 +304,62 @@ Updates a script in the specified namespace.
 
 ::
 
-    Task UpdateScriptAsync(QiScript script);
+    Task DeleteCalculationAsync(string calculationId);
 
 **Http**
 
 ::
 
-    PUT /qi/{tenantId}/{namespaceId}/Scripts
+    DELETE /qi/{tenantId}/{namespaceId}/Calculations/{calculationId}
 
 
 **Parameters**
 
 ``string Id``
-  Unique Id for this script. Used when referencing this script in other objects such as calculation types or other scripts.
+  
  
-``string name``
-  A Name for this script.
+``string name`` (optional)
+  
 
 ``string Description`` (optional)
-  A Discription of this script.
+  
 
-``string Source``
-  The source code or implementation that represents the script.
+``string TypeId``
+  
 
-``string Type``
-  The language used to write the sript = ['JavaScript', 'TypeScript']
+``string ScheduleId``
+  
+  
+``Array [QiSymbolSettings] SymbolSettings`` (optional)
+  
+  ::
 
-``Array[QiScriptReference] ReferencedScripts`` (optional)
-  Scripts that must be included when compiling and running this script.
- 
+  QiSymbolSettings {
+    SymbolId (string, optional),
+    ProviderSettings (object, optional)
+  } 
+  
+  
+``boolean IsEnabled``
+
+``string Status`` = ['Undefined', 'InDevelopment', 'Running', 'InError']
+
+
 
 Security
   Allowed by administrator and user accounts.
 
 **Returns** 
 
-::
 
-  QiScript {Id (string): Unique Id for this script. Used when referencing this script in other objects such as calculation types or other scripts.
-  Name (string): A Name for this script.
-  Description (string, optional): A Discription of this script.
-  Source (string): The source code or implementation that represents the script.
-  Type (string): The language used to write the sript.
-  = ['JavaScript', 'TypeScript']
-  ReferencedScripts (Array[QiScriptReference], optional): Scripts that must be included when compiling and running this script.
-  }
-  QiScriptReference {
-  ScriptId (string): The unique Id of the {OSIsoft.Qi.Calculation.Core.QiScript}
-} 
-
-  
   
 **Status code**
 
-*  200 - OK
-*  400 - BadRequest
-*  500 - InternalServerError
+*  200 - The object was successfully updated.
+*  400 - One of the arguments is invalid or a referenced dependent object does not exist.
+*  401 - The user is not authorized to perform this operation.
+*  500 - An unexpected error occurred.
+*  504 - A timeout occurred while trying to execute the operation.
  
 
-
+**********************
