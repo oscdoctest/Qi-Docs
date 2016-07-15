@@ -1,7 +1,7 @@
 Qi Calculation API calls
 ======================
 
-The API calls in this topic are used to create calculations.
+The API calls in this topic are used to create calculations. For more information see `Qi Calculations <https://qi-docs.readthedocs.org/en/latest/Qi_Calc.html>`__.
 
 
 .. toctree::
