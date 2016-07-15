@@ -28,34 +28,35 @@ Retrieves or inserts a QiCalculationType into a namespace.
 
 **Parameters**
 
-``string Id``
+``string Id`` (optional)
   
  
-``string name`` (optional)
+``string Name`` (optional)
   
 
 ``string Description`` (optional)
   
+``QiScriptReference Script``  (optional)
 
-``string TypeId``
+
+``Array[QiScriptSymbol] Symbols``  (optional)
   
 
-``string ScheduleId``
-  
-  
-``Array [QiSymbolSettings] SymbolSettings`` (optional)
+``string Trigger``(optional) = ['Undefined', 'PeriodicSchedule', 'EventTriggeredSchedule', 'Manual']
+
   
   ::
 
-  QiSymbolSettings {
-    SymbolId (string, optional),
-    ProviderSettings (object, optional)
+  QiScriptReference {
+    ScriptId (string): The unique Id of the {OSIsoft.Qi.Calculation.Core.QiScript}
+ 
+  }
+  QiScriptSymbol {
+    Id (string),
+    Name (string, optional),
+    ProviderId (string)
   } 
-  
-  
-``boolean IsEnabled``
-
-``string Status`` = ['Undefined', 'InDevelopment', 'Running', 'InError']
+ 
 
 
 
