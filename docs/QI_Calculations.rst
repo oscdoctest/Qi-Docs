@@ -1,7 +1,7 @@
 Qi Calculations
 ==========
 
-You use the API calls in this section create, delete, and manage scripts.
+You use the API calls in this section create, delete, and manage calculations.
 
 
 ``GetOrCreateCalculationAsync()``
@@ -28,13 +28,11 @@ Retrieves or inserts a QiCalculation in the specified namespace.
 **Parameters**
 
 ``string Id``
-  
- 
+
 ``string name`` (optional)
-  
 
 ``string Description`` (optional)
-  
+ 
 
 ``string TypeId``
   
