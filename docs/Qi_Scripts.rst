@@ -76,52 +76,7 @@ Security
 
 **********************
 
-``DeleteScriptAsync()``
-----------------------
 
-
-Removes a script from the specified namespace. 
-
-
-**Syntax**
-
-.. highlight:: none
-
-::
-
-    Task DeleteScriptAsync(string scriptId);
-
-**Http**
-
-::
-
-    DELETE /qi/{tenantId}/{namespaceId}/Scripts/{scriptId}
-
-
-**Parameters**
-
-``string Id``
-  Unique Id for this script. Used when referencing this script in other objects such as calculation types or other scripts.
- 
-
-Security
-  Allowed by administrator and user accounts.
-
-**Returns** 
-
-::
-
-
-  
-  
-**Status code**
-
-*  200 - OK
-*  400 - BadRequest
-*  500 - InternalServerError
- 
-
-**********************
 
 ``GetScriptAsync()``
 ----------------------
@@ -313,4 +268,51 @@ Security
 *  400 - BadRequest
 *  500 - InternalServerError
  
+ 
+ ``DeleteScriptAsync()``
+----------------------
+
+
+Removes a script from the specified namespace. 
+
+
+**Syntax**
+
+.. highlight:: none
+
+::
+
+    Task DeleteScriptAsync(string scriptId);
+
+**Http**
+
+::
+
+    DELETE /qi/{tenantId}/{namespaceId}/Scripts/{scriptId}
+
+
+**Parameters**
+
+``string Id``
+  Unique Id for this script. Used when referencing this script in other objects such as calculation types or other scripts.
+ 
+
+Security
+  Allowed by administrator and user accounts.
+
+**Returns** 
+
+::
+
+
+  
+  
+**Status code**
+
+*  200 - OK
+*  400 - BadRequest
+*  500 - InternalServerError
+ 
+
+**********************
 
