@@ -7,8 +7,7 @@ You use the API calls in this section create, delete, and manage scripts.
 ``GetOrCreateScriptAsync()``
 ----------------------
 
-Inserts a new script into the specified namespace. The script can be used by calculations. 
-
+Inserts the script into the specified namespaceId, or creates the script if it does not already exist. If the script exists, it is returned to the caller unchanged.  The script can be used by calculations. 
 
 **Syntax**
 
