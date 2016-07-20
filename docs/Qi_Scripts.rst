@@ -267,9 +267,14 @@ Security
 *  200 - OK
 *  400 - BadRequest
 *  500 - InternalServerError
+
+
+
+**********************
+
+
  
- 
- ``DeleteScriptAsync()``
+``DeleteScriptAsync()``
 ----------------------
 
 
@@ -314,5 +319,5 @@ Security
 *  500 - InternalServerError
  
 
-**********************
+
 
