@@ -8,7 +8,8 @@ The API calls in this section are all used to create, delete, and manage periodi
 ``GetOrCreatePeriodicScheduleAsync()``
 -------------------
 
- Inserts a new periodic schedule into the namespace. The schedule can be referenced by calculations. 
+
+Inserts a new periodic schedule into the specified namespaceId, or creates the periodic schedule if it does not already exist. If the periodic schedule exists, it is returned to the caller unchanged. The schedule can be referenced by calculations. 
 
 
 **Syntax**
