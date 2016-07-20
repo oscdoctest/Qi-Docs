@@ -61,6 +61,22 @@ Security
 
 **Returns** 
 
+::
+
+  QiCalculation {
+    Id (string),
+    Name (string, optional),
+    Description (string, optional),
+    TypeId (string),
+    ScheduleId (string),
+    SymbolSettings (Array[QiSymbolSettings], optional),
+    IsEnabled (boolean),
+    Status (string) = ['Undefined', 'InDevelopment', 'Running', 'InError']
+  }
+  QiSymbolSettings {
+    SymbolId (string, optional),
+    ProviderSettings (object, optional)
+  } 
 
   
 **Status code**
@@ -73,6 +89,95 @@ Security
  
 
 **********************
+
+``AddCalculationsAsync()``
+----------------------
+
+Inserts list of QiCalculation into a namespace. 
+
+
+**Syntax**
+
+.. highlight:: none
+
+::
+
+    Task AddCalculationsAsync(IList<QiCalculation> calculations);
+
+**Http**
+
+::
+
+    POST /qi/{tenantId}/{namespaceId}/Calculations/$Batch
+
+
+**Parameters**
+
+``string Id``
+
+``string name`` (optional)
+
+``string Description`` (optional)
+ 
+
+``string TypeId``
+  
+
+``string ScheduleId``
+  
+  
+``Array [QiSymbolSettings] SymbolSettings`` (optional)
+  
+  ::
+
+  QiSymbolSettings {
+    SymbolId (string, optional),
+    ProviderSettings (object, optional)
+  } 
+  
+  
+``boolean IsEnabled``
+
+``string Status`` = ['Undefined', 'InDevelopment', 'Running', 'InError']
+
+
+
+Security
+  Allowed by administrator and user accounts.
+
+**Returns** 
+
+::
+
+  QiCalculation {
+    Id (string),
+    Name (string, optional),
+    Description (string, optional),
+    TypeId (string),
+    ScheduleId (string),
+    SymbolSettings (Array[QiSymbolSettings], optional),
+    IsEnabled (boolean),
+    Status (string) = ['Undefined', 'InDevelopment', 'Running', 'InError']
+  }
+  QiSymbolSettings {
+    SymbolId (string, optional),
+    ProviderSettings (object, optional)
+  } 
+
+  
+**Status code**
+
+*  201 - The list of objects were successfully inserted.
+*  400 - One of the arguments is invalid or a referenced dependent object does not exist.
+*  401 - The user is not authorized to perform this operation.
+*  500 - An unexpected error occurred.
+*  504 - A timeout occurred while trying to execute the operation.
+ 
+
+**********************
+
+
+
 
 ``GetCalculationAsync()``
 ----------------------
