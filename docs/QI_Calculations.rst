@@ -7,7 +7,7 @@ You use the API calls in this section create, delete, and manage calculations.
 ``GetOrCreateCalculationAsync()``
 ----------------------
 
-Retrieves or inserts a QiCalculation in the specified namespace. 
+Retrieves the QiCalculation within the specified namespaceId, or creates the QiCalculation if it does not already exist. If the QiCalculation exists, it is returned to the caller unchanged.
 
 
 **Syntax**
