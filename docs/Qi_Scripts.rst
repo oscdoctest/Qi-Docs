@@ -69,9 +69,11 @@ Security
   
 **Status code**
 
-*  200 - OK
-*  400 - BadRequest
-*  500 - InternalServerError
+*  201 - The object was added successfully.
+*  400 - One of the arguments is invalid or a referenced dependent object does not exist.
+*  401 - The user is not authorized to perform this operation.
+*  500 - An unexpected error occurred.
+*  504 - A timeout occurred while trying to execute the operation.
  
 
 **********************
@@ -131,9 +133,10 @@ Security
   
 **Status code**
 
-*  400 - BadRequest
-*  404 - NotFound
-*  500 - InternalServerError
+*  400 - One of the arguments is invalid or a referenced dependent object does not exist.
+*  401 - The user is not authorized to perform this operation.
+*  500 - An unexpected error occurred.
+*  504 - A timeout occurred while trying to execute the operation.
  
 
 **********************
@@ -192,9 +195,10 @@ Security
   
 **Status code**
 
-*  400 - BadRequest
-*  404 - NotFound
-*  500 - InternalServerError
+*  400 - One of the arguments is invalid or a referenced dependent object does not exist.
+*  401 - The user is not authorized to perform this operation.
+*  500 - An unexpected error occurred.
+*  504 - A timeout occurred while trying to execute the operation.
  
 
 **********************
@@ -264,9 +268,11 @@ Security
   
 **Status code**
 
-*  200 - OK
-*  400 - BadRequest
-*  500 - InternalServerError
+*  200 - The object was successfully updated.
+*  400 - One of the arguments is invalid or a referenced dependent object does not exist.
+*  401 - The user is not authorized to perform this operation.
+*  500 - An unexpected error occurred.
+*  504 - A timeout occurred while trying to execute the operation.
 
 
 
@@ -314,9 +320,12 @@ Security
   
 **Status code**
 
-*  200 - OK
-*  400 - BadRequest
-*  500 - InternalServerError
+*  200 - The object was successfully deleted.
+*  400 - One of the arguments is invalid or a referenced dependent object does not exist.
+*  401 - The user is not authorized to perform this operation.
+*  500 - An unexpected error occurred.
+*  504 - A timeout occurred while trying to execute the operation.
+ 
  
 
 
