@@ -8,7 +8,7 @@ The APIs in this topic are used to create, delete, and update Qi calculation typ
 ``GetOrCreateTypeAsync()``
 ----------------------
 
-Retrieves or inserts a QiCalculationType into a namespace. 
+Retrieves the QiCalculationType within the specified namespaceId, or creates the QiCalculationType if it does not already exist. If the QiCalculationType exists, it is returned to the caller unchanged.
 
 
 **Syntax**
