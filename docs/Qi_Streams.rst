@@ -12,7 +12,7 @@ The following table shows the required and optional QiStream properties:
 +---------------+------------------------------+-------------+--------------------------------------------+
 | Property      | Type                         | Optionality |Details                                     |
 +===============+==============================+=============+============================================+
-| ID            | String                       | Required    | An Identifier for referencing the stream.  |
+| Id            | String                       | Required    | An identifier for referencing the stream.  |
 +---------------+------------------------------+-------------+--------------------------------------------+
 | TypeId        | String                       | Required    | The type to be used for this stream.       |
 +---------------+------------------------------+-------------+--------------------------------------------+
@@ -33,8 +33,8 @@ The following table shows the required and optional QiStream properties:
 +---------------+------------------------------+-------------+--------------------------------------------+
 
 A stream is always referenced by its Id property. As shown in the preceding table,
-a QiStream must include a unique *ID* as well as a *TypeId* with the ID of
-an existing QiType. The optional *BehaviorId* is set with the ID of an
+a QiStream must include a unique *Id* as well as a *TypeId* with the Id of
+an existing QiType. The optional *BehaviorId* is set with the Id of an
 existing stream behavior. When BehaviorId is omitted, the stream
 will have a default behavior mode set to *continuous* and *extrapolation*
 set to *all*. See
@@ -43,7 +43,7 @@ for more information.
 
 **Restrictions and limitations**
 
-*QiStream ID*
+*QiStream Id*
 
 1. Is not case sensitive.
 2. Can contain spaces.
