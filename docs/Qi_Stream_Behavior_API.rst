@@ -28,17 +28,17 @@ Deletes a QiStream behavior from the specified namespace that matches the specif
 
 ::
 
-    DELETE Qi/{tenantid}/{namespaceId}/Behaviors/{behaviorId}
+    DELETE Qi/{tenantId}/{namespaceId}/Behaviors/{behaviorId}
 
 **Parameters**
 
-``string tenantID``
+``string tenantId``
   The tenant identifier for the request
 ``string namespaceId``
   The namespace identifier for the request
  
 ``behaviorId``
-  The ID of the behavior to delete.
+  The Id of the behavior to delete.
 
 
 **Returns**
@@ -70,7 +70,7 @@ Retrieves a QiStreamBehavior from the specified namespace that matches the speci
 
 **Parameters**
 
-``string tenantID``
+``string tenantId``
   The tenant identifier for the request
 ``string namespaceId``
   The namespace identifier for the request
@@ -105,12 +105,12 @@ Retrieves all QiStream behaviors from a namespace.
 
 **Parameters**
 
-``string tenantID``
+``string tenantId``
   The tenant identifier for the request
 ``string namespaceId``
   The namespace identifier for the request
 ``behaviorId``
-  The ID of the behavior to retrieve.
+  The Id of the behavior to retrieve.
 
 
 **Returns**
@@ -142,7 +142,7 @@ Retrieves the QiStream behavior from a namespace, or creates the behavior if the
 	
 **Parameters**
 
-``string tenantID``
+``string tenantId``
   The tenant identifier for the request
 ``string namespaceId``
   The namespace identifier for the request
@@ -181,7 +181,7 @@ the addition, removal, or change to this list.
     PUT Qi/{tenantId}/{namespaceId}/Behaviors/{behaviorId}	
 **Parameters**
 
-``string tenantID``
+``string tenantId``
   The tenant identifier for the request
 ``string namespaceId``
   The namespace identifier for the request
