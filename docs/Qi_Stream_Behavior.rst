@@ -40,7 +40,7 @@ stream can be changed to use a different stream behavior or the stream
 behavior itself can be changed after it is created or configured.
 
 
-**Rules for ``QiStreamBehavior`` Id**
+**Rules for QiStreamBehavior Id**
 
 1. Not case sensitive
 2. Spaces are allowed
@@ -73,7 +73,7 @@ The code in the following example shows how to define and create a simple
 
 ::
 
-    String behaviorid = “myFirstBehavior”;
+    String behaviorId = “myFirstBehavior”;
     QiStreamBehavior simpleBehavior = new QiStreamBehavior()
     {
         Id = behaviorId,
