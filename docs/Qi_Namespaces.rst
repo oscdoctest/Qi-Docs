@@ -15,8 +15,8 @@ The following table shows the required and optional Qi namespace properties:
 +---------------+-------------------------+----------------------------------------+
 | Property      | Type                    | Details                                |
 +===============+=========================+========================================+
-| Id            | String                  | Required ID for referencing the        |
-|               |                         | namespace                              | 
+| Id            | String                  | Required identifier for referencing    |
+|               |                         | the namespace                          | 
 +---------------+-------------------------+----------------------------------------+
 
 **Rules for namespaceId**
