@@ -31,7 +31,7 @@ Content is serialized event of type T
 	
 **Parameters**
 
-``string tenantID``
+``string tenantId``
   The tenant identifier for the request
 ``string namespaceId``
   The namespace identifier for the request.
@@ -78,7 +78,7 @@ Content is serialized list of events of type T
 	
 **Parameters**
 
-``string tenantID``
+``string tenantId``
   The tenant identifier for the request
 ``string namespaceId``
   The namespace identifier for the request.
@@ -127,7 +127,7 @@ Content is serialized patch property
 	
 **Parameters**
 
-``string tenantID``
+``string tenantId``
   The tenant identifier for the request
 ``string namespaceId``
   The namespace identifier for the request.
@@ -185,7 +185,7 @@ Content is serialized list of patch property values
 	
 **Parameters**
 
-``string tenantID``
+``string tenantId``
   The tenant identifier for the request
 ``string namespaceId``
   The namespace identifier for the request.
@@ -241,7 +241,7 @@ Removes the event at the index from the specified stream. Different overloads ar
 	
 **Parameters**
 
-``string tenantID``
+``string tenantId``
   The tenant identifier for the request
 ``string namespaceId``
   The namespace identifier for the request.
@@ -286,7 +286,7 @@ Removes the event at each index from the specified stream. Different overloads a
 	
 **Parameters**
 
-``string tenantID``
+``string tenantId``
   The tenant identifier for the request
 ``string namespaceId``
   The namespace identifier for the request.
@@ -335,7 +335,7 @@ Removes a range of values at and between the given indices.
 	
 **Parameters**
 
-``string tenantID``
+``string tenantId``
   The tenant identifier for the request
 ``string namespaceId``
   The namespace identifier for the request.
@@ -384,7 +384,7 @@ Content is serialized replacement object
 	
 **Parameters**
 
-``string tenantID``
+``string tenantId``
   The tenant identifier for the request
 ``string namespaceId``
   The namespace identifier for the request.
@@ -426,7 +426,7 @@ Content is serialized list of replacement values
 	
 **Parameters**
 
-``string tenantID``
+``string tenantId``
   The tenant identifier for the request
 ``string namespaceId``
   The namespace identifier for the request.
@@ -470,7 +470,7 @@ Content is serialized updated value
 	
 **Parameters**
 
-``string tenantID``
+``string tenantId``
   The tenant identifier for the request
 ``string namespaceId``
   The namespace identifier for the request.
@@ -513,7 +513,7 @@ Content is serialized list of updated values
 	
 **Parameters**
 
-``string tenantID``
+``string tenantId``
   The tenant identifier for the request
 ``string namespaceId``
   The namespace identifier for the request.
