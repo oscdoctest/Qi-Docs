@@ -9,7 +9,7 @@ then you create QiStreams that are associated with your QiTypes.
 A QiType
 consists of one or more properties that are either simple atomic types
 (such as an integer) or previously defined QiTypes. A type is always
-referenced with its ID property. Using a QiType as a property
+referenced with its Id property. Using a QiType as a property
 permits the construction of complex, nested data types. A QiType must
 have one or more properties that constitute an ordered key to be
 used as an index. While a timestamp (DateTime) is a very common type of
@@ -25,7 +25,7 @@ The following table shows the required and optional QiType properties:
 +---------------+-------------------------+----------------------------------------+
 | Property      | Type                    | Details                                |
 +===============+=========================+========================================+
-| Id            | String                  | Required ID for referencing the type   |
+| Id            | String                  | Required Id for referencing the type   |
 +---------------+-------------------------+----------------------------------------+
 | Name          | String                  | Optional name                          |
 +---------------+-------------------------+----------------------------------------+
