@@ -117,7 +117,7 @@ The ``IQiAdministrationService``, ``IQiMetaDataService`` and ``IQiDataService`` 
 are passed tenant and namespace information when the methods are instantiated, 
 which means that it is not necessary to provide the tenant and namespace information 
 with each library call. If you are switching from the IQiServer to the new services, 
-you will notice that method calls no longer include tenantId and namespaceID parameters.
+you will notice that method calls no longer include tenantId and namespaceId parameters.
 
 Security information is provided to the QiService calls using a new ``SecurityHandler`` object. 
 Constructors for this object accept security credentials that are provided by the client 
