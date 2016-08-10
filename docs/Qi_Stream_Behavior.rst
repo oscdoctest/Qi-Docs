@@ -160,7 +160,7 @@ indexes that occur between data in a stream:
 +---------------------------+--------------------------------+--------------------------------------------------+
 |Version                    |Returns ‘null’                  |                                                  |
 +---------------------------+--------------------------------+--------------------------------------------------+
-|IDictionary or Ienumerable |Returns ‘null’                  |                                                  |
+|IDictionary or IEnumerable |Returns ‘null’                  |                                                  |
 +---------------------------+--------------------------------+--------------------------------------------------+
 
 \*When extreme values are involved in an interpolation (for example
