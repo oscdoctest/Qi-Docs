@@ -88,7 +88,7 @@ To create a stream
 
 You use streams to hold data of a predefined type. To create a QiStream
 the Id and TypeId of the stream must be defined. Optionally, you can also
-define a Name, Description, and BehaviorID.
+define a Name, Description, and BehaviorId.
 
 The following example creates a QiStream with an Id of ‘MyFistStream’ of type
 ‘mySimpleType’:
