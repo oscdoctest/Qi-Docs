@@ -309,9 +309,9 @@ Retrieves events from a stream based on a starting index and a requested number 
     GET Qi/{tenantId}/{namespaceId}/Streams/{streamId}/Data/GetRangeValues?startIndex={startIndex}
                       &count={count}&boundaryType={boundaryType}
     GET Qi/{tenantId}/{namespaceId}/Streams/{streamId}/Data/GetRangeValues?startIndex={startIndex}
-                      &skip={skip}&count={count}&reversed={reversed}&boun GET daryType={boundaryType}
+                      &skip={skip}&count={count}&reversed={reversed}&boundaryType={boundaryType}
     GET Qi/{tenantId}/{namespaceId}/Streams/{streamId}/Data/GetRangeValues?startIndex={startIndex}
-                      &skip={skip}&count={count}&reversed={reversed}&boun GET daryType={boundaryType}
+                      &skip={skip}&count={count}&reversed={reversed}&boundaryType={boundaryType}
                       &filter={filterExpression}
     GET Qi/{tenantId}/{namespaceId}/Streams/{streamId}/Data/GetRangeValues?startIndex={startIndex}
                       &count={count}
@@ -320,7 +320,7 @@ Retrieves events from a stream based on a starting index and a requested number 
     GET Qi/{tenantId}/{namespaceId}/Streams/{streamId}/Data/GetRangeValues?startIndex={startIndex}
                       &count={count}&boundaryType={boundaryType}
     GET Qi/{tenantId}/{namespaceId}/Streams/{streamId}/Data/GetRangeValues?startIndex={startIndex}
-                      &skip={skip}&count={count}&reversed={reversed}&boun GET daryType={boundaryType}
+                      &skip={skip}&count={count}&reversed={reversed}&boundaryType={boundaryType}
     GET Qi/{tenantId}/{namespaceId}/Streams/{streamId}/Data/GetRangeValues?startIndex={startIndex}
                       &skip={skip}&count={count}&reversed={reversed}&boundaryType={boundaryType}
                       &filter={filterExpression}
