@@ -212,3 +212,23 @@ many queued requests that the service cannot recover.
 A good example retry strategy for HTTP API users might be to retry five times, 
 waiting increasingly longer intervals from 1 to 60 seconds between retries.
 
+Qi client error handling
+------------------------
+
+
+If you access Qi using the Qi client .NET SDKs and C#, be aware that any errors that are returned to the client are packaged in a ``QiHttpClientException``, which is defined as follows:
+
+::
+
+        public Dictionary<string, object> Errors { get; set; }
+        public string ReasonPhrase { get; set; }
+        public HttpStatusCode StatusCode { get; set; } 
+
+
+- The ``StatusCode`` provides an ``HttpStatusCode`` that indicates the error.
+- The ``ReasonPhrase`` might provide additional information regarding the cause of the exception. You should 
+  always evaluate the ``ReasonPhrase`` in addition to the ``StatusCode`` field to determine the cause of the exception.
+
+
+
+
