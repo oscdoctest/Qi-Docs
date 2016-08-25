@@ -286,17 +286,32 @@ Retrieves events from a stream based on a starting index and a requested number 
 
 ::
 
-    Task<IEnumerable<T>  GetRangeValuesAsync<T>(string streamId, string startIndex, int skip, int count, 
-                         bool reversed, QiBoundaryType boundaryType, string filter);
     Task<IEnumerable<T>> GetRangeValuesAsync<T>(string streamId, string startIndex, int count);
-    Task<IEnumerable<T>> GetRangeValuesAsync<T>(string streamId, string startIndex, int count, 
-                         bool reversed);
+    Task<IEnumerable<T>> GetRangeValuesAsync<T, T1>(string streamId, T1 startIndex, int count);
+    Task<IEnumerable<T>> GetRangeValuesAsync<T, T1, T2>(string streamId, Tuple<T1, T2> startIndex, int count);
     Task<IEnumerable<T>> GetRangeValuesAsync<T>(string streamId, string startIndex, int count, 
                          QiBoundaryType boundaryType);
-    Task<IEnumerable<T>> GetRangeValuesAsync<T>(string streamId, string startIndex, int skip, 
+    Task<IEnumerable<T>> GetRangeValuesAsync<T, T1>(string streamId, T1 startIndex, int count, 
+                         QiBoundaryType boundaryType);
+    Task<IEnumerable<T>> GetRangeValuesAsync<T, T1, T2>(string streamId, Tuple<T1, T2> startIndex, 
+                         int count, QiBoundaryType boundaryType);
+    Task<IEnumerable<T>> GetRangeValuesAsync<T>(string streamId, string startIndex, int count, bool reversed);
+    Task<IEnumerable<T>> GetRangeValuesAsync<T, T1>(string streamId, T1 startIndex, int count, bool reversed);
+    Task<IEnumerable<T>> GetRangeValuesAsync<T, T1, T2>(string streamId, Tuple<T1, T2> startIndex, 
+                         int count, bool reversed);
+    Task<IEnumerable<T>> GetRangeValuesAsync<T>(string streamId, string startIndex, int skip, int count, 
+                         bool reversed, QiBoundaryType boundaryType);
+    Task<IEnumerable<T>> GetRangeValuesAsync<T, T1>(string streamId, T1 startIndex, int skip, int count, 
+                         bool reversed, QiBoundaryType boundaryType);
+    Task<IEnumerable<T>> GetRangeValuesAsync<T, T1, T2>(string streamId, Tuple<T1, T2> startIndex, int skip, 
                          int count, bool reversed, QiBoundaryType boundaryType);
     Task<IEnumerable<T>> GetRangeValuesAsync<T>(string streamId, string startIndex, int skip, 
                          int count, bool reversed, QiBoundaryType boundaryType, string filter);
+    Task<IEnumerable<T>> GetRangeValuesAsync<T, T1>(string streamId, T1 startIndex, int skip, int count, 
+                         bool reversed, QiBoundaryType boundaryType, string filter);
+    Task<IEnumerable<T>> GetRangeValuesAsync<T, T1, T2>(string streamId, Tuple<T1, T2> startIndex, 
+                         int skip, int count, bool reversed, QiBoundaryType boundaryType, string filter);
+         
 
 **Http**
 
