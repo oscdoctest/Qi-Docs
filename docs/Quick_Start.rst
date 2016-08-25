@@ -249,8 +249,8 @@ Follow the steps below to use the ``QiTypeBuilder`` helper to build a QiType.
 
 See `Step 2 <https://http://qi-docs.osisoft.com/en/latest/Quick_Start.html#step-2-create-data-types>`__, above, for sample code using QiTypeBuilder.
 
-Supported Attributes
-*********************
+Supported QiTypeBuilder attributes
+**********************************
 **[QiMember(bool IsKey, int FixedLength, int Order)]**
  - ``IsKey`` (optional*) - Indicates that this property is an index for the type.
  - ``FixedLength`` (optional) - Applies only to string index properties. Limits the length of string indexes. Index values that exceed this length will be truncated.
