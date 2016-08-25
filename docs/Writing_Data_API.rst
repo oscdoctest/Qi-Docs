@@ -322,9 +322,10 @@ Removes a range of values at and between the given indices.
 
 ::
 
-    Task RemoveValuesAsync(string streamId, IEnumerable<string> index);
-    Task RemoveValuesAsync<T1>(string streamId, IEnumerable<T1> index);
-    Task RemoveValuesAsync<T1, T2>(string streamId, IEnumerable<Tuple<T1, T2>> index);
+    Task RemoveWindowValuesAsync(string streamId, string startIndex, string endIndex);
+    Task RemoveWindowValuesAsync<T1>(string streamId, T1 startIndex, T1 endIndex);
+    Task RemoveWindowValuesAsync<T1, T2>(string streamId, Tuple<T1, T2> startIndex, Tuple<T1, T2> endIndex);
+
 
 **Http**
 
