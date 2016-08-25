@@ -232,7 +232,7 @@ If you access Qi using the Qi client .NET SDKs and C#, be aware that any errors 
 Build QiTypes using QiTypeBuilder
 ---------------------------------
 
-``QiTypeBuilder`` is a helper class for building `QiTypes <https://qi-docs.readthedocs.org/en/latest/Qi_Types.html>`__.  QiTypeBuilder reflects over a specified C# class to generate a QiType which can be submitted for creation in Qi. Recall that you can use reflection to find and dynamically invoke types within an assembly. Reflection provides information about an object's type, properties, methods, and events.
+``QiTypeBuilder`` is a helper class for building `QiTypes <https://qi-docs.readthedocs.org/en/latest/Qi_Types.html>`__.  QiTypeBuilder reflects over a specified C# class to generate a QiType which can be submitted for creation in Qi.
 
 Using QiTypeBuilder
 *********************
