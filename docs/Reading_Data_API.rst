@@ -286,8 +286,8 @@ Retrieves events from a stream based on a starting index and a requested number 
 
 ::
 
-    IEnumerable<T> GetRangeValuesAsync<T>(string streamId, string startIndex, int skip, int count, 
-                   bool reversed, QiBoundaryType boundaryType, string filter);
+    Task<IEnumerable<T>  GetRangeValuesAsync<T>(string streamId, string startIndex, int skip, int count, 
+                         bool reversed, QiBoundaryType boundaryType, string filter);
     Task<IEnumerable<T>> GetRangeValuesAsync<T>(string streamId, string startIndex, int count);
     Task<IEnumerable<T>> GetRangeValuesAsync<T>(string streamId, string startIndex, int count, 
                          bool reversed);
