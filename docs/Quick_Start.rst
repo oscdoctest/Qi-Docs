@@ -212,3 +212,55 @@ many queued requests that the service cannot recover.
 A good example retry strategy for HTTP API users might be to retry five times, 
 waiting increasingly longer intervals from 1 to 60 seconds between retries.
 
+Qi client error handling
+------------------------
+
+
+If you access Qi using the Qi client .NET SDKs and C#, be aware that any errors that are returned to the client are packaged in a ``QiHttpClientException``, which is defined as follows:
+
+::
+
+        public Dictionary<string, object> Errors { get; set; }
+        public string ReasonPhrase { get; set; }
+        public HttpStatusCode StatusCode { get; set; } 
+
+
+- The ``StatusCode`` provides an ``HttpStatusCode`` that indicates the error.
+- The ``ReasonPhrase`` might provide additional information regarding the cause of the exception. You should 
+  always evaluate the ``ReasonPhrase`` in addition to the ``StatusCode`` field to determine the cause of the exception.
+
+Build QiTypes using QiTypeBuilder
+---------------------------------
+
+``QiTypeBuilder`` is a helper class for building `QiTypes <https://qi-docs.readthedocs.org/en/latest/Qi_Types.html>`__.  QiTypeBuilder reflects over a specified C# class to generate a QiType which can be submitted for creation in Qi.
+
+Using QiTypeBuilder
+*********************
+
+Follow the steps below to use the ``QiTypeBuilder`` helper to build a QiType.
+
+1. Define a C# type, T, that represents the structure of the desired QiType. Properties in the C# type will become QiTypeProperties in the resultant QiType.  The properties may be decorated with certain attributes (see the list of supported attributes below).
+
+2. Use the static method ``QiTypeBuilder.CreateQiType<T>()`` to generate a QiType based on the C# class.
+
+3. If desired, further edit the QiType.
+
+4. Post the QiType to Qi.
+
+See `Step 2 <https://http://qi-docs.osisoft.com/en/latest/Quick_Start.html#step-2-create-data-types>`__, above, for sample code using QiTypeBuilder.
+
+Supported QiTypeBuilder attributes
+**********************************
+**[QiMember(bool IsKey, int FixedLength, int Order)]**
+ - ``IsKey`` (optional*) - Indicates that this property is an index for the type.
+ - ``FixedLength`` (optional) - Applies only to string index properties. Limits the length of string indexes. Index values that exceed this length will be truncated.
+ - ``Order`` (optional) - Specifies the desired order of properties in the resultant QiType.
+ 
+**[DataMember(string Name, int Order)]**
+ - ``Name`` (optional) - Specifies the Id of the QiTypeProperty.
+ - ``Order`` (optional) - Specifies the desired order of properties in the resultant QiType. QiMember Order supercedes DataMember Order if both are specified.
+ 
+**[Key]**
+ - (optional*) - Indicates that this property is an index for the type. QiMember Key supercedes the Key attribute if both are specified.
+
+*If neither ``[Key]`` nor ``[QiMember(IsKey = true)]`` are specified for any property in the C# class, an “Id” suffix on any C# property name will be taken to indicate an index for the resultant QiType.

@@ -12,7 +12,6 @@ easily obtain needed information.
 
 
 .. toctree::
-   :maxdepth: 2
 
    Whats_New
    Introducing_Qi
@@ -34,5 +33,6 @@ easily obtain needed information.
    samples
    support
    preview
+   
    
    
