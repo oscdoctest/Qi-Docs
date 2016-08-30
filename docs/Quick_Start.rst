@@ -229,6 +229,33 @@ If you access Qi using the Qi client .NET SDKs and C#, be aware that any errors 
 - The ``ReasonPhrase`` might provide additional information regarding the cause of the exception. You should 
   always evaluate the ``ReasonPhrase`` in addition to the ``StatusCode`` field to determine the cause of the exception.
 
+Error handling example
+**********************
+
+The following code shows how to catch an exception:
+
+::
+
+        string streamId = "RemoteDevice_429";
+        DateTime startWrites = DateTime.UtcNow;
+        EventData data1 = new EventData()
+        {
+            TimeId = DateTime.Now,
+            Value = (double)1.1
+        };
+
+        try
+        {
+            await _dataService.InsertValueAsync(streamId, data1);
+        }
+        catch (QiHttpClientException e)
+        {
+            // take appropriate action based upon the content of the exception
+        }
+
+
+
+
 Build QiTypes using QiTypeBuilder
 ---------------------------------
 
