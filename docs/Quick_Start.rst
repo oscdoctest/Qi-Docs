@@ -274,7 +274,7 @@ Follow the steps below to use the ``QiTypeBuilder`` helper to build a QiType.
 
 4. Post the QiType to Qi.
 
-See `Step 2 <https://https://qi-docs.readthedocs.org/en/latest/Quick_Start.html#step-2-create-data-types>`__, above, for sample code using QiTypeBuilder.
+See `Step 2 <https://qi-docs.readthedocs.org/en/latest/Quick_Start.html#step-2-create-data-types>`__, above, for sample code using QiTypeBuilder.
 
 Supported QiTypeBuilder attributes
 **********************************
