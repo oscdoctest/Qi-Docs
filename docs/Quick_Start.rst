@@ -1,11 +1,17 @@
 Quick start
 ###########
 
+.. contents:: Topics in this section:
+    :depth: 2
+
+Qi quick start
+--------------
+
 As described in `Introducing Qi <https://qi-docs-rst.readthedocs.org/en/latest/Introducing_Qi.html>`__, the highest-level object in the Qi environment is a *Tenant*. To start working with Qi, OSIsoft provides you a *Tenant Id* and security information which allows you to connect to your tenant on the Qi server. It is within the tenant that you create one or more namespaces in which to work. See `Architecture <https://qi-docs-rst.readthedocs.org/en/latest/Introducing_Qi.html#architecture>`__ for an overview of Qi tenants, namespaces, and other objects.
 
 
 Step 1: Create a Namespace
---------------------------
+**************************
 
 You start by creating a Namespace so that you have a place in which to create types, 
 streams, and behaviors.
@@ -18,7 +24,7 @@ streams, and behaviors.
 
 
 Step 2: Create data types
-------------------------
+*************************
 
 A QiType consists of one or more index properties and one or more
 data properties. You use index properties to arrange data into a sequence.
@@ -59,7 +65,7 @@ The following example creates a simple type:
     var mySimpleType = await _metadataService.GetOrCreateTypeAsync(simpleType);
 
 Step 3: Create a stream
------------------------
+***********************
 
 You use streams to hold data of a predefined type. To create a QiStream
 the Id and TypeId of the stream must be defined. Optionally, you can also
@@ -100,7 +106,7 @@ Additonal information about stream behaviors can be found in
 
 
 Step 4: Write data
-------------------
+******************
 
 Qi has several methods that can be used to write data. For example,
 `InsertValueAsync <https://qi-docs.readthedocs.org/en/latest/Writing_Data_API.html#insertvalueasync>`__
@@ -154,7 +160,7 @@ Additonal information about writing data can be found in `Writing
 data <https://qi-docs-rst.readthedocs.org/en/latest/Writing_Data.html>`__.
 
 Step 5: Read data
------------------
+*****************
 
 Qi includes several different read methods and overloads that can be used to
 retrieve data from streams. These methods can be used in a large 
