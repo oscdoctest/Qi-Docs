@@ -2,7 +2,7 @@ Quick start
 ###########
 
 .. contents:: Topics in this section:
-    :depth: 2
+    :depth: 3
 
 Qi quick start
 --------------
