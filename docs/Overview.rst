@@ -1,6 +1,13 @@
 Overview
 ########
 
+.. contents:: Topics in this section:
+    :depth: 3
+    
+
+Qi overview
+***********
+
 Code samples for Python, .NET, Node.js, and Java can be found in the
 Qi-Samples repository on GitHub. Obtain Qi REST API access keys from
 `qi.osisoft.com <https://qi.osisoft.com>`__ before running the sample code.
