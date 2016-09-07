@@ -71,7 +71,7 @@ You use streams to hold data of a predefined type. To create a QiStream
 the Id and TypeId of the stream must be defined. Optionally, you can also
 define a Name, Description, and BehaviorId.
 
-The following example creates a QiStream with an Id of ‘MyFistStream’ of type
+The following example creates a QiStream with an Id of ‘MyFirstStream’ of type
 ‘mySimpleType’:
 
 ::
@@ -111,7 +111,7 @@ Step 4: Write data
 Qi has several methods that can be used to write data. For example,
 `InsertValueAsync <https://qi-docs.readthedocs.org/en/latest/Writing_Data_API.html#insertvalueasync>`__
 is used to write a single data event to a stream. If the data event
-includes an index at that is the same as a previous event, 
+includes an index that is the same as a previous event, 
 this method will throw an exception. However
 `UpdateValueAsync <https://qi-docs.readthedocs.org/en/latest/Writing_Data_API.html#updatevalueasync>`__
 can also be used to write a single event to a stream, and will overwrite
