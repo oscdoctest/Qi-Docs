@@ -49,7 +49,7 @@ for more information.
 2. Can contain spaces.
 3. Cannot start with two underscores ("\_\_").
 4. Can contain a maximum of 260 characters.
-5. Cannot use the following characters: ( / : ? # [ ] @ ! $ & ' ( ) \* +
+5. Cannot use the following characters: ( / : ? # [ ] @ ! $ & ' ( ) \\\* +
    , ; = %)
 6. Cannot start or end with a period.
 7. Cannot contain consecutive periods.
