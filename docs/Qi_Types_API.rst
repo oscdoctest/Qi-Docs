@@ -164,6 +164,146 @@ Returns the type of the specified ``typeId`` within a namespace, or creates the 
 Security
   Allowed by administrator account
 
+**Notes**
+
+The message body is a QiType object defining a particular type.  It is serialized in JSON format.  Since QiType objects can become complex, particularly when properties are themselves QiTypes, the use of a JSON serializer is strongly encouraged.  The following is the serialization of the QiType oject defining the WaveData type from the Qi Samples:
+
+::
+
+	{
+		"Id":"WaveData_SampleType",
+		"Name":"Wave Data Type",
+		"Description":"This is a type for WaveData events",
+		"QiTypeCode":0,
+		"Properties":[
+			{
+				"Id":"Order",
+				"Name":null,
+				"Description":null,
+				"QiType":
+					{
+						"Id":"intType",
+						"Name":null,
+						"Description":null,
+						"QiTypeCode":9,
+						"Properties":null
+					},
+				"IsKey":true
+			},
+			{
+				"Id":"Tau",
+				"Name":null,
+				"Description":null,
+				"QiType":
+					{
+						"Id":"doubleType",
+						"Name":null,
+						"Description":null,
+						"QiTypeCode":14,
+						"Properties":null
+					},
+				"IsKey":false
+			},
+			{
+				"Id":"Radians",
+				"Name":null,
+				"Description":null,
+				"QiType":
+					{
+						"Id":"doubleType",
+						"Name":null,
+						"Description":null,
+						"QiTypeCode":14,
+						"Properties":null
+					},
+				"IsKey":false
+			},
+			{
+				"Id":"Sin",
+				"Name":null,
+				"Description":null,
+				"QiType":
+					{
+						"Id":"doubleType",
+						"Name":null,
+						"Description":null,
+						"QiTypeCode":14,
+						"Properties":null
+					},
+					"IsKey":false
+			},
+			{
+				"Id":"Cos",
+				"Name":null,
+				"Description":null,
+				"QiType":
+					{
+						"Id":"doubleType",
+						"Name":null,
+						"Description":null,
+						"QiTypeCode":14,
+						"Properties":null
+					},
+				"IsKey":false
+			},
+			{
+				"Id":"Tan",
+				"Name":null,
+				"Description":null,
+				"QiType":
+					{
+						"Id":"doubleType",
+						"Name":null,
+						"Description":null,
+						"QiTypeCode":14,
+						"Properties":null
+					},
+				"IsKey":false
+			},
+			{
+				"Id":"Sinh",
+				"Name":null,
+				"Description":null,
+				"QiType":
+					{
+						"Id":"doubleType",
+						"Name":null,
+						"Description":null,
+						"QiTypeCode":14,
+						"Properties":null
+					},
+				"IsKey":false
+			},
+			{
+				"Id":"cosh",
+				"Name":null,
+				"Description":null,
+				"QiType":
+					{	
+						"Id":"doubleType",
+						"Name":null,
+						"Description":null,
+						"QiTypeCode":14,
+						"Properties":null
+					},
+				"IsKey":false
+			},
+			{
+				"Id":"Tanh",
+				"Name":null,
+				"Description":null,
+				"QiType":
+					{
+						"Id":"doubleType",
+						"Name":null,
+						"Description":null,
+						"QiTypeCode":14,
+						"Properties":null
+					},
+				"IsKey":false
+			}
+		]
+	}
 
 ***********************
 
