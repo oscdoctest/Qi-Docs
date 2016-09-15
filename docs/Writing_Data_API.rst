@@ -49,6 +49,20 @@ Security
 
 **Notes**
   ``InsertValue`` throws an exception if an event already exists at the specified index.
+  
+  The content of the message is serialized in JSON format.  JSON objects are lists of name-value pairs of properties enclosed within brackets. JSON Serializers are available for a variety of languages. Additional details on syntax as well as a list of serializers is available on http://json.org/index.html. The specific serialization will depend on the type of event you are inserting.  For example, the following is a single WaveData event from the sample code serialized as JSON.  
+  ::
+  	{
+		"Order":2,	
+		"Tau":0.25722883666666846,	
+		"Radians":1.6162164471269089,	
+		"Sin":1.9979373673043652,	
+		"Cos":-0.090809010174665111,	
+		"Tan":-44.003064529862513,	
+		"Sinh":4.8353589272389,	
+		"Cosh":5.2326566823391856,	
+		"Tanh":1.8481468289554672
+	}
 
 
 **********************
@@ -96,6 +110,45 @@ Content is serialized list of events of type T
   index encounters a problem, the entire operation is rolled back and no
   insertions are made. The streamId and index that caused the issue are
   included in the error response.
+  
+  The values to be inserted are serialized as a JSON array of type T.  JSON arrays are comma delimited lists of type T within square brackets. Continuing the WaveData example, here is a list of three events for insertion:
+  
+	\[
+		{
+			"Order":2,
+			"Tau":0.25722883666666846,
+			"Radians":1.6162164471269089,
+			"Sin":1.9979373673043652,
+			"Cos":-0.090809010174665111,
+			"Tan":-44.003064529862513,
+			"Sinh":4.8353589272389,
+			"Cosh":5.2326566823391856,
+			"Tanh":1.8481468289554672
+		}, 
+		{
+			"Order":4,
+			"Tau":0.25724560000002383,
+			"Radians":1.6163217742567466,
+			"Sin":1.9979277915696148,
+			"Cos":-0.091019446679060964,
+			"Tan":-43.901119254534827,
+			"Sinh":4.8359100947709592,
+			"Cosh":5.233166005842703,
+			"Tanh":1.8481776000882766
+		}, 
+		{
+			"Order":6,
+			"Tau":0.25724560000002383,
+			"Radians":1.6163217742567466,
+			"Sin":1.9979277915696148,
+			"Cos":-0.091019446679060964,
+			"Tan":-43.901119254534827,
+			"Sinh":4.8359100947709592,
+			"Cosh":5.233166005842703,
+			"Tanh":1.8481776000882766
+		}
+	\]
+
   
 Security
   Allowed by administrator accounts
