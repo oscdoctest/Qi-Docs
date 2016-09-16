@@ -166,13 +166,13 @@ Security
 
 **Notes**
 
- .. _Introducing JSON: http://json.org/index.html
+.. _Introducing JSON: http://json.org/index.html
 
-  For HTTP requests, the message content (the event) must be serialized in JSON format. JSON objects consist of a 
-  series of name-value property pairs enclosed within brackets. Because QiType objects can become complex (particularly 
-  when properties themselves are QiTypes), OSIsoft recommends using a JSON serializer (available at `Introducing JSON`_). 
-  The following example shows the serialization of the QiType object from the WaveData example. See the Qi code 
-  samples for the complete WaveData example.
+ For HTTP requests, the message content (the event) must be serialized in JSON format. JSON objects consist of a 
+ series of name-value property pairs enclosed within brackets. Because QiType objects can become complex (particularly 
+ when properties themselves are QiTypes), OSIsoft recommends using a JSON serializer (available at `Introducing JSON`_). 
+ The following example shows the serialization of the QiType object from the WaveData example. See the Qi code 
+ samples for the complete WaveData example.
 
 
 ::
