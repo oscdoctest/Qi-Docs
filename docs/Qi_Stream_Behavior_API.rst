@@ -157,7 +157,7 @@ Security
   Allowed by administrator accounts
   
 **Notes**
-The message body content is a QiStreamBehavior object serialized in JSON format.  For example:
+  For HTTP requests, the message body content is a QiStreamBehavior object that is serialized in JSON format. For example:
 
 ::
 
