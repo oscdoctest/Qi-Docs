@@ -123,7 +123,8 @@ Security
   Allowed by administrator accounts
   
 **Notes**
-The QiStream object is serialized in JSON format and sent in the message body.  This is a sample QiStream serialized in JSON:
+  For HTTP requests, the QiStream object must be formatted as a serialized JSON object and sent in the message body. 
+  The following is a sample QiStream serialized in JSON:
 
 ::
 
