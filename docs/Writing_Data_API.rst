@@ -50,8 +50,19 @@ Security
 **Notes**
   ``InsertValue`` throws an exception if an event already exists at the specified index.
   
-  The content of the message is serialized in JSON format.  JSON objects are lists of name-value pairs of properties enclosed within brackets. JSON Serializers are available for a variety of languages. Additional details on syntax as well as a list of serializers is available on http://json.org/index.html. The specific serialization will depend on the type of event you are inserting.  For example, the following is a single WaveData event from the sample code serialized as JSON.  
+  For HTTP requests, the message content (the event) must be serialized in JSON format. JSON objects 
+  consist of a series of name-value property pairs enclosed within brackets. 
+
+  .. _Introducing JSON: http://json.org/index.html
+
+  You can serialize your data using one of many available JSON serializers available at `Introducing JSON`_. 
+
+
+  How the data is serialized depends upon the type of event you are inserting. For example, the following code 
+  shows a single WaveData event serialized as JSON. See the Qi code samples for the complete WaveData example.
+
   ::
+  
   	{
 		"Order":2,	
 		"Tau":0.25722883666666846,	
@@ -106,14 +117,19 @@ Content is serialized list of events of type T
   An IEnumerable of all behavior objects
 
 **Notes**
-  ``InsertValues`` throws an exception if any index in **items** already has an event. If any individual
+  ``InsertValuesAsync`` throws an exception if any index in **items** already has an event. If any individual
   index encounters a problem, the entire operation is rolled back and no
   insertions are made. The streamId and index that caused the issue are
   included in the error response.
   
-  The values to be inserted are serialized as a JSON array of type T.  JSON arrays are comma delimited lists of type T within square brackets. Continuing the WaveData example, here is a list of three events for insertion:
-  
-	\[
+  For HTTP requests, the values to be inserted must be formatted as a serialized JSON array of type T. JSON arrays are 
+  comma-delimited lists of type T enclosed within square brackets. The following code shows a list 
+  of three WaveData events that are properly formatted for insertion. See the Qi code samples for 
+  the complete WaveData example.
+
+::
+
+	[
 		{
 			"Order":2,
 			"Tau":0.25722883666666846,
@@ -147,7 +163,7 @@ Content is serialized list of events of type T
 			"Cosh":5.233166005842703,
 			"Tanh":1.8481776000882766
 		}
-	\]
+	]
 
   
 Security
