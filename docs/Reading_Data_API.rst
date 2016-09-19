@@ -24,7 +24,7 @@ Searches for data in a stream using the specified search mode.
 	
 **Parameters**
 
-``string tenantID``
+``string tenantId``
   The tenant identifier for the request
 ``string namespaceId``
   The namespace identifier for the request.
@@ -128,7 +128,7 @@ Returns an event from the specified stream at the specified index.
 	
 **Parameters**
 
-``string tenantID``
+``string tenantId``
   The tenant identifier for the request
 ``string namespaceId``
   The namespace identifier for the request.
@@ -208,7 +208,7 @@ Returns null if the stream has no data (no exception is thrown).
 	
 **Parameters**
 
-``string tenantID``
+``string tenantId``
   The tenant identifier for the request
 ``string namespaceId``
   The namespace identifier for the request.
@@ -255,7 +255,7 @@ has no data (no exception is thrown).
 	
 **Parameters**
 
-``string tenantID``
+``string tenantId``
   The tenant identifier for the request
 ``string namespaceId``
   The namespace identifier for the request.
@@ -536,7 +536,7 @@ Retrieves a specified data event from a stream.
 	
 **Parameters**
 
-``string tenantID``
+``string tenantId``
   The tenant identifier for the request
 ``string namespaceId``
   The namespace identifier for the request.
@@ -627,7 +627,7 @@ is determined by the particular method overload that is used.
 	
 **Parameters**
 
-``string tenantID``
+``string tenantId``
   The tenant identifier for the request
 ``string namespaceId``
   The namespace identifier for the request.
@@ -748,7 +748,7 @@ Retrieves values between the specified start and end indexes.
 	
 **Parameters**
 
-``string tenantID``
+``string tenantId``
   The tenant identifier for the request
 ``string namespaceId``
   The namespace identifier for the request.
