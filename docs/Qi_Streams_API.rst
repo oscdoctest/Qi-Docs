@@ -152,7 +152,7 @@ Updates a specified stream in a specified namespace with the properties in the s
 An exception is thrown on unpermitted change attempt (and the stream is
 left unchanged)
 
-The *UpdateStreamAsyncAsync()* method applies to the entire entity. Optional fields
+The *UpdateStreamAsync()* method applies to the entire entity. Optional fields
 that are omitted from the entity will remove the field from the stream if the fields had been set previously.
 
 
