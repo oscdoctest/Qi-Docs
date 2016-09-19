@@ -286,17 +286,32 @@ Retrieves events from a stream based on a starting index and a requested number 
 
 ::
 
-    IEnumerable<T> GetRangeValuesAsync<T>(string streamId, string startIndex, int skip, int count, 
-                   bool reversed, QiBoundaryType boundaryType, string filter);
     Task<IEnumerable<T>> GetRangeValuesAsync<T>(string streamId, string startIndex, int count);
-    Task<IEnumerable<T>> GetRangeValuesAsync<T>(string streamId, string startIndex, int count, 
-                         bool reversed);
+    Task<IEnumerable<T>> GetRangeValuesAsync<T, T1>(string streamId, T1 startIndex, int count);
+    Task<IEnumerable<T>> GetRangeValuesAsync<T, T1, T2>(string streamId, Tuple<T1, T2> startIndex, int count);
     Task<IEnumerable<T>> GetRangeValuesAsync<T>(string streamId, string startIndex, int count, 
                          QiBoundaryType boundaryType);
-    Task<IEnumerable<T>> GetRangeValuesAsync<T>(string streamId, string startIndex, int skip, 
+    Task<IEnumerable<T>> GetRangeValuesAsync<T, T1>(string streamId, T1 startIndex, int count, 
+                         QiBoundaryType boundaryType);
+    Task<IEnumerable<T>> GetRangeValuesAsync<T, T1, T2>(string streamId, Tuple<T1, T2> startIndex, 
+                         int count, QiBoundaryType boundaryType);
+    Task<IEnumerable<T>> GetRangeValuesAsync<T>(string streamId, string startIndex, int count, bool reversed);
+    Task<IEnumerable<T>> GetRangeValuesAsync<T, T1>(string streamId, T1 startIndex, int count, bool reversed);
+    Task<IEnumerable<T>> GetRangeValuesAsync<T, T1, T2>(string streamId, Tuple<T1, T2> startIndex, 
+                         int count, bool reversed);
+    Task<IEnumerable<T>> GetRangeValuesAsync<T>(string streamId, string startIndex, int skip, int count, 
+                         bool reversed, QiBoundaryType boundaryType);
+    Task<IEnumerable<T>> GetRangeValuesAsync<T, T1>(string streamId, T1 startIndex, int skip, int count, 
+                         bool reversed, QiBoundaryType boundaryType);
+    Task<IEnumerable<T>> GetRangeValuesAsync<T, T1, T2>(string streamId, Tuple<T1, T2> startIndex, int skip, 
                          int count, bool reversed, QiBoundaryType boundaryType);
     Task<IEnumerable<T>> GetRangeValuesAsync<T>(string streamId, string startIndex, int skip, 
                          int count, bool reversed, QiBoundaryType boundaryType, string filter);
+    Task<IEnumerable<T>> GetRangeValuesAsync<T, T1>(string streamId, T1 startIndex, int skip, int count, 
+                         bool reversed, QiBoundaryType boundaryType, string filter);
+    Task<IEnumerable<T>> GetRangeValuesAsync<T, T1, T2>(string streamId, Tuple<T1, T2> startIndex, 
+                         int skip, int count, bool reversed, QiBoundaryType boundaryType, string filter);
+         
 
 **Http**
 
@@ -309,9 +324,9 @@ Retrieves events from a stream based on a starting index and a requested number 
     GET Qi/{tenantId}/{namespaceId}/Streams/{streamId}/Data/GetRangeValues?startIndex={startIndex}
                       &count={count}&boundaryType={boundaryType}
     GET Qi/{tenantId}/{namespaceId}/Streams/{streamId}/Data/GetRangeValues?startIndex={startIndex}
-                      &skip={skip}&count={count}&reversed={reversed}&boun GET daryType={boundaryType}
+                      &skip={skip}&count={count}&reversed={reversed}&boundaryType={boundaryType}
     GET Qi/{tenantId}/{namespaceId}/Streams/{streamId}/Data/GetRangeValues?startIndex={startIndex}
-                      &skip={skip}&count={count}&reversed={reversed}&boun GET daryType={boundaryType}
+                      &skip={skip}&count={count}&reversed={reversed}&boundaryType={boundaryType}
                       &filter={filterExpression}
     GET Qi/{tenantId}/{namespaceId}/Streams/{streamId}/Data/GetRangeValues?startIndex={startIndex}
                       &count={count}
@@ -320,7 +335,7 @@ Retrieves events from a stream based on a starting index and a requested number 
     GET Qi/{tenantId}/{namespaceId}/Streams/{streamId}/Data/GetRangeValues?startIndex={startIndex}
                       &count={count}&boundaryType={boundaryType}
     GET Qi/{tenantId}/{namespaceId}/Streams/{streamId}/Data/GetRangeValues?startIndex={startIndex}
-                      &skip={skip}&count={count}&reversed={reversed}&boun GET daryType={boundaryType}
+                      &skip={skip}&count={count}&reversed={reversed}&boundaryType={boundaryType}
     GET Qi/{tenantId}/{namespaceId}/Streams/{streamId}/Data/GetRangeValues?startIndex={startIndex}
                       &skip={skip}&count={count}&reversed={reversed}&boundaryType={boundaryType}
                       &filter={filterExpression}
@@ -328,7 +343,7 @@ Retrieves events from a stream based on a starting index and a requested number 
 	
 **Parameters**
 
-``string tenantID``
+``string tenantId``
   The tenant identifier for the request
 ``string namespaceId``
   The namespace identifier for the request.
@@ -492,6 +507,7 @@ When the startIndex falls between data:
 +-----------------------+--------------------------------------------------------------------------+
 |ContinuousTrailing     |Event is calculated using the index and next event values                 |
 +-----------------------+--------------------------------------------------------------------------+
+
 
 
 **********************
