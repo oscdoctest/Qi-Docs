@@ -30,7 +30,7 @@ Returns a QiStream object from the specified namespace that matches the specifie
 
 **Parameters**
 
-``string tenantID``
+``string tenantId``
   The tenant identifier for the request
 ``string namespaceId``
   The namespace identifier for the request
@@ -68,7 +68,7 @@ Returns all streams from the specified namespace or Searches for and returns str
 
 **Parameters**
 
-``string tenantID``
+``string tenantId``
   The tenant identifier for the request
 ``string namespaceId``
   The namespace identifier for the request
@@ -108,7 +108,7 @@ Returns a stream that matches the QiStream qistream within the specified namespa
 
 **Parameters**
 
-``string tenantID``
+``string tenantId``
   The tenant identifier for the request
 ``string namespaceId``
   The namespace identifier for the request
@@ -170,7 +170,7 @@ that are omitted from the entity will remove the field from the stream if the fi
 
 **Parameters**
 
-``string tenantID``
+``string tenantId``
   The tenant identifier for the request
 ``string namespaceId``
   The namespace identifier for the request
@@ -209,7 +209,7 @@ Deletes a stream that matches the QiStream entity within the specified tenantId 
 
 **Parameters**
 
-``string tenantID``
+``string tenantId``
   The tenant identifier for the request
 ``string namespaceId``
   The namespace identifier for the request.
