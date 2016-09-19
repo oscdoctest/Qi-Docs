@@ -31,7 +31,7 @@ Returns the type definition that is associated with a given stream from the spec
 
 **Parameters**
 
-``string tenantID``
+``string tenantId``
   The tenant identifier for the request
 ``string namespaceId``
   The namespace identifier for the request
@@ -70,7 +70,7 @@ Returns the type of the specified ``typeId`` from the specified namespace.
 
 **Parameters**
 
-``string tenantID``
+``string tenantId``
   The tenant identifier for the request
 ``string namespaceId``
   The namespace identifier for the request
@@ -109,7 +109,7 @@ Returns a list of all types within a given namespace.
 
 **Parameters**
 
-``string tenantID``
+``string tenantId``
   The tenant identifier for the request
 ``string namespaceId``
   The namespace identifier for the request
@@ -148,7 +148,7 @@ Returns the type of the specified ``typeId`` within a namespace, or creates the 
 
 **Parameters**
 
-``string tenantID``
+``string tenantId``
   The tenant identifier for the request
 ``string namespaceId``
   The namespace identifier for the request
@@ -337,7 +337,7 @@ streams are associated with it.
 
 **Parameters**
 
-``string tenantID``
+``string tenantId``
   The tenant identifier for the request
 ``string namespaceId``
   The namespace identifier for the request
@@ -377,7 +377,7 @@ associated with it. Also, certain parameters cannot be changed after they are de
 
 **Parameters**
 
-``string tenantID``
+``string tenantId``
   The tenant identifier for the request
 ``string namespaceId``
   The namespace identifier for the request
