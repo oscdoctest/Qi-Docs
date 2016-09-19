@@ -285,6 +285,7 @@ Security
   problem.  
   
 
+***********************
 
 
 ``RemoveValueAsync()``
@@ -330,6 +331,8 @@ Security
   Precision is taken into account when finding a value. If the index is a DateTime,
   use the round-trip format specifier: ``DateTime.ToString(“o”)``.  
 
+
+***********************
 
 
 ``RemoveValuesAsync()``
@@ -379,6 +382,8 @@ Security
   If you attempt to remove events at indexes that have no events, an exception is thrown. If this occurs, you can use the ‘RemoveWindowValues’ call to remove any events from a specified ‘window’ of indexes, which will not throw exceptions if no data is found.
 
 
+***********************
+
 
 ``RemoveWindowValuesAsync()``
 ----------------
@@ -427,7 +432,8 @@ Security
   If any individual event fails to be removed, the entire operation is
   rolled back and no removes are done.
 
-  
+
+***********************  
 
 
 ``ReplaceValueAsync()``
@@ -471,7 +477,9 @@ Security
   Throws an exception if the stream does not have an event to be replaced at the
   specified index. Overloads are available to help you set the indexes you want removed.
   
-  
+***********************
+
+
 ``ReplaceValuesAsync()``
 ----------------
 
@@ -516,6 +524,9 @@ Security
   Throws an exception if any index does not have a value to be replaced. If any individual event fails to be replaced, the entire operation is rolled back and no replaces are performed. The index (of the *items* IEnumerable) that caused the issue and the streamId are included in the error response.
 
 
+***********************
+
+
 ``UpdateValueAsync()``
 ----------------
 
@@ -558,6 +569,8 @@ Security
 **Notes**
   ``UpdateValue`` performs an insert or a replace depending on whether an event already exists at the index in the stream.
   
+  
+***********************
 
 ``UpdateValuesAsync()``
 ----------------
