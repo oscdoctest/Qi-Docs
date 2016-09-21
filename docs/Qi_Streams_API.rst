@@ -168,7 +168,7 @@ that are omitted from the entity will remove the field from the stream if the fi
 
     PUT Qi/{tenantId}/{namespaceId}/Streams/{streamId}
 
-Content is a serialized QiType object.
+Content is a serialized QiStream object.
 
 
 **Parameters**
