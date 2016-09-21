@@ -724,7 +724,7 @@ Retrieves values between the specified start and end indexes.
                          QiBoundaryType boundaryType, int count, string continuationToken);
     Task<IEnumerable<T>> GetWindowValuesAsync<T>(string streamId, string startIndex, 
                          QiBoundaryType startBoundaryType, string endIndex, QiBoundaryType endBoundaryType, 
-                         string filter, string selectExpression);
+                         string filter, string select);
     Task<QiResultPage<T>> GetWindowValuesAsync<T>(string streamId, string startIndex, string endIndex, 
                          QiBoundaryType boundaryType, string filter, int count, string continuationToken);
 
@@ -741,7 +741,7 @@ Retrieves values between the specified start and end indexes.
                       &boundaryType={boundaryType}&count={count}&continuationToken={continuationToken}
     GET Qi/{tenantId}/{namespaceId}/Streams/{streamId}/Data/GetWindowValues?startIndex={startIndex}
                       &startBoundaryType={startBoundaryType}&endIndex={endIndex}&endBoundaryType={endBoundaryType}
-                      &filter={filterExpression}&selectExpression={selectExpression}
+                      &filter={filterExpression}&select={select}
     GET Qi/{tenantId}/{namespaceId}/Streams/{streamId}/Data/GetWindowValues?startIndex={startIndex}
                       &endIndex={endIndex}&boundaryType={boundaryType}&count={count}&continuationToken={continuationToken}
 
@@ -770,7 +770,7 @@ Retrieves values between the specified start and end indexes.
   How to handle startIndex boundary events.
 ``endBoundaryType``
   How to handle endIndex boundary events.
-``selectExpression``
+``select``
   Expression designating which fields of the stream's type should make up the return events.
 
   
