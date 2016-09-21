@@ -168,6 +168,9 @@ that are omitted from the entity will remove the field from the stream if the fi
 
     PUT Qi/{tenantId}/{namespaceId}/Streams/{streamId}
 
+Content is a serialized QiType object.
+
+
 **Parameters**
 
 ``string tenantId``
@@ -206,6 +209,7 @@ Deletes a stream that matches the QiStream entity within the specified tenantId 
 ::
 
     DELETE Qi/{tenantId}/{namespaceId}/Streams/{streamId}
+
 
 **Parameters**
 
