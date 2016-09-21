@@ -375,6 +375,8 @@ associated with it. Also, certain parameters cannot be changed after they are de
     PUT Qi/{tenantId}/{namespaceId}/Types/{typeId}
 
 
+Content is a serialized QiType object.
+
 **Parameters**
 
 ``string tenantId``
