@@ -122,7 +122,19 @@ Returns a stream that matches the QiStream qistream within the specified namespa
 Security
   Allowed by administrator accounts
   
+**Notes**
+  For HTTP requests, the QiStream object must be formatted as a serialized JSON object and sent in the message body. 
+  The following is a sample QiStream serialized in JSON:
 
+::
+
+	{
+		"Id":"WaveData_SampleStream",
+		"Name":"WaveData_SampleStream",
+		"Description":null,
+		"TypeId":"WaveData_SampleType",
+		"BehaviorId":null
+	}
 ***********************
 
 
@@ -140,7 +152,7 @@ Updates a specified stream in a specified namespace with the properties in the s
 An exception is thrown on unpermitted change attempt (and the stream is
 left unchanged)
 
-The *UpdateStreamAsyncAsync()* method applies to the entire entity. Optional fields
+The *UpdateStreamAsync()* method applies to the entire entity. Optional fields
 that are omitted from the entity will remove the field from the stream if the fields had been set previously.
 
 
@@ -155,6 +167,9 @@ that are omitted from the entity will remove the field from the stream if the fi
 ::
 
     PUT Qi/{tenantId}/{namespaceId}/Streams/{streamId}
+
+Content is a serialized QiStream object.
+
 
 **Parameters**
 
@@ -194,6 +209,7 @@ Deletes a stream that matches the QiStream entity within the specified tenantId 
 ::
 
     DELETE Qi/{tenantId}/{namespaceId}/Streams/{streamId}
+
 
 **Parameters**
 

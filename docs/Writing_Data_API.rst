@@ -49,6 +49,31 @@ Security
 
 **Notes**
   ``InsertValue`` throws an exception if an event already exists at the specified index.
+  
+  For HTTP requests, the message content (the event) must be serialized in JSON format. JSON objects 
+  consist of a series of name-value property pairs enclosed within brackets. 
+
+  .. _Introducing JSON: http://json.org/index.html
+
+  You can serialize your data using one of many available JSON serializers available at `Introducing JSON`_. 
+
+
+  How the data is serialized depends upon the type of event you are inserting. For example, the following code 
+  shows a single WaveData event serialized as JSON. See the Qi code samples for the complete WaveData example.
+
+  ::
+  
+  	{
+		"Order":2,	
+		"Tau":0.25722883666666846,	
+		"Radians":1.6162164471269089,	
+		"Sin":1.9979373673043652,	
+		"Cos":-0.090809010174665111,	
+		"Tan":-44.003064529862513,	
+		"Sinh":4.8353589272389,	
+		"Cosh":5.2326566823391856,	
+		"Tanh":1.8481468289554672
+	}
 
 
 **********************
@@ -92,10 +117,54 @@ Content is serialized list of events of type T
   An IEnumerable of all behavior objects
 
 **Notes**
-  ``InsertValues`` throws an exception if any index in **items** already has an event. If any individual
+  ``InsertValuesAsync`` throws an exception if any index in **items** already has an event. If any individual
   index encounters a problem, the entire operation is rolled back and no
   insertions are made. The streamId and index that caused the issue are
   included in the error response.
+  
+  For HTTP requests, the values to be inserted must be formatted as a serialized JSON array of type T. JSON arrays are 
+  comma-delimited lists of type T enclosed within square brackets. The following code shows a list 
+  of three WaveData events that are properly formatted for insertion. See the Qi code samples for 
+  the complete WaveData example.
+
+::
+
+	[
+		{
+			"Order":2,
+			"Tau":0.25722883666666846,
+			"Radians":1.6162164471269089,
+			"Sin":1.9979373673043652,
+			"Cos":-0.090809010174665111,
+			"Tan":-44.003064529862513,
+			"Sinh":4.8353589272389,
+			"Cosh":5.2326566823391856,
+			"Tanh":1.8481468289554672
+		}, 
+		{
+			"Order":4,
+			"Tau":0.25724560000002383,
+			"Radians":1.6163217742567466,
+			"Sin":1.9979277915696148,
+			"Cos":-0.091019446679060964,
+			"Tan":-43.901119254534827,
+			"Sinh":4.8359100947709592,
+			"Cosh":5.233166005842703,
+			"Tanh":1.8481776000882766
+		}, 
+		{
+			"Order":6,
+			"Tau":0.25724560000002383,
+			"Radians":1.6163217742567466,
+			"Sin":1.9979277915696148,
+			"Cos":-0.091019446679060964,
+			"Tan":-43.901119254534827,
+			"Sinh":4.8359100947709592,
+			"Cosh":5.233166005842703,
+			"Tanh":1.8481776000882766
+		}
+	]
+
   
 Security
   Allowed by administrator accounts
@@ -216,6 +285,7 @@ Security
   problem.  
   
 
+***********************
 
 
 ``RemoveValueAsync()``
@@ -261,6 +331,8 @@ Security
   Precision is taken into account when finding a value. If the index is a DateTime,
   use the round-trip format specifier: ``DateTime.ToString(“o”)``.  
 
+
+***********************
 
 
 ``RemoveValuesAsync()``
@@ -310,6 +382,7 @@ Security
   If you attempt to remove events at indexes that have no events, an exception is thrown. If this occurs, you can use the ‘RemoveWindowValues’ call to remove any events from a specified ‘window’ of indexes, which will not throw exceptions if no data is found.
 
 
+***********************
 
 
 ``RemoveWindowValuesAsync()``
@@ -359,7 +432,8 @@ Security
   If any individual event fails to be removed, the entire operation is
   rolled back and no removes are done.
 
-  
+
+***********************  
 
 
 ``ReplaceValueAsync()``
@@ -403,7 +477,9 @@ Security
   Throws an exception if the stream does not have an event to be replaced at the
   specified index. Overloads are available to help you set the indexes you want removed.
   
-  
+***********************
+
+
 ``ReplaceValuesAsync()``
 ----------------
 
@@ -448,6 +524,9 @@ Security
   Throws an exception if any index does not have a value to be replaced. If any individual event fails to be replaced, the entire operation is rolled back and no replaces are performed. The index (of the *items* IEnumerable) that caused the issue and the streamId are included in the error response.
 
 
+***********************
+
+
 ``UpdateValueAsync()``
 ----------------
 
@@ -490,6 +569,8 @@ Security
 **Notes**
   ``UpdateValue`` performs an insert or a replace depending on whether an event already exists at the index in the stream.
   
+  
+***********************
 
 ``UpdateValuesAsync()``
 ----------------

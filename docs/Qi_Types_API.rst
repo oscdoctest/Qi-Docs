@@ -164,6 +164,153 @@ Returns the type of the specified ``typeId`` within a namespace, or creates the 
 Security
   Allowed by administrator account
 
+**Notes**
+
+.. _Introducing JSON: http://json.org/index.html
+
+ For HTTP requests, the message content (the event) must be serialized in JSON format. JSON objects consist of a 
+ series of name-value property pairs enclosed within brackets. Because QiType objects can become complex (particularly 
+ when properties themselves are QiTypes), OSIsoft recommends using a JSON serializer (available at `Introducing JSON`_). 
+ The following example shows the serialization of the QiType object from the WaveData example. See the Qi code 
+ samples for the complete WaveData example.
+
+
+::
+
+	{
+		"Id":"WaveData_SampleType",
+		"Name":"Wave Data Type",
+		"Description":"This is a type for WaveData events",
+		"QiTypeCode":0,
+		"Properties":[
+			{
+				"Id":"Order",
+				"Name":null,
+				"Description":null,
+				"QiType":
+					{
+						"Id":"intType",
+						"Name":null,
+						"Description":null,
+						"QiTypeCode":9,
+						"Properties":null
+					},
+				"IsKey":true
+			},
+			{
+				"Id":"Tau",
+				"Name":null,
+				"Description":null,
+				"QiType":
+					{
+						"Id":"doubleType",
+						"Name":null,
+						"Description":null,
+						"QiTypeCode":14,
+						"Properties":null
+					},
+				"IsKey":false
+			},
+			{
+				"Id":"Radians",
+				"Name":null,
+				"Description":null,
+				"QiType":
+					{
+						"Id":"doubleType",
+						"Name":null,
+						"Description":null,
+						"QiTypeCode":14,
+						"Properties":null
+					},
+				"IsKey":false
+			},
+			{
+				"Id":"Sin",
+				"Name":null,
+				"Description":null,
+				"QiType":
+					{
+						"Id":"doubleType",
+						"Name":null,
+						"Description":null,
+						"QiTypeCode":14,
+						"Properties":null
+					},
+					"IsKey":false
+			},
+			{
+				"Id":"Cos",
+				"Name":null,
+				"Description":null,
+				"QiType":
+					{
+						"Id":"doubleType",
+						"Name":null,
+						"Description":null,
+						"QiTypeCode":14,
+						"Properties":null
+					},
+				"IsKey":false
+			},
+			{
+				"Id":"Tan",
+				"Name":null,
+				"Description":null,
+				"QiType":
+					{
+						"Id":"doubleType",
+						"Name":null,
+						"Description":null,
+						"QiTypeCode":14,
+						"Properties":null
+					},
+				"IsKey":false
+			},
+			{
+				"Id":"Sinh",
+				"Name":null,
+				"Description":null,
+				"QiType":
+					{
+						"Id":"doubleType",
+						"Name":null,
+						"Description":null,
+						"QiTypeCode":14,
+						"Properties":null
+					},
+				"IsKey":false
+			},
+			{
+				"Id":"cosh",
+				"Name":null,
+				"Description":null,
+				"QiType":
+					{	
+						"Id":"doubleType",
+						"Name":null,
+						"Description":null,
+						"QiTypeCode":14,
+						"Properties":null
+					},
+				"IsKey":false
+			},
+			{
+				"Id":"Tanh",
+				"Name":null,
+				"Description":null,
+				"QiType":
+					{
+						"Id":"doubleType",
+						"Name":null,
+						"Description":null,
+						"QiTypeCode":14,
+						"Properties":null
+					},
+				"IsKey":false
+			}
+		]
+	}
 
 ***********************
 
@@ -227,6 +374,8 @@ associated with it. Also, certain parameters cannot be changed after they are de
 
     PUT Qi/{tenantId}/{namespaceId}/Types/{typeId}
 
+
+Content is a serialized QiType object.
 
 **Parameters**
 

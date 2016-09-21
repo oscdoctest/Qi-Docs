@@ -106,6 +106,15 @@ executable only by an administrator account.
 
 **Returns** 
   Returns a namespace.
+  
+**Notes**
+  For HTTP requests, the message body content is a JSON serialized QiNamespace object. For example:
+  
+::
+
+    {
+	    "Id":"WaveData_SampleNamespace"
+    }
 
 **********************
 

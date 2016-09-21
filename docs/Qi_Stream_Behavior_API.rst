@@ -155,6 +155,19 @@ Retrieves the QiStream behavior from a namespace, or creates the behavior if the
 
 Security
   Allowed by administrator accounts
+  
+**Notes**
+  For HTTP requests, the message body content is a QiStreamBehavior object that is serialized in JSON format. For example:
+
+::
+
+	{
+		"Id":"WaveData_SampleBehavior",
+		"Name":null,
+		"Mode":1,
+		"ExtrapolationMode":0,
+		"Overrides":null
+	}
 
 
 **********************
@@ -178,7 +191,12 @@ the addition, removal, or change to this list.
 
 ::
 
-    PUT Qi/{tenantId}/{namespaceId}/Behaviors/{behaviorId}	
+    PUT Qi/{tenantId}/{namespaceId}/Behaviors/{behaviorId}
+    
+
+Content is a serialized QiStreamBehavior object.
+
+
 **Parameters**
 
 ``string tenantId``
