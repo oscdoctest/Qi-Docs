@@ -191,7 +191,12 @@ the addition, removal, or change to this list.
 
 ::
 
-    PUT Qi/{tenantId}/{namespaceId}/Behaviors/{behaviorId}	
+    PUT Qi/{tenantId}/{namespaceId}/Behaviors/{behaviorId}
+    
+
+Content is a serialized QiStreamBehavior object.
+
+
 **Parameters**
 
 ``string tenantId``
