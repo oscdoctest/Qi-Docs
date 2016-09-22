@@ -409,7 +409,7 @@ BoundaryTypes shown:
 +--------------------------+-------------------------------------------------------------------------------+
 |Inside                    |The first value after the startIndex                                           |
 +--------------------------+-------------------------------------------------------------------------------+
-|Outside                   |The first value before the startIndex                                         |
+|Outside                   |The first value before the startIndex                                          |
 +--------------------------+-------------------------------------------------------------------------------+
 
 The table below indicates how the first value is determined for
@@ -426,7 +426,7 @@ The table below indicates how the first value is determined for
 +--------------------------+-------------------------------------------------------------------------------+
 |Inside                    |The first value before the startIndex                                          |
 +--------------------------+-------------------------------------------------------------------------------+
-|Outside                   |The first value after the startIndex                                          |
+|Outside                   |The first value after the startIndex                                           |
 +--------------------------+-------------------------------------------------------------------------------+
 
 The order of execution first determines the direction of the method and
@@ -807,9 +807,9 @@ The table below indicates how the first value is determined for
 |ExactOrCalculated     |If a value exists at the startIndex it is used, else a value is calculated   |
 |                      |according to the stream's behavior setting                                   |
 +----------------------+-----------------------------------------------------------------------------+
-|Inside                |The first value after the startIndex                                        |
+|Inside                |The first value after the startIndex                                         |
 +----------------------+-----------------------------------------------------------------------------+
-|Outside               |The first value before the startIndex                                       |
+|Outside               |The first value before the startIndex                                        |
 +----------------------+-----------------------------------------------------------------------------+
 
 This chart indicates how the last value is determined for
@@ -823,9 +823,9 @@ This chart indicates how the last value is determined for
 |ExactOrCalculated     |If a value exists at the endIndex it is used, else a value is calculated     |
 |                      |according to the stream's behavior setting                                   |
 +----------------------+-----------------------------------------------------------------------------+
-|Inside                |The first value before the endIndex                                         |
+|Inside                |The first value before the endIndex                                          |
 +----------------------+-----------------------------------------------------------------------------+
-|Outside               |The first value after the endIndex                                          |
+|Outside               |The first value after the endIndex                                           |
 +----------------------+-----------------------------------------------------------------------------+
 
 Calls against an empty stream always return a single null
