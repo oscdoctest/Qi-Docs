@@ -45,7 +45,7 @@ expression:
 -  ``QiType``
 -  ``QiTypeProperty``
 -  ``NullableDateTime``
--  ``TimeSpan``
+
 
 Logical operators
 ------------
