@@ -12,23 +12,25 @@ QiTypeCodes
 
 The following types are supported for use within a filter expression:
 
--  ``Enum``
 -  ``Boolean``
 -  ``Byte``
--  ``Guid``
+-  ``Char``
 -  ``DateTime``
--  ``TimeSpan``
 -  ``DateTimeOffset``
 -  ``Decimal``
 -  ``Double``
+-  ``Guid``
+-  ``Int16``
+-  ``Int32``
+-  ``Int64``
+-  ``Sbyte``
 -  ``Single``
--  ``ByteArray``
--  ``Long (Int64)``
--  ``Int (Int32)``
--  ``Short (Int16)``
--  ``UInt (UInt32)``
--  ``ULong (Uint64)``
--  ``UShort (Uint16)``
+-  ``String``
+-  ``Timespan``
+-  ``UInt16``
+-  ``UInt32``
+-  ``Uint64``
+
 
 **Types that are not supported**
 
@@ -39,12 +41,9 @@ expression:
 -  ``IEnumerable``
 -  ``IDictionary``
 -  ``IList``
--  ``DateTimeOffset``
--  ``Guid``
--  ``NullableGuid``
 -  ``QiType``
 -  ``QiTypeProperty``
--  ``NullableDateTime``
+-  ``Nullable Types``
 
 
 Logical operators
@@ -140,15 +139,18 @@ expression:
 
 For the following examples, assume that the Qi Type event includes a field named ``Value`` of type **double**: 
 
-- ``Value add 3.0 gt 5.0``
-- ``Value sub 5.0 lt 4.0``
-- ``Value mul 2.0 lt 9.0``
-- ``Value div 2.0 eq 3.0``
-- ``Value mod 7.0 eq 0.0``
-- ``Value add -3.0 gt 5.0``
+- ``Value eq (6.0 add 3.0)``
+- ``Value eq (6.0 sub 3.0)``
+- ``Value eq (6.0 mul 3.0)``
+- ``Value eq (6.0 div 3.0)``
+- ``Value eq (7.0 mod 3.0)``
 - ``round(Value) eq 16``
 - ``floor(Value) eq 15``
 - ``ceiling(Value) eq 16``
+
+
+
+
 
 String functions
 ------------
@@ -203,7 +205,7 @@ The following examples assume that the Qi Type event includes a field named
 +---------------------------------------------+-----------------------------------------------------------------+
 |``substring(sValue, 10) eq 'a b'``           |True if ‘a b’ is found in ``sValue`` at index 10                 |
 +---------------------------------------------+-----------------------------------------------------------------+
-|``substringof('val', Value)``                |True if characters ‘val’ are found anywhere in ``sValue``        |
+|``substringof('ab',sValue)``                 |True if characters ‘ab’ are found anywhere in ``sValue``         |
 +---------------------------------------------+-----------------------------------------------------------------+
 |``tolower(sValue) eq 'val5'``                |Change ``sValue`` to lowercase and compare to ‘val5’             |
 +---------------------------------------------+-----------------------------------------------------------------+
@@ -285,3 +287,7 @@ For the following examples, assume that the Qi Type event includes a field named
 -  ``hours(TimeSpanValue) eq 1``
 -  ``minutes(TimeSpanValue) eq 1``
 -  ``seconds(TimeSpanValue) eq 2``
+
+
+
+
