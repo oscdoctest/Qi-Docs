@@ -372,26 +372,26 @@ Security
   
 **Notes**
   ``GetRangeValues`` is used to obtain events from a stream based on
-a starting index and a requested number of events. Optionally, overloads allow
-the client to specify search direction, number of events to
-skip over, special boundary handling for **startIndex**, and an event
-filter. Events returned by ``GetRangeValues`` are stored events, not
-calculated events, with the exception of the starting event if
-ExactOrCalculated is specified for ``boundaryType``.
+  a starting index and a requested number of events. Optionally, overloads allow
+  the client to specify search direction, number of events to
+  skip over, special boundary handling for **startIndex**, and an event
+  filter. Events returned by ``GetRangeValues`` are stored events, not
+  calculated events, with the exception of the starting event if
+  ExactOrCalculated is specified for ``boundaryType``.
 
-``GetRangeValues`` searches FORWARD if the ``reverse`` parameter is
-false and reverse if the ``reverse`` parameter is true. For overloads that
-do not include the ``reverse`` parameter, the default is forward.
+  ``GetRangeValues`` searches FORWARD if the ``reverse`` parameter is
+  false and reverse if the ``reverse`` parameter is true. For overloads that
+  do not include the ``reverse`` parameter, the default is forward.
 
-The ``skip`` parameter indicates the number of events that the call 
-skips over before it collects events for the response.
+  The ``skip`` parameter indicates the number of events that the call 
+  skips over before it collects events for the response.
 
-BoundaryType has the following possible values: 
+  BoundaryType has the following possible values: 
 
-• Exact 
-• ExactOrCalculated 
-• Inside 
-• Outside
+  • Exact 
+  • ExactOrCalculated 
+  • Inside 
+  • Outside
 
 The BoundaryType determines how to specify the first value in from the
 stream starting at the start index. This is also affected by the
@@ -439,7 +439,7 @@ Finally, events up to the number specified by count are returned.
 The filter expression uses OData query language. Most of the query
 language is supported. More information about OData Filter Expressions can
 be found in `Filter
-expressions <http://qi-docs-rst.readthedocs.org/en/latest/Filter%20Expressions.html>`__
+expressions <http://qi-docs-rst.readthedocs.org/en/latest/Filter%20Expressions.html>`__.
 
 **Calculated startIndex** When the startIndex for ``GetRangeValues`` 
 lands before, after, or in-between data in the stream, and the
@@ -724,7 +724,7 @@ Retrieves values between the specified start and end indexes.
                          QiBoundaryType boundaryType, int count, string continuationToken);
     Task<IEnumerable<T>> GetWindowValuesAsync<T>(string streamId, string startIndex, 
                          QiBoundaryType startBoundaryType, string endIndex, QiBoundaryType endBoundaryType, 
-                         string filter, string select);
+                         string filter, string selectExpression);
     Task<QiResultPage<T>> GetWindowValuesAsync<T>(string streamId, string startIndex, string endIndex, 
                          QiBoundaryType boundaryType, string filter, int count, string continuationToken);
 
@@ -741,7 +741,7 @@ Retrieves values between the specified start and end indexes.
                       &boundaryType={boundaryType}&count={count}&continuationToken={continuationToken}
     GET Qi/{tenantId}/{namespaceId}/Streams/{streamId}/Data/GetWindowValues?startIndex={startIndex}
                       &startBoundaryType={startBoundaryType}&endIndex={endIndex}&endBoundaryType={endBoundaryType}
-                      &filter={filterExpression}&select={select}
+                      &filter={filterExpression}&selectExpression={selectExpression}
     GET Qi/{tenantId}/{namespaceId}/Streams/{streamId}/Data/GetWindowValues?startIndex={startIndex}
                       &endIndex={endIndex}&boundaryType={boundaryType}&count={count}&continuationToken={continuationToken}
 
@@ -770,7 +770,7 @@ Retrieves values between the specified start and end indexes.
   How to handle startIndex boundary events.
 ``endBoundaryType``
   How to handle endIndex boundary events.
-``select``
+``selectExpression``
   Expression designating which fields of the stream's type should make up the return events.
 
   
