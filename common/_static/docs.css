@@ -16,9 +16,6 @@ hr.docutils {
 	border: none!important;
 	border-radius: 0!important;
 }
-.wy-side-nav-search{
-	background: none!important;
-}
 .icon-home{
 	display: none!important;
 }
@@ -28,5 +25,7 @@ hr.docutils {
 .wy-nav-side {
 	background: #233240!important;
 }
-
+.wy-menu-vertical li.current a:hover {
+    background: #2C3E50!important;
+}
 
