@@ -29,4 +29,11 @@ hr.docutils {
     background-color: #2C3E50!important;
     color:white!important;
 }
-
+.rst-versions{	
+     	background: #233240!important;
+     	border-top: solid 4px #e67e22!important;
+}
+.rst-versions .rst-current-version{
+     	color:#3498db!important;
+	background-color: #2c3e50!important;
+}
