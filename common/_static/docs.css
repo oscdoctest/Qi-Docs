@@ -11,3 +11,22 @@ hr.docutils {
 .fa-github {
  display: none !important;
 }
+.wy-side-nav-search input[type=text]{
+	height: 40px;
+	border: none!important;
+	border-radius: 0!important;
+}
+.wy-side-nav-search{
+	background: none!important;
+}
+.icon-home{
+	display: none!important;
+}
+.wy-side-nav-search > div.version{
+	display: none!important;
+}
+.wy-nav-side {
+	background: #233240!important;
+}
+
+
