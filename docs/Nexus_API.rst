@@ -82,6 +82,7 @@ OSIsoft Cloud Services tenant administrator
 
 **Parameters**
 ``String tenantId``
+  The tenant identifier for the request
 
 
 **Security**
@@ -106,7 +107,9 @@ OSIsoft Cloud Services tenant administrator
 
 **Parameters**
 ``String tenantId``
+  The tenant identifier for the request
 ``String groupId``
+  The group identifier for the request
 
 **Security**
 
@@ -130,7 +133,10 @@ OSIsoft Cloud Services tenant administrator
 
 **Parameters**
 ``String tenantId``
+  The tenant identifier for the request
 ``Group group``
+  The group identifier for the request
+
 **Body**
 {
   "Id": "id",
@@ -162,8 +168,9 @@ OSIsoft Cloud Services tenant administrator
 
 **Parameters**
 ``String tenantId``
+  The tenant identifier for the request
 ``String groupId``
-
+  The group identifier for the request
 
 **Security**
 
@@ -187,9 +194,15 @@ OSIsoft Cloud Services tenant administrator
 	POST PICS/Tenants/{tenantId}/Groups/{groupId}/Users
 
 **Parameters**
+
 ``String tenantId``
+  The tenant identifier for the request
 ``String groupId``
+  The group identifier for the request
 ``CreateUser user``
+  The user identifier for the request
+  
+  
 **Body**
 {
   "SendNotification": false,
@@ -226,9 +239,13 @@ OSIsoft Cloud Services tenant administrator
 	DELETE PICS/Tenants/{tenantId}/Groups/{groupId}/Users/{userId}
 
 **Parameters**
+
 ``String tenantId``
+  The tenant identifier for the request
 ``String groupId``
+  The group identifier for the request
 ``String userId``
+  The user identifier for the request
 
 **Security**
 
@@ -255,6 +272,7 @@ Namespace
 
 **Parameters**
 ``String tenantId``
+  The tenant identifier for the request
 
 
 **Security**
@@ -279,8 +297,11 @@ Any OSIsoft Cloud Services user
 	GET PICS/Tenants/{tenantId}/Namespaces/{Id}
 
 **Parameters**
+
 ``String id``
+  The identifier for the request
 ``String tenantId``
+  The tenant identifier for the request
 
 **Security**
 
@@ -305,8 +326,14 @@ Any OSIsoft Cloud Services user
 	POST PICS/Tenants/{tenantId}/Namespaces/
 
 **Parameters**
+
 ``Namespace namespaceObj``
+  The namespace identifier for the request
+  
 **Body**
+
+::
+
 {
   "Id": "id",
   "TenantId": "tenantid",
@@ -338,8 +365,11 @@ OSIsoft Cloud Services tenant administrator
 	DELETE PICS/Tenants/{tenantId}/Namespaces/{Id}
 
 **Parameters**
+
 ``String id``
+  The identifier for the request
 ``String tenantId``
+  The tenant identifier for the request
 
 
 **Security**
@@ -387,10 +417,18 @@ OSIsoft Cloud Services tenant administrator
 	PUT PICS/Tenants/{tenantId}/Namespaces/{Id}
 
 **Parameters**
+
 ``String id``
+  The identifier for the request
 ``String tenantId``
+  The tenant identifier for the request
 ``Namespace namespaceObj``
+  The namespace identifier for the request
+  
+  
 **Body**
+
+::
 {
   "Id": "id",
   "TenantId": "tenantid",
@@ -426,8 +464,11 @@ ServiceBlog
 	GET PICS/ServiceBlog/Entries
 
 **Parameters**
+
 ``Int32 skip``
+  The number of matches to skip over before returning the matching page.
 ``Int32 take``
+  The take (?)
 
 **Security**
 
@@ -460,8 +501,9 @@ Tenant
 	GET PICS/Tenants/{tenantId}
 
 **Parameters**
-``String tenantId``
 
+``String tenantId``
+  The tenant identifier for the request
 
 **Security**
 
@@ -494,8 +536,14 @@ Applications
 	POST PICS/Tenants/{tenantId}/ClientApiKeySets
 
 **Parameters**
+
 ``ClientApiKeySet keySet``
+  The keyset identifier for the request
+  
 **Body**
+
+::
+
 {
   "AppUri": "appuri",
   "CreateFirstKey": false,
@@ -528,8 +576,14 @@ OSIsoft Cloud Services tenant administrator
 	POST PICS/Tenants/{tenantId}/GetOrCreateClientApiKeySets
 
 **Parameters**
+
 ``ClientApiKeySet keySet``
+  The tenant identifier for the request
+  
 **Body**
+
+::
+
 {
   "AppUri": "appuri",
   "CreateFirstKey": false,
@@ -561,8 +615,11 @@ OSIsoft Cloud Services tenant administrator
 	DELETE PICS/Tenants/{tenantId}/ClientApiKeySets/{applicationId}
 
 **Parameters**
+
 ``String tenantId``
+  The tenant identifier for the request
 ``String applicationId``
+  The application identifier for the request
 
 **Security**
 
@@ -618,8 +675,11 @@ User
 	GET PICS/Tenants/{tenantId}/Users/{userId}
 
 **Parameters**
+
 ``String tenantId``
+  The tenant identifier for the request
 ``String userId``
+  The user identifier for the request
 
 **Security**
 
@@ -642,8 +702,9 @@ OSIsoft Cloud Services tenant administrator
 	GET PICS/Tenants/{tenantId}/Users
 
 **Parameters**
-``String tenantId``
 
+``String tenantId``
+  The tenant identifier for the request
 
 **Security**
 
@@ -667,8 +728,11 @@ OSIsoft Cloud Services tenant administrator
 	GET PICS/Tenants/{tenantId}/Users/{userId}/Groups
 
 **Parameters**
+
 ``String tenantId``
+  The tenant identifier for the request
 ``String userId``
+  The user identifier for the request
 
 
 **Security**
@@ -693,14 +757,17 @@ The OSIsoft Cloud Services user which is the object of this call
 	HEAD PICS/Tenants/{tenantId}/Users/{userId}/Groups/{groupId}
 
 **Parameters**
-``String tenantId``
-``String userId``
-``String groupId``
 
+``String tenantId``
+  The tenant identifier for the request
+``String userId``
+  The user identifier for the request
+``String groupId``
+  The group identifier for the request
 
 **Security**
 
-OSIsoft Cloud Services tenant administrator
+OSIsoft Cloud Services tenant administrator.
 The OSIsoft Cloud Services user which is the object of this call
 
 **********************
@@ -720,9 +787,16 @@ The OSIsoft Cloud Services user which is the object of this call
 	POST PICS/Tenants/{tenantId}/Users/
 
 **Parameters**
+
 ``String tenantId``
+  The tenant identifier for the request
 ``CreateUser user``
+  The user identifier for the request
+  
 **Body**
+
+::
+
 {
   "SendNotification": false,
   "IsAdministrator": false,
@@ -757,10 +831,19 @@ OSIsoft Cloud Services tenant administrator
 	PUT PICS/Tenants/{tenantId}/Users/{userId}
 
 **Parameters**
+
 ``String tenantId``
+  The tenant identifier for the request
 ``String userId``
+  The user identifier for the request
 ``CreateUser user``
+  The user identifier for the request
+  
+  
 **Body**
+
+::
+
 {
   "SendNotification": false,
   "IsAdministrator": false,
@@ -797,9 +880,12 @@ OSIsoft Cloud Services tenant administrator
 	DELETE PICS/Tenants/{tenantId}/Users/{userId}
 
 **Parameters**
-``String tenantId``
-``String userId``
 
+``String tenantId``
+  The tenant identifier for the request
+``String userId``
+  The user identifier for the request
+  
 
 **Security**
 
@@ -822,8 +908,11 @@ OSIsoft Cloud Services tenant administrator
 	POST PICS/Tenants/{tenantId}/Users/{userId}/passwordreset
 
 **Parameters**
+
 ``String tenantId``
+  The tenant identifier for the request
 ``String userId``
+  The user identifier for the request
 
 
 **Security**
