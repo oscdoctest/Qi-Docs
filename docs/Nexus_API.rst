@@ -81,6 +81,7 @@ OSIsoft Cloud Services tenant administrator
 	GET PICS/Tenants/{tenantId}/Groups
 
 **Parameters**
+
 ``String tenantId``
   The tenant identifier for the request
 
@@ -106,6 +107,7 @@ OSIsoft Cloud Services tenant administrator
 	GET PICS/Tenants/{tenantId}/Groups/{groupId}/Users
 
 **Parameters**
+
 ``String tenantId``
   The tenant identifier for the request
 ``String groupId``
@@ -132,18 +134,22 @@ OSIsoft Cloud Services tenant administrator
 	POST PICS/Tenants/{tenantId}/Groups
 
 **Parameters**
+
 ``String tenantId``
   The tenant identifier for the request
 ``Group group``
   The group identifier for the request
 
 **Body**
-{
-  "Id": "id",
-  "Name": "name",
-  "AzureActiveDirectoryGroupName": "azureactivedirectorygroupname",
-  "Description": "description"
-}
+
+::
+
+  {
+    "Id": "id",
+    "Name": "name",
+    "AzureActiveDirectoryGroupName": "azureactivedirectorygroupname",
+    "Description": "description" 
+  }
 
 
 **Security**
@@ -167,6 +173,7 @@ OSIsoft Cloud Services tenant administrator
 	DELETE PICS/Tenants/{tenantId}/Groups/{groupId}
 
 **Parameters**
+
 ``String tenantId``
   The tenant identifier for the request
 ``String groupId``
@@ -204,18 +211,21 @@ OSIsoft Cloud Services tenant administrator
   
   
 **Body**
-{
-  "SendNotification": false,
-  "IsAdministrator": false,
-  "Id": "id",
-  "FirstName": "firstname",
-  "LastName": "lastname",
-  "LoginName": "loginname",
-  "ContactEmail": "contactemail",
-  "ContactPhone": "contactphone",
-  "UPN": "upn",
-  "Password": "password"
-}
+
+::
+
+  {
+    "SendNotification": false,
+    "IsAdministrator": false,
+    "Id": "id",
+    "FirstName": "firstname",
+    "LastName": "lastname",
+    "LoginName": "loginname",
+    "ContactEmail": "contactemail",
+    "ContactPhone": "contactphone",
+    "UPN": "upn",
+    "Password": "password"
+  }
 
 
 **Security**
@@ -271,6 +281,7 @@ Namespace
 	GET PICS/Tenants/{tenantId}/Namespaces
 
 **Parameters**
+
 ``String tenantId``
   The tenant identifier for the request
 
@@ -334,15 +345,15 @@ Any OSIsoft Cloud Services user
 
 ::
 
-{
-  "Id": "id",
-  "TenantId": "tenantid",
-  "Description": "description",
-  "TierId": "tierid",
-  "ThroughputUnits": 0,
-  "StorageUnits": 0,
-  "CalculationUnits": 0
-}
+  {
+    "Id": "id",
+    "TenantId": "tenantid",
+    "Description": "description",
+    "TierId": "tierid",
+    "ThroughputUnits": 0,
+    "StorageUnits": 0,
+    "CalculationUnits": 0
+  }
 
 **Security**
 
@@ -393,6 +404,7 @@ OSIsoft Cloud Services tenant administrator
 	DELETE PICS/Tenants/{tenantId}/Namespaces/
 
 **Parameters**
+
 ``String tenantId``
 
 
@@ -429,15 +441,15 @@ OSIsoft Cloud Services tenant administrator
 **Body**
 
 ::
-{
-  "Id": "id",
-  "TenantId": "tenantid",
-  "Description": "description",
-  "TierId": "tierid",
-  "ThroughputUnits": 0,
-  "StorageUnits": 0,
-  "CalculationUnits": 0
-}
+  {
+    "Id": "id",
+    "TenantId": "tenantid",
+    "Description": "description",
+    "TierId": "tierid",
+    "ThroughputUnits": 0,
+    "StorageUnits": 0,
+    "CalculationUnits": 0
+  }
 
 
 **Security**
@@ -544,14 +556,14 @@ Applications
 
 ::
 
-{
-  "AppUri": "appuri",
-  "CreateFirstKey": false,
-  "DisplayName": "displayname",
-  "Facility": "facility",
-  "RequiredResource": null,
-  "TenantId": "tenantid"
-}
+  {
+    "AppUri": "appuri",
+    "CreateFirstKey": false,
+    "DisplayName": "displayname",
+    "Facility": "facility",
+    "RequiredResource": null,
+    "TenantId": "tenantid"
+  }
 
 
 **Security**
@@ -584,14 +596,14 @@ OSIsoft Cloud Services tenant administrator
 
 ::
 
-{
-  "AppUri": "appuri",
-  "CreateFirstKey": false,
-  "DisplayName": "displayname",
-  "Facility": "facility",
-  "RequiredResource": null,
-  "TenantId": "tenantid"
-}
+  {
+    "AppUri": "appuri",
+    "CreateFirstKey": false,
+    "DisplayName": "displayname",
+    "Facility": "facility",
+    "RequiredResource": null,
+    "TenantId": "tenantid"
+  }
 
 
 **Security**
@@ -797,18 +809,18 @@ The OSIsoft Cloud Services user which is the object of this call
 
 ::
 
-{
-  "SendNotification": false,
-  "IsAdministrator": false,
-  "Id": "id",
-  "FirstName": "firstname",
-  "LastName": "lastname",
-  "LoginName": "loginname",
-  "ContactEmail": "contactemail",
-  "ContactPhone": "contactphone",
-  "UPN": "upn",
-  "Password": "password"
-}
+  {
+    "SendNotification": false,
+    "IsAdministrator": false,
+    "Id": "id",
+    "FirstName": "firstname",
+    "LastName": "lastname",
+    "LoginName": "loginname",
+    "ContactEmail": "contactemail",
+    "ContactPhone": "contactphone",
+    "UPN": "upn",
+    "Password": "password"
+  }
 
 
 **Security**
@@ -844,18 +856,18 @@ OSIsoft Cloud Services tenant administrator
 
 ::
 
-{
-  "SendNotification": false,
-  "IsAdministrator": false,
-  "Id": "id",
-  "FirstName": "firstname",
-  "LastName": "lastname",
-  "LoginName": "loginname",
-  "ContactEmail": "contactemail",
-  "ContactPhone": "contactphone",
-  "UPN": "upn",
-  "Password": "password"
-}
+  {
+    "SendNotification": false,
+    "IsAdministrator": false,
+    "Id": "id",
+    "FirstName": "firstname",
+    "LastName": "lastname",
+    "LoginName": "loginname",
+    "ContactEmail": "contactemail",
+    "ContactPhone": "contactphone",
+    "UPN": "upn",
+    "Password": "password"
+  }
 
 
 **Security**
