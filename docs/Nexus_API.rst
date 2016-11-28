@@ -18,6 +18,7 @@ Returns the current state of the tenant.
 
 
 **Parameters**
+
 ``String tenantId``
   The tenant identifier for the request
 ``String featureId``
@@ -50,6 +51,7 @@ Returns the current group.
 	GET PICS/Tenants/{tenantId}/Groups/{groupId}
 
 **Parameters**
+
 ``String tenantId``
   The tenant identifier for the request
 ``String groupId``
@@ -77,6 +79,7 @@ Returns the current group.
 	GET PICS/Tenants/{tenantId}/Groups
 
 **Parameters**
+
 ``String tenantId``
   The tenant identifier for the request
 
@@ -101,6 +104,7 @@ Returns the current group.
 	GET PICS/Tenants/{tenantId}/Groups/{groupId}/Users
 
 **Parameters**
+
 ``String tenantId``
   The tenant identifier for the request
 ``String groupId``
@@ -126,6 +130,7 @@ Returns the current group.
 	POST PICS/Tenants/{tenantId}/Groups
 
 **Parameters**
+
 ``String tenantId``
   The tenant identifier for the request
 ``Group group``
@@ -163,6 +168,7 @@ Returns the current group.
 	DELETE PICS/Tenants/{tenantId}/Groups/{groupId}
 
 **Parameters**
+
 ``String tenantId``
   The tenant identifier for the request
 ``String groupId``
@@ -189,6 +195,7 @@ Returns the current group.
 	POST PICS/Tenants/{tenantId}/Groups/{groupId}/Users
 
 **Parameters**
+
 ``String tenantId``
   The tenant identifier for the request
 ``String groupId``
@@ -244,8 +251,7 @@ Returns the current group.
   The user identifier for the request
 
 **Security**
-
-OSIsoft Cloud Services tenant administrator
+  OSIsoft Cloud Services tenant administrator
 
 **********************
 
@@ -273,8 +279,7 @@ Namespace
 
 
 **Security**
-
-Any OSIsoft Cloud Services user
+  Any OSIsoft Cloud Services user
 
 
 **********************
@@ -301,8 +306,7 @@ Any OSIsoft Cloud Services user
   The tenant identifier for the request
 
 **Security**
-
-Any OSIsoft Cloud Services user
+  Any OSIsoft Cloud Services user
 
 
 **********************
@@ -342,8 +346,7 @@ Any OSIsoft Cloud Services user
   }
 
 **Security**
-
-OSIsoft Cloud Services tenant administrator
+  OSIsoft Cloud Services tenant administrator
 
 **********************
 
@@ -370,8 +373,7 @@ OSIsoft Cloud Services tenant administrator
 
 
 **Security**
-
-OSIsoft Cloud Services tenant administrator
+  OSIsoft Cloud Services tenant administrator
 
 **********************
 
@@ -395,8 +397,7 @@ OSIsoft Cloud Services tenant administrator
 
 
 **Security**
-
-OSIsoft Cloud Services tenant administrator
+  OSIsoft Cloud Services tenant administrator
 
 **********************
 
@@ -439,8 +440,7 @@ OSIsoft Cloud Services tenant administrator
 
 
 **Security**
-
-OSIsoft Cloud Services tenant administrator
+  OSIsoft Cloud Services tenant administrator
 
 
 **********************
@@ -469,8 +469,7 @@ ServiceBlog
   The take (?)
 
 **Security**
-
-Any OSIsoft Cloud Services user
+  Any OSIsoft Cloud Services user
 
 
 **********************
@@ -504,8 +503,7 @@ Tenant
   The tenant identifier for the request
 
 **Security**
-
-Any OSIsoft Cloud Services user
+  Any OSIsoft Cloud Services user
 
 
 **********************
@@ -553,8 +551,7 @@ Applications
 
 
 **Security**
-
-OSIsoft Cloud Services tenant administrator
+  OSIsoft Cloud Services tenant administrator
 
 
 **********************
@@ -593,8 +590,7 @@ OSIsoft Cloud Services tenant administrator
 
 
 **Security**
-
-OSIsoft Cloud Services tenant administrator
+  OSIsoft Cloud Services tenant administrator
 
 **********************
 
@@ -620,8 +616,7 @@ OSIsoft Cloud Services tenant administrator
   The application identifier for the request
 
 **Security**
-
-OSIsoft Cloud Services tenant administrator
+  OSIsoft Cloud Services tenant administrator
 
 
 **********************
@@ -650,8 +645,7 @@ Utilities
 
 
 **Security**
-
-Any OSIsoft Cloud Services user
+  Any OSIsoft Cloud Services user
 
 **********************
 
@@ -680,8 +674,7 @@ User
   The user identifier for the request
 
 **Security**
-
-OSIsoft Cloud Services tenant administrator
+  OSIsoft Cloud Services tenant administrator
 
 **********************
 
@@ -705,8 +698,7 @@ OSIsoft Cloud Services tenant administrator
   The tenant identifier for the request
 
 **Security**
-
-OSIsoft Cloud Services tenant administrator
+  OSIsoft Cloud Services tenant administrator
 
 
 **********************
@@ -734,9 +726,8 @@ OSIsoft Cloud Services tenant administrator
 
 
 **Security**
+  OSIsoft Cloud Services tenant administrator. The OSIsoft Cloud Services user which is the object of this call
 
-OSIsoft Cloud Services tenant administrator
-The OSIsoft Cloud Services user which is the object of this call
 
 **********************
 
@@ -764,9 +755,7 @@ The OSIsoft Cloud Services user which is the object of this call
   The group identifier for the request
 
 **Security**
-
-OSIsoft Cloud Services tenant administrator.
-The OSIsoft Cloud Services user which is the object of this call
+  OSIsoft Cloud Services tenant administrator. The OSIsoft Cloud Services user which is the object of this call
 
 **********************
 
@@ -810,8 +799,7 @@ The OSIsoft Cloud Services user which is the object of this call
 
 
 **Security**
-
-OSIsoft Cloud Services tenant administrator
+  OSIsoft Cloud Services tenant administrator
 
 **********************
 
@@ -857,8 +845,7 @@ OSIsoft Cloud Services tenant administrator
 
 
 **Security**
-
-OSIsoft Cloud Services tenant administrator
+  OSIsoft Cloud Services tenant administrator
 
 
 **********************
@@ -886,8 +873,7 @@ OSIsoft Cloud Services tenant administrator
   
 
 **Security**
-
-OSIsoft Cloud Services tenant administrator
+  OSIsoft Cloud Services tenant administrator
 
 **********************
 
@@ -914,7 +900,6 @@ OSIsoft Cloud Services tenant administrator
 
 
 **Security**
-
-OSIsoft Cloud Services tenant administrator
+  OSIsoft Cloud Services tenant administrator
 
 **********************
