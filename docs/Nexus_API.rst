@@ -18,15 +18,13 @@ Returns the current state of the tenant.
 
 
 **Parameters**
-
 ``String tenantId``
   The tenant identifier for the request
 ``String featureId``
   The identifier of the feature
   
 **Security**
-
-Any OSIsoft Cloud Services user
+  Any OSIsoft Cloud Services user
 
 *******************
 
@@ -52,7 +50,6 @@ Returns the current group.
 	GET PICS/Tenants/{tenantId}/Groups/{groupId}
 
 **Parameters**
-
 ``String tenantId``
   The tenant identifier for the request
 ``String groupId``
@@ -60,8 +57,7 @@ Returns the current group.
 
 
 **Security**
-
-OSIsoft Cloud Services tenant administrator
+  OSIsoft Cloud Services tenant administrator
 
 
 *********************
@@ -81,14 +77,12 @@ OSIsoft Cloud Services tenant administrator
 	GET PICS/Tenants/{tenantId}/Groups
 
 **Parameters**
-
 ``String tenantId``
   The tenant identifier for the request
 
 
 **Security**
-
-OSIsoft Cloud Services tenant administrator
+  OSIsoft Cloud Services tenant administrator
 
 **********************
 
@@ -107,15 +101,13 @@ OSIsoft Cloud Services tenant administrator
 	GET PICS/Tenants/{tenantId}/Groups/{groupId}/Users
 
 **Parameters**
-
 ``String tenantId``
   The tenant identifier for the request
 ``String groupId``
   The group identifier for the request
 
 **Security**
-
-OSIsoft Cloud Services tenant administrator
+  OSIsoft Cloud Services tenant administrator
 
 **********************
 
@@ -134,7 +126,6 @@ OSIsoft Cloud Services tenant administrator
 	POST PICS/Tenants/{tenantId}/Groups
 
 **Parameters**
-
 ``String tenantId``
   The tenant identifier for the request
 ``Group group``
@@ -153,8 +144,7 @@ OSIsoft Cloud Services tenant administrator
 
 
 **Security**
-
-OSIsoft Cloud Services tenant administrator
+  OSIsoft Cloud Services tenant administrator
 
 **********************
 
@@ -173,15 +163,13 @@ OSIsoft Cloud Services tenant administrator
 	DELETE PICS/Tenants/{tenantId}/Groups/{groupId}
 
 **Parameters**
-
 ``String tenantId``
   The tenant identifier for the request
 ``String groupId``
   The group identifier for the request
 
 **Security**
-
-OSIsoft Cloud Services tenant administrator
+  OSIsoft Cloud Services tenant administrator
 
 
 **********************
@@ -201,7 +189,6 @@ OSIsoft Cloud Services tenant administrator
 	POST PICS/Tenants/{tenantId}/Groups/{groupId}/Users
 
 **Parameters**
-
 ``String tenantId``
   The tenant identifier for the request
 ``String groupId``
@@ -229,8 +216,7 @@ OSIsoft Cloud Services tenant administrator
 
 
 **Security**
-
-OSIsoft Cloud Services tenant administrator
+  OSIsoft Cloud Services tenant administrator
 
 **********************
 
