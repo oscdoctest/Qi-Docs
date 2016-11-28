@@ -4,7 +4,7 @@ Feature
 ``GetTenantFeatureState()``
 ----------------------
 
-Returns the state of the tenant.
+Returns the current state of the tenant.
 
 **Syntax**
 
@@ -24,14 +24,11 @@ Returns the state of the tenant.
 ``String featureId``
   The identifier of the feature
   
-
-**********************
-
-
-
 **Security**
 
 Any OSIsoft Cloud Services user
+
+*******************
 
 GlobalGroup
 ==========
@@ -42,6 +39,12 @@ Group
 ``GetGroup()``
 ----------------------
 
+Returns the current group.
+
+**Syntax**
+
+.. highlight:: none
+
 **Http**
 
 ::
@@ -49,11 +52,11 @@ Group
 	GET PICS/Tenants/{tenantId}/Groups/{groupId}
 
 **Parameters**
+
 ``String tenantId``
+  The tenant identifier for the request
 ``String groupId``
-
-**********************
-
+  The group identifier for the request
 
 
 **Security**
@@ -61,8 +64,15 @@ Group
 OSIsoft Cloud Services tenant administrator
 
 
+*********************
+
+
 ``GetGroups()``
 ----------------------
+
+**Syntax**
+
+.. highlight:: none
 
 **Http**
 
@@ -73,17 +83,20 @@ OSIsoft Cloud Services tenant administrator
 **Parameters**
 ``String tenantId``
 
-**********************
-
-
 
 **Security**
 
 OSIsoft Cloud Services tenant administrator
 
+**********************
+
 
 ``GetGroupMembers()``
 ----------------------
+
+**Syntax**
+
+.. highlight:: none
 
 **Http**
 
@@ -95,17 +108,19 @@ OSIsoft Cloud Services tenant administrator
 ``String tenantId``
 ``String groupId``
 
-**********************
-
-
-
 **Security**
 
 OSIsoft Cloud Services tenant administrator
 
+**********************
+
 
 ``Create()``
 ----------------------
+
+**Syntax**
+
+.. highlight:: none
 
 **Http**
 
@@ -124,17 +139,20 @@ OSIsoft Cloud Services tenant administrator
   "Description": "description"
 }
 
-**********************
-
-
 
 **Security**
 
 OSIsoft Cloud Services tenant administrator
 
+**********************
+
 
 ``Delete()``
 ----------------------
+
+**Syntax**
+
+.. highlight:: none
 
 **Http**
 
@@ -146,17 +164,21 @@ OSIsoft Cloud Services tenant administrator
 ``String tenantId``
 ``String groupId``
 
-**********************
-
-
 
 **Security**
 
 OSIsoft Cloud Services tenant administrator
 
 
+**********************
+
+
 ``AddUserToGroup()``
 ----------------------
+
+**Syntax**
+
+.. highlight:: none
 
 **Http**
 
@@ -182,17 +204,20 @@ OSIsoft Cloud Services tenant administrator
   "Password": "password"
 }
 
-**********************
-
-
 
 **Security**
 
 OSIsoft Cloud Services tenant administrator
 
+**********************
+
 
 ``RemoveUserFromGroup()``
 ----------------------
+
+**Syntax**
+
+.. highlight:: none
 
 **Http**
 
@@ -205,13 +230,11 @@ OSIsoft Cloud Services tenant administrator
 ``String groupId``
 ``String userId``
 
-**********************
-
-
-
 **Security**
 
 OSIsoft Cloud Services tenant administrator
+
+**********************
 
 
 Namespace
@@ -219,6 +242,10 @@ Namespace
 
 ``GetAll()``
 ----------------------
+
+**Syntax**
+
+.. highlight:: none
 
 **Http**
 
@@ -229,17 +256,21 @@ Namespace
 **Parameters**
 ``String tenantId``
 
-**********************
-
-
 
 **Security**
 
 Any OSIsoft Cloud Services user
 
 
+**********************
+
+
 ``GetNamespaceById()``
 ----------------------
+
+**Syntax**
+
+.. highlight:: none
 
 **Http**
 
@@ -251,17 +282,21 @@ Any OSIsoft Cloud Services user
 ``String id``
 ``String tenantId``
 
-**********************
-
-
-
 **Security**
 
 Any OSIsoft Cloud Services user
 
 
+**********************
+
+
+
 ``Create()``
 ----------------------
+
+**Syntax**
+
+.. highlight:: none
 
 **Http**
 
@@ -282,17 +317,19 @@ Any OSIsoft Cloud Services user
   "CalculationUnits": 0
 }
 
-**********************
-
-
-
 **Security**
 
 OSIsoft Cloud Services tenant administrator
 
+**********************
+
 
 ``Delete()``
 ----------------------
+
+**Syntax**
+
+.. highlight:: none
 
 **Http**
 
@@ -304,17 +341,20 @@ OSIsoft Cloud Services tenant administrator
 ``String id``
 ``String tenantId``
 
-**********************
-
-
 
 **Security**
 
 OSIsoft Cloud Services tenant administrator
 
+**********************
+
 
 ``DeleteNamespaces()``
 ----------------------
+
+**Syntax**
+
+.. highlight:: none
 
 **Http**
 
@@ -325,17 +365,20 @@ OSIsoft Cloud Services tenant administrator
 **Parameters**
 ``String tenantId``
 
-**********************
-
-
 
 **Security**
 
 OSIsoft Cloud Services tenant administrator
 
+**********************
+
 
 ``UpdateNamespace()``
 ----------------------
+
+**Syntax**
+
+.. highlight:: none
 
 **Http**
 
@@ -358,20 +401,23 @@ OSIsoft Cloud Services tenant administrator
   "CalculationUnits": 0
 }
 
-**********************
-
-
 
 **Security**
 
 OSIsoft Cloud Services tenant administrator
 
 
+**********************
+
 ServiceBlog
 ==========
 
 ``GetByPage()``
 ----------------------
+
+**Syntax**
+
+.. highlight:: none
 
 **Http**
 
@@ -383,13 +429,12 @@ ServiceBlog
 ``Int32 skip``
 ``Int32 take``
 
-**********************
-
-
-
 **Security**
 
 Any OSIsoft Cloud Services user
+
+
+**********************
 
 
 ServiceBlogTemplate
@@ -404,6 +449,10 @@ Tenant
 ``GetTenant()``
 ----------------------
 
+**Syntax**
+
+.. highlight:: none
+
 **Http**
 
 ::
@@ -413,13 +462,13 @@ Tenant
 **Parameters**
 ``String tenantId``
 
-**********************
-
-
 
 **Security**
 
 Any OSIsoft Cloud Services user
+
+
+**********************
 
 
 TenantFeatureState
@@ -433,6 +482,10 @@ Applications
 
 ``CreateClientApiKeySet()``
 ----------------------
+
+**Syntax**
+
+.. highlight:: none
 
 **Http**
 
@@ -452,17 +505,21 @@ Applications
   "TenantId": "tenantid"
 }
 
-**********************
-
-
 
 **Security**
 
 OSIsoft Cloud Services tenant administrator
 
 
+**********************
+
+
 ``GetOrCreateClientApiKeySet()``
 ----------------------
+
+**Syntax**
+
+.. highlight:: none
 
 **Http**
 
@@ -482,17 +539,20 @@ OSIsoft Cloud Services tenant administrator
   "TenantId": "tenantid"
 }
 
-**********************
-
-
 
 **Security**
 
 OSIsoft Cloud Services tenant administrator
 
+**********************
+
 
 ``DeleteClientApiKeySet()``
 ----------------------
+
+**Syntax**
+
+.. highlight:: none
 
 **Http**
 
@@ -504,13 +564,12 @@ OSIsoft Cloud Services tenant administrator
 ``String tenantId``
 ``String applicationId``
 
-**********************
-
-
-
 **Security**
 
 OSIsoft Cloud Services tenant administrator
+
+
+**********************
 
 
 NamespaceTier
@@ -522,6 +581,10 @@ Utilities
 ``Ping()``
 ----------------------
 
+**Syntax**
+
+.. highlight:: none
+
 **Http**
 
 ::
@@ -531,13 +594,11 @@ Utilities
 **Parameters**
 
 
-**********************
-
-
-
 **Security**
 
 Any OSIsoft Cloud Services user
+
+**********************
 
 
 User
@@ -545,6 +606,10 @@ User
 
 ``Get()``
 ----------------------
+
+**Syntax**
+
+.. highlight:: none
 
 **Http**
 
@@ -556,17 +621,19 @@ User
 ``String tenantId``
 ``String userId``
 
-**********************
-
-
-
 **Security**
 
 OSIsoft Cloud Services tenant administrator
 
+**********************
+
 
 ``Get()``
 ----------------------
+
+**Syntax**
+
+.. highlight:: none
 
 **Http**
 
@@ -577,17 +644,21 @@ OSIsoft Cloud Services tenant administrator
 **Parameters**
 ``String tenantId``
 
-**********************
-
-
 
 **Security**
 
 OSIsoft Cloud Services tenant administrator
 
 
+**********************
+
+
 ``GetUserGroups()``
 ----------------------
+
+**Syntax**
+
+.. highlight:: none
 
 **Http**
 
@@ -599,18 +670,21 @@ OSIsoft Cloud Services tenant administrator
 ``String tenantId``
 ``String userId``
 
-**********************
-
-
 
 **Security**
 
 OSIsoft Cloud Services tenant administrator
 The OSIsoft Cloud Services user which is the object of this call
 
+**********************
+
 
 ``IsUserInGroup()``
 ----------------------
+
+**Syntax**
+
+.. highlight:: none
 
 **Http**
 
@@ -623,18 +697,21 @@ The OSIsoft Cloud Services user which is the object of this call
 ``String userId``
 ``String groupId``
 
-**********************
-
-
 
 **Security**
 
 OSIsoft Cloud Services tenant administrator
 The OSIsoft Cloud Services user which is the object of this call
 
+**********************
+
 
 ``CreateUser()``
 ----------------------
+
+**Syntax**
+
+.. highlight:: none
 
 **Http**
 
@@ -659,14 +736,16 @@ The OSIsoft Cloud Services user which is the object of this call
   "Password": "password"
 }
 
-**********************
-
-
 
 **Security**
 
 OSIsoft Cloud Services tenant administrator
 
+**********************
+
+**Syntax**
+
+.. highlight:: none
 
 ``Update()``
 ----------------------
@@ -695,17 +774,21 @@ OSIsoft Cloud Services tenant administrator
   "Password": "password"
 }
 
-**********************
-
-
 
 **Security**
 
 OSIsoft Cloud Services tenant administrator
 
 
+**********************
+
+
 ``Delete()``
 ----------------------
+
+**Syntax**
+
+.. highlight:: none
 
 **Http**
 
@@ -717,17 +800,20 @@ OSIsoft Cloud Services tenant administrator
 ``String tenantId``
 ``String userId``
 
-**********************
-
-
 
 **Security**
 
 OSIsoft Cloud Services tenant administrator
 
+**********************
+
 
 ``ResetUserPassword()``
 ----------------------
+
+**Syntax**
+
+.. highlight:: none
 
 **Http**
 
@@ -739,11 +825,9 @@ OSIsoft Cloud Services tenant administrator
 ``String tenantId``
 ``String userId``
 
-**********************
-
-
 
 **Security**
 
 OSIsoft Cloud Services tenant administrator
 
+**********************
