@@ -4,15 +4,26 @@ Feature
 ``GetTenantFeatureState()``
 ----------------------
 
+Returns the state of the tenant.
+
+**Syntax**
+
+.. highlight:: none
+
 **Http**
 
 ::
 
 	GET PICS/Tenants/{tenantId}/Features/{featureId}
 
+
 **Parameters**
+
 ``String tenantId``
+  The tenant identifier for the request
 ``String featureId``
+  The identifier of the feature
+  
 
 **********************
 
