@@ -14,7 +14,7 @@ Returns the current state of the tenant.
 
 ::
 
-	GET PICS/Tenants/{tenantId}/Features/{featureId}
+  GET PICS/Tenants/{tenantId}/Features/{featureId}
 
 
 **Parameters**
@@ -48,7 +48,7 @@ Returns the current group.
 
 ::
 
-	GET PICS/Tenants/{tenantId}/Groups/{groupId}
+  GET PICS/Tenants/{tenantId}/Groups/{groupId}
 
 **Parameters**
 
@@ -78,7 +78,7 @@ Returns a list of groups.
 
 ::
 
-	GET PICS/Tenants/{tenantId}/Groups
+  GET PICS/Tenants/{tenantId}/Groups
 
 **Parameters**
 
@@ -105,7 +105,7 @@ Returns a list of members within a specified group.
 
 ::
 
-	GET PICS/Tenants/{tenantId}/Groups/{groupId}/Users
+  GET PICS/Tenants/{tenantId}/Groups/{groupId}/Users
 
 **Parameters**
 
@@ -133,7 +133,7 @@ Creates a group.
 
 ::
 
-	POST PICS/Tenants/{tenantId}/Groups
+  POST PICS/Tenants/{tenantId}/Groups
 
 **Parameters**
 
@@ -173,7 +173,7 @@ Delete a specified group.
 
 ::
 
-	DELETE PICS/Tenants/{tenantId}/Groups/{groupId}
+  DELETE PICS/Tenants/{tenantId}/Groups/{groupId}
 
 **Parameters**
 
@@ -202,7 +202,7 @@ Adds a specified user to a group.
 
 ::
 
-	POST PICS/Tenants/{tenantId}/Groups/{groupId}/Users
+  POST PICS/Tenants/{tenantId}/Groups/{groupId}/Users
 
 **Parameters**
 
@@ -251,7 +251,7 @@ Deletes a specified user from a group.
 
 ::
 
-	DELETE PICS/Tenants/{tenantId}/Groups/{groupId}/Users/{userId}
+  DELETE PICS/Tenants/{tenantId}/Groups/{groupId}/Users/{userId}
 
 **Parameters**
 
