@@ -68,6 +68,8 @@ Returns the current group.
 ``GetGroups()``
 ----------------------
 
+Returns a list of groups.
+
 **Syntax**
 
 .. highlight:: none
@@ -92,6 +94,8 @@ Returns the current group.
 
 ``GetGroupMembers()``
 ----------------------
+
+Returns a list of members within a specified group.
 
 **Syntax**
 
@@ -118,6 +122,8 @@ Returns the current group.
 
 ``Create()``
 ----------------------
+
+Creates a group.
 
 **Syntax**
 
@@ -157,6 +163,8 @@ Returns the current group.
 ``Delete()``
 ----------------------
 
+Delete a specified group.
+
 **Syntax**
 
 .. highlight:: none
@@ -183,6 +191,8 @@ Returns the current group.
 
 ``AddUserToGroup()``
 ----------------------
+
+Adds a specified user to a group.
 
 **Syntax**
 
@@ -231,6 +241,8 @@ Returns the current group.
 ``RemoveUserFromGroup()``
 ----------------------
 
+Deletes a specified user from a group.
+
 **Syntax**
 
 .. highlight:: none
@@ -262,6 +274,8 @@ Namespace
 ``GetAll()``
 ----------------------
 
+Returns a list of all namespaces within a specified tenant. 
+
 **Syntax**
 
 .. highlight:: none
@@ -270,7 +284,7 @@ Namespace
 
 ::
 
-	GET PICS/Tenants/{tenantId}/Namespaces
+  GET PICS/Tenants/{tenantId}/Namespaces
 
 **Parameters**
 
@@ -288,15 +302,18 @@ Namespace
 ``GetNamespaceById()``
 ----------------------
 
+Returns a namespace associated with a specified Id.
+
 **Syntax**
 
 .. highlight:: none
+
 
 **Http**
 
 ::
 
-	GET PICS/Tenants/{tenantId}/Namespaces/{Id}
+  GET PICS/Tenants/{tenantId}/Namespaces/{Id}
 
 **Parameters**
 
@@ -316,6 +333,8 @@ Namespace
 ``Create()``
 ----------------------
 
+Creates a namespace.
+
 **Syntax**
 
 .. highlight:: none
@@ -324,7 +343,8 @@ Namespace
 
 ::
 
-	POST PICS/Tenants/{tenantId}/Namespaces/
+  POST PICS/Tenants/{tenantId}/Namespaces/
+
 
 **Parameters**
 
@@ -332,6 +352,7 @@ Namespace
   The namespace identifier for the request
   
 **Body**
+
 
 ::
 
@@ -354,6 +375,8 @@ Namespace
 ``Delete()``
 ----------------------
 
+Deletes a namespace. 
+
 **Syntax**
 
 .. highlight:: none
@@ -362,7 +385,7 @@ Namespace
 
 ::
 
-	DELETE PICS/Tenants/{tenantId}/Namespaces/{Id}
+  DELETE PICS/Tenants/{tenantId}/Namespaces/{Id}
 
 **Parameters**
 
@@ -381,6 +404,9 @@ Namespace
 ``DeleteNamespaces()``
 ----------------------
 
+Deletes one or more namespaces.
+
+
 **Syntax**
 
 .. highlight:: none
@@ -389,7 +415,7 @@ Namespace
 
 ::
 
-	DELETE PICS/Tenants/{tenantId}/Namespaces/
+  DELETE PICS/Tenants/{tenantId}/Namespaces/
 
 **Parameters**
 
@@ -405,6 +431,8 @@ Namespace
 ``UpdateNamespace()``
 ----------------------
 
+Updates namespace information.
+
 **Syntax**
 
 .. highlight:: none
@@ -413,7 +441,7 @@ Namespace
 
 ::
 
-	PUT PICS/Tenants/{tenantId}/Namespaces/{Id}
+  PUT PICS/Tenants/{tenantId}/Namespaces/{Id}
 
 **Parameters**
 
@@ -428,6 +456,7 @@ Namespace
 **Body**
 
 ::
+
   {
     "Id": "id",
     "TenantId": "tenantid",
@@ -451,6 +480,9 @@ ServiceBlog
 ``GetByPage()``
 ----------------------
 
+Returns a list of matching pages.
+
+
 **Syntax**
 
 .. highlight:: none
@@ -459,7 +491,7 @@ ServiceBlog
 
 ::
 
-	GET PICS/ServiceBlog/Entries
+  GET PICS/ServiceBlog/Entries
 
 **Parameters**
 
@@ -487,6 +519,9 @@ Tenant
 ``GetTenant()``
 ----------------------
 
+Returns a tenant associated with a specified tenantId
+
+
 **Syntax**
 
 .. highlight:: none
@@ -495,7 +530,7 @@ Tenant
 
 ::
 
-	GET PICS/Tenants/{tenantId}
+  GET PICS/Tenants/{tenantId}
 
 **Parameters**
 
@@ -521,6 +556,8 @@ Applications
 ``CreateClientApiKeySet()``
 ----------------------
 
+Creates and returns a key that clients use to access Qi.
+
 **Syntax**
 
 .. highlight:: none
@@ -529,7 +566,7 @@ Applications
 
 ::
 
-	POST PICS/Tenants/{tenantId}/ClientApiKeySets
+POST PICS/Tenants/{tenantId}/ClientApiKeySets
 
 **Parameters**
 
@@ -568,7 +605,7 @@ Applications
 
 ::
 
-	POST PICS/Tenants/{tenantId}/GetOrCreateClientApiKeySets
+  POST PICS/Tenants/{tenantId}/GetOrCreateClientApiKeySets
 
 **Parameters**
 
@@ -598,6 +635,8 @@ Applications
 ``DeleteClientApiKeySet()``
 ----------------------
 
+Deletes a specified client key.
+
 **Syntax**
 
 .. highlight:: none
@@ -606,7 +645,7 @@ Applications
 
 ::
 
-	DELETE PICS/Tenants/{tenantId}/ClientApiKeySets/{applicationId}
+  DELETE PICS/Tenants/{tenantId}/ClientApiKeySets/{applicationId}
 
 **Parameters**
 
@@ -631,6 +670,8 @@ Utilities
 ``Ping()``
 ----------------------
 
+Determines whether a specified tenant is active.
+
 **Syntax**
 
 .. highlight:: none
@@ -639,7 +680,7 @@ Utilities
 
 ::
 
-	GET PICS/Utilities/ping
+  GET PICS/Utilities/ping
 
 **Parameters**
 
@@ -656,6 +697,8 @@ User
 ``Get()``
 ----------------------
 
+Returns a user name based on tenant Id and user Id.
+
 **Syntax**
 
 .. highlight:: none
@@ -664,7 +707,7 @@ User
 
 ::
 
-	GET PICS/Tenants/{tenantId}/Users/{userId}
+  GET PICS/Tenants/{tenantId}/Users/{userId}
 
 **Parameters**
 
@@ -682,6 +725,8 @@ User
 ``Get()``
 ----------------------
 
+Returns a user Id.
+
 **Syntax**
 
 .. highlight:: none
@@ -690,7 +735,7 @@ User
 
 ::
 
-	GET PICS/Tenants/{tenantId}/Users
+  GET PICS/Tenants/{tenantId}/Users
 
 **Parameters**
 
@@ -707,6 +752,8 @@ User
 ``GetUserGroups()``
 ----------------------
 
+Returns a list of user groups.
+
 **Syntax**
 
 .. highlight:: none
@@ -715,7 +762,7 @@ User
 
 ::
 
-	GET PICS/Tenants/{tenantId}/Users/{userId}/Groups
+  GET PICS/Tenants/{tenantId}/Users/{userId}/Groups
 
 **Parameters**
 
@@ -735,6 +782,8 @@ User
 ``IsUserInGroup()``
 ----------------------
 
+Determines whether a specified user is a member of a specified group.
+
 **Syntax**
 
 .. highlight:: none
@@ -743,7 +792,7 @@ User
 
 ::
 
-	HEAD PICS/Tenants/{tenantId}/Users/{userId}/Groups/{groupId}
+  HEAD PICS/Tenants/{tenantId}/Users/{userId}/Groups/{groupId}
 
 **Parameters**
 
@@ -763,6 +812,8 @@ User
 ``CreateUser()``
 ----------------------
 
+Creates a user within a specified group.
+
 **Syntax**
 
 .. highlight:: none
@@ -771,7 +822,7 @@ User
 
 ::
 
-	POST PICS/Tenants/{tenantId}/Users/
+  POST PICS/Tenants/{tenantId}/Users/
 
 **Parameters**
 
@@ -810,11 +861,13 @@ User
 ``Update()``
 ----------------------
 
+Updates a specified user within a group.
+
 **Http**
 
 ::
 
-	PUT PICS/Tenants/{tenantId}/Users/{userId}
+  PUT PICS/Tenants/{tenantId}/Users/{userId}
 
 **Parameters**
 
@@ -853,6 +906,8 @@ User
 
 ``Delete()``
 ----------------------
+Deletes a user from a group.
+
 
 **Syntax**
 
@@ -862,7 +917,7 @@ User
 
 ::
 
-	DELETE PICS/Tenants/{tenantId}/Users/{userId}
+  DELETE PICS/Tenants/{tenantId}/Users/{userId}
 
 **Parameters**
 
@@ -881,6 +936,8 @@ User
 ``ResetUserPassword()``
 ----------------------
 
+Resets the password of the specified user Id.
+
 **Syntax**
 
 .. highlight:: none
@@ -889,7 +946,7 @@ User
 
 ::
 
-	POST PICS/Tenants/{tenantId}/Users/{userId}/passwordreset
+  POST PICS/Tenants/{tenantId}/Users/{userId}/passwordreset
 
 **Parameters**
 
