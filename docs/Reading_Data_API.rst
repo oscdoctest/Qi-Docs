@@ -176,7 +176,7 @@ Can be used to supply the index of the call as a different type.
 Can be used to supply the index of the call as a tuple (for compound
 indexes).
 
-See the `FindDistinctValueAsync <http://qi-docs-rst.readthedocs.org/en/latest/Reading_Data_API.html#finddistinctvalueAsync>`__
+See the `FindDistinctValueAsync <https://qi-docs-rst.readthedocs.org/en/latest/Reading_Data_API.html#finddistinctvalueAsync>`__
 examples for an illustration.
 
 
@@ -439,7 +439,7 @@ Finally, events up to the number specified by count are returned.
 The filter expression uses OData query language. Most of the query
 language is supported. More information about OData Filter Expressions can
 be found in `Filter
-expressions <http://qi-docs-rst.readthedocs.org/en/latest/Filter%20Expressions.html>`__.
+expressions <https://qi-docs-rst.readthedocs.org/en/latest/Filter%20Expressions.html>`__.
 
 **Calculated startIndex** When the startIndex for ``GetRangeValues`` 
 lands before, after, or in-between data in the stream, and the
@@ -592,7 +592,7 @@ Can be used to supply the index of the call as a different type
 
 Can be used to supply the index of the call as a tuple (for compound indexes)
 
-See the `FindDistinctValueAsync <http://qi-docs-rst.readthedocs.org/en/latest/Reading_Data_API.html#finddistinctvalueAsync>`__
+See the `FindDistinctValueAsync <https://qi-docs-rst.readthedocs.org/en/latest/Reading_Data_API.html#finddistinctvalueAsync>`__
 examples for an illustration.
 
 
@@ -696,7 +696,7 @@ Calculated values are determined using the Stream Behavior object that is associ
   
 More information about OData Filter Expressions can be
 found in `Filter
-expressions <http://qi-docs-rst.readthedocs.org/en/latest/Filter%20Expressions.html>`__
+expressions <https://qi-docs-rst.readthedocs.org/en/latest/Filter%20Expressions.html>`__
 
 
 **********************
@@ -833,7 +833,7 @@ regardless of boundary type used.
 
 The filter expression uses OData syntax. More information on OData
 Filter Expressions can be found in `Filter
-expressions <http://qi-docs-rst.readthedocs.org/en/latest/Filter%20Expressions.html>`__
+expressions <https://qi-docs-rst.readthedocs.org/en/latest/Filter%20Expressions.html>`__
 
 The select expression is a CSV list of strings that indicate which fields
 of the stream type are being requested. By default all type fields are
