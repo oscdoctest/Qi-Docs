@@ -59,7 +59,8 @@ index such as DateTime is used, but for more complex scenarios Qi
 allows multiple indexes to be defined in a type. Multiple indexes are
 concatenated to form a compound index. The Qi REST API methods
 that use tuples were created to assist you to use compound
-indexes.
+indexes. A maximum of three keys is permitted in a particular
+compound index.
 
 Supported QiTypes
 ----------------
