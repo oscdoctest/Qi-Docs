@@ -1,4 +1,4 @@
-QiStream Behavior
+QiStreamBehavior
 ==================
 
 The ``QiStreamBehavior`` object determines how data-read operations are performed when an index to be read falls between, before, or after stream data in the stream. For example, for an index that falls between existing data events, you might want an interpolated value returned or you might instead want the value from the preceding event returned. Similarly, if the read index occurs before or after all of the stream's data, the stream behavior determines whether extrapolation is applied. A ``QiStreamBehavior`` object is defined and included in the definition of a stream (similar to the way a QiType is used with a QiStream).
@@ -6,7 +6,7 @@ Note that, if you do not assign a specific Stream Behavior object to a stream, t
 
 QiStreamBehavior management via the Qi Client Libraries is performed through the ``IQiMetadataService`` interface, which may be accessed via the ``QiService.GetMetadataService( )`` helper.
 
-The Stream Behavior object consists of the following properties:
+The StreamBehavior object consists of the following properties:
 
 ==================        ==================
 Id                        A string that is used to identify the behavior
