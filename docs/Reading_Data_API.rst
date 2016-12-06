@@ -288,23 +288,26 @@ Retrieves events from a stream based on a starting index and a requested number 
 
     Task<IEnumerable<T>> GetRangeValuesAsync<T>(string streamId, string startIndex, int count);
     Task<IEnumerable<T>> GetRangeValuesAsync<T, T1>(string streamId, T1 startIndex, int count);
-    Task<IEnumerable<T>> GetRangeValuesAsync<T, T1, T2>(string streamId, Tuple<T1, T2> startIndex, int count);
+    Task<IEnumerable<T>> GetRangeValuesAsync<T, T1, T2>(string streamId, Tuple<T1, T2> startIndex, 
+                         int count);
     Task<IEnumerable<T>> GetRangeValuesAsync<T>(string streamId, string startIndex, int count, 
                          QiBoundaryType boundaryType);
     Task<IEnumerable<T>> GetRangeValuesAsync<T, T1>(string streamId, T1 startIndex, int count, 
                          QiBoundaryType boundaryType);
     Task<IEnumerable<T>> GetRangeValuesAsync<T, T1, T2>(string streamId, Tuple<T1, T2> startIndex, 
                          int count, QiBoundaryType boundaryType);
-    Task<IEnumerable<T>> GetRangeValuesAsync<T>(string streamId, string startIndex, int count, bool reversed);
-    Task<IEnumerable<T>> GetRangeValuesAsync<T, T1>(string streamId, T1 startIndex, int count, bool reversed);
+    Task<IEnumerable<T>> GetRangeValuesAsync<T>(string streamId, string startIndex, int count, 
+                         bool reversed);
+    Task<IEnumerable<T>> GetRangeValuesAsync<T, T1>(string streamId, T1 startIndex, int count, 
+                         bool reversed);
     Task<IEnumerable<T>> GetRangeValuesAsync<T, T1, T2>(string streamId, Tuple<T1, T2> startIndex, 
                          int count, bool reversed);
     Task<IEnumerable<T>> GetRangeValuesAsync<T>(string streamId, string startIndex, int skip, int count, 
                          bool reversed, QiBoundaryType boundaryType);
     Task<IEnumerable<T>> GetRangeValuesAsync<T, T1>(string streamId, T1 startIndex, int skip, int count, 
                          bool reversed, QiBoundaryType boundaryType);
-    Task<IEnumerable<T>> GetRangeValuesAsync<T, T1, T2>(string streamId, Tuple<T1, T2> startIndex, int skip, 
-                         int count, bool reversed, QiBoundaryType boundaryType);
+    Task<IEnumerable<T>> GetRangeValuesAsync<T, T1, T2>(string streamId, Tuple<T1, T2> startIndex, 
+                         int skip, int count, bool reversed, QiBoundaryType boundaryType);
     Task<IEnumerable<T>> GetRangeValuesAsync<T>(string streamId, string startIndex, int skip, 
                          int count, bool reversed, QiBoundaryType boundaryType, string filter);
     Task<IEnumerable<T>> GetRangeValuesAsync<T, T1>(string streamId, T1 startIndex, int skip, int count, 
@@ -402,14 +405,14 @@ BoundaryTypes shown:
 +--------------------------+-------------------------------------------------------------------------------+
 | Boundary Type            | First value obtained                                                          |
 +==========================+===============================================================================+
-|Exact                     |The first value at or after the startIndex                                     |
+|Exact                     | The first value at or after the startIndex                                    |
 +--------------------------+-------------------------------------------------------------------------------+
-|ExactOrCalculated         |If a value exists at the startIndex it is used, otherwise a value is           |
-|                          |‘calculated’ according to the Stream Behavior setting                          |
+|ExactOrCalculated         | If a value exists at the startIndex it is used, otherwise a value is          |
+|                          | ‘calculated’ according to the Stream Behavior setting                         |
 +--------------------------+-------------------------------------------------------------------------------+
-|Inside                    |The first value after the startIndex                                           |
+|Inside                    | The first value after the startIndex                                          |
 +--------------------------+-------------------------------------------------------------------------------+
-|Outside                   |The first value before the startIndex                                          |
+|Outside                   | The first value before the startIndex                                         |
 +--------------------------+-------------------------------------------------------------------------------+
 
 The table below indicates how the first value is determined for
@@ -495,17 +498,17 @@ all data in the stream. (This data is for FORWARD search modes):
 When the startIndex falls between data:
 
 +-----------------------+--------------------------------------------------------------------------+
-|Stream Behavior        |Calculated Event                                                          |
-|Mode                   |                                                                          |
+| Stream Behavior       | Calculated Event                                                         |
+| Mode                  |                                                                          |
 +=======================+==========================================================================+
-|Continuous             |Event is calculated using the index and a value interpolated from the     |
-|                       |surrounding index values                                                  |
+| Continuous            | Event is calculated using the index and a value interpolated from the    |
+|                       | surrounding index values                                                 |
 +-----------------------+--------------------------------------------------------------------------+
-|Discrete               |No event calculated                                                       |
+| Discrete              | No event calculated                                                      |
 +-----------------------+--------------------------------------------------------------------------+
-|ContinuousLeading      |Event is calculated using the index and previous event values             |
+| ContinuousLeading     | Event is calculated using the index and previous event values            |
 +-----------------------+--------------------------------------------------------------------------+
-|ContinuousTrailing     |Event is calculated using the index and next event values                 |
+| ContinuousTrailing    | Event is calculated using the index and next event values                |
 +-----------------------+--------------------------------------------------------------------------+
 
 
@@ -616,15 +619,16 @@ is determined by the particular method overload that is used.
     Task<IEnumerable<T>> GetValuesAsync<T>(string streamId, string filterExpression);
     Task<IEnumerable<T>> GetValuesAsync<T>(string streamId, string startIndex, string endIndex, int count);
     Task<IEnumerable<T>> GetValuesAsync<T, T1>(string streamId, T1 startIndex, T1 endIndex, int count);
-    Task<IEnumerable<T>> GetValuesAsync<T, T1, T2>(string streamId, Tuple<T1, T2> startIndex, Tuple<T1, T2> endIndex, int count);
+    Task<IEnumerable<T>> GetValuesAsync<T, T1, T2>(string streamId, Tuple<T1, T2> startIndex, Tuple<T1, T2> 
+                         endIndex, int count);
 
 **Http**
 
 ::
 
-    GET Qi/{tenantId}/{namespaceId}/Streams/{streamId}/Data/GetValues?startIndex={startIndex}&endIndex={endIndex}&count={count}
+    GET Qi/{tenantId}/{namespaceId}/Streams/{streamId}/Data/GetValues?startIndex={startIndex}
+          &endIndex={endIndex}&count={count}
 
-	
 **Parameters**
 
 ``string tenantId``
@@ -680,7 +684,8 @@ Count-based:
 
     Task<IEnumerable<T>> GetValuesAsync<T>(string streamId, string startIndex, string endIndex, int count);
     Task<IEnumerable<T>> GetValuesAsync<T, T1>(string streamId, T1 startIndex, T1 endIndex, int count);
-    Task<IEnumerable<T>> GetValuesAsync<T, T1, T2>(string streamId, Tuple<T1, T2> startIndex, Tuple<T1, T2> endIndex, int count);  
+    Task<IEnumerable<T>> GetValuesAsync<T, T1, T2>(string streamId, Tuple<T1, T2> startIndex, Tuple<T1, T2> 
+                         endIndex, int count);  
   
 Filter-based
   The following ``GetValuesAsync()`` overload include a ``filter`` parameter that finds all of the indexes in 
@@ -732,20 +737,23 @@ Retrieves values between the specified start and end indexes.
 
 ::
 
-    GET Qi/{tenantId}/{namespaceId}/Streams/{streamId}/Data/GetWindowValues?startIndex={startIndex}&endIndex={endIndex}
-    GET Qi/{tenantId}/{namespaceId}/Streams/{streamId}/Data/GetWindowValues?startIndex={startIndex}&endIndex={endIndex}
-                      &boundaryType={boundaryType}
-    GET Qi/{tenantId}/{namespaceId}/Streams/{streamId}/Data/GetWindowValues?startIndex={startIndex}&endIndex={endIndex}
-                      &boundaryType={boundaryType}&filter={filterExpression}
-    GET Qi/{tenantId}/{namespaceId}/Streams/{streamId}/Data/GetWindowValues?startIndex={startIndex}&endIndex={endIndex}
-                      &boundaryType={boundaryType}&count={count}&continuationToken={continuationToken}
+    GET Qi/{tenantId}/{namespaceId}/Streams/{streamId}/Data/GetWindowValues?startIndex={startIndex}
+                      &endIndex={endIndex}
+    GET Qi/{tenantId}/{namespaceId}/Streams/{streamId}/Data/GetWindowValues?startIndex={startIndex}
+                      &endIndex={endIndex}&boundaryType={boundaryType}
+    GET Qi/{tenantId}/{namespaceId}/Streams/{streamId}/Data/GetWindowValues?startIndex={startIndex}
+                      &endIndex={endIndex}&boundaryType={boundaryType}&filter={filterExpression}
+    GET Qi/{tenantId}/{namespaceId}/Streams/{streamId}/Data/GetWindowValues?startIndex={startIndex}
+                      &endIndex={endIndex}&boundaryType={boundaryType}&count={count}
+		      &continuationToken={continuationToken}
     GET Qi/{tenantId}/{namespaceId}/Streams/{streamId}/Data/GetWindowValues?startIndex={startIndex}
                       &startBoundaryType={startBoundaryType}&endIndex={endIndex}&endBoundaryType={endBoundaryType}
                       &filter={filterExpression}&selectExpression={selectExpression}
     GET Qi/{tenantId}/{namespaceId}/Streams/{streamId}/Data/GetWindowValues?startIndex={startIndex}
-                      &endIndex={endIndex}&boundaryType={boundaryType}&count={count}&continuationToken={continuationToken}
+                      &endIndex={endIndex}&boundaryType={boundaryType}&count={count}
+		      &continuationToken={continuationToken}
 
-	
+
 **Parameters**
 
 ``string tenantId``
@@ -915,5 +923,10 @@ table:
 +-----------------------+--------------------------------------------------------------------------+
 |ContinuousTrailing     |Event is calculated using the index and next event values                 |
 +-----------------------+--------------------------------------------------------------------------+
+
+
+
+
+
 
 
