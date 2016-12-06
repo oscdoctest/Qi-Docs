@@ -1,4 +1,4 @@
-Writing Data
+Writing data
 ============
 
 The Qi API library includes an assortment of methods that are used to write, replace, 
