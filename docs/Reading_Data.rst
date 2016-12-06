@@ -1,4 +1,4 @@
-Reading Data
+Reading data
 ============
 
 The QI API includes an assortment of methods for reading of data from streams.  
