@@ -1,4 +1,4 @@
-Getting Support
+Getting support
 ###############
 
 The following email address is available to participants of the Qi
