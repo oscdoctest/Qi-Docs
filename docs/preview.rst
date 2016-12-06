@@ -1,4 +1,4 @@
-Qi Preview
+Qi preview
 ##########
 
 Qi is currently in a closed preview phase. During the preview the
