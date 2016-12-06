@@ -1,4 +1,4 @@
-What's New in Qi?
+What's new in Qi?
 =================
 
 
