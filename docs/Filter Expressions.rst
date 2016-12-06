@@ -1,4 +1,4 @@
-Filter Expressions
+Filter expressions
 ==================
 
 Filter expressions can be included in overloads for ``GetRangeValuesAsync()``
