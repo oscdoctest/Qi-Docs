@@ -6,8 +6,9 @@ This section contains information about how to configure and use QiTypes. To use
 you define QiTypes to describe the kinds of data you want to store, 
 then you create QiStreams that are associated with your QiTypes.
 
-A QiType consists of one or more properties that can be a simple atomic type (such as an integer) 
-or can be a complex type, such as another QiType. You can create a complex type by adding a QiType 
+
+A QiType consists of one or more QiTypeProperties that can be a simple atomic type (such as an integer) 
+or can be a complex type, represented as another QiType. You can create a nested type by adding a QiType 
 as a property of another QiType; in this case, note that it is not necessary to first post the 
 nested QiType to Qi. In other words, the nested QiType is not required to exist in Qi as a 
 standalone type before it is posted as part of a nested type.
