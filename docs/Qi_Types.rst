@@ -6,16 +6,18 @@ This section contains information about how to configure and use QiTypes. To use
 you define QiTypes to describe the kinds of data you want to store, 
 then you create QiStreams that are associated with your QiTypes.
 
-A QiType
-consists of one or more properties that are either simple atomic types
-(such as an integer) or previously defined QiTypes. A type is always
-referenced with its Id property. Using a QiType as a property
-permits the construction of complex, nested data types. A QiType must
-have one or more properties that constitute an ordered key to be
-used as an index. While a timestamp (DateTime) is a very common type of
-key, any ordered value is permitted.
+A QiType consists of one or more QiTypeProperties that can be a simple atomic type (such as an integer) 
+or can be a complex type, represented as another QiType. You can create a nested type by adding a QiType 
+as a property of another QiType; in this case, note that it is not necessary to first post the 
+nested QiType to Qi. In other words, the nested QiType is not required to exist in Qi as a 
+standalone type before it is posted as part of a nested type.
 
-When a QiType is created it cannot be changed and it can only be deleted if
+A type is always referenced with its Id property. Using a QiType as a property permits the construction 
+of complex, nested data types. A QiType must have one or more properties that constitute an ordered 
+key to be used as an index. While a timestamp (DateTime) is a very common type of key, any ordered 
+value is permitted.
+
+When a QiType is created it cannot be changed and can only be deleted if
 no streams are associated with it.
 
 QiType management via the Qi Client Libraries is performed through the ``IQiMetadataService`` interface, which may be accessed via the ``QiService.GetMetadataService( )`` helper.
