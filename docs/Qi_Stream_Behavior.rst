@@ -79,7 +79,7 @@ The code in the following example shows how to define and create a simple
         Id = behaviorId,
         Mode = QiStreamMode.StepwiseContinuousLeading,
     };
-    _metadataService.GetOrCreateBehavior(createdBehavior);
+    _metadataService.GetOrCreateBehaviorAsync(createdBehavior);
 
 After the stream behavior is defined, the behavior can be applied to a
 stream as shown in the next example:
@@ -94,7 +94,7 @@ stream as shown in the next example:
         TypeId = streamType,
         BehaviorId = “MyFirstBehavior”
     }
-    _metadataService.GetOrCreateStream(stream1);
+    _metadataService.GetOrCreateStreamAsync(stream1);
 
 Interpolation
 ------------
