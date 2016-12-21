@@ -166,32 +166,25 @@ To read data indexed by a Secondary Index, use a filtered Get.
 
 Compound indexes are defined using the QiMemberAttribute as follows:
 
-public class Simple
+::
 
-{
+  public class Simple
+  {
+    [QiMember(IsKey = true, Order = 0)]
+    public DateTime Time { get; set; }
+    public State State { get; set; }
+    public Double Measurement { get; set; }
+  }
 
-[QiMember(IsKey = true, Order = 0)]
+  public class DerivedCompoundIndex : Simple
+  {
+    [QiMember(IsKey = true, Order = 1)]
+    public DateTime Recorded { get; set; }
+  }
 
-public DateTime Time { get; set; }
-
-public State State { get; set; }
-
-public Double Measurement { get; set; }
-
-}
-
-public class DerivedCompoundIndex : Simple
-
-{
-
-[QiMember(IsKey = true, Order = 1)]
-
-public DateTime Recorded { get; set; }
-
-}
 
 Events of type DerivedCompoundIndex are sorted first by Time and then by
-Recorded. Thus a collection of times would be sorted as follows
+Recorded. Thus a collection of times would be sorted as follows:
 
 +------------+----------------+-------------------+
 | **Time**   | **Recorded**   | **Measurement**   |
@@ -212,7 +205,7 @@ Recorded. Thus a collection of times would be sorted as follows
 +------------+----------------+-------------------+
 
 Were the Order swapped, Recorded as zero, the results would sort as
-follows
+follows:
 
 +------------+----------------+-------------------+
 | **Time**   | **Recorded**   | **Measurement**   |
@@ -232,173 +225,104 @@ follows
 | 02:00      | 14:00          | 6                 |
 +------------+----------------+-------------------+
 
-Were we to add values as follows
+Were we to add values as follows:
+
+::
+
+  // estimates at 1/20/2017 00:00
+  client.UpdateValuesAsync(compoundStream.Id, new List<Compound>()
+  {
+    new Compound()
+    {
+      Time = DateTime.Parse("1/20/2017 01:00"),
+      Recorded = DateTime.Parse("1/20/2017 00:00"),
+      State = State.Ok,
+      Measurement = 0
+    },
+    new Compound()
+    {
+      Time = DateTime.Parse("1/20/2017 02:00"),
+      Recorded = DateTime.Parse("1/20/2017 00:00"),
+      State = State.Ok,
+      Measurement = 1
+    },
+  }).GetAwaiter().GetResult();
+
+  // measure and estimates at 1/20/2017 01:00
+  client.UpdateValuesAsync(compoundStream.Id, new List<Compound>()
+  {
+    new Compound()
+    {
+      Time = DateTime.Parse("1/20/2017 01:00"),
+      Recorded = DateTime.Parse("1/20/2017 01:00"),
+      State = State.Ok,
+      Measurement = 2
+    },
+    new Compound()
+    {
+      Time = DateTime.Parse("1/20/2017 02:00"),
+      Recorded = DateTime.Parse("1/20/2017 01:00"),
+      State = State.Ok,
+      Measurement = 3
+    },
+  }).GetAwaiter().GetResult();
+
+  // measure at 1/20/2017 02:00
+  client.UpdateValuesAsync(compoundStream.Id, new List<Compound>()
+  {
+    new Compound()
+    {
+      Time = DateTime.Parse("1/20/2017 02:00"),
+      Recorded = DateTime.Parse("1/20/2017 02:00"),
+      State = State.Ok,
+      Measurement = 4
+    },
+  }).GetAwaiter().GetResult();
+
+  // adjust earlier values at 1/20/2017 14:00
+  client.UpdateValuesAsync(compoundStream.Id, new List<Compound>()
+  {
+    new Compound()
+    {
+      Time = DateTime.Parse("1/20/2017 01:00"),
+      Recorded = DateTime.Parse("1/20/2017 14:00"),
+      State = State.Ok,
+      Measurement = 5
+    },
+    new Compound()
+    {
+      Time = DateTime.Parse("1/20/2017 02:00"),
+      Recorded = DateTime.Parse("1/20/2017 14:00"),
+      State = State.Ok,
+      Measurement = 6
+    },
+  }).GetAwaiter().GetResult();
 
-// estimates at 1/20/2017 00:00
-
-client.UpdateValuesAsync(compoundStream.Id, new List<Compound>()
-
-{
-
-new Compound()
-
-{
-
-Time = DateTime.Parse("1/20/2017 01:00"),
-
-Recorded = DateTime.Parse("1/20/2017 00:00"),
-
-State = State.Ok,
-
-Measurement = 0
-
-},
-
-new Compound()
-
-{
-
-Time = DateTime.Parse("1/20/2017 02:00"),
-
-Recorded = DateTime.Parse("1/20/2017 00:00"),
-
-State = State.Ok,
-
-Measurement = 1
-
-},
-
-}).GetAwaiter().GetResult();
-
-// measure and estimates at 1/20/2017 01:00
-
-client.UpdateValuesAsync(compoundStream.Id, new List<Compound>()
-
-{
-
-new Compound()
-
-{
-
-Time = DateTime.Parse("1/20/2017 01:00"),
-
-Recorded = DateTime.Parse("1/20/2017 01:00"),
-
-State = State.Ok,
-
-Measurement = 2
-
-},
-
-new Compound()
-
-{
-
-Time = DateTime.Parse("1/20/2017 02:00"),
-
-Recorded = DateTime.Parse("1/20/2017 01:00"),
-
-State = State.Ok,
-
-Measurement = 3
-
-},
-
-}).GetAwaiter().GetResult();
-
-// measure at 1/20/2017 02:00
-
-client.UpdateValuesAsync(compoundStream.Id, new List<Compound>()
-
-{
-
-new Compound()
-
-{
-
-Time = DateTime.Parse("1/20/2017 02:00"),
-
-Recorded = DateTime.Parse("1/20/2017 02:00"),
-
-State = State.Ok,
-
-Measurement = 4
-
-},
-
-}).GetAwaiter().GetResult();
-
-// adjust earlier values at 1/20/2017 14:00
-
-client.UpdateValuesAsync(compoundStream.Id, new List<Compound>()
-
-{
-
-new Compound()
-
-{
-
-Time = DateTime.Parse("1/20/2017 01:00"),
-
-Recorded = DateTime.Parse("1/20/2017 14:00"),
-
-State = State.Ok,
-
-Measurement = 5
-
-},
-
-new Compound()
-
-{
-
-Time = DateTime.Parse("1/20/2017 02:00"),
-
-Recorded = DateTime.Parse("1/20/2017 14:00"),
-
-State = State.Ok,
-
-Measurement = 6
-
-},
-
-}).GetAwaiter().GetResult();
 
 We could query against the compound index as follows
 
-IEnumerable<Compound> compoundValues =
-client.GetWindowValuesAsync<Compound, DateTime, DateTime>(
+::
 
-compoundStream.Id,
+  IEnumerable<Compound> compoundValues = client.GetWindowValuesAsync<Compound, DateTime, DateTime>(
+    compoundStream.Id,
+  new Tuple<DateTime, DateTime>(DateTime.Parse("1/20/2017 01:00"),
+  DateTime.Parse("1/20/2017 00:00")),
+  new Tuple<DateTime, DateTime>(DateTime.Parse("1/20/2017 02:00"),
+  DateTime.Parse("1/20/2017 14:00"))).GetAwaiter().GetResult();
 
-new Tuple<DateTime, DateTime>(DateTime.Parse("1/20/2017 01:00"),
-DateTime.Parse("1/20/2017 00:00")),
+  foreach (Compound value in compoundValues)
+    Console.WriteLine("{0}:{1} {2}", value.Time, value.Recorded,value.Measurement);
+  Console.WriteLine();
 
-new Tuple<DateTime, DateTime>(DateTime.Parse("1/20/2017 02:00"),
-DateTime.Parse("1/20/2017 14:00"))).GetAwaiter().GetResult();
+  // Output:
+  // 1/20/2017 1:00:00 AM:1/20/2017 12:00:00 AM 0
+  // 1/20/2017 1:00:00 AM:1/20/2017 1:00:00 AM 2
+  // 1/20/2017 1:00:00 AM:1/20/2017 2:00:00 PM 5
+  // 1/20/2017 2:00:00 AM:1/20/2017 12:00:00 AM 1
+  // 1/20/2017 2:00:00 AM:1/20/2017 1:00:00 AM 3
+  // 1/20/2017 2:00:00 AM:1/20/2017 2:00:00 AM 4
+  // 1/20/2017 2:00:00 AM:1/20/2017 2:00:00 PM 6
 
-foreach (Compound value in compoundValues)
-
-Console.WriteLine("{0}:{1} {2}", value.Time, value.Recorded,
-value.Measurement);
-
-Console.WriteLine();
-
-// Output:
-
-// 1/20/2017 1:00:00 AM:1/20/2017 12:00:00 AM 0
-
-// 1/20/2017 1:00:00 AM:1/20/2017 1:00:00 AM 2
-
-// 1/20/2017 1:00:00 AM:1/20/2017 2:00:00 PM 5
-
-// 1/20/2017 2:00:00 AM:1/20/2017 12:00:00 AM 1
-
-// 1/20/2017 2:00:00 AM:1/20/2017 1:00:00 AM 3
-
-// 1/20/2017 2:00:00 AM:1/20/2017 2:00:00 AM 4
-
-// 1/20/2017 2:00:00 AM:1/20/2017 2:00:00 PM 6
 
 **Not Using .NET**
 
@@ -415,116 +339,85 @@ samples. Samples in other languages can be found
 `here <https://github.com/osisoft/Qi-Samples/tree/master/Basic>`__.
 
 If we wish to build a QiType representative of the following sample
-class
+class:
 
-Python
+*Python*
 
-class State(Enum):
+::
+  class State(Enum):
+    Ok = 0
+    Warning = 1
+    Alarm = 2
+    
+  class Simple(object):
+    Time = property(getTime, setTime)
+    def getTime(self):
+      return self.\_\_time
+    def setTime(self, time):
+      self.\_\_time = time
+      
+    State = property(getState, setState)
+    def getState(self):
+      return self.\_\_state
+    def setState(self, state):
+      self.\_\_state = state
 
-Ok = 0
+  Measurement = property(getValue, setValue)
+  def getValue(self):
+    return self.\_\_measurement
+  def setValue(self, measurement):
+    self.\_\_measurement = measurement
 
-Warning = 1
+*JavaScript*
 
-Alarm = 2
+::
 
-class Simple(object):
+  var State =
+  {
+    Ok: 0,
+    Warning: 1,
+    Aalrm: 2,
+  }
 
-Time = property(getTime, setTime)
+  var Simple = function () {
+    this.Time = null;
+    this.State = null;
+    this.Value = null;
+  }
 
-def getTime(self):
-
-return self.\_\_time
-
-def setTime(self, time):
-
-self.\_\_time = time
-
-State = property(getState, setState)
-
-def getState(self):
-
-return self.\_\_state
-
-def setState(self, state):
-
-self.\_\_state = state
-
-Measurement = property(getValue, setValue)
-
-def getValue(self):
-
-return self.\_\_measurement
-
-def setValue(self, measurement):
-
-self.\_\_measurement = measurement
-
-JavaScript
-
-var State =
-
-{
-
-Ok: 0,
-
-Warning: 1,
-
-Aalrm: 2,
-
-}
-
-var Simple = function () {
-
-this.Time = null;
-
-this.State = null;
-
-this.Value = null;
-
-}
 
 To identify the Time property as the Key, define its QiTypeProperty as
-follows
+follows:
 
-Python
+*Python*
 
-# Time is the primary key
+::
 
-time = QiTypeProperty()
+  # Time is the primary key
+  time = QiTypeProperty()
+  time.Id = "Time"
+  time.Name = "Time"
+  time.IsKey = True
+  time.QiType = QiType()
+  time.QiType.Id = "DateTime"
+  time.QiType.Name = "DateTime"
+  time.QiType.QiTypeCode = QiTypeCode.DateTime
 
-time.Id = "Time"
 
-time.Name = "Time"
+*JavaScript*
 
-time.IsKey = True
+::
 
-time.QiType = QiType()
+  // Time is the primary key
+  var timeProperty = new QiObjects.QiTypeProperty({
+    "Id": "Time",
+    "IsKey": true,
+    "QiType": new QiObjects.QiType({
+      "Id": "dateType",
+      "QiTypeCode": QiObjects.qiTypeCodeMap.DateTime
+    })
+  });
 
-time.QiType.Id = "DateTime"
-
-time.QiType.Name = "DateTime"
-
-time.QiType.QiTypeCode = QiTypeCode.DateTime
-
-JavaScript
-
-// Time is the primary key
-
-var timeProperty = new QiObjects.QiTypeProperty({
-
-"Id": "Time",
-
-"IsKey": true,
-
-"QiType": new QiObjects.QiType({
-
-"Id": "dateType",
-
-"QiTypeCode": QiObjects.qiTypeCodeMap.DateTime
-
-})
-
-});
 
 Note that the time.IsKey field is set to true.
 
@@ -542,245 +435,163 @@ Secondary Indexes are defined at the QiStream. To create a QiStream
 using the Simple class and add a Secondary index on the Measurement, we
 will use the QiType defined as follows
 
-Python
+*Python*
 
-# Create the properties
+::
+
+  # Create the properties
 
 # Time is the primary key
+  time = QiTypeProperty()
+  time.Id = "Time"
+  time.Name = "Time"
+  time.IsKey = True
+  time.QiType = QiType()
+  time.QiType.Id = "DateTime"
+  time.QiType.Name = "DateTime"
+  time.QiType.QiTypeCode = QiTypeCode.DateTime
+
+  # State is not a pre-defined type. A QiType must be defined to represent the enum
+  stateTypePropertyOk = QiTypeProperty()
+  stateTypePropertyOk.Id = "Ok"
+  stateTypePropertyOk.Measurement = State.Ok
+  stateTypePropertyWarning = QiTypeProperty()
+  stateTypePropertyWarning.Id = "Warning"
+  stateTypePropertyWarning.Measurement = State.Warning
+  stateTypePropertyAlarm = QiTypeProperty()
+  stateTypePropertyAlarm.Id = "Alarm"
+  stateTypePropertyAlarm.Measurement = State.Alarm
+
+  stateType = QiType()
+  stateType.Id = "State"
+  stateType.Name = "State"
+  stateType.Properties = [ stateTypePropertyOk, stateTypePropertyWarning,\
+                         stateTypePropertyAlarm ]
+  state = QiTypeProperty()
+  state.Id = "State"
+  state.Name = "State"
+  state.QiType = stateType
+
+  # Measurement property is a simple non-indexed, pre-defined type
+  measurement = QiTypeProperty()
+  measurement.Id = "Measurement"
+  measurement.Name = "Measurement"
+  measurement.QiType = QiType()
+  measurement.QiType.Id = "Double"
+  measurement.QiType.Name = "Double"
+
+  # Create the Simple QiType
+  simple = QiType()
+  simple.Id = str(uuid.uuid4())
+  simple.Name = "Simple"
+  simple.Description = "Basic sample type"
+  simple.QiTypeCode = QiTypeCode.Object
+  simple.Properties = [ time, state, measurement ]
+
+
+*JavaScript*
+
+::
+
+  // Time is the primary key
+  var timeProperty = new QiObjects.QiTypeProperty({
+    "Id": "Time",
+    "IsKey": true,
+    "QiType": new QiObjects.QiType({
+      "Id": "dateType",
+      "QiTypeCode": QiObjects.qiTypeCodeMap.DateTime
+    })
+  });
+
+  // State is not a pre-defined type. A QiType must be defined to represent the enum
+  var stateTypePropertyOk = new QiObjects.QiTypeProperty({
+    "Id": "Ok",
+    "Value": State.Ok
+  });
+
+  var stateTypePropertyWarning = new QiObjects.QiTypeProperty({
+    "Id": "Warning",
+    "Value": State.Warning
+  });
+
+  var stateTypePropertyAlarm = new QiObjects.QiTypeProperty({
+    "Id": "Alarm",
+    "Value": State.Alarm
+  });
+
+  var stateType = new QiObjects.QiType({
+    "Id": "State",
+    "Name": "State",
+    "QiTypeCode": QiObjects.qiTypeCodeMap.Int32Enum,
+    "Properties": [stateTypePropertyOk, stateTypePropertyWarning,
+      stateTypePropertyAlarm, stateTypePropertyRed]
+  });
+
+  // Value property is a simple non-indexed, pre-defined type
+  var valueProperty = new QiObjects.QiTypeProperty({
+    "Id": "Value",
+    "QiType": new QiObjects.QiType({
+      "Id": "doubleType",
+      "QiTypeCode": QiObjects.qiTypeCodeMap.Double
+    })
+  });
+
+  // Create the Simple QiType
+  var simpleType = new QiObjects.QiType({
+    "Id": "Simple",
+    "Name": "Simple",
+    "Description": "This is a simple Qi type",
+    "QiTypeCode": QiObjects.qiTypeCodeMap.Object,
+    "Properties": [timeProperty, stateProperty, valueProperty]
+  });
 
-time = QiTypeProperty()
+  Creating the QiStream with the Measurement as a Secondary Index is accomplished as follows:
 
-time.Id = "Time"
 
-time.Name = "Time"
+*Python*
 
-time.IsKey = True
+::
 
-time.QiType = QiType()
+  measurementIndex = QiStreamIndex()
+  measurementIndex.QiTypePropertyId = measurement.Id
+  
+  stream = QiStream()
+  stream.Id = str(uuid.uuid4())
+  stream.Name = "SimpleWithSecond"
+  stream.Description = "Simple with secondary index"
+  stream.TypeId = simple.Id
+  stream.Indexes = [ measurementIndex ]
 
-time.QiType.Id = "DateTime"
+*JavaScript*
 
-time.QiType.Name = "DateTime"
+::
 
-time.QiType.QiTypeCode = QiTypeCode.DateTime
+  var measurementIndex = new QiObjects.QiStreamIndex({
+    "QiTypePropertyId": valueProperty.Id
+  });
 
-# State is not a pre-defined type. A QiType must be defined to represent
-the enum
+  var stream = new QiObjects.QiStream({
+    "Id": "SimpleWithSecond",
+    "Name": "SimpleWithSecond",
+    "Description": "Simple with secondary index",
+    "TypeId": simpleTypeId,
+    "Indexes": [ measurementIndex ]
+  });
 
-stateTypePropertyOk = QiTypeProperty()
-
-stateTypePropertyOk.Id = "Ok"
-
-stateTypePropertyOk.Measurement = State.Ok
-
-stateTypePropertyWarning = QiTypeProperty()
-
-stateTypePropertyWarning.Id = "Warning"
-
-stateTypePropertyWarning.Measurement = State.Warning
-
-stateTypePropertyAlarm = QiTypeProperty()
-
-stateTypePropertyAlarm.Id = "Alarm"
-
-stateTypePropertyAlarm.Measurement = State.Alarm
-
-stateType = QiType()
-
-stateType.Id = "State"
-
-stateType.Name = "State"
-
-stateType.Properties = [ stateTypePropertyOk, stateTypePropertyWarning,
-\\
-
-stateTypePropertyAlarm ]
-
-state = QiTypeProperty()
-
-state.Id = "State"
-
-state.Name = "State"
-
-state.QiType = stateType
-
-# Measurement property is a simple non-indexed, pre-defined type
-
-measurement = QiTypeProperty()
-
-measurement.Id = "Measurement"
-
-measurement.Name = "Measurement"
-
-measurement.QiType = QiType()
-
-measurement.QiType.Id = "Double"
-
-measurement.QiType.Name = "Double"
-
-# Create the Simple QiType
-
-simple = QiType()
-
-simple.Id = str(uuid.uuid4())
-
-simple.Name = "Simple"
-
-simple.Description = "Basic sample type"
-
-simple.QiTypeCode = QiTypeCode.Object
-
-simple.Properties = [ time, state, measurement ]
-
-JavaScript
-
-// Time is the primary key
-
-var timeProperty = new QiObjects.QiTypeProperty({
-
-"Id": "Time",
-
-"IsKey": true,
-
-"QiType": new QiObjects.QiType({
-
-"Id": "dateType",
-
-"QiTypeCode": QiObjects.qiTypeCodeMap.DateTime
-
-})
-
-});
-
-// State is not a pre-defined type. A QiType must be defined to
-represent the enum
-
-var stateTypePropertyOk = new QiObjects.QiTypeProperty({
-
-"Id": "Ok",
-
-"Value": State.Ok
-
-});
-
-var stateTypePropertyWarning = new QiObjects.QiTypeProperty({
-
-"Id": "Warning",
-
-"Value": State.Warning
-
-});
-
-var stateTypePropertyAlarm = new QiObjects.QiTypeProperty({
-
-"Id": "Alarm",
-
-"Value": State.Alarm
-
-});
-
-var stateType = new QiObjects.QiType({
-
-"Id": "State",
-
-"Name": "State",
-
-"QiTypeCode": QiObjects.qiTypeCodeMap.Int32Enum,
-
-"Properties": [stateTypePropertyOk, stateTypePropertyWarning,
-
-stateTypePropertyAlarm, stateTypePropertyRed]
-
-});
-
-// Value property is a simple non-indexed, pre-defined type
-
-var valueProperty = new QiObjects.QiTypeProperty({
-
-"Id": "Value",
-
-"QiType": new QiObjects.QiType({
-
-"Id": "doubleType",
-
-"QiTypeCode": QiObjects.qiTypeCodeMap.Double
-
-})
-
-});
-
-// Create the Simple QiType
-
-var simpleType = new QiObjects.QiType({
-
-"Id": "Simple",
-
-"Name": "Simple",
-
-"Description": "This is a simple Qi type",
-
-"QiTypeCode": QiObjects.qiTypeCodeMap.Object,
-
-"Properties": [timeProperty, stateProperty, valueProperty]
-
-});
-
-Creating the QiStream with the Measurement as a Secondary Index is
-accomplished as follows
-
-Python
-
-measurementIndex = QiStreamIndex()
-
-measurementIndex.QiTypePropertyId = measurement.Id
-
-stream = QiStream()
-
-stream.Id = str(uuid.uuid4())
-
-stream.Name = "SimpleWithSecond"
-
-stream.Description = "Simple with secondary index"
-
-stream.TypeId = simple.Id
-
-stream.Indexes = [ measurementIndex ]
-
-JavaScript
-
-var measurementIndex = new QiObjects.QiStreamIndex({
-
-"QiTypePropertyId": valueProperty.Id
-
-});
-
-var stream = new QiObjects.QiStream({
-
-"Id": "SimpleWithSecond",
-
-"Name": "SimpleWithSecond",
-
-"Description": "Simple with secondary index",
-
-"TypeId": simpleTypeId,
-
-"Indexes": [ measurementIndex ]
-
-});
 
 **Compound Indexes**
 
-Consider the following types
 
-Python
+Consider the following types:
 
-class Simple(object):
+*Python*
 
-# First-order Key property
+::
 
-Time = property(getTime, setTime)
-
-def getTime(self):
+  class Simple(object):
+  # First-order Key property
+  Time = property(getTime, setTime)
+  def getTime(self):
 
 return self.\_\_time
 
