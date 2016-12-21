@@ -78,11 +78,12 @@ an end index. For DateTime, use ISO 8601 representation of dates and
 times. To query for a window of Simple values between January 1, 2010
 and February 1, 2010, you would define indexes and query as follows.
 
-IEnumerable<Simple> values =
-client.GetWindowValuesAsync<Simple>(simpleStream.Id,
+::
 
-    "2010-01-01T08:00:00.000Z",
-    "2010-02-01T08:00:00.000Z").GetAwaiter().GetResult();
+  IEnumerable<Simple> values =
+    client.GetWindowValuesAsync<Simple>(simpleStream.Id,
+    "2010-01-01T08:00:00.000Z","2010-02-01T08:00:00.000Z").GetAwaiter().GetResult();
+
 
 There is more information under the Reading Data section.
 
@@ -93,119 +94,73 @@ QiStream, add them to the QiStream’s Indexes field.
 
 To index the Simple type defined above by Measurement,
 
-QiStreamIndex measurementIndex = new QiStreamIndex()
+::
 
-{
+  QiStreamIndex measurementIndex = new QiStreamIndex()
+  {
+    QiTypePropertyId = simpleType.Properties.First(p =>p.Id.Equals("Measurement")).Id
+  };
 
-QiTypePropertyId = simpleType.Properties.First(p =>
-p.Id.Equals("Measurement")).Id
-
-};
-
-QiStream streamWithSeconary = new QiStream()
-
-{
-
-Id = Guid.NewGuid().ToString(),
-
-TypeId = type.Id,
-
-Indexes = new List<QiStreamIndex>()
-
-{
-
-measurementIndex
-
-}
-
-};
+  QiStream streamWithSeconary = new QiStream()
+  {
+    Id = Guid.NewGuid().ToString(),
+    TypeId = type.Id,
+    Indexes = new List<QiStreamIndex>()
+    {
+      measurementIndex
+    }
+  };
 
 To read data indexed by a Secondary Index, use a filtered Get.
 
-DateTime t = DateTime.Now;
+::
 
-client.UpdateValuesAsync<Simple>(secondary.Id, new List<Simple>()
+  DateTime t = DateTime.Now;
+  client.UpdateValuesAsync<Simple>(secondary.Id, new List<Simple>()
+  {
+    new Simple()
+    {
+      Time = t,
+      State = State.Ok,
+      Measurement = 5
+    },
+    new Simple()
+    {
+      Time = t + TimeSpan.FromSeconds(1),
+      State = State.Ok,
+      Measurement = 4
+    },
+    new Simple()
+    {
+      Time = t + TimeSpan.FromSeconds(2),
+      State = State.Ok,
+      Measurement = 3
+    },
+    new Simple()
+    {
+      Time = t + TimeSpan.FromSeconds(3),
+      State = State.Ok,
+      Measurement = 2
+    },
+    new Simple()
+    {
+      Time = t + TimeSpan.FromSeconds(4),
+      State = State.Ok,
+      Measurement = 1
+    },
+  }).GetAwaiter().GetResult();
 
-{
-
-new Simple()
-
-{
-
-Time = t,
-
-State = State.Ok,
-
-Measurement = 5
-
-},
-
-new Simple()
-
-{
-
-Time = t + TimeSpan.FromSeconds(1),
-
-State = State.Ok,
-
-Measurement = 4
-
-},
-
-new Simple()
-
-{
-
-Time = t + TimeSpan.FromSeconds(2),
-
-State = State.Ok,
-
-Measurement = 3
-
-},
-
-new Simple()
-
-{
-
-Time = t + TimeSpan.FromSeconds(3),
-
-State = State.Ok,
-
-Measurement = 2
-
-},
-
-new Simple()
-
-{
-
-Time = t + TimeSpan.FromSeconds(4),
-
-State = State.Ok,
-
-Measurement = 1
-
-},
-
-}).GetAwaiter().GetResult();
-
-IEnumerable<Simple> orderedBySecondary =
-client.GetValuesAsync<Simple>(secondary.Id,
+  IEnumerable<Simple> orderedBySecondary =
+  client.GetValuesAsync<Simple>(secondary.Id,
 
     "Measurement gt 0 and Measurement lt 6").GetAwaiter().GetResult();
 
-// Output:
-
-// 12/13/2016 9:30:04 PM: 1
-
-// 12/13/2016 9:30:03 PM: 2
-
-// 12/13/2016 9:30:02 PM: 3
-
-// 12/13/2016 9:30:01 PM: 4
-
-// 12/13/2016 9:30:00 PM: 5
+  // Output:
+  // 12/13/2016 9:30:04 PM: 1
+  // 12/13/2016 9:30:03 PM: 2
+  // 12/13/2016 9:30:02 PM: 3
+  // 12/13/2016 9:30:01 PM: 4
+  // 12/13/2016 9:30:00 PM: 5
 
 **Compound Indexes**
 
