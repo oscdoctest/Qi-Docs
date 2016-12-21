@@ -344,6 +344,7 @@ class:
 *Python*
 
 ::
+
   class State(Enum):
     Ok = 0
     Warning = 1
