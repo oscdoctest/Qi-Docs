@@ -1,6 +1,6 @@
 **Indexes**
 
-Indexes are used to speed up searching and order results. A Key is a
+Indexes are used to speed up searches and to order results. A Key is a
 property or collection of properties that are unique. In Qi, a QiType’s
 Key is also an index. The Key is often referred to as the “Primary
 Index”. All other Indexes are Secondaries.
@@ -52,35 +52,26 @@ System.ComponentModel.DataAnnotations.KeyAttribute, to identify the
 Property that defines the simple Key. Using QiTypeBuilder eliminates
 potential errors that may occur when working with QiTypes manually.
 
-public enum State
+::
 
-{
+  public enum State
+  {
+    Ok,
+    Warning,
+    Aalrm
+  }
 
-Ok,
+  public class Simple
+  {
+    [Key]
+    public DateTime Time { get; set; }
+    public State State { get; set; }
+    public Double Measurement { get; set; }
+  }
 
-Warning,
+  QiType simpleType = QiTypeBuilder.CreateQiType<Simple>();
+  simpleType.Description = "Basic sample type";
 
-Aalrm
-
-}
-
-public class Simple
-
-{
-
-[Key]
-
-public DateTime Time { get; set; }
-
-public State State { get; set; }
-
-public Double Measurement { get; set; }
-
-}
-
-QiType simpleType = QiTypeBuilder.CreateQiType<Simple>();
-
-simpleType.Description = "Basic sample type";
 
 To read data between two indexes, ordered by the Key, define a start and
 an end index. For DateTime, use ISO 8601 representation of dates and
