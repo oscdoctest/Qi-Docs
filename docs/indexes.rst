@@ -441,7 +441,7 @@ will use the QiType defined as follows
 
   # Create the properties
 
-# Time is the primary key
+  # Time is the primary key
   time = QiTypeProperty()
   time.Id = "Time"
   time.Name = "Time"
@@ -589,159 +589,104 @@ Consider the following types:
 ::
 
   class Simple(object):
-  # First-order Key property
-  Time = property(getTime, setTime)
-  def getTime(self):
+    # First-order Key property
+    Time = property(getTime, setTime)
+    def getTime(self):
+      return self.\_\_time
+    def setTime(self, time):
+      self.\_\_time = time
+      
+  State = property(getState, setState)
+  def getState(self):
+    return self.\_\_state
+  def setState(self, state):
+    self.\_\_state = state
 
-return self.\_\_time
+  Measurement = property(getValue, setValue)
+  def getValue(self):
+    return self.\_\_measurement
+  def setValue(self, measurement):
+    self.\_\_measurement = measurement
 
-def setTime(self, time):
+  class DerivedCompoundIndex(Simple):
+  # Second-order Key property
+  @property
+  def Recorded(self):
+    return self.\_\_recorded
+  @Recorded.setter
+  def Recorded(self, recorded):
+    self.\_\_recorded = recorded
 
-self.\_\_time = time
+*JavaScript*
 
-State = property(getState, setState)
+::
 
-def getState(self):
+  var Simple = function () {
+    this.Time = null;
+    this.State = null;
+    this.Value = null;
+  }
 
-return self.\_\_state
-
-def setState(self, state):
-
-self.\_\_state = state
-
-Measurement = property(getValue, setValue)
-
-def getValue(self):
-
-return self.\_\_measurement
-
-def setValue(self, measurement):
-
-self.\_\_measurement = measurement
-
-class DerivedCompoundIndex(Simple):
-
-# Second-order Key property
-
-@property
-
-def Recorded(self):
-
-return self.\_\_recorded
-
-@Recorded.setter
-
-def Recorded(self, recorded):
-
-self.\_\_recorded = recorded
-
-JavaScript
-
-var Simple = function () {
-
-this.Time = null;
-
-this.State = null;
-
-this.Value = null;
-
-}
-
-var DerivedCompoundIndex = function() {
-
-Simple.call(this);
-
-this.Recorded = null;
-
-}
+  var DerivedCompoundIndex = function() {
+    Simple.call(this);
+    this.Recorded = null;
+  }
 
 To turn the simple QiType from above into a type supporting the
 DerivedCompoundIndex type with a compound index based on the Simple.Time
 and DerivedCompoundIndex.Recorded, you would extend the type as follows
 
-Python
+*Python*
 
-# We set the Order for this property. The order of the key in Simple
-defaults to 0
+# We set the Order for this property. The order of the key in Simple defaults to 0
 
-recorded = QiTypeProperty()
+::
 
-recorded.Id = "Recorded"
+  recorded = QiTypeProperty()
+  recorded.Id = "Recorded"
+  recorded.Name = "Recorded"
+  recorded.IsKey = True
+  recorded.Order = 1
+  recorded.QiType = QiType()
+  recorded.QiType.Id = "DateTime"
+  recorded.QiType.Name = "DateTime"
+  recorded.QiType.QiTypeCode = QiTypeCode.DateTime
 
-recorded.Name = "Recorded"
+  # Create the Derived QiType
+  derived = QiType()
+  derived.Id = str(uuid.uuid4())
+  derived.Name = "Compound"
+  derived.Description = "Derived compound index sample type"
+  derived.BaseType = simple
+  derived.QiTypeCode = QiTypeCode.Object
+  derived.Properties = [ recorded ]
 
-recorded.IsKey = True
+*JavaScript*
 
-recorded.Order = 1
+::
 
-recorded.QiType = QiType()
+  // We set the Order for this property. The order of the key in Simple defaults to 0
+  var recordedProperty = new QiObjects.QiTypeProperty({
+    "Id": "Recorded",
+    "Name": "Recorded",
+    "IsKey": true,
+    "Order": 1,
+    "QiType": new QiObjects.QiType({
+      "Id": "DateTime",
+      "Name": "DateTime",
+      "QiTypeCode": QiObjects.qiTypeCodeMap.DateTime
+    })
+  });
 
-recorded.QiType.Id = "DateTime"
-
-recorded.QiType.Name = "DateTime"
-
-recorded.QiType.QiTypeCode = QiTypeCode.DateTime
-
-# Create the Derived QiType
-
-derived = QiType()
-
-derived.Id = str(uuid.uuid4())
-
-derived.Name = "Compound"
-
-derived.Description = "Derived compound index sample type"
-
-derived.BaseType = simple
-
-derived.QiTypeCode = QiTypeCode.Object
-
-derived.Properties = [ recorded ]
-
-JavaScript
-
-// We set the Order for this property. The order of the key in Simple
-defaults to 0
-
-var recordedProperty = new QiObjects.QiTypeProperty({
-
-"Id": "Recorded",
-
-"Name": "Recorded",
-
-"IsKey": true,
-
-"Order": 1,
-
-"QiType": new QiObjects.QiType({
-
-"Id": "DateTime",
-
-"Name": "DateTime",
-
-"QiTypeCode": QiObjects.qiTypeCodeMap.DateTime
-
-})
-
-});
-
-// Create the Derived QiType
-
-var derivedType = new QiObjects.QiTyp({
-
-"Id": "Compound",
-
-"Name": "Compound",
-
-"Description": "Derived compound index sample type",
-
-"BaseType": simpleType,
-
-"QiTypeCode": QiObjects.qiTypeCodeMap.Object,
-
-"Properties": [recordedProperty]
-
-});
+  // Create the Derived QiType
+  var derivedType = new QiObjects.QiTyp({
+    "Id": "Compound",
+    "Name": "Compound",
+    "Description": "Derived compound index sample type",
+    "BaseType": simpleType,
+    "QiTypeCode": QiObjects.qiTypeCodeMap.Object,
+    "Properties": [recordedProperty]
+  });
 
 Events are ordered first by Time and then by Recorded. Thus a collection
 of times would be sorted as follows
