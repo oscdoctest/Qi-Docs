@@ -58,7 +58,7 @@ potential errors that may occur when working with QiTypes manually.
   {
     Ok,
     Warning,
-    Aalrm
+    Alarm
   }
 
   public class Simple
