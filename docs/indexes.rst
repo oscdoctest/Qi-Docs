@@ -54,10 +54,8 @@ When working in .NET, use the QiTypeBuilder together with either the OSIsoft.Qi.
   simpleType.Description = "Basic sample type";
 
 
-To read data between two indexes, ordered by the Key, define a start and
-an end index. For DateTime, use ISO 8601 representation of dates and
-times. To query for a window of Simple values between January 1, 2010
-and February 1, 2010, you would define indexes and query as follows.
+To read data that is located between two indexes, ordered by the Key, define both a start index and an end index. For DateTime, use ISO 8601 representation of dates and times. For example, to query for a window of simple values between January 1, 2010 and February 1, 2010, you can define indexes and query as follows.
+
 
 ::
 
@@ -66,14 +64,15 @@ and February 1, 2010, you would define indexes and query as follows.
     "2010-01-01T08:00:00.000Z","2010-02-01T08:00:00.000Z").GetAwaiter().GetResult();
 
 
-There is more information under the Reading Data section.
+More information about querying data can be found in the Reading Data section.
+
 
 **Secondary Indexes**
 
-Secondary Indexes are defined at the QiStream. To add indexes to a
-QiStream, add them to the QiStream’s Indexes field.
+Secondary indexes are defined at the QiStream. To add indexes to a QiStream, you add them to the QiStream’s Indexes field.
 
-To index the Simple type defined above by Measurement,
+For example, to index the simple type defined in the previous simple index example by Measurement, use the following code: 
+
 
 ::
 
@@ -92,7 +91,7 @@ To index the Simple type defined above by Measurement,
     }
   };
 
-To read data indexed by a Secondary Index, use a filtered Get.
+To read data indexed by a secondary Index, use a filtered Get, as in the following:
 
 ::
 
@@ -165,8 +164,8 @@ Compound indexes are defined using the QiMemberAttribute as follows:
   }
 
 
-Events of type DerivedCompoundIndex are sorted first by Time and then by
-Recorded. Thus a collection of times would be sorted as follows:
+Events of type DerivedCompoundIndex are sorted first by the Time parameter and then by the Recorded parameter. A collection of times would be sorted as follows:
+
 
 +------------+----------------+-------------------+
 | **Time**   | **Recorded**   | **Measurement**   |
@@ -186,8 +185,7 @@ Recorded. Thus a collection of times would be sorted as follows:
 | 02:00      | 14:00          | 6                 |
 +------------+----------------+-------------------+
 
-Were the Order swapped, Recorded as zero, the results would sort as
-follows:
+If the Order paremeter was swapped, and Recorded set to zero, the results would sort as follows:
 
 +------------+----------------+-------------------+
 | **Time**   | **Recorded**   | **Measurement**   |
@@ -281,7 +279,7 @@ Were we to add values as follows:
   }).GetAwaiter().GetResult();
 
 
-We could query against the compound index as follows
+You can query against the compound index as follows:
 
 ::
 
@@ -408,13 +406,10 @@ follows:
 
 Note that the time.IsKey field is set to true.
 
-To read data using the Key, define a start and end index. For DateTime,
-use ISO 8601 representation of dates and times. To query for a window of
-values between January 1, 2010 and February 1, 2010, you would define
-indexes as "2010-01-01T08:00:00.000Z" and "2010-02-01T08:00:00.000Z",
-respectively.
+To read data using the key, you define a start index and an end index. For DateTime, use ISO 8601 representation of dates and times. To query for a window of values between January 1, 2010 and February 1, 2010, you would define indexes as "2010-01-01T08:00:00.000Z" and "2010-02-01T08:00:00.000Z", respectively.
 
-There is more information under the Reading Data section.
+Additional information can be found in the Reading Data section.
+
 
 **Secondary Indexes**
 
@@ -532,7 +527,7 @@ will use the QiType defined as follows
     "Properties": [timeProperty, stateProperty, valueProperty]
   });
 
-  Creating the QiStream with the Measurement as a Secondary Index is accomplished as follows:
+Creating the QiStream with the Measurement as a Secondary Index is shown in the following example:
 
 
 *Python*
@@ -569,8 +564,7 @@ will use the QiType defined as follows
 Compound Indexes
 ----------------
 
-
-Consider the following types:
+Consider the following Python and JavaScript types:
 
 *Python*
 
@@ -620,9 +614,7 @@ Consider the following types:
     this.Recorded = null;
   }
 
-To turn the simple QiType from above into a type supporting the
-DerivedCompoundIndex type with a compound index based on the Simple.Time
-and DerivedCompoundIndex.Recorded, you would extend the type as follows
+To turn the simple QiType shown in the example into a type supporting the DerivedCompoundIndex type with a compound index based on the Simple.Time and DerivedCompoundIndex.Recorded, you would extend the type as follows:
 
 *Python*
 
@@ -676,8 +668,7 @@ and DerivedCompoundIndex.Recorded, you would extend the type as follows
     "Properties": [recordedProperty]
   });
 
-Events are ordered first by Time and then by Recorded. Thus a collection
-of times would be sorted as follows
+If the Order was swapped and Recorded was set to zero, the results would sort as follows:
 
 +------------+----------------+-------------------+
 | **Time**   | **Recorded**   | **Measurement**   |
@@ -717,3 +708,11 @@ follows
 +------------+----------------+-------------------+
 | 02:00      | 14:00          | 6                 |
 +------------+----------------+-------------------+
+
+
+Summary
+-------
+
+In this topic, you learned how to define and use both simple and compound indexes. Also described was how to create use QiTypeBuilder to easily create QiTypes, and how to create QiTypes without using QiTypeBuilder. Feel free to use the examples provided. 
+
+
