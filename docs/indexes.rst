@@ -1,47 +1,24 @@
 Indexes
 =======
 
-Indexes are used to speed up searches and to order results. A Key is a
-property or collection of properties that are unique. In Qi, a QiType’s
-Key is also an index. The Key is often referred to as the “Primary
-Index”. All other Indexes are Secondaries.
+Indexes are used to speed up search requests and to order the results of searches. Indexes rely on a key, which is a property or collection of unique properties. In Qi, a key of a QiType is also an index. The key is often referred to as the “primary index.” while all other Indexes are referred to as secondary indexes or secondaries.
 
-A QiType used to define a QiStream must define its Key. When inserting
-data into a QiStream, every Key value must be unique. Qi will not store
-more than a single event for a given Key; an event with a particular Key
-can be deleted or updated, but two events with the same Key cannot
-exist.
+A QiType that is used to define a QiStream must also specify its key. When inserting data into a QiStream, every key value must be unique. Qi will not store more than a single event for a given key; an event with a particular key may be deleted or updated, but two events with the same key cannot exist.
 
-In .NET, a type’s property is identified by using either an
-OSIsoft.Qi.QiMemberAttribute and setting its IsKey to true or the
-System.ComponentModel.DataAnnotations.KeyAttribute. In the QiType, the
-Property or Properties representing the Key have their
-QiTypeProperty.IsKey field set to true.
+In .NET, the property of a type is identified by using either an OSIsoft.Qi.QiMemberAttribute and setting its IsKey property to true or by using the System.ComponentModel.DataAnnotations.KeyAttribute. In the QiType, the Property or Properties representing the key have their QiTypeProperty.IsKey field set to true.
 
-Secondary Indexes are defined on QiStreams. They are applied to a single
-property. You can define many Secondaries.
+Secondary indexes are defined on QiStreams and are applied to a single property.  You can define many Secondary indexes. In addition, secondary indexes need not be unique.  
 
-Secondary Indexes need not be unique.
 
 Compound Indexes
 ----------------
 
+Often, a single property (such as a DateTime), is adequate for defining an Index; however, for more complex scenarios Qi allows multiple properties. Indexes defined by multiple properties are called “compound indexes”. 
 
-Often, a single property, such as DateTime, is adequate for defining an
-Index, but for more complex scenarios Qi allows multiple properties to
-be. Indexes defined by multiple properties are called “compound
-indexes”.
+When defining a Compound Index in .NET, you should apply the OSIsoft.Qi.QiMemberAttribute on each of the type’s properties that are combined to define the Key. Set the IsKey property to true and give the Order field a value. The Order field defines the precedence of the property when sorting. A property with an order of 0 has highest precedence. When defining compound indexes outside of .NET, specify the IsKey and Order fields on the QiTypeProperty or Properties.
 
-When defining a Compound Index in .NET, apply the
-OSIsoft.Qi.QiMemberAttribute on each of the type’s Properties that are
-combined to define the Key. Set the IsKey to true and give the Order
-field a value. The Order field defines the precedence of the property
-when sorting, where a Property with an Order of 0 has highest
-precedence. When defining Compound Indexes outside of .NET, specify the
-IsKey and Order fields on the QiTypeProperty or Properties.
+The Qi REST API methods that use tuples were created to assist you to use compound indexes.
 
-The Qi REST API methods that use tuples were created to assist you to
-use compound indexes.
 
 Working with Indexes
 --------------------
@@ -53,12 +30,8 @@ Using .Net
 Simple Indexes
 --------------
 
+When working in .NET, use the QiTypeBuilder together with either the OSIsoft.Qi.QiMemberAttribute or the System.ComponentModel.DataAnnotations.KeyAttribute, to identify the Property that defines the simple Key. Using QiTypeBuilder eliminates potential errors that might occur when working with QiTypes manually.
 
-When working in .NET, use the QiTypeBuilder together with either the
-OSIsoft.Qi.QiMemberAttribute or the
-System.ComponentModel.DataAnnotations.KeyAttribute, to identify the
-Property that defines the simple Key. Using QiTypeBuilder eliminates
-potential errors that may occur when working with QiTypes manually.
 
 ::
 
