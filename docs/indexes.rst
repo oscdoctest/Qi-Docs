@@ -1,4 +1,5 @@
-**Indexes**
+Indexes
+=======
 
 Indexes are used to speed up searches and to order results. A Key is a
 property or collection of properties that are unique. In Qi, a QiType’s
@@ -22,7 +23,9 @@ property. You can define many Secondaries.
 
 Secondary Indexes need not be unique.
 
-**Compound Indexes**
+Compound Indexes
+----------------
+
 
 Often, a single property, such as DateTime, is adequate for defining an
 Index, but for more complex scenarios Qi allows multiple properties to
@@ -40,11 +43,16 @@ IsKey and Order fields on the QiTypeProperty or Properties.
 The Qi REST API methods that use tuples were created to assist you to
 use compound indexes.
 
-**Working with Indexes**
+Working with Indexes
+--------------------
 
-**Using .Net**
+Using .Net
+----------
 
-**Simple Indexes**
+
+Simple Indexes
+--------------
+
 
 When working in .NET, use the QiTypeBuilder together with either the
 OSIsoft.Qi.QiMemberAttribute or the
@@ -162,7 +170,8 @@ To read data indexed by a Secondary Index, use a filtered Get.
   // 12/13/2016 9:30:01 PM: 4
   // 12/13/2016 9:30:00 PM: 5
 
-**Compound Indexes**
+Compound Indexes
+----------------
 
 Compound indexes are defined using the QiMemberAttribute as follows:
 
@@ -324,9 +333,13 @@ We could query against the compound index as follows
   // 1/20/2017 2:00:00 AM:1/20/2017 2:00:00 PM 6
 
 
-**Not Using .NET**
+Not Using .NET
+--------------
 
-**Simple Indexes**
+
+Simple Indexes
+--------------
+
 
 When the .NET QiTypeBuilder is unavailable, indexes must be built
 manually.
@@ -580,7 +593,8 @@ will use the QiType defined as follows
   });
 
 
-**Compound Indexes**
+Compound Indexes
+----------------
 
 
 Consider the following types:
