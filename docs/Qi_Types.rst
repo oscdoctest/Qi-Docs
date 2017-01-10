@@ -107,7 +107,34 @@ The collection of Properties for a QiType are defined by a QiTypeProperty.
 
 The following table shows the required and optional QiTypeProperty fields. Fields that are not included are reserved for internal Qi use.
 
++------------------+-------------------------+-------------+-------------------------------------+
+| Property         | Type                    | Optionality | Details                             |
++==================+=========================+=============+=====================================+
+| Id               | String                  | Required    | Identifier for referencing the type |
++------------------+-------------------------+-------------+-------------------------------------+
+| Name             | String                  | Optional    | Friendly name                       |
++------------------+-------------------------+-------------+-------------------------------------+
+| Description      | String                  | Optional    | Description text                    |
++------------------+-------------------------+-------------+-------------------------------------+
+| QiType           | QiType                  | Required    | Field defining the property's       |
+|                  |                         |             | Type                                |
++------------------+-------------------------+-------------+-------------------------------------+
+| IsKey            | Boolean                 | Required    | Identifies the property as the Key  |
+|                  |                         |             | (Primary Index)                     |
++------------------+-------------------------+-------------+-------------------------------------+
+| Value            | Object                  | Optional    | Value of the property               |
++------------------+-------------------------+-------------+-------------------------------------+
+| Order            | Int                     | Optional    | Order of comparison within a        |
+|                  |                         |             | compound index. Also used           |
+|                  |                         |             | internally                          |
++------------------+-------------------------+-------------+-------------------------------------+
 
+
+The QiTypeProperty’s identifier follows the same rules as the QiType.Id.
+
+IsKey is a Boolean value used to identify the QiType’s Key. A Key defined by more than one Property is a compound key. In a compound key, each Property that is included in the Key is specified as IsKey. The Order field is used to define the precedence of fields applied to the Index.
+
+The Value field is used for properties that represent a value. An example of a property with a value is an enum’s named constant. When representing an enum in a QiType, the QiType’s Properies collection defines the enum’s constant list.  The QiTypeProperty’s Identifier represents the constant’s name and the QiTypeProperty’s Value represents the constant’s value.
 
 
 
