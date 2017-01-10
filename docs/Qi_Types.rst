@@ -194,10 +194,130 @@ Defining QiTypes when not using .NET
 
 QiTypes must be built manually when .NET QiTypeBuilder is unavailable. The following discussion refers to the types that are defined in the `Python <https://github.com/osisoft/Qi-Samples/tree/master/Basic/Python>`__ and `JavaScript <https://github.com/osisoft/Qi-Samples/tree/master/Basic/JavaScript>`__ samples. Samples in other languages can be found here: `Samples <https://github.com/osisoft/Qi-Samples/tree/master/Basic>`__.
 
-`Python <https://github.com/osisoft/Qi-Samples/tree/master/Basic/Python>`__ and `JavaScript <https://github.com/osisoft/Qi-Samples/tree/master/Basic/JavaScript>`__
-
-
 In the sample code, QiType, QiTypeProperty, and QiTypeCode are defined as in the code snippets shown here:
+
+**Python**
+
+::
+
+  class QiTypeCode(Enum):
+      Empty = 0
+      Object = 1
+      DBNull = 2
+      Boolean = 3
+      Char = 4
+        ...
+  class QiTypeProperty(object):
+      """Qi type property definition"""
+  
+      def __init__(self):
+              self.__isKey = False
+            
+      @property
+      def Id(self):
+          return self.__id
+      @Id.setter
+      def Id(self, id):
+          self.__id = id
+
+        ...
+
+      @property
+      def IsKey(self):
+          return self.__isKey
+      @IsKey.setter
+      def IsKey(self, iskey):
+          self.__isKey = iskey
+
+      @property
+      def QiType(self):
+          return self.__qiType
+      @QiType.setter
+      def QiType(self, qiType):
+          self.__qiType=qiType
+        ...
+
+  class QiType(object):
+      """Qi type definitions"""
+      def __init__(self):
+          self.QiTypeCode = QiTypeCode.Object
+
+      @property
+      def Id(self):
+          return self.__id
+      @Id.setter
+      def Id(self, id):
+          self.__id = id
+    
+        ...
+
+      @property
+      def BaseType(self):
+          return self.__baseType
+      @BaseType.setter
+      def BaseType(self, baseType):
+          self.__baseType = baseType
+    
+      @property
+      def QiTypeCode(self):
+          return self.__typeCode
+      @QiTypeCode.setter
+      def QiTypeCode(self, typeCode):
+          self.__typeCode = typeCode
+
+      @property
+      def Properties(self):
+          return self.__properties
+      @Properties.setter
+      def Properties(self, properties):
+          self.__properties = properties
+
+**JavaScript**
+
+::
+
+  qiTypeCodeMap: {
+      Empty: 0,
+      "Object": 1,
+      DBNull: 2,
+      "Boolean": 3,
+      Char: 4,
+      ...
+  QiTypeProperty: function (qiTypeProperty) {
+      if (qiTypeProperty.Id) {
+          this.Id = qiTypeProperty.Id;
+      }
+      if (qiTypeProperty.Name) {
+          this.Name = qiTypeProperty.Name;
+      }
+      if (qiTypeProperty.Description) {
+          this.Description = qiTypeProperty.Description;
+      }
+      if (qiTypeProperty.QiType) {
+          this.QiType = qiTypeProperty.QiType;
+      }
+      if (qiTypeProperty.IsKey) {
+          this.IsKey = qiTypeProperty.IsKey;
+      }
+  },
+  QiType: function (qiType) {
+      if (qiType.Id) {
+          this.Id = qiType.Id
+      }
+      if (qiType.Name) {
+          this.Name = qiType.Name;
+      }
+      if (qiType.Description) {
+          this.Description = qiType.Description;
+      }
+      if (qiType.QiTypeCode) {
+          this.QiTypeCode = qiType.QiTypeCode;
+      }
+      if (qiType.Properties) {
+          this.Properties = qiType.Properties;
+      }
+  },
+
 
 
 
