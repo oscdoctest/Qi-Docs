@@ -2,28 +2,24 @@
 QiType information
 ======================
 
-This section contains information about how to configure and use QiTypes. To use Qi,
-you define QiTypes to describe the kinds of data you want to store, 
-then you create QiStreams that are associated with your QiTypes.
+This section contains information about how to configure and use QiTypes. To use Qi, you define QiTypes that describe the kinds of data you want to store in QiStreams. QiTypes are the model that define QiStreams.
 
+QiTypes can define simple atomic types, such as integers, floats or strings, or they can define complex types by grouping properties of other QiTypes. You can construct complex, nested data types by using the Properties collection of a QiType. QiTypes that define atomic types do not need Properties defined. 
 
-A QiType consists of one or more QiTypeProperties that can be a simple atomic type (such as an integer) 
-or can be a complex type, represented as another QiType. You can create a nested type by adding a QiType 
-as a property of another QiType; in this case, note that it is not necessary to first post the 
-nested QiType to Qi. In other words, the nested QiType is not required to exist in Qi as a 
-standalone type before it is posted as part of a nested type.
+A QiType that is used to define a QiStream must have a Key, a Property, or a combination of Properties that constitute an ordered, unique identity. The Key is ordered, so it functions as an index; it is also known as the Primary Index. While a timestamp (DateTime) is a very common type of Key, any ordered value is permitted. Other indexes (secondary indexes), are defined in the QiStream.
 
-A type is always referenced with its Id property. Using a QiType as a property permits the construction 
-of complex, nested data types. A QiType must have one or more properties that constitute an ordered 
-key to be used as an index. While a timestamp (DateTime) is a very common type of key, any ordered 
-value is permitted.
+You refer to a QiType by its identifier, or Id field. QiType identifiers must be unique within a Namespace.
 
-When a QiType is created it cannot be changed and can only be deleted if
-no streams are associated with it.
+QiTypes are immutable; after a QiType is created it cannot be changed, and it can only be deleted if no streams reference it.
 
-QiType management via the Qi Client Libraries is performed through the ``IQiMetadataService`` interface, which may be accessed via the ``QiService.GetMetadataService( )`` helper.
+QiType management using the .NET Qi Client Libraries is performed through the ``IQiMetadataService`` interface, which is accessed using the ``QiService.GetMetadataService()`` helper. 
 
-The following table shows the required and optional QiType properties:
+Only QiTypes that are used to define QiStreams need to be added to Qi. QiTypes that define Properties or the base type are contained within the parent  QiType.
+
+The .NET libraries provide QiTypeBuilder to help build QiTypes.
+
+The following table shows the required and optional QiType fields. Fields that are not included are reserved for internal Qi use.
+
 
 +---------------+-------------------------+----------------------------------------+
 | Property      | Type                    | Details                                |
