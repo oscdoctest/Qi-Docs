@@ -21,26 +21,29 @@ The .NET libraries provide QiTypeBuilder to help build QiTypes.
 The following table shows the required and optional QiType fields. Fields that are not included are reserved for internal Qi use.
 
 
-+---------------+-------------------------+-------------+-------------------------------------+
-| Property      | Type                    | Optionality | Details                             |
-+===============+=========================+=============+=====================================+
-| Id            | String                  | Required    | Identifier for referencing the type |
-+---------------+-------------------------+-------------+-------------------------------------+
-| Name          | String                  | Optional    | Friendly name                       |
-+---------------+-------------------------+-------------+-------------------------------------+
-| Description   | String                  | Optional    | Description text                    |
-+---------------+-------------------------+-------------+-------------------------------------+
-| QiTypeCode    | QiTypeCode              | Required    | Numeric code identifying the base   |
-|               |                         |             | QiType                              |
-+---------------+-------------------------+-------------+-------------------------------------+
-| BaseType      | QiType                  | Optional    | QiType the class derives from       |
-+---------------+-------------------------+-------------+-------------------------------------+
-| IsGenericType | Boolean                 | Optional    | Identifies the type as a generic    |
-|               |                         |             | (or Template in C++), containing    |
-|               |                         |             | one or more type argument.          |
-+---------------+-------------------------+-------------+-------------------------------------+
-| Properties    | IList<QiTypeProperty>   | Optional    | List of QiTypeProperty items        |
-+---------------+-------------------------+-------------+-------------------------------------+
++------------------+-------------------------+-------------+-------------------------------------+
+| Property         | Type                    | Optionality | Details                             |
++==================+=========================+=============+=====================================+
+| Id               | String                  | Required    | Identifier for referencing the type |
++------------------+-------------------------+-------------+-------------------------------------+
+| Name             | String                  | Optional    | Friendly name                       |
++------------------+-------------------------+-------------+-------------------------------------+
+| Description      | String                  | Optional    | Description text                    |
++------------------+-------------------------+-------------+-------------------------------------+
+| QiTypeCode       | QiTypeCode              | Required    | Numeric code identifying the base   |
+|                  |                         |             | QiType                              |
++------------------+-------------------------+-------------+-------------------------------------+
+| BaseType         | QiType                  | Optional    | QiType the class derives from       |
++------------------+-------------------------+-------------+-------------------------------------+
+| IsGenericType    | Boolean                 |             | Identifies the type as a generic    |
+|                  |                         |             | (or Template in C++), containing    |
+|                  |                         |             | one or more type argument.          |
++------------------+-------------------------+-------------+-------------------------------------+
+| GenericArguments | IList<QiType>           | Optional    | List of type arguments satisfying   |
+|                  |                         |             | the generic                         |
++------------------+-------------------------+-------------+-------------------------------------+
+| Properties       | IList<QiTypeProperty>   | Optional    | List of QiTypeProperty items        |
++------------------+-------------------------+-------------+-------------------------------------+
 
 
 **Rules for typeId**
@@ -55,23 +58,20 @@ The following table shows the required and optional QiType fields. Fields that a
 8. Cannot consist of only periods.
 
 
-Compound Indexes
+QiTypeCode
+----------
+
+The QiTypeCode is a numeric identifier used by Qi to identify QiTypes. A QiTypeCode exists for every supported type.
+
+Atomic types, such as strings and floats, are defined thoroughly by the QiTypeCode.  
+
+Types requiring additional definition, such as enums and objects, must have a more generic QiTypeCode, such as ByteEnum, Int32Enum, NullableInt32Enum, or Object and are defined using Properties. 
+
+
+Supported Types
 ----------------
 
-When defining a QiType, the index property you use to sequence the
-data must be defined in the type definition. Often, a single
-index such as DateTime is used, but for more complex scenarios Qi
-allows multiple indexes to be defined in a type. Multiple indexes are
-concatenated to form a compound index. The Qi REST API methods
-that use tuples were created to assist you to use compound
-indexes. A maximum of three keys is permitted in a particular
-compound index.
-
-Supported QiTypes
-----------------
-
-The following types are supported when
-creating a QiType:
+The following types are supported and defined by the QiTypeCode:
 
 ======================   =================   =======================
 Array                    Boolean             BooleanArray
@@ -99,4 +99,16 @@ UInt32Array              UInt32Enum          UInt64
 UInt64Array              UInt64Enum          Version
 VersionArray
 ======================   =================   =======================
+
+QiTypeProperty
+--------------
+
+The collection of Properties for a QiType are defined by a QiTypeProperty.
+
+The following table shows the required and optional QiTypeProperty fields. Fields that are not included are reserved for internal Qi use.
+
+
+
+
+
 
