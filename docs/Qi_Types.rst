@@ -185,6 +185,20 @@ QiTypeBuilder recognizes the ``System.ComponentModel.DataAnnotations.KeyAttribut
 
 The type is created with the following parameters. QiTypeBuilder automatically generates unique identifiers. Note that the following table contains only a partial list of parameters.
 
+--table--
+
+The QiTypeBuilder supports derived types as well.  Note that you need not add the base types to Qi prior to using QiTypeBuilder.
+
+Defining QiTypes when not using .NET
+------------------------------------
+
+QiTypes must be built manually when .NET QiTypeBuilder is unavailable. The following discussion refers to the types that are defined in the `Python <https://github.com/osisoft/Qi-Samples/tree/master/Basic/Python>`__ and `JavaScript <https://github.com/osisoft/Qi-Samples/tree/master/Basic/JavaScript>`__ samples. Samples in other languages can be found here: `Samples <https://github.com/osisoft/Qi-Samples/tree/master/Basic>`__.
+
+`Python <https://github.com/osisoft/Qi-Samples/tree/master/Basic/Python>`__ and `JavaScript <https://github.com/osisoft/Qi-Samples/tree/master/Basic/JavaScript>`__
+
+
+In the sample code, QiType, QiTypeProperty, and QiTypeCode are defined as in the code snippets shown here:
+
 
 
 
