@@ -136,6 +136,57 @@ IsKey is a Boolean value used to identify the QiType’s Key. A Key defined by m
 
 The Value field is used for properties that represent a value. An example of a property with a value is an enum’s named constant. When representing an enum in a QiType, the QiType’s Properies collection defines the enum’s constant list.  The QiTypeProperty’s Identifier represents the constant’s name and the QiTypeProperty’s Value represents the constant’s value.
 
+Indexes
+-------
+
+Indexes are used to speed up searching and to order results. A Key is a property or collection of properties that are unique. In Qi, the Key is also an index; it is ordered. The Key is often referred to as the Primary Index. All other Indexes are Secondaries.
+Indexes are discussed in greater detail here: `Indexes <https://qi-docs-rst.readthedocs.org/en/latest/Indexes.html>`__.
+
+Working with QiTypes
+--------------------
+
+**Using .Net**
+
+When working in .NET, use the QiTypeBuilder to create QiTypes. The QiTypeBuilder eliminates potential errors that can occur when working with QiTypes manually.
+
+There are several ways to work with the builder. The most convenient is to use the static methods, as shown here:
+
+::
+
+  public enum State
+  {
+      Ok,
+      Warning,
+      Aalrm
+  }
+
+  public class Simple
+  {
+      [Key]
+      public DateTime Time { get; set; }
+      public State State { get; set; }
+      public Double Value { get; set; }
+  }
+  QiType simpleType = QiTypeBuilder.CreateQiType<Simple>();
+  simpleType.Description = "Basic sample type";
+
+QiTypeBuilder recognizes the ``System.ComponentModel.DataAnnotations.KeyAttribute`` and its own ``OSIsoft.Qi.QiMemberAttribute``.  When using the QiMemberAttribute to specify the Primary Index, set the IsKey to true.
+
+::
+
+  public class Simple
+  {
+      [QiMember(IsKey = true)]
+      public DateTime Time { get; set; }
+      public State State { get; set; }
+      public Double Value { get; set; }
+  }
+
+
+The type is created with the following parameters. QiTypeBuilder automatically generates unique identifiers. Note that the following table contains only a partial list of parameters.
+
+
+
 
 
 
