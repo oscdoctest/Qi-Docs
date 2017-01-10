@@ -21,19 +21,27 @@ The .NET libraries provide QiTypeBuilder to help build QiTypes.
 The following table shows the required and optional QiType fields. Fields that are not included are reserved for internal Qi use.
 
 
-+---------------+-------------------------+----------------------------------------+
-| Property      | Type                    | Details                                |
-+===============+=========================+========================================+
-| Id            | String                  | Required Id for referencing the type   |
-+---------------+-------------------------+----------------------------------------+
-| Name          | String                  | Optional name                          |
-+---------------+-------------------------+----------------------------------------+
-| Description   | String                  | Optional description text              |
-+---------------+-------------------------+----------------------------------------+
-| QiTypeCode    | QiTypeCode              | Defines the type                       |
-+---------------+-------------------------+----------------------------------------+
-| Properties    | IList<QiTypeProperty>   | List of QiTypeProperty items           |
-+---------------+-------------------------+----------------------------------------+
++---------------+-------------------------+-------------+-------------------------------------+
+| Property      | Type                    | Optionality | Details                             |
++===============+=========================+=============+=====================================+
+| Id            | String                  | Required    | Identifier for referencing the type |
++---------------+-------------------------+-------------+-------------------------------------+
+| Name          | String                  | Optional    | Friendly name                       |
++---------------+-------------------------+-------------+-------------------------------------+
+| Description   | String                  | Optional    | Description text                    |
++---------------+-------------------------+-------------+-------------------------------------+
+| QiTypeCode    | QiTypeCode              | Required    | Numeric code identifying the base   |
+|               |                         |             | QiType                              |
++---------------+-------------------------+-------------+-------------------------------------+
+| BaseType      | QiType                  | Optional    | QiType the class derives from       |
++---------------+-------------------------+-------------+-------------------------------------+
+| IsGenericType | Boolean                 | Optional    | Identifies the type as a generic    |
+|               |                         |             | (or Template in C++), containing    |
+|               |                         |             | one or more type argument.          |
++---------------+-------------------------+-------------+-------------------------------------+
+| Properties    | IList<QiTypeProperty>   | Optional    | List of QiTypeProperty items        |
++---------------+-------------------------+-------------+-------------------------------------+
+
 
 **Rules for typeId**
 
