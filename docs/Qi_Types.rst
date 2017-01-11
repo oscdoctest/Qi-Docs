@@ -8,7 +8,7 @@ QiTypes can define simple atomic types, such as integers, floats or strings, or 
 
 A QiType that is used to define a QiStream must have a Key, a Property, or a combination of Properties that constitute an ordered, unique identity. The Key is ordered, so it functions as an index; it is also known as the Primary Index. While a timestamp (DateTime) is a very common type of Key, any ordered value is permitted. Other indexes (secondary indexes), are defined in the QiStream.
 
-You refer to a QiType by its identifier, or Id field. QiType identifiers must be unique within a Namespace.
+You refer to a QiType by its identifier or Id field. QiType identifiers must be unique within a Namespace.
 
 QiTypes are immutable; after a QiType is created it cannot be changed, and it can only be deleted if no streams reference it.
 
@@ -63,9 +63,9 @@ QiTypeCode
 
 The QiTypeCode is a numeric identifier used by Qi to identify QiTypes. A QiTypeCode exists for every supported type.
 
-Atomic types, such as strings and floats, are defined thoroughly by the QiTypeCode.  
+Atomic types, such as strings and floats, are defined entirely by the QiTypeCode.  
 
-Types requiring additional definition, such as enums and objects, must have a more generic QiTypeCode, such as ByteEnum, Int32Enum, NullableInt32Enum, or Object and are defined using Properties. 
+Types requiring additional definition, such as enums and objects, must have a more generic QiTypeCode, such as ByteEnum, Int32Enum, NullableInt32Enum, or Object, and are defined using Properties. 
 
 
 Supported Types
@@ -103,7 +103,7 @@ VersionArray
 QiTypeProperty
 --------------
 
-The collection of Properties for a QiType are defined by a QiTypeProperty.
+The collection of Properties for a QiType are defined by a ``QiTypeProperty``.
 
 The following table shows the required and optional QiTypeProperty fields. Fields that are not included are reserved for internal Qi use.
 
@@ -132,14 +132,15 @@ The following table shows the required and optional QiTypeProperty fields. Field
 
 The QiTypeProperty’s identifier follows the same rules as the QiType.Id.
 
-IsKey is a Boolean value used to identify the QiType’s Key. A Key defined by more than one Property is a compound key. In a compound key, each Property that is included in the Key is specified as IsKey. The Order field is used to define the precedence of fields applied to the Index.
+IsKey is a Boolean value used to identify the QiType’s Key. A Key that is defined by more than one Property is called a *compound key*. In a compound key, each Property that is included in the Key is specified as IsKey. The Order field is used to define the precedence of fields applied to the Index.
 
-The Value field is used for properties that represent a value. An example of a property with a value is an enum’s named constant. When representing an enum in a QiType, the QiType’s Properies collection defines the enum’s constant list.  The QiTypeProperty’s Identifier represents the constant’s name and the QiTypeProperty’s Value represents the constant’s value.
+The Value field is used for properties that represent a value. An example of a property with a value is an enum’s named constant. When representing an enum in a QiType, the QiType’s Properies collection defines the enum’s constant list. The QiTypeProperty’s Identifier represents the constant’s name and the QiTypeProperty’s Value represents the constant’s value.
 
 Indexes
 -------
 
-Indexes are used to speed up searching and to order results. A Key is a property or collection of properties that are unique. In Qi, the Key is also an index; it is ordered. The Key is often referred to as the Primary Index. All other Indexes are Secondaries.
+Indexes are used to speed up searching and to order results. A Key is a property or collection of properties that are unique. In Qi, the Key is also an index; it is ordered. The Key is often referred to as the Primary Index. All other Indexes are secondary indexes, or Secondaries.
+
 Indexes are discussed in greater detail here: `Indexes <https://qi-docs-rst.readthedocs.org/en/latest/Indexes.html>`__.
 
 Working with QiTypes
@@ -294,22 +295,14 @@ The type is created with the following parameters. QiTypeBuilder automatically g
 +------------------+-------------------------+-------------+--------------------------------------+
 
 
-
-
-
-
-
-
-
-
-The QiTypeBuilder supports derived types as well.  Note that you need not add the base types to Qi prior to using QiTypeBuilder.
+The QiTypeBuilder also supports derived types. Note that you need not add the base types to Qi before using QiTypeBuilder.
 
 Defining QiTypes when not using .NET
 ------------------------------------
 
-QiTypes must be built manually when .NET QiTypeBuilder is unavailable. The following discussion refers to the types that are defined in the `Python <https://github.com/osisoft/Qi-Samples/tree/master/Basic/Python>`__ and `JavaScript <https://github.com/osisoft/Qi-Samples/tree/master/Basic/JavaScript>`__ samples. Samples in other languages can be found here: `Samples <https://github.com/osisoft/Qi-Samples/tree/master/Basic>`__.
+QiTypes must be built manually when .NET QiTypeBuilder is unavailable. The following discussion refers to the types that are defined in  `Python <https://github.com/osisoft/Qi-Samples/tree/master/Basic/Python>`__ and `JavaScript <https://github.com/osisoft/Qi-Samples/tree/master/Basic/JavaScript>`__ samples. Samples in other languages can be found here: `Samples <https://github.com/osisoft/Qi-Samples/tree/master/Basic>`__.
 
-In the sample code, QiType, QiTypeProperty, and QiTypeCode are defined as in the code snippets shown here:
+In the sample code, ``QiType``, ``QiTypeProperty``, and ``QiTypeCode`` are defined as in the code snippets shown here:
 
 **Python**
 
