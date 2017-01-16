@@ -5,8 +5,7 @@ A QiStream is the fundamental unit of storage in Qi. A stream
 represents an ordered series of events or observations for a particular
 item of interest.
 
-QiStream management using the Qi Client Libraries is performed through the ``IQiMetadataService`` interface, which may be accessed via the ``QiService.GetMetadataService( )`` helper.
-
+QiStream management using the .NET Qi Client Libraries is performed through the ``IQiMetadataService`` interface, which may be accessed via the ``QiService.GetMetadataService()`` helper.
 
 The following table shows the required and optional QiStream fields. Fields not listed are reserved
 for internal Qi use. 
@@ -20,9 +19,9 @@ for internal Qi use.
 | TypeId        | String                       | Required    | The QiType identifier of the type to be      |
 |               |                              |             | used for this stream.                        |
 +---------------+------------------------------+-------------+----------------------------------------------+
-| Name          | String                       | Optional    | The name of the stream.                      |
+| Name          | String                       | Optional    | Friendly name                                |
 +---------------+------------------------------+-------------+----------------------------------------------+
-| Description   | String                       | Optional    | Text that describes the stream.              |
+| Description   | String                       | Optional    | Description text                             |
 +---------------+------------------------------+-------------+----------------------------------------------+
 | BehaviorId    | String                       | Optional    | The identifier of the QiStreamBehavior for   |
 |               |                              |             | this stream.                                 |
