@@ -4,9 +4,9 @@ QiType information
 
 This section contains information about how to configure and use QiTypes. To use Qi, you define QiTypes that describe the kinds of data you want to store in QiStreams. QiTypes are the model that define QiStreams.
 
-QiTypes can define simple atomic types, such as integers, floats or strings, or they can define complex types by grouping properties of other QiTypes. You can construct complex, nested data types by using the Properties collection of a QiType. QiTypes that define atomic types do not need Properties defined. 
+QiTypes can define simple atomic types, such as integers, floats or strings, or they can define complex types by grouping other QiTypes. You can construct complex, nested data types by using the Properties collection of a QiType. QiTypes that define atomic types do not need Properties defined. 
 
-A QiType that is used to define a QiStream must have a Key, a Property, or a combination of Properties that constitute an ordered, unique identity. The Key is ordered, so it functions as an index; it is also known as the Primary Index. While a timestamp (DateTime) is a very common type of Key, any ordered value is permitted. Other indexes (secondary indexes), are defined in the QiStream.
+A QiType that is used to define a QiStream must have a Key. A Key is a Property, or a combination of Properties that constitute an ordered, unique identity. The Key is ordered, so it functions as an index; it is also known as the Primary Index. While a timestamp (DateTime) is a very common type of Key, any ordered value is permitted. Other indexes (secondary indexes), are defined in the QiStream.
 
 You refer to a QiType by its identifier or Id field. QiType identifiers must be unique within a Namespace.
 
@@ -103,7 +103,7 @@ VersionArray
 QiTypeProperty
 --------------
 
-The collection of Properties for a QiType are defined by a ``QiTypeProperty``.
+The collection of Properties for a QiType are each defined by a ``QiTypeProperty``.
 
 The following table shows the required and optional QiTypeProperty fields. Fields that are not included are reserved for internal Qi use.
 
@@ -461,18 +461,18 @@ Suppose you had the following class defined (both Python and JavaScript classes 
 
 ::
 
-var State =
-  {
-      Ok: 0,
-      Warning: 1,
-      Aalrm: 2,
-  }
+  var State =
+    {
+        Ok: 0,
+        Warning: 1,
+        Aalrm: 2,
+    }
 
-  var Simple = function () {
-      this.Time = null;
-      this.State = null;
-      this.Value = null;
-  }
+    var Simple = function () {
+        this.Time = null;
+        this.State = null;
+        this.Value = null;
+    }
  
 You can define the QiType for the previous classes as follows:
 
@@ -597,6 +597,8 @@ Now suppose that you have the following derived class:
       def Observation(self, observation):
           self.__observation = observation
 
+
+You would extend the QiType as follows:
 
 **Python**
 
