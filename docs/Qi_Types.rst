@@ -141,7 +141,7 @@ Indexes
 
 Indexes are used to speed up searching and to order results. A Key is a property or collection of properties that are unique. In Qi, the Key is also an index; it is ordered. The Key is often referred to as the Primary Index. All other Indexes are secondary indexes, or Secondaries.
 
-Indexes are discussed in greater detail here: `Indexes <https://qi-docs.readthedocs.org/en/latest/Indexes.html>`__.
+Indexes are discussed in greater detail here: `Indexes <https://qi-docs.readthedocs.org/en/latest/indexes.html>`__.
 
 
 Working with QiTypes
