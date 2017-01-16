@@ -68,7 +68,7 @@ To read data that is located between two indexes, ordered by the Key, define bot
     "2010-01-01T08:00:00.000Z","2010-02-01T08:00:00.000Z").GetAwaiter().GetResult();
 
 
-More information about querying data can be found in the Reading Data section.
+More information about querying data can be found in `Reading Data <https://qi-docs.readthedocs.org/en/latest/Reading_Data.html>`__.
 
 
 **Secondary Indexes**
