@@ -1,13 +1,15 @@
 Indexes
 =======
 
-Indexes are used to speed up search requests and to order the results of searches. Indexes rely on a key, which is a property or collection of unique properties. In Qi, a key of a QiType is also an index. The key is often referred to as the “primary index.” while all other Indexes are referred to as secondary indexes or secondaries.
+Indexes are used to speed up search and to order the results of searches. A key is used to uniquely identify a record within a collection of records. Keys are unique within the collection.
 
-A QiType that is used to define a QiStream must also specify its key. When inserting data into a QiStream, every key value must be unique. Qi will not store more than a single event for a given key; an event with a particular key may be deleted or updated, but two events with the same key cannot exist.
+In Qi, the key of a QiType is also an index. The key is often referred to as the “primary index,” while all other indexes are referred to as secondary indexes or secondaries.
+
+A QiType that is used to define a QiStream must specify its key. When inserting data into a QiStream, every key value must be unique. Qi will not store more than a single event for a given key; an event with a particular key may be deleted or updated, but two events with the same key cannot exist.
 
 In .NET, the property of a type is identified by using either an OSIsoft.Qi.QiMemberAttribute and setting its IsKey property to true or by using the System.ComponentModel.DataAnnotations.KeyAttribute. In the QiType, the Property or Properties representing the key have their QiTypeProperty.IsKey field set to true.
 
-Secondary indexes are defined on QiStreams and are applied to a single property.  You can define many Secondary indexes. In addition, secondary indexes need not be unique.  
+Secondary indexes are defined on QiStreams and are applied to a single property. You can define many Secondary indexes. In addition, secondary indexe values need not be unique.  
 
 
 Compound Indexes
@@ -15,7 +17,9 @@ Compound Indexes
 
 Often, a single property (such as a DateTime), is adequate for defining an Index; however, for more complex scenarios Qi allows multiple properties. Indexes defined by multiple properties are called “compound indexes”. 
 
-When defining a Compound Index in .NET, you should apply the OSIsoft.Qi.QiMemberAttribute on each of the type’s properties that are combined to define the Key. Set the IsKey property to true and give the Order field a value. The Order field defines the precedence of the property when sorting. A property with an order of 0 has highest precedence. When defining compound indexes outside of .NET, specify the IsKey and Order fields on the QiTypeProperty or Properties.
+When defining a Compound Index in .NET, you should apply the OSIsoft.Qi.QiMemberAttribute on each of the type’s properties that are combined to define the index. Set the IsKey property to true and give the Order field a value. The Order field defines the precedence of the property when sorting. A property with an order of 0 has highest precedence. When defining compound indexes outside of .NET, specify the IsKey and Order fields on the QiTypeProperty or Properties.
+
+Only the primary index or key supports compound indexes.
 
 The Qi REST API methods that use tuples were created to assist you to use compound indexes.
 
@@ -408,8 +412,7 @@ Note that the time.IsKey field is set to true.
 
 To read data using the key, you define a start index and an end index. For DateTime, use ISO 8601 representation of dates and times. To query for a window of values between January 1, 2010 and February 1, 2010, you would define indexes as "2010-01-01T08:00:00.000Z" and "2010-02-01T08:00:00.000Z", respectively.
 
-Additional information can be found in the Reading Data section.
-
+Additional information can be found in the `Reading Data <https://qi-docs.readthedocs.org/en/latest/Reading_Data.html>`__.
 
 **Secondary Indexes**
 
