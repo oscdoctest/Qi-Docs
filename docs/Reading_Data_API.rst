@@ -924,9 +924,3 @@ table:
 |ContinuousTrailing     |Event is calculated using the index and next event values                 |
 +-----------------------+--------------------------------------------------------------------------+
 
-
-
-
-
-
-
