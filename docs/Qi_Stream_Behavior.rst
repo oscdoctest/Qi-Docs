@@ -6,7 +6,7 @@ Note that, if you do not assign a specific Stream Behavior object to a stream, t
 
 QiStreamBehavior management via the Qi Client Libraries is performed through the ``IQiMetadataService`` interface, which may be accessed via the ``QiService.GetMetadataService( )`` helper.
 
-The Stream Behavior object consists of the following properties:
+The StreamBehavior object consists of the following properties:
 
 ==================        ==================
 Id                        A string that is used to identify the behavior
