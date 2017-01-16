@@ -290,4 +290,3 @@ For the following examples, assume that the Qi Type event includes a field named
 
 
 
-
