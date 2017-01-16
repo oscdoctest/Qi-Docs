@@ -173,4 +173,3 @@ becomes this:
 ``var event1 = _QiDataService.GetDistinctValueAsync<TypeClass>(streamId, startIndexString).GetResult();``
 
 
-
