@@ -393,6 +393,129 @@ Subscription information is contained in an object called Subscription which has
 | SubscriptionType     | string                  | An enumeration where Standared=0, Qi=1.|
 +----------------------+-------------------------+----------------------------------------+
 
+***************
+
+``GET api/tenants/{tenantId}/subscriptions/count``
+-------------------------------------------------
+
+Get the number of subscriptions for a tenant.  
+
+**Parameters**
+``tenantId``
+  Unique ID for the tenant. 
+
+**Returns**
+  An integer count of subscriptions. 
+
+*****************
+
+``GET api/tenants/{tenantId}/subscriptions``
+
+Get all subscriptions for a tenant. 
+
+**Parameters**
+
+``tenantId``
+  Unique ID for the tenant. 
+
+**Returns**
+  An array of Subscription objects. 
+
+*********************
+
+``GET api/tenants/{tenantId}/subscriptions/{subscriptionId}``
+
+Get a specific subscription. 
+
+**Parameters**
+
+``tenantId``
+  Unique ID for the tenant. 
+``subscriptionId``
+  Unique ID for the subscription. 
+
+**Returns**
+  A Subscription object that was found. 
+
+*************************
+
+``GET api/tenants/{tenantId}/subscriptions/{subscriptionId}/{secondsUntilExpiration}``
+
+Get a security token for a subscription. 
+
+**Parameters**
+
+``tenantId``
+  Unique ID for the tenant. 
+``subscriptionId``
+  Unique ID for the subscription. 
+``secondsUntilExpiration``
+  Integer number of seconds until the token expires. 
+
+**Returns**
+  A Subscription object that was found. 
+
+*****************
+
+``POST api/tenants/{tenantId}/subscription``
+
+Create or update a subscription. Only the name and description may be updated. 
+
+**Parameters**
+
+``tenantId``
+  Unique ID for the tenant. 
+
+**Body**
+  A Subscription object. 
+
+**Returns**
+  A Subscription object that was created or updated. 
+
+*******************
+
+``POST api/tenants/{tenantId}/subscription/{ qiNamespace }``
+
+Create or update a subscription with a Qi destination. Only the name and description may be updated. 
+
+**Parameters**
+
+``tenantId``
+  Unique ID for the tenant. 
+``qiNamespace``
+  The namespace to be used for the Qi subscription. 
+
+**Body**
+  A Subscription object. 
+
+**Returns**
+  A Subscription object that was created or updated.  
+
+*********************
+
+``DELETE api/tenants/{tenantId}/subscriptions/{subscriptionId}``
+
+Delete a Subscription. 
+
+**Parameters**
+
+``tenantId``
+  Unique ID for the tenant. 
+``subscriptionId``
+  Unique ID for the subscription. 
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
