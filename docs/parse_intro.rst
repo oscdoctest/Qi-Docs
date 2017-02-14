@@ -47,3 +47,48 @@ short and to have your application renew the token before it expires. For exampl
 specify that the token expires after 24 hours and have your application renew the token every 
 12 hours. By doing this, you limit the amount of time the token is valid in the event that 
 it is compromised. 
+
+Device API calls 
+----------------
+
+The API calls in this section are used to create and manipulate devices and generate security tokens.  
+
+
+
++-----------------+-------------------------+----------------------------------------+
+| Property        | Type                    | Details                                |
++=================+=========================+========================================+
+| TenantId        | string                  | Identifies the owner of the device     |
++-----------------+-------------------------+----------------------------------------+
+| DeviceId        | string                  | Unique ID generated bu the API during  |
+|                 |                         | creation                               |
++-----------------+-------------------------+----------------------------------------+
+| DeviceName      | string                  | A friendly name for the device         |
++-----------------+-------------------------+----------------------------------------+
+| Revoked         | boolean                 | A Device’s revocation will prevent any |
+|                 |                         | client associated with that Device’s   |
+|                 |                         | token from sending data.               |
++-----------------+-------------------------+----------------------------------------+
+| ProducerToken   | string                  | A set of claims along with a           |
+|                 |                         | cryptographic signature that verifies  |
+|                 |                         | that the token is legitimate and has   |
+|                 |                         | not been tampered with. It is used     |
+|                 |                         | when building OMF messages that are    |
+|                 |                         | sent to the OCS.                       |
++-----------------+-------------------------+----------------------------------------+
+| TokenExpiration | string                  | The time that the ProducerToken will   |
+|                 |                         | expire. It is in ISO 8601 format.      |
++-----------------+-------------------------+----------------------------------------+
+
+
+
+
+
+
+
+
+
+
+
+
+
