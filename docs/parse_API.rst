@@ -146,7 +146,108 @@ Publication information is contained in an object called Publication and has the
 |                 |                         | Publication.                           |
 +-----------------+-------------------------+----------------------------------------+
 
+Information about a publication and its mapped devices is contained in an object 
+called ``MappedPublication`` which extends Publication: 
 
++-----------------+-------------------------+----------------------------------------+
+| Property        | Type                    | Details                                |
++=================+=========================+========================================+
+| DeviceId        | string                  | Unique Id for the device               |
++-----------------+-------------------------+----------------------------------------+
+| PublicationId   | string                  | Unique ID for the Publication          |
++-----------------+-------------------------+----------------------------------------+
 
+********************************
 
+``GET api/tenants/{tenantId}/publications/count``
+------------------------------------------------
+
+Get the number of publications for a tenant. 
+
+**Parameters**
+
+``tenantId``
+  Unique ID for the tenant. 
+
+**Returns**
+  An integer. 
+
+**************************
+
+``GET api/tenants/{tenantId}/publications/{publicationId}``
+
+Get a specific publication. 
+
+**Parameters**
+``tenantId``
+  Unique ID for the tenant. 
+``publicationId``
+  Unique ID for the device. 
+
+**Returns**
+  A Publication object. 
+
+**************************
+
+``GET api/tenants/{tenantId}/publications``
+-------------------------------------------
+
+Get all publications for a tenant. 
+
+**Parameters**
+``tenantId``
+  Unique ID for the tenant. 
+
+**Returns**
+  An array of Publication objects. 
+
+************************
+
+``GET api/tenants/{tenantId}/devicepublicationmappings/device/{deviceId}``
+--------------------------------------------------------------------------
+
+Gets a list of publications that a device is currently mapped to. 
+
+**Parameters**
+
+``tenantId``
+  Unique ID for the tenant. 
+``deviceId``
+  Unique ID for the device. 
+
+**Returns**
+  An array of Publication objects. 
+
+****************************
+
+``GET api/tenants/{tenantId}/devicepublicationmappings/publication/{publicationId}``
+
+Gets a list of devices that are currently mapped to a publication 
+
+**Parameters**
+``tenantId``
+  Unique ID for the tenant. 
+``publicationId``
+  Unique ID for the device. 
+
+**Returns**
+  An array of Device objects. 
+
+***************************
+
+``POST api/tenants/{tenantId}/publication``
+-----------------------------------------
+
+Creates or updates a publication. Only the publication name and description can be updated. 
+
+**Parameters**
+
+``tenantId``
+  Unique ID for the tenant. 
+
+**Body**
+  A MappedPublication object. 
+
+**Returns**
+  A MappedPublication object. 
 
