@@ -166,7 +166,7 @@ Qi includes several different read methods and overloads that can be used to
 retrieve data from streams. These methods can be used in a large 
 number of circumstances.
 
-Several things that all of the read methods share is that each acts
+One common characteristic shared by the read methods is that they each act
 against a specified stream and each requires one or more indexes upon
 which to act.
 
