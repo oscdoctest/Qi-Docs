@@ -195,7 +195,7 @@ The following examples assume that the Qi Type event includes a field named
 +---------------------------------------------+-----------------------------------------------------------------+
 |Example                                      |Result                                                           |
 +=============================================+=================================================================+
-|``endswith(sValue, 'XYZ’)``                  |True if ``sValue`` ends with the characters ‘XYZ’                |
+|``endswith(sValue, 'XYZ')``                  |True if ``sValue`` ends with the characters ‘XYZ’                |
 +---------------------------------------------+-----------------------------------------------------------------+
 |``startswith(sValue, 'Val'``                 |True if ``sValue`` starts with the characters ‘Val’              |
 +---------------------------------------------+-----------------------------------------------------------------+
@@ -211,7 +211,7 @@ The following examples assume that the Qi Type event includes a field named
 +---------------------------------------------+-----------------------------------------------------------------+
 |``toupper(sValue) eq 'ABC'``                 |Change ``sValue`` to uppercase and compare to ‘ABC’              |
 +---------------------------------------------+-----------------------------------------------------------------+
-|``trim(sValue) eq ‘vall22’``                 |Trim whitespace from front and end of ``sValue`` and compare to  |
+|``trim(sValue) eq 'vall22'``                 |Trim whitespace from front and end of ``sValue`` and compare to  |
 |                                             |‘val22’                                                          |
 +---------------------------------------------+-----------------------------------------------------------------+
 |``concat(sValue,'xyz') eq 'dataValue_7xyz'`` |Add characters to ``sValue`` and compare to ‘dataValue_7xyz’     |
