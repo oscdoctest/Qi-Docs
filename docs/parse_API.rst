@@ -1,48 +1,29 @@
-QiStream API calls
+Parse API calls
 ==================
 
 
-The API calls in this section are all used to create and manipulate QiStreams. 
-See `QiStreams <https://qi-docs-rst.readthedocs.org/en/latest/Qi_Streams.html>`__ for a list of supported QiTypes, a discussion of compound indexes, and general information about QiTypes. 
+The API calls in this section are all used to ...
+See `Parse introduction <https://qi-docs-rst.readthedocs.org/en/latest/parse_intro.html>`__ for an introduction to Parse.
 
 QiStream management via the Qi Client Libraries is performed through the ``IQiMetadataService`` 
 interface, which you access using the ``QiService.GetMetadataService( )`` helper.
 
 ***********************
 
-``GetStreamAsync()``
---------------------
+``GET api/tenants/{tenantId}/devices/count``
+--------------------------------------------
 
-Returns a QiStream object from the specified namespace that matches the specified namespace and streamId.
+Gets the number of devices for a tenant.  
 
-**Syntax**
-
-
-::
-
-    Task<QiStream> GetStreamAsync (string streamId);
-
-*Http*
-
-::
-
-    GET Qi/{tenantId}/{namespaceId}/Streams/{streamId}
 
 **Parameters**
 
-``string tenantId``
-  The tenant identifier for the request
-``string namespaceId``
-  The namespace identifier for the request
-``string streamId``
-  The Id of the stream to retrieve
+``tenantId``
+  A unique Id for the Tenant
 
 
 **Returns**
-  A QiStream object for the specified streamId and namespace
-
-Security
-  Allowed by administrator and user accounts
-
+  Integer count of the number of devices found. 
+ 
 
 ***********************
