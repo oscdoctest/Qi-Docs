@@ -29,6 +29,7 @@ easily obtain needed information.
    Writing_Data_API
    Reading_Data
    Reading_Data_API
+   Parse_API
    Searching
    Filter Expressions
    samples
