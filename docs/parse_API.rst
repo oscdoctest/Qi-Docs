@@ -2,8 +2,7 @@ Parse API calls
 ==================
 
 
-The API calls in this section are all used to ...
-See `Parse introduction <https://qi-docs-rst.readthedocs.org/en/latest/parse_intro.html>`__ for an introduction to Parse.
+The API calls in this section are all used to manage devices, subscriptions, publications, and security for ingestion of OSIsoft Message Format (OMF) messages into OSIsoft Cloud Services (OCS). See `Introduction to Parse <https://qi-docs-rst.readthedocs.org/en/latest/parse_intro.html>`__ for more information.
 
 
 ***********************
@@ -11,7 +10,7 @@ See `Parse introduction <https://qi-docs-rst.readthedocs.org/en/latest/parse_int
 ``GET api/tenants/{tenantId}/devices/count``
 --------------------------------------------
 
-Returns the number of devices for a tenant.  
+Returns the number of devices assigned for a specified tenant.  
 
 
 **Parameters**
@@ -21,7 +20,8 @@ Returns the number of devices for a tenant. 
 
 
 **Returns**
-  Integer count of the number of devices found. 
+
+Integer count of the number of devices found. 
  
 ***********************
 
@@ -70,7 +70,8 @@ Parameters:
   Unique ID for the tenant. 
 
 **Body**
-  A Device object.  
+
+A Device object.  
 
 **Returns**
 
@@ -92,7 +93,8 @@ Creates or updates multiple devices. The revocation status of devices may be upd
   An array of Device objects. 
 
 **Returns**
-  An array of Device objects. 
+
+An array of Device objects. 
 
 ************************************
 
@@ -116,9 +118,13 @@ Publications
 Publication information 
 -----------------------
 
-A Publication is used to aggregate data received from devices and make it available for consumption via a Subscription.  A publication must contain at least one device. Devices may be added to or removed from an existing publication. A given device may also belong to multiple publications. 
+A Publication is used to aggregate data received from devices and make it available for consumption 
+via a Subscription. A publication must contain at least one device. Devices may be added to or 
+removed from an existing publication. A given device may also belong to multiple publications. 
 
-When a publication is created, data sent from its assigned devices is routed to a special queue where it can be consumed by a subscription. This queue provides a buffer of up to 1 day for subscriptions which are temporarily unable to receive data. 
+When a publication is created, data sent from its assigned devices is routed to a special queue 
+where it can be consumed by a subscription. This queue provides a buffer of up to one day for 
+subscriptions which are temporarily unable to receive data. 
 
 Publication API calls 
 ---------------------
@@ -128,7 +134,7 @@ The API calls in this section are used to create and manipulate publications.
 Data Models 
 -----------
 
-Publication information is contained in an object called Publication and has the following format: 
+Publication information is contained in an object called ``Publication`` and has the following format: 
 
 
 +-----------------+-------------------------+----------------------------------------+
@@ -147,7 +153,7 @@ Publication information is contained in an object called Publication and has the
 +-----------------+-------------------------+----------------------------------------+
 
 Information about a publication and its mapped devices is contained in an object 
-called ``MappedPublication`` which extends Publication: 
+called ``MappedPublication`` which extends ``Publication``: 
 
 +-----------------+-------------------------+----------------------------------------+
 | Property        | Type                    | Details                                |
@@ -170,7 +176,8 @@ Get the number of publications for a tenant.
   Unique ID for the tenant. 
 
 **Returns**
-  An integer. 
+
+An integer. 
 
 **************************
 
@@ -179,13 +186,15 @@ Get the number of publications for a tenant.
 Get a specific publication. 
 
 **Parameters**
+
 ``tenantId``
   Unique ID for the tenant. 
 ``publicationId``
   Unique ID for the device. 
 
 **Returns**
-  A Publication object. 
+
+A Publication object. 
 
 **************************
 
@@ -195,11 +204,13 @@ Get a specific publication.
 Get all publications for a tenant. 
 
 **Parameters**
+
 ``tenantId``
   Unique ID for the tenant. 
 
 **Returns**
-  An array of Publication objects. 
+
+An array of Publication objects. 
 
 ************************
 
@@ -216,7 +227,8 @@ Gets a list of publications that a device is currently mapped to.
   Unique ID for the device. 
 
 **Returns**
-  An array of Publication objects. 
+
+An array of Publication objects. 
 
 ****************************
 
@@ -225,13 +237,15 @@ Gets a list of publications that a device is currently mapped to.
 Gets a list of devices that are currently mapped to a publication 
 
 **Parameters**
+
 ``tenantId``
   Unique ID for the tenant. 
 ``publicationId``
   Unique ID for the device. 
 
 **Returns**
-  An array of Device objects. 
+
+An array of Device objects. 
 
 ***************************
 
@@ -246,10 +260,12 @@ Creates or updates a publication. Only the publication name and description can 
   Unique ID for the tenant. 
 
 **Body**
-  A MappedPublication object. 
+
+A MappedPublication object. 
 
 **Returns**
-  A MappedPublication object. 
+
+A MappedPublication object. 
 
 
 ***********************
@@ -264,10 +280,12 @@ Creates or updates multiple publication. Only the publication name and descripti
   Unique ID for the tenant. 
 
 **Body**
-  An array of MappedPublication objects. 
+
+An array of MappedPublication objects. 
 
 **Returns**
-  An array of MappedPublication objects. 
+
+An array of MappedPublication objects. 
 
 **********************
 
@@ -281,10 +299,12 @@ Creates a mapping between a device and publication.
   Unique ID for the tenant. 
 
 **Body**
-  A MappedDevice object. 
+
+A MappedDevice object. 
 
 **Returns**
-  A MappedDevice object. 
+
+A MappedDevice object. 
 
 **********************
 
@@ -298,10 +318,12 @@ Creates multiple mappings between devices and publications
   Unique ID for the tenant. 
 
 **Body**
-  An array of MappedDevice objects. 
+
+An array of MappedDevice objects. 
 
 **Returns** 
-  An array of MappedDevice objects. 
+
+An array of MappedDevice objects. 
 
 ************************
 
@@ -317,7 +339,8 @@ Delete mappings between a publication and multiple devices.
   Unique ID for the publication. 
 
 **Body**
-  A string array of Device IDs to remove from the Publication. 
+
+A string array of Device IDs to remove from the Publication. 
 
 
 **************************
@@ -401,11 +424,13 @@ Subscription information is contained in an object called Subscription which has
 Get the number of subscriptions for a tenant.  
 
 **Parameters**
+
 ``tenantId``
   Unique ID for the tenant. 
 
 **Returns**
-  An integer count of subscriptions. 
+
+An integer count of subscriptions. 
 
 *****************
 
@@ -419,7 +444,8 @@ Get all subscriptions for a tenant.
   Unique ID for the tenant. 
 
 **Returns**
-  An array of Subscription objects. 
+
+An array of Subscription objects. 
 
 *********************
 
@@ -435,7 +461,8 @@ Get a specific subscription.
   Unique ID for the subscription. 
 
 **Returns**
-  A Subscription object that was found. 
+
+A Subscription object that was found. 
 
 *************************
 
@@ -453,7 +480,8 @@ Get a security token for a subscription.
   Integer number of seconds until the token expires. 
 
 **Returns**
-  A Subscription object that was found. 
+
+A Subscription object that was found. 
 
 *****************
 
@@ -467,10 +495,12 @@ Create or update a subscription. Only the name and description may be updated.
   Unique ID for the tenant. 
 
 **Body**
-  A Subscription object. 
+
+A Subscription object. 
 
 **Returns**
-  A Subscription object that was created or updated. 
+
+A Subscription object that was created or updated. 
 
 *******************
 
@@ -486,10 +516,12 @@ Create or update a subscription with a Qi destination. Only the name and descrip
   The namespace to be used for the Qi subscription. 
 
 **Body**
-  A Subscription object. 
+
+A Subscription object. 
 
 **Returns**
-  A Subscription object that was created or updated.  
+
+A Subscription object that was created or updated.  
 
 *********************
 
@@ -503,17 +535,6 @@ Delete a Subscription.
   Unique ID for the tenant. 
 ``subscriptionId``
   Unique ID for the subscription. 
-
-
-
-
-
-
-
-
-
-
-
 
 
 
