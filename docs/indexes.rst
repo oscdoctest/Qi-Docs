@@ -36,7 +36,6 @@ Simple Indexes
 
 When working in .NET, use the QiTypeBuilder together with either the OSIsoft.Qi.QiMemberAttribute or the System.ComponentModel.DataAnnotations.KeyAttribute, to identify the Property that defines the simple Key. Using QiTypeBuilder eliminates potential errors that might occur when working with QiTypes manually.
 
-
 ::
 
   public enum State
@@ -332,7 +331,7 @@ class:
 
 *Python*
 
-::
+.. code-block:: python
 
   class State(Enum):
     Ok = 0
@@ -360,7 +359,7 @@ class:
 
 *JavaScript*
 
-::
+.. code-block:: javascript
 
   var State =
   {
@@ -381,7 +380,7 @@ follows:
 
 *Python*
 
-::
+.. code-block:: python
 
   # Time is the primary key
   time = QiTypeProperty()
@@ -396,7 +395,7 @@ follows:
 
 *JavaScript*
 
-::
+.. code-block:: javascript
 
   // Time is the primary key
   var timeProperty = new QiObjects.QiTypeProperty({
@@ -423,7 +422,7 @@ will use the QiType defined as follows
 
 *Python*
 
-::
+.. code-block:: python
 
   # Create the properties
 
@@ -477,7 +476,7 @@ will use the QiType defined as follows
 
 *JavaScript*
 
-::
+.. code-block:: javascript
 
   // Time is the primary key
   var timeProperty = new QiObjects.QiTypeProperty({
@@ -536,7 +535,7 @@ Creating the QiStream with the Measurement as a Secondary Index is shown in the 
 
 *Python*
 
-::
+.. code-block:: python
 
   measurementIndex = QiStreamIndex()
   measurementIndex.QiTypePropertyId = measurement.Id
@@ -550,7 +549,7 @@ Creating the QiStream with the Measurement as a Secondary Index is shown in the 
 
 *JavaScript*
 
-::
+.. code-block:: javascript
 
   var measurementIndex = new QiObjects.QiStreamIndex({
     "QiTypePropertyId": valueProperty.Id
@@ -572,7 +571,7 @@ Consider the following Python and JavaScript types:
 
 *Python*
 
-::
+.. code-block:: python
 
   class Simple(object):
     # First-order Key property
@@ -605,7 +604,7 @@ Consider the following Python and JavaScript types:
 
 *JavaScript*
 
-::
+.. code-block:: javascript
 
   var Simple = function () {
     this.Time = null;
@@ -624,7 +623,7 @@ To turn the simple QiType shown in the example into a type supporting the Derive
 
 # We set the Order for this property. The order of the key in Simple defaults to 0
 
-::
+.. code-block:: python
 
   recorded = QiTypeProperty()
   recorded.Id = "Recorded"
@@ -647,7 +646,7 @@ To turn the simple QiType shown in the example into a type supporting the Derive
 
 *JavaScript*
 
-::
+.. code-block:: javascript
 
   // We set the Order for this property. The order of the key in Simple defaults to 0
   var recordedProperty = new QiObjects.QiTypeProperty({
