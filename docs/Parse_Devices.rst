@@ -33,7 +33,7 @@ Returns all devices for a tenant.
 **Parameters**
 
 ``tenantId``
-  Unique ID for the tenant. 
+  Unique Id for the tenant. 
 
 **Returns**
 
@@ -49,9 +49,9 @@ Get a specific device.
 **Parameters**
 
 ``tenantId``
- Unique ID for the tenant. 
+ Unique Id for the tenant. 
 ``deviceId``
-  Unique ID for the device. 
+  Unique Id for the device. 
 
 **Returns**
 
@@ -67,7 +67,7 @@ Creates or updates a device. The revocation status of a device may be updated. A
 Parameters: 
 
 ``tenantId``
-  Unique ID for the tenant. 
+  Unique Id for the tenant. 
 
 **Body**
 
@@ -87,7 +87,7 @@ Creates or updates multiple devices. The revocation status of devices may be upd
 **Parameters**
 
 ``tenantId``
-  Unique ID for the tenant. 
+  Unique Id for the tenant. 
 
 **Body**
   An array of Device objects. 
@@ -106,8 +106,8 @@ Deletes a device.
 **Parameters**
 
 ``tenantId`` 
-  Unique ID for the tenant. 
+  Unique Id for the tenant. 
 ``deviceId``
-  Unique ID for the device. 
+  Unique Id for the device. 
 
 ********************************
