@@ -5,6 +5,8 @@ Subscription information A Subscription is used to consume data from a publicati
 
 There are two types of Subscriptions with different behaviors. 
 
+The API calls in this section are used to create and manipulate subscriptions.  
+
 Standard Subscription 
 ---------------------
 
@@ -23,11 +25,6 @@ Qi Subscription
 ---------------
 
 A Qi Subscription retrieves data from a publication and writes it directly to a namespace in Qi. No tokens are exposed to users because an external application is not allowed to read from this subscription. 
-
-Subscription API calls 
-----------------------
-
-The API calls in this section are used to create and manipulate subscriptions.  
 
 Data Models 
 -----------
@@ -51,9 +48,9 @@ Subscription information is contained in an object called Subscription which has
 | SubscriptionTenantId | string                  | Identifies the owner of the            |
 |                      |                         | Subscription.                          |
 +----------------------+-------------------------+----------------------------------------+
-| IsRevoked            | string                  | Revocation status of the Subscription. |
+| IsRevoked            | boolean                 | Revocation status of the Subscription. |
 +----------------------+-------------------------+----------------------------------------+
-| SubscriptionType     | string                  | An enumeration where Standared=0, Qi=1.|
+| SubscriptionType     | integer                 | An enumeration where Standared=0, Qi=1.|
 +----------------------+-------------------------+----------------------------------------+
 
 ***************
@@ -75,6 +72,7 @@ An integer count of subscriptions.
 *****************
 
 ``GET api/tenants/{tenantId}/subscriptions``
+---------------------------------------------
 
 Get all subscriptions for a tenant. 
 
@@ -90,6 +88,7 @@ An array of Subscription objects.
 *********************
 
 ``GET api/tenants/{tenantId}/subscriptions/{subscriptionId}``
+---------------------------------------------------------------
 
 Get a specific subscription. 
 
@@ -107,6 +106,7 @@ A Subscription object that was found.
 *************************
 
 ``GET api/tenants/{tenantId}/subscriptions/{subscriptionId}/{secondsUntilExpiration}``
+---------------------------------------------------------------------------------------
 
 Get a security token for a subscription. 
 
@@ -126,6 +126,7 @@ A Subscription object that was found.
 *****************
 
 ``POST api/tenants/{tenantId}/subscription``
+--------------------------------------------
 
 Create or update a subscription. Only the name and description may be updated. 
 
@@ -145,6 +146,7 @@ A Subscription object that was created or updated.
 *******************
 
 ``POST api/tenants/{tenantId}/subscription/{ qiNamespace }``
+------------------------------------------------------------
 
 Create or update a subscription with a Qi destination. Only the name and description may be updated. 
 
@@ -166,6 +168,7 @@ A Subscription object that was created or updated.
 *********************
 
 ``DELETE api/tenants/{tenantId}/subscriptions/{subscriptionId}``
+-----------------------------------------------------------------
 
 Delete a Subscription. 
 
