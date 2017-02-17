@@ -577,30 +577,30 @@ Consider the following Python and JavaScript types:
     # First-order Key property
     Time = property(getTime, setTime)
     def getTime(self):
-      return self.\_\_time
+      return self.__time
     def setTime(self, time):
-      self.\_\_time = time
+      self.__time = time
       
   State = property(getState, setState)
   def getState(self):
-    return self.\_\_state
+    return self.__state
   def setState(self, state):
-    self.\_\_state = state
+    self.__state = state
 
   Measurement = property(getValue, setValue)
   def getValue(self):
-    return self.\_\_measurement
+    return self.__measurement
   def setValue(self, measurement):
-    self.\_\_measurement = measurement
+    self.__measurement = measurement
 
   class DerivedCompoundIndex(Simple):
   # Second-order Key property
   @property
   def Recorded(self):
-    return self.\_\_recorded
+    return self.__recorded
   @Recorded.setter
   def Recorded(self, recorded):
-    self.\_\_recorded = recorded
+    self.__recorded = recorded
 
 *JavaScript*
 
