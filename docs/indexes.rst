@@ -27,7 +27,7 @@ The Qi REST API methods that use tuples were created to assist you to use compou
 Working with Indexes
 --------------------
 
-Using .Net
+Using .NET
 ----------
 
 
@@ -35,7 +35,6 @@ Simple Indexes
 --------------
 
 When working in .NET, use the QiTypeBuilder together with either the OSIsoft.Qi.QiMemberAttribute or the System.ComponentModel.DataAnnotations.KeyAttribute, to identify the Property that defines the simple Key. Using QiTypeBuilder eliminates potential errors that might occur when working with QiTypes manually.
-
 
 ::
 
@@ -136,8 +135,10 @@ To read data indexed by a secondary Index, use a filtered Get, as in the followi
 
   IEnumerable<Simple> orderedBySecondary =
   client.GetValuesAsync<Simple>(secondary.Id,
-
     "Measurement gt 0 and Measurement lt 6").GetAwaiter().GetResult();
+    
+  foreach (Simple simple in orderedBySecondary)
+   Console.WriteLine(“{0}: {1}”, simple.Time, simple.Measurement);
 
   // Output:
   // 12/13/2016 9:30:04 PM: 1
@@ -290,13 +291,12 @@ You can query against the compound index as follows:
   IEnumerable<Compound> compoundValues = client.GetWindowValuesAsync<Compound, DateTime, DateTime>(
     compoundStream.Id,
   new Tuple<DateTime, DateTime>(DateTime.Parse("1/20/2017 01:00"),
-  DateTime.Parse("1/20/2017 00:00")),
+                                DateTime.Parse("1/20/2017 00:00")),
   new Tuple<DateTime, DateTime>(DateTime.Parse("1/20/2017 02:00"),
-  DateTime.Parse("1/20/2017 14:00"))).GetAwaiter().GetResult();
+                                DateTime.Parse("1/20/2017 14:00"))).GetAwaiter().GetResult();
 
   foreach (Compound value in compoundValues)
     Console.WriteLine("{0}:{1} {2}", value.Time, value.Recorded,value.Measurement);
-  Console.WriteLine();
 
   // Output:
   // 1/20/2017 1:00:00 AM:1/20/2017 12:00:00 AM 0
@@ -331,35 +331,35 @@ class:
 
 *Python*
 
-::
+.. code-block:: python
 
   class State(Enum):
     Ok = 0
     Warning = 1
     Alarm = 2
-    
+
   class Simple(object):
     Time = property(getTime, setTime)
     def getTime(self):
-      return self.\_\_time
+      return self.__time
     def setTime(self, time):
-      self.\_\_time = time
-      
+      self.__time = time
+
     State = property(getState, setState)
     def getState(self):
-      return self.\_\_state
+      return self.__state
     def setState(self, state):
-      self.\_\_state = state
+      self.__state = state
 
   Measurement = property(getValue, setValue)
   def getValue(self):
-    return self.\_\_measurement
+    return self.__measurement
   def setValue(self, measurement):
-    self.\_\_measurement = measurement
+    self.__measurement = measurement
 
 *JavaScript*
 
-::
+.. code-block:: javascript
 
   var State =
   {
@@ -380,7 +380,7 @@ follows:
 
 *Python*
 
-::
+.. code-block:: python
 
   # Time is the primary key
   time = QiTypeProperty()
@@ -395,7 +395,7 @@ follows:
 
 *JavaScript*
 
-::
+.. code-block:: javascript
 
   // Time is the primary key
   var timeProperty = new QiObjects.QiTypeProperty({
@@ -422,7 +422,7 @@ will use the QiType defined as follows
 
 *Python*
 
-::
+.. code-block:: python
 
   # Create the properties
 
@@ -476,7 +476,7 @@ will use the QiType defined as follows
 
 *JavaScript*
 
-::
+.. code-block:: javascript
 
   // Time is the primary key
   var timeProperty = new QiObjects.QiTypeProperty({
@@ -535,7 +535,7 @@ Creating the QiStream with the Measurement as a Secondary Index is shown in the 
 
 *Python*
 
-::
+.. code-block:: python
 
   measurementIndex = QiStreamIndex()
   measurementIndex.QiTypePropertyId = measurement.Id
@@ -549,7 +549,7 @@ Creating the QiStream with the Measurement as a Secondary Index is shown in the 
 
 *JavaScript*
 
-::
+.. code-block:: javascript
 
   var measurementIndex = new QiObjects.QiStreamIndex({
     "QiTypePropertyId": valueProperty.Id
@@ -571,40 +571,40 @@ Consider the following Python and JavaScript types:
 
 *Python*
 
-::
+.. code-block:: python
 
   class Simple(object):
     # First-order Key property
     Time = property(getTime, setTime)
     def getTime(self):
-      return self.\_\_time
+      return self.__time
     def setTime(self, time):
-      self.\_\_time = time
+      self.__time = time
       
   State = property(getState, setState)
   def getState(self):
-    return self.\_\_state
+    return self.__state
   def setState(self, state):
-    self.\_\_state = state
+    self.__state = state
 
   Measurement = property(getValue, setValue)
   def getValue(self):
-    return self.\_\_measurement
+    return self.__measurement
   def setValue(self, measurement):
-    self.\_\_measurement = measurement
+    self.__measurement = measurement
 
   class DerivedCompoundIndex(Simple):
   # Second-order Key property
   @property
   def Recorded(self):
-    return self.\_\_recorded
+    return self.__recorded
   @Recorded.setter
   def Recorded(self, recorded):
-    self.\_\_recorded = recorded
+    self.__recorded = recorded
 
 *JavaScript*
 
-::
+.. code-block:: javascript
 
   var Simple = function () {
     this.Time = null;
@@ -623,7 +623,7 @@ To turn the simple QiType shown in the example into a type supporting the Derive
 
 # We set the Order for this property. The order of the key in Simple defaults to 0
 
-::
+.. code-block:: python
 
   recorded = QiTypeProperty()
   recorded.Id = "Recorded"
@@ -646,7 +646,7 @@ To turn the simple QiType shown in the example into a type supporting the Derive
 
 *JavaScript*
 
-::
+.. code-block:: javascript
 
   // We set the Order for this property. The order of the key in Simple defaults to 0
   var recordedProperty = new QiObjects.QiTypeProperty({
@@ -717,4 +717,5 @@ Summary
 -------
 
 In this topic, you learned how to define and use both simple and compound indexes. Also described was how to create use QiTypeBuilder to easily create QiTypes, and how to create QiTypes without using QiTypeBuilder. Feel free to use the examples provided. 
+
 
