@@ -189,7 +189,7 @@ Modifies the specified stream event. PatchValue affects only the data item param
 
 ::
 
-    PATCH Qi/{tenantId}/{namespaceId}/Streams/{streamId}/Data/PatchValue?selectExpression={selectExpression}
+    PATCH Qi/{tenantId}/{namespaceId}/Streams/{streamId}/Data/PatchValue?select={selectExpression}
 
 	
 Content is serialized patch property
@@ -247,7 +247,7 @@ Patches values of the selected fields for multiple events in the stream.
 
 ::
 
-    PATCH Qi/{tenantId}/{namespaceId}/Streams/{streamId}/Data/PatchValues?selectExpression={selectExpression}
+    PATCH Qi/{tenantId}/{namespaceId}/Streams/{streamId}/Data/PatchValues?select={selectExpression}
 
 Content is serialized list of patch property values
 
