@@ -247,7 +247,7 @@ Patches values of the selected fields for multiple events in the stream.
 
 ::
 
-    PATCH Qi/{tenantId}/{namespaceId}/Streams/{streamId}/Data/PatchValues?selectExpression={selectExpression}
+    PATCH Qi/{tenantId}/{namespaceId}/Streams/{streamId}/Data/PatchValues?select={selectExpression}
 
 Content is serialized list of patch property values
 
