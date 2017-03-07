@@ -22,7 +22,7 @@ Retrieves the QiCalculation within the specified namespaceId, or creates the QiC
 
 ::
 
-    POST /qi/{tenantId}/{namespaceId}/Calculations
+    POST /Api/Tenants/{tenantId}/Namespaces/{namespaceId}/Calculations
 
 
 **Parameters**
