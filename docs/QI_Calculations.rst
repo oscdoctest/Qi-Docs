@@ -108,7 +108,7 @@ Inserts list of QiCalculation into a namespace.
 
 ::
 
-    POST /qi/{tenantId}/{namespaceId}/Calculations/$Batch
+    POST /Api/Tenants/{tenantId}/Namespaces/{namespaceId}/Calculations/$Batch
 
 
 **Parameters**
@@ -197,7 +197,7 @@ Retrieves a QiCalculation from the specified namespace.
 
 ::
 
-   GET /qi/{tenantId}/{namespaceId}/Calculations/{calculationId}
+   GET /Api/Tenants/{tenantId}/Namespaces/{namespaceId}/Calculations/{calculationId}
 
 
 **Parameters**
@@ -268,7 +268,7 @@ Retrieves a list of QiCalculation objects in a namespace.
 
 ::
 
-   GET /qi/{tenantId}/{namespaceId}/Calculations
+   GET /Api/Tenants/{tenantId}/Namespaces/{namespaceId}/Calculations
 
 
 **Parameters**
@@ -340,7 +340,7 @@ Retrieves or inserts a QiCalculation in the specified namespace.
 
 ::
 
-    PUT /qi/{tenantId}/{namespaceId}/Calculations
+    PUT /Api/Tenants/{tenantId}/Namespaces/{namespaceId}/Calculations
 
 
 **Parameters**
@@ -413,7 +413,7 @@ Removes a QiCalculation from a namespace.
 
 ::
 
-    DELETE /qi/{tenantId}/{namespaceId}/Calculations/{calculationId}
+    DELETE /Api/Tenants/{tenantId}/Namespaces/{namespaceId}/Calculations/{calculationId}
 
 
 **Parameters**
