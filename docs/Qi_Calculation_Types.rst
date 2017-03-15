@@ -54,18 +54,18 @@ Retrieves the QiCalculationTemplate from the specified namespaceId, or creates t
 
   ::
 
-  QiScriptReference {
-    ScriptId (string): The unique Id of the {OSIsoft.Qi.Calculation.Core.QiScript}
+    QiScriptReference {
+      ScriptId (string): The unique Id of the {OSIsoft.Qi.Calculation.Core.QiScript}
+    }
+    QiStreamAlias {
+      AliasId (string): The Id of the alias being mapped. ,
+      StreamId (string): The Id of the stream. ,
+      NamespaceId (string, optional): The Id of the namespace. If , then the namespace the calculation resides within will be used. ,
+      TenantId (string, optional): The Id of the tenant. If , then the tenant the calculation resides within will be used.
   }
-  QiStreamAlias {
-    AliasId (string): The Id of the alias being mapped. ,
-    StreamId (string): The Id of the stream. ,
-    NamespaceId (string, optional): The Id of the namespace. If , then the namespace the calculation resides within will be used. ,
-    TenantId (string, optional): The Id of the tenant. If , then the tenant the calculation resides within will be used.
-}
-  IQiSchedule {
-    ScheduleType (string, optional, read only): Returns the type of schedule the data contract implements. 
-      = ['Undefined', 'Periodic', 'EventTriggered', 'Manual']} 
+    IQiSchedule {
+      ScheduleType (string, optional, read only): Returns the type of schedule the data contract implements. 
+        = ['Undefined', 'Periodic', 'EventTriggered', 'Manual']} 
 
 
 
@@ -134,7 +134,7 @@ Retrieves a QiCalculationTemplate from a namespace.
 ``string Trigger``
   The trigger type for this calculation template = ['Undefined', 'PeriodicSchedule', 'EventTriggeredSchedule', 'Manual']
 
-  ::
+::
 
   QiScriptReference {
     ScriptId (string): The unique Id of the {OSIsoft.Qi.Calculation.Core.QiScript}
@@ -144,11 +144,11 @@ Retrieves a QiCalculationTemplate from a namespace.
     StreamId (string): The Id of the stream. ,
     NamespaceId (string, optional): The Id of the namespace. If , then the namespace the calculation resides within will be used. ,
     TenantId (string, optional): The Id of the tenant. If , then the tenant the calculation resides within will be used.
-}
+  }
   IQiSchedule {
     ScheduleType (string, optional, read only): Returns the type of schedule the data contract implements. 
-      = ['Undefined', 'Periodic', 'EventTriggered', 'Manual']} 
-
+      = ['Undefined', 'Periodic', 'EventTriggered', 'Manual']
+  } 
 
 Security
   Allowed by administrator and user accounts.
@@ -214,7 +214,7 @@ Retrieves a list of QiCalculationTemplate objects in a namespace.
 ``string Trigger``
   The trigger type for this calculation template = ['Undefined', 'PeriodicSchedule', 'EventTriggeredSchedule', 'Manual']
 
-  ::
+::
 
   QiScriptReference {
     ScriptId (string): The unique Id of the {OSIsoft.Qi.Calculation.Core.QiScript}
@@ -224,7 +224,7 @@ Retrieves a list of QiCalculationTemplate objects in a namespace.
     StreamId (string): The Id of the stream. ,
     NamespaceId (string, optional): The Id of the namespace. If , then the namespace the calculation resides within will be used. ,
     TenantId (string, optional): The Id of the tenant. If , then the tenant the calculation resides within will be used.
-}
+  }
   IQiSchedule {
     ScheduleType (string, optional, read only): Returns the type of schedule the data contract implements. 
       = ['Undefined', 'Periodic', 'EventTriggered', 'Manual']} 
@@ -297,7 +297,7 @@ Updates an existing QiCalculationTemplate in a namespace.
 ``string Trigger``
   The trigger type for this calculation template = ['Undefined', 'PeriodicSchedule', 'EventTriggeredSchedule', 'Manual']
 
-  ::
+::
 
   QiScriptReference {
     ScriptId (string): The unique Id of the {OSIsoft.Qi.Calculation.Core.QiScript}
@@ -307,7 +307,7 @@ Updates an existing QiCalculationTemplate in a namespace.
     StreamId (string): The Id of the stream. ,
     NamespaceId (string, optional): The Id of the namespace. If , then the namespace the calculation resides within will be used. ,
     TenantId (string, optional): The Id of the tenant. If , then the tenant the calculation resides within will be used.
-}
+  }
   IQiSchedule {
     ScheduleType (string, optional, read only): Returns the type of schedule the data contract implements. 
       = ['Undefined', 'Periodic', 'EventTriggered', 'Manual']} 
