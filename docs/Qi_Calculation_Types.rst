@@ -28,8 +28,6 @@ Retrieves the QiCalculationTemplate from the specified namespaceId, or creates t
 
 **Parameters**
 
-``string Id`` (optional)
-  
 ``string Id``
   Unique Id for this calculation template. Used when referencing this calculation template or retrieving it.
 
@@ -112,8 +110,6 @@ Retrieves a QiCalculationTemplate from a namespace.
 
 **Parameters**
 
-``string Id`` (optional)
-  
 ``string Id``
   Unique Id for this calculation template. Used when referencing this calculation template or retrieving it.
 
