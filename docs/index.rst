@@ -9,8 +9,7 @@ methods with customizable behaviors are available to read data and
 easily obtain needed information.
 
 
-
-
+  
 .. toctree::
 
    Whats_New
@@ -29,11 +28,12 @@ easily obtain needed information.
    Writing_Data_API
    Reading_Data
    Reading_Data_API
+   parse_intro
+   parse_API
+   Qi_Calc_API
    Searching
    Filter Expressions
    samples
    support
    preview
-   
-   
    
