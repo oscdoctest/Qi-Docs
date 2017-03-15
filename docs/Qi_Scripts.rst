@@ -154,7 +154,7 @@ Security
 ----------------------
 
 
-Retrieves a list of scripts from the specified namespace. 
+Retrieves a list of QiScripts from the specified namespace. 
 
 
 **Syntax**
@@ -188,10 +188,22 @@ Retrieves a list of scripts from the specified namespace.
 
 ``string Type``
   The language used to write the sript = ['JavaScript', 'TypeScript']
+  
+``boolean HasEntryPoint``
+  Flag to indicate whether the script has an entry point
+  
+``string Attributes`` (optional) 
+  Flags that contain script attributes = ['None', 'CompilationSucceeded', 'HasEntryPoint']
 
 ``Array[QiScriptReference] ReferencedScripts`` (optional)
   Scripts that must be included when compiling and running this script.
- 
+
+::
+
+  QiScriptReference {
+  ScriptId (string): The unique Id of the {OSIsoft.Qi.Calculation.Core.QiScript}
+  }
+  
 
 Security
   Allowed by administrator and user accounts.
@@ -215,7 +227,7 @@ Security
 ``UpdateScriptAsync()``
 ----------------------
 
-Updates a script in the specified namespace. 
+Updates an existing QiScript in the specified namespace. 
 
 
 **Syntax**
@@ -247,31 +259,26 @@ Updates a script in the specified namespace.
 ``string Source``
   The source code or implementation that represents the script.
 
-``string Type``
-  The language used to write the sript = ['JavaScript', 'TypeScript']
+``boolean HasEntryPoint``
+  Flag to indicate whether the script has an entry point
+  
+``string Attributes`` (optional) 
+  Flags that contain script attributes = ['None', 'CompilationSucceeded', 'HasEntryPoint']
 
 ``Array[QiScriptReference] ReferencedScripts`` (optional)
   Scripts that must be included when compiling and running this script.
- 
+
+::
+
+  QiScriptReference {
+  ScriptId (string): The unique Id of the {OSIsoft.Qi.Calculation.Core.QiScript}
+  }
+  
 
 Security
   Allowed by administrator and user accounts.
 
 **Returns** 
-
-::
-
-  QiScript {Id (string): Unique Id for this script. Used when referencing this script in other objects such as calculation types or other scripts.
-  Name (string): A Name for this script.
-  Description (string, optional): A Discription of this script.
-  Source (string): The source code or implementation that represents the script.
-  Type (string): The language used to write the sript.
-  = ['JavaScript', 'TypeScript']
-  ReferencedScripts (Array[QiScriptReference], optional): Scripts that must be included when compiling and running this script.
-  }
-  QiScriptReference {
-  ScriptId (string): The unique Id of the {OSIsoft.Qi.Calculation.Core.QiScript}
-} 
 
   
   
@@ -293,7 +300,7 @@ Security
 ----------------------
 
 
-Removes a script from the specified namespace. 
+Removes a QiScript from the specified namespace. 
 
 
 **Syntax**
@@ -313,9 +320,15 @@ Removes a script from the specified namespace.
 
 **Parameters**
 
-``string Id``
-  Unique Id for this script. Used when referencing this script in other objects such as calculation types or other scripts.
- 
+``string TenantId``
+  The Id of the tenant.
+
+``string namespaceId``
+  The Id of the namespace.
+
+``string scriptId``
+  The Id of the QiScript.
+
 
 Security
   Allowed by administrator and user accounts.
