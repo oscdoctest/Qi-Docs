@@ -30,6 +30,7 @@ easily obtain needed information.
    Reading_Data_API
    parse_intro
    parse_API
+   Qi_Calc
    Qi_Calc_API
    Searching
    Filter Expressions
