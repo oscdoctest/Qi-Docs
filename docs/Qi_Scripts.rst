@@ -350,5 +350,56 @@ Security
  
  
 
+*******************
+
+
+``CompileScriptAsync()``
+----------------------
+
+Compiles the specified QiScript.
+
+
+**Syntax**
+
+.. highlight:: none
+
+::
+
+    Task<string> CompileScriptAsync(QiScript script, bool requireRunFunction);
+
+**Http**
+
+::
+
+    GET /Api/Tenants/{tenantId}/Namespaces/{namespaceId}/Calculations/{calculationId}/Logs 
+
+
+**Parameters**
+
+``string tenantId``
+
+``string CalculationId`` (optional): The Id of the calculation that logged the message.
+
+``string MessageType`` (optional): The type of message that was logged. = ['Log', 'Error', 'System', 'All']
+
+``string Timestamp`` (optional): The time at which the message was logged. 
+
+``string Message`` (optional): The message written to the console.
+
+
+Security
+  Allowed by administrator and user accounts.
+
+**Returns** 
+
+  
+  
+**Status code**
+
+*  400 - One of the arguments is invalid or a referenced dependent object does not exist.
+*  401 - The user is not authorized to performt this operation.
+*  500 - An unexpected error occurred.
+*  504 - A timeout occurred while trying to execute the operation.
+ 
 
 
