@@ -1,14 +1,14 @@
-Qi Calculation types
-==========
+Qi Calculation templates
+========================
 
-The APIs in this topic are used to create, delete, and update Qi calculation types
+The APIs in this topic are used to create, delete, and update Qi calculation templates
 
 
 
-``GetOrCreateTypeAsync()``
-----------------------
+``GetOrCreateTemplateAsync()``
+----------------------------
 
-Retrieves the QiCalculationType within the specified namespaceId, or creates the QiCalculationType if it does not already exist. If the QiCalculationType exists, it is returned to the caller unchanged.
+Retrieves the QiCalculationTemplate from the specified namespaceId, or creates the QiCalculationTemplate if it does not already exist. If the QiCalculationTemplate exists, it is returned to the caller unchanged.
 
 
 **Syntax**
@@ -17,46 +17,57 @@ Retrieves the QiCalculationType within the specified namespaceId, or creates the
 
 ::
 
-    Task<QiCalculationType> GetOrCreateTypeAsync(QiCalculationType type);
+    Task<QiCalculationTemplate> GetOrCreateTemplateAsync(QiCalculationTemplate template);
 
 **Http**
 
 ::
 
-    POST /qi/{tenantId}/{namespaceId}/CalculationTypes
+    POST /qi/{tenantId}/{namespaceId}/CalculationTemplates
 
 
 **Parameters**
 
 ``string Id`` (optional)
   
- 
+``string Id``
+  Unique Id for this calculation template. Used when referencing this calculation template or retrieving it.
+
 ``string Name`` (optional)
+  A name for this calculation template.
   
-
 ``string Description`` (optional)
+  A description for this calculation template.
   
-``QiScriptReference Script``  (optional)
+``QiScriptReference ScriptReference``
+  A {OSIsoft.Qi.Calculation.Core.QiScriptReference} containing enough information to locate the corresponding script.
 
-
-``Array[QiScriptSymbol] Symbols``  (optional)
+``Array[string] StreamAliasIds`` (optional)
+  The symbols that this calculation template uses.
   
-
-``string Trigger``(optional) = ['Undefined', 'PeriodicSchedule', 'EventTriggeredSchedule', 'Manual']
-
+``Array[QiStreamAlias] DefaultStreamAliases`` (optional)
+  A list of default alias mappings used when the aliases have not been resolved by the calculation.
   
+``IQiSchedule DefaultSchedule`` (optional)
+  The schedule used to determine how the calculation is dispatched. This schedule can be overridden on the calculation.
+  
+``string Trigger``
+  The trigger type for this calculation template = ['Undefined', 'PeriodicSchedule', 'EventTriggeredSchedule', 'Manual']
+
   ::
 
   QiScriptReference {
     ScriptId (string): The unique Id of the {OSIsoft.Qi.Calculation.Core.QiScript}
- 
   }
-  QiScriptSymbol {
-    Id (string),
-    Name (string, optional),
-    ProviderId (string)
-  } 
- 
+  QiStreamAlias {
+    AliasId (string): The Id of the alias being mapped. ,
+    StreamId (string): The Id of the stream. ,
+    NamespaceId (string, optional): The Id of the namespace. If , then the namespace the calculation resides within will be used. ,
+    TenantId (string, optional): The Id of the tenant. If , then the tenant the calculation resides within will be used.
+}
+  IQiSchedule {
+    ScheduleType (string, optional, read only): Returns the type of schedule the data contract implements. 
+      = ['Undefined', 'Periodic', 'EventTriggered', 'Manual']} 
 
 
 
@@ -78,10 +89,10 @@ Security
 
 **********************
 
-``GetTypeAsync()``
+``GetTemplateAsync()``
 ----------------------
 
-Retrieves a QiCalculationType from a namespace. 
+Retrieves a QiCalculationTemplate from a namespace. 
 
 
 **Syntax**
@@ -90,43 +101,57 @@ Retrieves a QiCalculationType from a namespace.
 
 ::
 
-    Task<QiCalculationType> GetTypeAsync(string typeId);
+    Task<QiCalculationTemplate> GetTemplateAsync(string templateId);
 
 **Http**
 
 ::
 
-   GET /qi/{tenantId}/{namespaceId}/CalculationTypes/{typeId}
+   GET /qi/{tenantId}/{namespaceId}/CalculationTemplates/{templateId}
 
 
 **Parameters**
 
 ``string Id`` (optional)
   
- 
+``string Id``
+  Unique Id for this calculation template. Used when referencing this calculation template or retrieving it.
+
 ``string Name`` (optional)
+  A name for this calculation template.
   
-
 ``string Description`` (optional)
+  A description for this calculation template.
   
+``QiScriptReference ScriptReference``
+  A {OSIsoft.Qi.Calculation.Core.QiScriptReference} containing enough information to locate the corresponding script.
 
-``QiScriptReference Script`` (optional)
+``Array[string] StreamAliasIds`` (optional)
+  The symbols that this calculation template uses.
   
-``string Symbols`` (optional)
+``Array[QiStreamAlias] DefaultStreamAliases`` (optional)
+  A list of default alias mappings used when the aliases have not been resolved by the calculation.
   
-``string Trigger``(optional) = ['Undefined', 'PeriodicSchedule', 'EventTriggeredSchedule', 'Manual']
+``IQiSchedule DefaultSchedule`` (optional)
+  The schedule used to determine how the calculation is dispatched. This schedule can be overridden on the calculation.
+  
+``string Trigger``
+  The trigger type for this calculation template = ['Undefined', 'PeriodicSchedule', 'EventTriggeredSchedule', 'Manual']
 
-::
+  ::
 
   QiScriptReference {
     ScriptId (string): The unique Id of the {OSIsoft.Qi.Calculation.Core.QiScript}
- 
   }
-  QiScriptSymbol {
-    Id (string),
-    Name (string, optional),
-    ProviderId (string)
-  } 
+  QiStreamAlias {
+    AliasId (string): The Id of the alias being mapped. ,
+    StreamId (string): The Id of the stream. ,
+    NamespaceId (string, optional): The Id of the namespace. If , then the namespace the calculation resides within will be used. ,
+    TenantId (string, optional): The Id of the tenant. If , then the tenant the calculation resides within will be used.
+}
+  IQiSchedule {
+    ScheduleType (string, optional, read only): Returns the type of schedule the data contract implements. 
+      = ['Undefined', 'Periodic', 'EventTriggered', 'Manual']} 
 
 
 Security
@@ -146,10 +171,10 @@ Security
 
 **********************
 
-``GetTypesAsync()``
+``GetTemplatesAsync()``
 ----------------------
 
-Retrieves a QiCalculationType from a namespace. 
+Retrieves a list of QiCalculationTemplate objects in a namespace.
 
 
 **Syntax**
@@ -158,114 +183,138 @@ Retrieves a QiCalculationType from a namespace.
 
 ::
 
-    Task<IList<QiCalculationType>> GetTypesAsync();
+    Task<IList<QiCalculationTemplate>> GetTemplatesAsync();
 
 **Http**
 
 ::
 
-   GET /qi/{tenantId}/{namespaceId}/CalculationTypes
-
-
-**Parameters**
-
-``string Id`` (optional)
- 
-``string Name`` (optional)
- 
-``string Description`` (optional)
- 
-``QiScriptReference Script`` (optional)
-  
-``string Symbols`` (optional)
-  
-``string Trigger``(optional) = ['Undefined', 'PeriodicSchedule', 'EventTriggeredSchedule', 'Manual']
-
-::
-
-  QiScriptReference {
-    ScriptId (string): The unique Id of the {OSIsoft.Qi.Calculation.Core.QiScript}
- 
-  }
-  QiScriptSymbol {
-    Id (string),
-    Name (string, optional),
-    ProviderId (string)
-  } 
-
-
-Security
-  Allowed by administrator and user accounts.
-
-**Returns** 
-
-
-  
-**Status code**
-
-*  400 - One of the arguments is invalid or a referenced dependent object does not exist.
-*  401 - The user is not authorized to perform this operation.
-*  500 - An unexpected error occurred.
-*  504 - A timeout occurred while trying to execute the operation.
- 
-
-**********************
-
-
-
-
-
-``UpdateTypeAsync()``
-----------------------
-
-Updates an existing QiCalculationType in a namespace. 
-
-
-**Syntax**
-
-.. highlight:: none
-
-::
-
-    Task UpdateTypeAsync(QiCalculationType type);
-
-**Http**
-
-::
-
-   PUT /qi/{tenantId}/{namespaceId}/CalculationTypes
+   GET /qi/{tenantId}/{namespaceId}/CalculationTemplates
 
 
 **Parameters**
 
 ``string Id``
-  
- 
-``string name`` (optional)
-  
+  Unique Id for this calculation template. Used when referencing this calculation template or retrieving it.
 
+``string Name`` (optional)
+  A name for this calculation template.
+  
 ``string Description`` (optional)
+  A description for this calculation template.
   
+``QiScriptReference ScriptReference``
+  A {OSIsoft.Qi.Calculation.Core.QiScriptReference} containing enough information to locate the corresponding script.
 
-``string TypeId``
+``Array[string] StreamAliasIds`` (optional)
+  The symbols that this calculation template uses.
   
+``Array[QiStreamAlias] DefaultStreamAliases`` (optional)
+  A list of default alias mappings used when the aliases have not been resolved by the calculation.
+  
+``IQiSchedule DefaultSchedule`` (optional)
+  The schedule used to determine how the calculation is dispatched. This schedule can be overridden on the calculation.
+  
+``string Trigger``
+  The trigger type for this calculation template = ['Undefined', 'PeriodicSchedule', 'EventTriggeredSchedule', 'Manual']
 
-``string ScheduleId``
-  
-  
-``Array [QiSymbolSettings] SymbolSettings`` (optional)
-  
   ::
 
-  QiSymbolSettings {
-    SymbolId (string, optional),
-    ProviderSettings (object, optional)
-  } 
-  
-  
-``boolean IsEnabled``
+  QiScriptReference {
+    ScriptId (string): The unique Id of the {OSIsoft.Qi.Calculation.Core.QiScript}
+  }
+  QiStreamAlias {
+    AliasId (string): The Id of the alias being mapped. ,
+    StreamId (string): The Id of the stream. ,
+    NamespaceId (string, optional): The Id of the namespace. If , then the namespace the calculation resides within will be used. ,
+    TenantId (string, optional): The Id of the tenant. If , then the tenant the calculation resides within will be used.
+}
+  IQiSchedule {
+    ScheduleType (string, optional, read only): Returns the type of schedule the data contract implements. 
+      = ['Undefined', 'Periodic', 'EventTriggered', 'Manual']} 
 
-``string Status`` = ['Undefined', 'InDevelopment', 'Running', 'InError']
+
+
+Security
+  Allowed by administrator and user accounts.
+
+**Returns** 
+
+
+  
+**Status code**
+
+*  400 - One of the arguments is invalid or a referenced dependent object does not exist.
+*  401 - The user is not authorized to perform this operation.
+*  500 - An unexpected error occurred.
+*  504 - A timeout occurred while trying to execute the operation.
+ 
+
+**********************
+
+
+
+``UpdateTemplateAsync()``
+----------------------
+
+Updates an existing QiCalculationTemplate in a namespace. 
+
+
+**Syntax**
+
+.. highlight:: none
+
+::
+
+    Task UpdateTemplateAsync(QiCalculationTemplate template);
+
+**Http**
+
+::
+
+   PUT /qi/{tenantId}/{namespaceId}/Calculationemplates
+
+
+**Parameters**
+
+``string Id``
+  Unique Id for this calculation template. Used when referencing this calculation template or retrieving it.
+
+``string Name`` (optional)
+  A name for this calculation template.
+  
+``string Description`` (optional)
+  A description for this calculation template.
+  
+``QiScriptReference ScriptReference``
+  A {OSIsoft.Qi.Calculation.Core.QiScriptReference} containing enough information to locate the corresponding script.
+
+``Array[string] StreamAliasIds`` (optional)
+  The symbols that this calculation template uses.
+  
+``Array[QiStreamAlias] DefaultStreamAliases`` (optional)
+  A list of default alias mappings used when the aliases have not been resolved by the calculation.
+  
+``IQiSchedule DefaultSchedule`` (optional)
+  The schedule used to determine how the calculation is dispatched. This schedule can be overridden on the calculation.
+  
+``string Trigger``
+  The trigger type for this calculation template = ['Undefined', 'PeriodicSchedule', 'EventTriggeredSchedule', 'Manual']
+
+  ::
+
+  QiScriptReference {
+    ScriptId (string): The unique Id of the {OSIsoft.Qi.Calculation.Core.QiScript}
+  }
+  QiStreamAlias {
+    AliasId (string): The Id of the alias being mapped. ,
+    StreamId (string): The Id of the stream. ,
+    NamespaceId (string, optional): The Id of the namespace. If , then the namespace the calculation resides within will be used. ,
+    TenantId (string, optional): The Id of the tenant. If , then the tenant the calculation resides within will be used.
+}
+  IQiSchedule {
+    ScheduleType (string, optional, read only): Returns the type of schedule the data contract implements. 
+      = ['Undefined', 'Periodic', 'EventTriggered', 'Manual']} 
 
 
 
@@ -288,10 +337,10 @@ Security
 **********************
 
 
-``DeleteTypeAsync()``
+``DeleteTemplateAsync()``
 ----------------------
 
-Removes a QiCalculationType from a namespace. 
+Removes a QiCalculationTemplate from a namespace. 
 
 
 **Syntax**
@@ -300,46 +349,26 @@ Removes a QiCalculationType from a namespace.
 
 ::
 
-    Task DeleteTypeAsync(string typeId);
+    Task DeleteTemplateAsync(string templateId);
 
 **Http**
 
 ::
 
-    DELETE /qi/{tenantId}/{namespaceId}/CalculationTypes/{typeId}
+    DELETE /qi/{tenantId}/{namespaceId}/CalculationTemplates/{templateId}
 
 
 **Parameters**
 
-``string Id``
-  
- 
-``string name`` (optional)
-  
+``string tenantId``
+  The Id of the tenant.
 
-``string Description`` (optional)
+``string namespaceiD``
+  The Id of the namespace.
   
-
-``string TypeId``
+``string templateId``
+  The Id of the template.
   
-
-``string ScheduleId``
-  
-  
-``Array [QiSymbolSettings] SymbolSettings`` (optional)
-  
-  ::
-
-  QiSymbolSettings {
-    SymbolId (string, optional),
-    ProviderSettings (object, optional)
-  } 
-  
-  
-``boolean IsEnabled``
-
-``string Status`` = ['Undefined', 'InDevelopment', 'Running', 'InError']
-
 
 
 Security
