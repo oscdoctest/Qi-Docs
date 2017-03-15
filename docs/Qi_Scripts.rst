@@ -15,13 +15,13 @@ Inserts the script into the specified namespaceId, or creates the script if it d
 
 ::
 
-    Task DeletePeriodicScheduleAsync(string scheduleId);
+    Task<QiScript> GetOrCreateScriptAsync(QiScript script);
 
 **Http**
 
 ::
 
-    DELETE /qi/{tenantId}/{namespaceId}/Schedules/Periodic/{scheduleId}
+    POST /qi/{tenantId}/{namespaceId}/Scripts
 
 
 **Parameters**
@@ -30,7 +30,7 @@ Inserts the script into the specified namespaceId, or creates the script if it d
   Unique Id for this script. Used when referencing this script in other objects such as calculation types or other scripts.
  
 ``string name``
-  A Name for this script.
+  A name for this script.
 
 ``string Description`` (optional)
   A Discription of this script.
@@ -40,7 +40,13 @@ Inserts the script into the specified namespaceId, or creates the script if it d
 
 ``string Type``
   The language used to write the sript = ['JavaScript', 'TypeScript']
-
+  
+``boolean HasEntryPoint``
+  Flag to indicate whether the script has an entry point.
+  
+``string Attributes`` (optional)
+  Flags that contain script attributes = ['None', 'CompilationSucceeded', 'HasEntryPoint']
+  
 ``Array[QiScriptReference] ReferencedScripts`` (optional)
   Scripts that must be included when compiling and running this script.
  
@@ -82,7 +88,7 @@ Security
 ``GetScriptAsync()``
 ----------------------
 
-Retrieves a script from the namespace with the specified Id.  
+Retrieves a QiScript from the namespace with the specified Id.  
 
 
 **Syntax**
@@ -105,7 +111,7 @@ Retrieves a script from the namespace with the specified Id.
 ``string Id``
   Unique Id for this script. Used when referencing this script in other objects such as calculation types or other scripts.
  
-``string name``
+``string name`` (optional)
   A Name for this script.
 
 ``string Description`` (optional)
@@ -117,9 +123,21 @@ Retrieves a script from the namespace with the specified Id.
 ``string Type``
   The language used to write the sript = ['JavaScript', 'TypeScript']
 
+``boolean HasEntryPoint``
+  Flag to indicate whether the script has an entry point
+  
+``string Attributes`` (optional) 
+  Flags that contain script attributes = ['None', 'CompilationSucceeded', 'HasEntryPoint']
+  
 ``Array[QiScriptReference] ReferencedScripts`` (optional)
   Scripts that must be included when compiling and running this script.
- 
+  
+::
+
+  QiScriptReference {
+  ScriptId (string): The unique Id of the {OSIsoft.Qi.Calculation.Core.QiScript}
+  }
+
 
 Security
   Allowed by administrator and user accounts.
