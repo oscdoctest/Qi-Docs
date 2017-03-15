@@ -10,4 +10,5 @@ The API calls in this topic are used to create calculations. For more informatio
    Qi_Calculation_Types
    Qi_Scripts
    Qi_Timezones
+   Qi_Calc_Comp_Test
    
