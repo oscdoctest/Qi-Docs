@@ -31,7 +31,7 @@ Retrieves the QiCalculation within the specified namespaceId, or creates the QiC
 ``string tenantId``
   The Id of the tenant.
 
-``string namespaceId`
+``string namespaceId``
   The Id of the Namespace
 
 ``calculation``
@@ -83,8 +83,7 @@ Security
 ``AddCalculationsAsync()``
 ----------------------
 
-Inserts list of QiCalculation into a namespace. 
-
+Inserts or updates a package of scripts, types, schedules, and calculations
 
 **Syntax**
 
@@ -103,32 +102,74 @@ Inserts list of QiCalculation into a namespace.
 
 **Parameters**
 
-``string Id``
+``string tenantId``
+  The Id of the tenant.
 
-``string name`` (optional)
+``string namespaceId``
+  The Id of the Namespace
 
-``string Description`` (optional)
- 
+``calculation``
+  The calculation to insert
+  
+::
 
-``string TypeId``
-  
-
-``string ScheduleId``
-  
-  
-``Array [QiSymbolSettings] SymbolSettings`` (optional)
-  
-  ::
-
-  QiSymbolSettings {
-    SymbolId (string, optional),
-    ProviderSettings (object, optional)
-  } 
-  
-  
-``boolean IsEnabled``
-
-``string Status`` = ['Undefined', 'InDevelopment', 'Running', 'InError']
+  QiCalculationPackage {
+    Scripts (Array[QiScript], optional): A list of QiScript objects to create or update. Validation is bypassed. ,
+    Templates (Array[QiCalculationTemplate], optional): A list of QiCalculationTemplate objects to create or 
+    update. Validation is bypassed. ,
+    Calculations (Array[QiCalculation], optional): A list of QiCalculation objects to create or update. 
+    Validation is bypassed unless, the Status is Enabled.
+  }
+  QiScript {
+    Id (string): Unique Id for this script. Used when referencing this script in other objects such 
+    as calculation types or other scripts. ,
+    Name (string, optional): A Name for this script. ,
+    Description (string, optional): A Description of this script. ,
+    Source (string): The source code or implementation that represents the script. ,
+    Type (string): The language used to write the script. = ['Undefined', 'JavaScript', 'TypeScript'],
+    HasEntryPoint (boolean): Flag to say whether script has an entry point ,
+    Attributes (string, optional): Flags that contain script attributes = ['None', 'CompilationSucceeded', 'HasEntryPoint'],
+    ReferencedScripts (Array[QiScriptReference], optional): Scripts that must be included when compiling and running this script.
+  }
+  QiCalculationTemplate {
+    Id (string): Unique Id for this calculation type. Used when referencing this calculation type or retrieving it. ,
+    Name (string, optional): A name for this calculation type. ,
+    Description (string, optional): A description for this calculation type. ,
+    ScriptReference (QiScriptReference): A {OSIsoft.Qi.Calculation.Core.QiScriptReference} containing 
+    enough information to locate the corresponding script. ,
+    StreamAliasIds (Array[string], optional): The symbols that this calculation type uses. ,
+    DefaultStreamAliases (Array[QiStreamAlias], optional): A list of default alias mappings used when 
+    the aliases have not been resolved by the calculation. ,
+    DefaultSchedule (IQiSchedule, optional): The scheduled used to determine how the calculation is 
+    dispatched. This schedule can be overridden on the calculation. ,
+    Trigger (string): The trigger type for this calculation type. 
+      = ['Undefined', 'PeriodicSchedule', 'EventTriggeredSchedule', 'Manual']
+  }
+  QiCalculation {
+    Id (string): Unique Id for this calculation. Used when referencing this calculation or retrieving it. ,
+    Name (string, optional): A name for this calculation. ,
+    Description (string, optional): A description of what this calculation does. ,
+    TemplateId (string): The template to be used for this calculation. ,
+    Schedule (IQiSchedule, optional): The scheduled used to determine how the calculation is 
+    dispatched. If , then the schedule on the template will be used. ,
+    StreamAliases (Array[QiStreamAlias], optional): A list of stream aliases used to map streams 
+    to the alias Ids on the template. ,
+    Status (string): Status of the calculation. = ['Undefined', 'InDevelopment', 'Enabled', 'InError']
+  }
+  QiScriptReference {
+    ScriptId (string): The unique Id of the {OSIsoft.Qi.Calculation.Core.QiScript}
+  }
+  QiStreamAlias {
+    AliasId (string): The Id of the alias being mapped. ,
+    StreamId (string): The Id of the stream. ,
+    NamespaceId (string, optional): The Id of the namespace. If , then the namespace the 
+    calculation resides within will be used. ,
+    TenantId (string, optional): The Id of the tenant. If , then the tenant the calculation resides within will be used.
+  }
+  IQiSchedule {
+    ScheduleType (string, optional, read only): Returns the type of schedule the data contract 
+    implements. = ['Undefined', 'Periodic', 'EventTriggered', 'Manual']
+  }
 
 
 
@@ -137,24 +178,8 @@ Security
 
 **Returns** 
 
-::
 
-  QiCalculation {
-    Id (string),
-    Name (string, optional),
-    Description (string, optional),
-    TypeId (string),
-    ScheduleId (string),
-    SymbolSettings (Array[QiSymbolSettings], optional),
-    IsEnabled (boolean),
-    Status (string) = ['Undefined', 'InDevelopment', 'Running', 'InError']
-  }
-  QiSymbolSettings {
-    SymbolId (string, optional),
-    ProviderSettings (object, optional)
-  } 
 
-  
 **Status code**
 
 *  201 - The list of objects were successfully inserted.
@@ -192,42 +217,44 @@ Retrieves a QiCalculation from the specified namespace.
 
 **Parameters**
 
-``string Id``
-  
- 
-``string name`` (optional)
-  
+``string tenantId``
+  The Id of the tenant.
 
-``string Description`` (optional)
-  
+``string namespaceId``
+  The Id of the Namespace
 
-``string TypeId``
+``calculation``
+  The Id of the calculation
   
-
-``string ScheduleId``
-  
-  
-``Array [QiSymbolSettings] SymbolSettings`` (optional)
-  
-  ::
-
-  QiSymbolSettings {
-    SymbolId (string, optional),
-    ProviderSettings (object, optional)
-  } 
-  
-  
-``boolean IsEnabled``
-
-``string Status`` = ['Undefined', 'InDevelopment', 'Running', 'InError']
-
-
 
 Security
   Allowed by administrator and user accounts.
 
 **Returns** 
 
+::
+
+  QiCalculation {
+    Id (string): Unique Id for this calculation. Used when referencing this calculation or retrieving it. ,
+    Name (string, optional): A name for this calculation. ,
+    Description (string, optional): A description of what this calculation does. ,
+    TemplateId (string): The template to be used for this calculation. ,
+    Schedule (IQiSchedule, optional): The scheduled used to determine how the calculation 
+    is dispatched. If , then the schedule on the template will be used. ,
+    StreamAliases (Array[QiStreamAlias], optional): A list of stream aliases used to map streams 
+    to the alias Ids on the template. ,
+    Status (string): Status of the calculation. = ['Undefined', 'InDevelopment', 'Enabled', 'InError']
+  }
+  IQiSchedule {
+    ScheduleType (string, optional, read only): Returns the type of schedule the data contract 
+    implements. = ['Undefined', 'Periodic', 'EventTriggered', 'Manual']
+  }
+  QiStreamAlias {
+    AliasId (string): The Id of the alias being mapped. ,
+    StreamId (string): The Id of the stream. ,
+    NamespaceId (string, optional): The Id of the namespace. If , then the namespace the calculation resides within will be used. ,
+    TenantId (string, optional): The Id of the tenant. If , then the tenant the calculation resides within will be used.
+  }
 
   
 **Status code**
@@ -263,35 +290,14 @@ Retrieves a list of QiCalculation objects in a namespace.
 
 **Parameters**
 
-``string Id``
-  
- 
-``string name`` (optional)
-  
+``string tenantId``
+  The Id of the tenant.
 
-``string Description`` (optional)
-  
+``string namespaceId``
+  The Id of the Namespace
 
-``string TypeId``
-  
-
-``string ScheduleId``
-  
-  
-``Array [QiSymbolSettings] SymbolSettings`` (optional)
-  
-  ::
-
-  QiSymbolSettings {
-    SymbolId (string, optional),
-    ProviderSettings (object, optional)
-  } 
-  
-  
-``boolean IsEnabled``
-
-``string Status`` = ['Undefined', 'InDevelopment', 'Running', 'InError']
-
+``templateId`` (optional)
+  Query string parameter. If this parameter is set, only calculations with the specified template are returned.
 
 
 Security
@@ -299,7 +305,29 @@ Security
 
 **Returns** 
 
+::
 
+  QiCalculation {
+    Id (string): Unique Id for this calculation. Used when referencing this calculation or retrieving it. ,
+    Name (string, optional): A name for this calculation. ,
+    Description (string, optional): A description of what this calculation does. ,
+    TemplateId (string): The template to be used for this calculation. ,
+    Schedule (IQiSchedule, optional): The scheduled used to determine how the calculation 
+    is dispatched. If , then the schedule on the template will be used. ,
+    StreamAliases (Array[QiStreamAlias], optional): A list of stream aliases used to map streams 
+    to the alias Ids on the template. ,
+    Status (string): Status of the calculation. = ['Undefined', 'InDevelopment', 'Enabled', 'InError']
+  }
+  IQiSchedule {
+    ScheduleType (string, optional, read only): Returns the type of schedule the data contract 
+    implements. = ['Undefined', 'Periodic', 'EventTriggered', 'Manual']
+  }
+  QiStreamAlias {
+    AliasId (string): The Id of the alias being mapped. ,
+    StreamId (string): The Id of the stream. ,
+    NamespaceId (string, optional): The Id of the namespace. If , then the namespace the calculation resides within will be used. ,
+    TenantId (string, optional): The Id of the tenant. If , then the tenant the calculation resides within will be used.
+  }
   
 **Status code**
 
@@ -315,7 +343,7 @@ Security
 ``UpdateCalculationAsync()``
 ----------------------
 
-Retrieves or inserts a QiCalculation in the specified namespace. 
+Updates an existing QiCalculation in a namespace
 
 
 **Syntax**
@@ -335,35 +363,14 @@ Retrieves or inserts a QiCalculation in the specified namespace.
 
 **Parameters**
 
-``string Id``
-  
- 
-``string name`` (optional)
-  
+``string tenantId``
+  The Id of the tenant.
 
-``string Description`` (optional)
-  
+``string namespaceId``
+  The Id of the Namespace
 
-``string TypeId``
-  
-
-``string ScheduleId``
-  
-  
-``Array [QiSymbolSettings] SymbolSettings`` (optional)
-  
-  ::
-
-  QiSymbolSettings {
-    SymbolId (string, optional),
-    ProviderSettings (object, optional)
-  } 
-  
-  
-``boolean IsEnabled``
-
-``string Status`` = ['Undefined', 'InDevelopment', 'Running', 'InError']
-
+``QiClaculation calculation``
+  The calculation to update.
 
 
 Security
@@ -371,6 +378,29 @@ Security
 
 **Returns** 
 
+::
+
+  QiCalculation {
+    Id (string): Unique Id for this calculation. Used when referencing this calculation or retrieving it. ,
+    Name (string, optional): A name for this calculation. ,
+    Description (string, optional): A description of what this calculation does. ,
+    TemplateId (string): The template to be used for this calculation. ,
+    Schedule (IQiSchedule, optional): The scheduled used to determine how the calculation 
+    is dispatched. If , then the schedule on the template will be used. ,
+    StreamAliases (Array[QiStreamAlias], optional): A list of stream aliases used to map streams 
+    to the alias Ids on the template. ,
+    Status (string): Status of the calculation. = ['Undefined', 'InDevelopment', 'Enabled', 'InError']
+  }
+  IQiSchedule {
+    ScheduleType (string, optional, read only): Returns the type of schedule the data contract 
+    implements. = ['Undefined', 'Periodic', 'EventTriggered', 'Manual']
+  }
+  QiStreamAlias {
+    AliasId (string): The Id of the alias being mapped. ,
+    StreamId (string): The Id of the stream. ,
+    NamespaceId (string, optional): The Id of the namespace. If , then the namespace the calculation resides within will be used. ,
+    TenantId (string, optional): The Id of the tenant. If , then the tenant the calculation resides within will be used.
+  }
 
   
 **Status code**
@@ -408,34 +438,15 @@ Removes a QiCalculation from a namespace.
 
 **Parameters**
 
-``string Id``
-  
- 
-``string name`` (optional)
-  
+``string tenantId``
+  The Id of the tenant.
 
-``string Description`` (optional)
-  
+``string namespaceId``
+  The Id of the Namespace
 
-``string TypeId``
-  
+``QiClaculation calculation``
+  The Id of the calculation.
 
-``string ScheduleId``
-  
-  
-``Array [QiSymbolSettings] SymbolSettings`` (optional)
-  
-  ::
-
-  QiSymbolSettings {
-    SymbolId (string, optional),
-    ProviderSettings (object, optional)
-  } 
-  
-  
-``boolean IsEnabled``
-
-``string Status`` = ['Undefined', 'InDevelopment', 'Running', 'InError']
 
 
 
