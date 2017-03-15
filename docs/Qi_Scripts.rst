@@ -49,26 +49,18 @@ Inserts the script into the specified namespaceId, or creates the script if it d
   
 ``Array[QiScriptReference] ReferencedScripts`` (optional)
   Scripts that must be included when compiling and running this script.
+  
+::
+
+  QiScriptReference {
+  ScriptId (string): The unique Id of the {OSIsoft.Qi.Calculation.Core.QiScript}
+  }
  
 
 Security
   Allowed by administrator and user accounts.
 
 **Returns** 
-
-::
-
-  QiScript {Id (string): Unique Id for this script. Used when referencing this script in other objects such as calculation types or other scripts.
-  Name (string): A Name for this script.
-  Description (string, optional): A Discription of this script.
-  Source (string): The source code or implementation that represents the script.
-  Type (string): The language used to write the sript.
-  = ['JavaScript', 'TypeScript']
-  ReferencedScripts (Array[QiScriptReference], optional): Scripts that must be included when compiling and running this script.
-  }
-  QiScriptReference {
-  ScriptId (string): The unique Id of the {OSIsoft.Qi.Calculation.Core.QiScript}
-} 
 
   
   
@@ -144,10 +136,10 @@ Security
 
 **Returns** 
 
-::
 
 
-  
+
+
 **Status code**
 
 *  400 - One of the arguments is invalid or a referenced dependent object does not exist.
