@@ -16,6 +16,59 @@ Message Types
 
 OMF message types fall into three categories: Type, Container, and Data. 
 
+* **Type messages**
+
+  A Type message is interpreted by OSIsoft Cloud Services as a QiType in the OSC Data Store. 
+  Because QiTypes are immutable, update operations are not supported. The keywords in the 
+  Type definition are interpreted as follows:
+  
+  + ``id``: Corresponds to the QiType Id field. It must conform to the rules defined for a 
+    typeId specified here: < http://qi-docs-rst.readthedocs.io/en/latest/Qi_Types.html#>
+    
+  + ``classification``: Only the ``dynamic`` classification is currently supported.
+  + ``version``: Versioning of QiTypes is not supported.
+  + ``name``: Corresponds to the QiType Name field. This is the friendly name for the type.
+  + ``description``: Corresponds to the QIType Description field. 
+  + ``tags``: Currently unsupported.
+  + ``metadata``: Currently unsupported.
+  
+  The ``isindex`` keyword corresponds to the ``iskey`` attribute of a QiTypeProperty. 
+  QiTypes support clustered indexes which can be specified with multiple properties marked 
+  with the ``isindex`` keyword with a value of ``true``. The ``indexorder`` keyword 
+  corresponds to the ``Order`` field of a QiTypeProperty and can be used to specify 
+  the order within a clustered index. The ``isname`` keyword is not supported.
+
+* **Link Type**
+
+  Link Types are not supported in OCS Data Store.
+
+* **Span Type**
+
+  Span Types are not supported in OCS Data Store.
+  
+* **Property Types and Formats**
+
+  OMF supports setting the ``format`` keyword to specify how a particular JSON type should 
+  be interpreted. The following is a mapping for the OSC Data Store supported 
+  types < http://qi-docs-rst.readthedocs.io/en/latest/Qi_Types.html#> 
+  
+            array,,array,IEnumerable
+            boolean,,boolean
+            integer,int64,Int64
+            integer,int16,Int16
+            integer,uint64,Uint64
+            integer,uint32,Uint32
+            integer,uint16,Uint16
+            number,float64,double
+            number,float32,double
+            number,float16,double
+            object,dictionary,IDictionary
+            string,,String
+            string,date-time,DateTime  
+  
+  
+  
+
 
 
 
