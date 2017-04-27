@@ -52,6 +52,8 @@ OMF message types fall into three categories: Type, Container, and Data.
   be interpreted. The following is a mapping for the OSC Data Store supported 
   types < http://qi-docs-rst.readthedocs.io/en/latest/Qi_Types.html#> 
   
+::
+
             array,,array,IEnumerable
             boolean,,boolean
             integer,int64,Int64
@@ -67,8 +69,32 @@ OMF message types fall into three categories: Type, Container, and Data.
             string,date-time,DateTime  
   
   
-  
+Container messages
+------------------
 
+A Container message is interpreted as a QiStream in the OSC Data Store. The keywords 
+in the Container definition are interpreted as follows:
+
+* ``id``: Corresponds to the QiStream Id field. It must conform to the rules defined for 
+  a QiStream.Id specified here: < http://qi-docs-rst.readthedocs.io/en/latest/Qi_Streams.html>
+* ``typeid``: Corresponds to the QiStream TypeId field.
+* ``typeversion``: Versioning of QiTypes is not supported.
+* ``name``: Corresponds to the QiStream Name field. This is a friendly name for the stream.
+* ``description``: Corresponds to the QiStream Description field.
+* ``tags``: Corresponds to the QiStream Tag field. 
+* ``metadata``: Corresponds to the QiStream Metadata field        
+
+
+Data messages
+-------------
+
+A Data message is mapped to generic Qi values in the OSC Data Store. The keywords in the 
+Data definitions are interpreted as follows:
+
+* ``typeid``: Data that is not grouped by containerId is not supported.
+* ``containerid``: Stream Id for the associated Qi Stream.
+* ``typeversion``: Not supported.
+* ``values``: An array of the generic Qi values.
 
 
 
