@@ -36,9 +36,9 @@ OMF message types fall into three categories: Type, Container, and Data.
   
   The ``isindex`` keyword corresponds to the ``iskey`` attribute of a QiTypeProperty. 
   QiTypes support clustered indexes which can be specified with multiple properties marked 
-  with the ``isindex`` keyword with a value of ``true``. The ``indexorder`` keyword 
-  corresponds to the ``Order`` field of a QiTypeProperty and can be used to specify 
-  the order within a clustered index. The ``isname`` keyword is not supported.
+  with the ``isindex`` keyword with a value of ``true``. For compound indexes, the 
+  index property order within the message corresponds to the ``Order`` field of 
+  a QiTypeProperty. The ``isname`` keyword is not supported.
 
 * **Link Type**
 
@@ -53,23 +53,27 @@ OMF message types fall into three categories: Type, Container, and Data.
   OMF supports setting the ``format`` keyword to specify how a particular JSON type should 
   be interpreted. The following is a mapping for the OSC Data Store supported 
   types (see `QiType information <http://qi-docs-rst.readthedocs.io/en/latest/Qi_Types.html>`_)
-  
-::
 
-            array,,array,IEnumerable
-            boolean,,boolean
-            integer,int64,Int64
-            integer,int16,Int16
-            integer,uint64,Uint64
-            integer,uint32,Uint32
-            integer,uint16,Uint16
-            number,float64,double
-            number,float32,double
-            number,float16,double
-            object,dictionary,IDictionary
-            string,,String
-            string,date-time,DateTime  
-  
+
+========  ===========  ============
+Type      Format       QiTypeCode
+========  ===========  ============
+array		               IEnumerable
+boolean		             boolean
+integer	  int64        Int64
+integer   int32        Int32
+integer   int16        Int16
+integer   uint64       Uint64
+integer   uint32       Uint32
+number    uint16       Uint16
+number    float64      Double
+number    float32      Single
+number    float16      Single
+object    dictionary   Idictionary
+string                 String
+string    date-time    DateTime
+========  ===========  ============
+
   
 Container messages
 ------------------
