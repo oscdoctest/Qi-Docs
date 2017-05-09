@@ -1,4 +1,15 @@
- .wy-nav-content-wrap{Background:none!important;}
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600);
+
+body, h1, h2, .rst-content .toctree-wrapper p.caption, h3, h4, h5, h6, legend {
+    font-family: "Open Sans"!important;
+}
+
+body, p, .wy-menu-vertical a {
+       font-size: 14px!important;
+}
+
+.wy-nav-content-wrap{Background:none!important;}
  .rst-content tt.literal, .rst-content tt.literal, .rst-content code.literal {
     color: #000000;
 }
