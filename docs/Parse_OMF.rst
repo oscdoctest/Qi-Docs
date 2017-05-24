@@ -11,7 +11,7 @@ A description of each of the headers can be found in the OMF documentation
 located `here <http://omf-docs.readthedocs.io/en/v0.9/>`_. When 
 sending messages to OSIsoft Cloud Services, the value of the ``producertoken`` header must be 
 set to a security token obtained from the OCS Portal. This security token is used to authenticate 
-the sender and authorize for use with a particular Tenant and Device.
+the sender and authorize for use with a particular Tenant and Publisher.
 
 Message Types
 -------------
