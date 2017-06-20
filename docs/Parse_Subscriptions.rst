@@ -49,7 +49,9 @@ Subscription information is contained in an object called Subscription which has
 +----------------------+-------------------------+----------------------------------------+
 | IsRevoked            | boolean                 | Revocation status of the Subscription. |
 +----------------------+-------------------------+----------------------------------------+
-| SubscriptionType     | integer                 | An enumeration where Standared=0, Qi=1.|
+| Description          | string                  | Description of the Subscription.       |
++----------------------+-------------------------+----------------------------------------+
+| Type                 | integer                 | An enumeration where Standared=0, Qi=1.|
 +----------------------+-------------------------+----------------------------------------+
 
 ***************
