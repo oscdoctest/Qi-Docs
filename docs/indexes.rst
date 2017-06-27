@@ -15,11 +15,11 @@ Secondary indexes are defined on QiStreams and are applied to a single property.
 Compound Indexes
 ----------------
 
-Often, a single property (such as a DateTime), is adequate for defining an Index; however, for more complex scenarios Qi allows multiple properties. Indexes defined by multiple properties are called “compound indexes”. 
+Often, a single property (such as a DateTime), is adequate for defining an Index; however, for more complex scenarios Qi allows multiple properties to be defined. Indexes defined by multiple properties are called “compound indexes”. 
 
 When defining a Compound Index in .NET, you should apply the OSIsoft.Qi.QiMemberAttribute on each of the type’s properties that are combined to define the index. Set the IsKey property to true and give the Order field a value. The Order field defines the precedence of the property when sorting. A property with an order of 0 has highest precedence. When defining compound indexes outside of .NET, specify the IsKey and Order fields on the QiTypeProperty or Properties.
 
-Only the primary index or key supports compound indexes.
+Only the primary index (or key) supports compound indexes.
 
 The Qi REST API methods that use tuples were created to assist you to use compound indexes.
 
