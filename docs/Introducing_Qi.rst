@@ -26,48 +26,38 @@ participate in the preview, you will receive an email notifying you of the name 
 Use the credentials you were provided to sign into the portal[EG1]. Signing in grants you access 
 to additional functionality.
 
+Samples
+------------
+
+The best way to get started with Qi is to run one or more of the code samples. Code samples are 
+provided in a number of different programming languages to illustrate how to easily and effectively 
+interact with Qi. The code samples can be found in the Qi-Samples repository on GitHub. Obtain Qi 
+REST API access keys from https://cloud.osisoft.com before running the sample code.
+
+Each sample includes a readme which describes the steps required to run the sample and a brief description 
+that highlights some of the sample’s functionality. Be sure to read the readme.rst file to understand 
+how the sample works.
+
+After you have finished this introduction and worked with one of the samples, refer to 
+the `Quick Start <https://qi-docs.readthedocs.io/en/latest/Quick_Start.html>`__ section, which describes the interaction of 
+various Qi objects and will help you get started with your own application.
 
 
 Architecture
 ------------
 
-The primary object of the Qi architecture is the *tenant*. Within a tenant you create one or more 
-*Namespaces*, in which data types are defined and data is stored. 
+A Tenant represents a client or organization that owns and manages a collection of OSIsoft Cloud Services, including Qi. 
+
+Tenants are divided into one or more logical units called Namespaces. Each Namespace is distinct and separate from 
+other Namespaces, with its own instances of the various OSIsoft Cloud Services and data stores. 
+Namespaces provide isolation of resources. 
+
+Isolation provided by Tenants and Namespaces prevent accidental or malicious data access. 
 
 .. image:: images/ContainersA.png
 
-You use Namespaces to separate tenants into logical entities. For example, 
-you might want to have one Namespace for production, one for development, and 
-perhaps another to serve as a pre-production staging area where your QA 
-group can run certification testing.
-
-Within a Namespace, Qi defines three different objects in which to store and manage data:
-
--  **Type**: A user-defined structure that denotes a single measured event or
-   object for storage. In Qi, a type is called a QiType.
--  **Stream**: A basic unit of storage consisting of an ordered series of
-   objects that conform to a type definition. In Qi, a stream is called a QiStream.
--  **Stream Behavior**: Defines how Qi interpolates or extrapolates
-   data during event retrieval when requests occur before, after, or between
-   existing data events.
 
 .. image:: images/Containers_1A.png
-
-Each Namespace stores a separate and independent list of Type, Stream, and Stream Behavior objects.
-
-Product prerequisites
----------------------
-
-To use the Qi REST API in your applications, make sure you have
-the following:
-
--  A computer
--  A set of tools that you feel comfortable using to consume and use
-   RESTful Web Services
--  If consuming the .NET Qi Client Libraries, you must be using tools
-   capable of using the .NET 4.5.2 Runtimes in your environment
--  A Qi Preview tenant from OSIsoft and corresponding set of OAuth2
-   authentication keys
 
 
 Getting help
@@ -80,32 +70,6 @@ Preview for both product support and feedback:
 
 The OSIsoft team will respond to all support requests as
 quickly as possible during business hours (Pacific Time).
-
-
-Security
---------
-
-There are two types of security accounts for Qi users:
-
-+----------------+------------------------------------------------------------------+
-| Account Type   | Description                                                      |
-+----------------+------------------------------------------------------------------+
-| Administrator  | Accounts with administrator authority are allowed to perform all |
-|                | CRUD (Create, Read, Update, Delete)                              |
-|                | operations on Qitype, stream, and stream                         |
-|                | behavior objects. Accounts also allowed to read and write data   |
-|                | to streams                                                       |
-+----------------+------------------------------------------------------------------+
-| User           | Accounts with user authority are allowed read operations on      |
-|                | Qi objects and allowed to read data from streams                 | 
-+----------------+------------------------------------------------------------------+
-
-Code samples
-------------
-
-Code samples for Python, .NET, Node.js, and Java can be found in the
-Qi-Samples repository on GitHub. Obtain Qi REST API access keys from
-`qi.osisoft.com <https://qi.osisoft.com>`__ before running the sample code.
 
 
 
