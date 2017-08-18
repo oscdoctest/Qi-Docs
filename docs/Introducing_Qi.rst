@@ -54,10 +54,8 @@ Namespaces provide isolation of resources.
 
 Isolation provided by Tenants and Namespaces prevent accidental or malicious data access. 
 
+
 .. image:: images/ContainersA.png
-
-
-.. image:: images/Containers_1A.png
 
 
 Getting help
