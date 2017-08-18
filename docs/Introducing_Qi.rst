@@ -5,17 +5,27 @@ Introducing Qi
     :depth: 3
 
 
-Qi is a highly flexible cloud-based sequential data historian that you use to store, retrieve, and analyze data. You create and write data to *streams* using a simple REST (*REpresentational State Transfer*) API (*Application Programming Interface*). The streams you create are used to store simple or complex data types to suit your application needs. An assortment of methods with customizable behaviors are available to read data and easily obtain needed information.
+Qi is a highly flexible cloud-based sequential data store that you use to store, retrieve, and analyze data. You 
+create and write data to *streams* using a simple REST (*REpresentational State Transfer*) API (*Application 
+Programming Interface*). The streams you create can be used to store simple or complex data types to suit 
+your application needs. You can define simple or complex indexing to arrange and relate your data. An assortment 
+of methods with customizable behaviors are available to read data and easily obtain needed information.
 
 
-Getting started
----------------
+Access to Qi
+------------
 
-Perhaps the best way to get started with Qi is to run one or more of the code samples. Code samples are provided in a number of different programming languages, and are intended to show how easy it is to store and read data using Qi. The samples illustrate primarilly how to use REST calls to interact with Qi. 
+You must acquire a Tenant, security credentials, and a Namespace before interacting with Qi. If you do not 
+have a Tenant, you can request access to the Qi Preview at `OSIsoft Cloud Services <cloudservices@osisoft.com>`__.
 
-Each sample includes a complete solution or project for you to download as well as a readme file which describes the steps required to run the sample. Be sure to read through the readme.rst file (stored with the samples) to understand how the samples work. 
+The Qi Preview program is limited, so contacting OSIsoft does not assure participation.
 
-After you have worked with one (or more) of the samples, OSIsoft recommends that you refer to the `Quick Start <https://qi-docs-rst.readthedocs.org/en/latest/Quick_Start.html>`__ section, which shows how to get started with your application by describing the interaction of various Qi objects.
+
+If you are chosen to
+participate in the preview, you will receive an email notifying you of the name of your Tenant. 
+Use the credentials you were provided to sign into the portal[EG1]. Signing in grants you access 
+to additional functionality.
+
 
 
 Architecture
