@@ -22,8 +22,6 @@ You will also need a Namespace and administrative client keys.  See Namespace in
 Step 1: Acquire a Namespace
 **************************
 
-`Architecture <https://qi-docs-rst.readthedocs.org/en/latest/Introducing_Qi.html#architecture>`__
-
 Navigate to the OSIsoft Cloud Services page. Then, select the Manage tab and select Namespaces. For the 
 steps in this section, you can use either an existing Namespace or you can create a new Namespace.
 
