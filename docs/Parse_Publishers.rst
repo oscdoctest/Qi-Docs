@@ -62,6 +62,10 @@ Publisher information is contained in an object called ``Publisher`` and has the
 +-----------------+-------------------------+----------------------------------------+
 | Description     | string                  | A description for the publisher.       |
 +-----------------+-------------------------+----------------------------------------+
+| CreationDate    | string                  | The time that the Publisher was        |
+|                 |                         | created. The string is formatted using |
+|                 |                         | ISO 8601 format.                       |
++-----------------+-------------------------+----------------------------------------+
 
 Token information is contained in an object called ``Token`` and has the following format: 
 
@@ -164,6 +168,26 @@ Get all tokens for a publisher.
 **Returns**
 
 An array of Token objects.   
+
+***************************
+
+``GET api/tenants/{tenantId}/publishers/{publisherId}/tokens/{tokenId}``
+--------------------------------------------
+
+Get a specific token
+
+**Parameters**
+
+``tenantId``
+ Unique Id for the tenant. 
+``publisherId``
+  Unique Id for the publisher. 
+``tokenId``
+  Unique Id for the token.
+
+**Returns**
+
+  The token object found. 
 
 ***************************
 

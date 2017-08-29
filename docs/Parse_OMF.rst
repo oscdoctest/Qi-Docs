@@ -58,8 +58,8 @@ OMF message types fall into three categories: Type, Container, and Data.
 ========  ===========  ============
 Type      Format       QiTypeCode
 ========  ===========  ============
-array		               IEnumerable
-boolean		             boolean
+array		           IEnumerable
+boolean		           boolean
 integer	  int64        Int64
 integer   int32        Int32
 integer   int16        Int16
