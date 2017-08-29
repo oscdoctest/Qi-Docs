@@ -7,24 +7,38 @@ Quick start
 Qi quick start
 --------------
 
-As described in `Introducing Qi <https://qi-docs-rst.readthedocs.org/en/latest/Introducing_Qi.html>`__, the highest-level object in the Qi environment is a *Tenant*. To start working with Qi, OSIsoft provides you a *Tenant Id* and security information which allows you to connect to your tenant on the Qi server. It is within the tenant that you create one or more namespaces in which to work. See `Architecture <https://qi-docs-rst.readthedocs.org/en/latest/Introducing_Qi.html#architecture>`__ for an overview of Qi tenants, namespaces, and other objects.
+Qi is a sophisticated data store. The information in this section describes a very simple interaction with Qi.
+To follow along with the steps in this section, you will first need a Tenant and associated security credentials. 
+If you have not already acquired a tenant, email Qi support at: `OSIsoft Cloud Services <cloudservices@osisoft.com>`__.
+
+The Preview is limited; contacting OSIsoft does not assure participation. 
+
+Throughout this guide, you will be instructed to interact with the Portal. To access the section 
+identified, you must sign into the Portal using the credentials associated with the Tenant.
+
+You will also need a Namespace and administrative client keys.  See Namespace information and API Client Keys.
 
 
-Step 1: Create a Namespace
+Step 1: Acquire a Namespace
 **************************
 
-You start by creating a Namespace so that you have a place in which to create types, 
-streams, and behaviors.
+`Architecture <https://qi-docs-rst.readthedocs.org/en/latest/Introducing_Qi.html#architecture>`__
 
-::
-
-   // create a Namespace ‘Namespace1’
-   QiNamespace qinamespace = new QiNamespace(“Namespace1”);
-   await _adminService.GetOrCreateNamespaceAsync(qinamespace);
+Navigate to the OSIsoft Cloud Services page. Then, select the Manage tab and select Namespaces. For the 
+steps in this section, you can use either an existing Namespace or you can create a new Namespace.
 
 
-Step 2: Create data types
-*************************
+Step 2: Acquire client keys
+***************************
+
+For this example, the application acts as a confidential client – an application that is capable 
+of securely maintaining a secret. In Azure Active Directory, the confidential client authentication 
+flow is accomplished via an Application Identity. OSIsoft Cloud Services supports this authentication 
+with Client Key and Secret.
+
+To acquire the Client Key from the portal, select Client Keys under Manage.
+
+.. image:: images/Acquire_Client_Key.png
 
 A QiType consists of one or more index properties and one or more
 data properties. You use index properties to arrange data into a sequence.
