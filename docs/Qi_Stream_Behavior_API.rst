@@ -13,7 +13,7 @@ general QiStreamBehavior information.
 ***********************
 
 
-`` Get Behavior``
+``Get Behavior``
 ----------------
 
 Returns a QiStreamBehavior corresponding to the specified behaviorId
@@ -60,7 +60,8 @@ The response includes a status code and a response body.
 
   Task<QiStreamBehavior> GetBehaviorAsync(string behaviorId);
 
-Security
+**Security**
+
   Allowed for administrator and user accounts
 
 
