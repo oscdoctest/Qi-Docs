@@ -16,7 +16,7 @@ general QiStreamBehavior information.
 ``Get Behavior``
 ----------------
 
-Returns a QiStreamBehavior corresponding to the specified behaviorId
+Returns a QiStreamBehavior corresponding to the specified behaviorId.
 
 **Request**
 
@@ -67,166 +67,288 @@ The response includes a status code and a response body.
 
 **********************
 
-
-``GetBehaviorAsync()``
+``Get Behaviors``
 ----------------
 
-Retrieves a QiStreamBehavior from the specified namespace that matches the specified behaviorId
+Returns a list of stream behaviors.
 
-**Syntax**
-
-::
-
-    Task<QiStreamBehavior> GetBehaviorAsync( );
-
-**Http**
+**Request**
 
 ::
 
-    GET Qi/{tenantId}/{namespaceId}/Behaviors/{behaviorId}
+    GET	api/Tenants/{tenantId}/Namespaces/{namespaceId}/Behaviors
+      ?skip={skip}&count={count}
 
 **Parameters**
 
 ``string tenantId``
-  The tenant identifier for the request
+  The tenant identifier
 ``string namespaceId``
-  The namespace identifier for the request
+  The namespace identifier
+``int skip``
+  An optional parameter representing the zero-based offset of the first QiStreamBehavior to retrieve. 
+  If not specified, a default value of 0 is used.
+``int count``
+  An optional parameter representing the maximum number of QiStreamBehaviors to retrieve. If not 
+  specified, a default value of 100 is used.
 
 
-**Returns**
-  A QiStream object
+**Response**
 
-Security
-  Allowed by administrator and user accounts
+The response includes a status code and a response body.
+
+  Response body:
+    A collection of zero or more QiStreamBehaviors.
+    
+::
+
+  Sample response body
+  HTTP/1.1 200
+  Content-Type: application/json
+
+  [  
+    {  
+       "Id":"Behavior",
+       "Name":"Behavior",
+       "Mode":1,
+       "ExtrapolationMode":1
+    },
+    ...
+  ]
+
+
+**.NET Library**
+
+::
+
+  Task<IEnumerable<QiStreamBehavior>> GetBehaviorsAsync(int skip = 0, 
+    int count = 100);
+
+**Security**
+
+  Allowed for administrator and user accounts
+
 
 **********************
 
+``Get Behavior Reference Count``
+------------------------------
 
-``GetBehaviorsAsync()``
-----------------
+Returns the count of streams referencing the specified behavior. 
 
-Retrieves all QiStream behaviors from a namespace.
-
-
-**Syntax**
+**Request**
 
 ::
 
-    Task<IEnumerable<QiStreamBehavior>> GetBehaviorsAsync( ;
+    GET	api/Tenants/{tenantId}/Namespaces/{namespaceId}/Behaviors/{behaviorId}
+      /ReferenceCount
 
-**Http**
-
-::
-
-    GET Qi/{tenantId}/{namespaceId}/Behaviors
 
 **Parameters**
 
 ``string tenantId``
-  The tenant identifier for the request
+  The tenant identifier
 ``string namespaceId``
-  The namespace identifier for the request
-``behaviorId``
-  The Id of the behavior to retrieve.
+  The namespace identifier
+``String behaviorId``
+  The behavior identifier
 
 
-**Returns**
-  An IEnumerable of all behavior objects
+**Response**
 
-Security
-  Allowed by administrator and user accounts
+The response includes a status code and a response body.
 
-  
+  Response body:
+    Number of streams referencing the behavior.
+    
+::
+
+  Sample response body
+  HTTP/1.1 200
+  Content-Type: application/json
+
+
+
+**.NET Library**
+
+::
+
+  Task<int> GetBehaviorReferenceCountAsync(string behaviorId); 
+
+**Security**
+
+  Allowed for administrator and user accounts
+
+
 **********************
 
-
-``GetOrCreateBehaviorAsync()``
+``Create Behavior``
 ----------------
 
-Retrieves the QiStream behavior from a namespace, or creates the behavior if the behavior does not already exist. If the behavior exists, it is returned to the caller unchanged.
+Creates the specified stream behavior.
 
-**Syntax**
-
-::
-
-    Task<QiStreamBehavior> GetOrCreateBehaviorAsync(QiStreamBehavior qibehavior);
-
-**Http**
+**Request**
 
 ::
 
-    POST  Qi/{tenantId}/{namespaceId}/Behaviors
-	
+    POST api/Tenants/{tenantId}/Namespaces/{namespaceId}/Behaviors/{behaviorId}
+    
 **Parameters**
 
 ``string tenantId``
-  The tenant identifier for the request
+  The tenant identifier
 ``string namespaceId``
-  The namespace identifier for the request
-``qibehavior``
-  A QiStreamBehavior object to add to Qi.
+  The namespace identifier
+``string behaviorId``
+  The stream behavior identifier. The behavior identifier must match the identifier in content.
 
+The request content is the serialized QiStreamBehavior. If you are not using the Qi client libraries, 
+OSIsoft recommends using JSON.
 
-**Returns**
-  An IEnumerable of all behavior objects.
-
-Security
-  Allowed by administrator accounts
-  
-**Notes**
-  For HTTP requests, the message body content is a QiStreamBehavior object that is serialized in JSON format. For example:
+Sample QiStreamBehavior content:
 
 ::
 
-	{
-		"Id":"WaveData_SampleBehavior",
-		"Name":null,
-		"Mode":1,
-		"ExtrapolationMode":0,
-		"Overrides":null
-	}
+  {  
+     "Id":"Behavior",
+     "Name":"Behavior",
+     "Mode":1,
+     "ExtrapolationMode":1,
+     "Overrides":[  
+        {  
+           "QiTypePropertyId":"Measurement",
+           "Mode":0
+        }
+     ]
+  }
 
 
-**********************
 
+**Response**
 
-``UpdateBehaviorAsync()``
-----------------
+The response includes a status code and a response body.
 
-Replaces the stream’s existing behavior with those defined in the ‘qibehavior’. If certain aspects of the existing behavior are meant to remain, they must be included in qibehavior.
-
-An override list can be included in the ‘qibehavior’ to cause
-the addition, removal, or change to this list.
-
-**Syntax**
-
-::
-
-    Task UpdateBehaviorAsync(string behaviorId, QiStreamBehavior qibehavior);
-
-**Http**
-
-::
-
-    PUT Qi/{tenantId}/{namespaceId}/Behaviors/{behaviorId}
+  Response body:
+    The newly created QiStreamBehavior.
     
 
-Content is a serialized QiStreamBehavior object.
+**.NET Library**
+
+``Task<QiStreamBehavior> CreateBehaviorAsync(QiStreamBehavior qiBehavior);``
+  A Found error response is returned when a behavior with a matching identifier already exists.
+``Task<QiStreamBehavior> GetOrCreateBehaviorAsync(QiStreamBehavior qiBehavior);``
+  If a behavior with a matching identifier already exists, the client redirects a GET to the Location header.
+
+The following sample shows how to create a stream behavior with a Mode of StepwiseContinuousLeading, 
+no extrapolation and an override of a Property.
+
+::
+
+  QiStreamBehavior behavior = new QiStreamBehavior()
+  {
+      Id = "Behavior",
+      Name = "Behavior",
+      Mode = QiStreamMode.StepwiseContinuousLeading,
+      ExtrapolationMode = QiStreamExtrapolation.None,
+      Overrides = new List<QiStreamBehaviorOverride>
+      {
+          new QiStreamBehaviorOverride()
+          {
+              QiTypePropertyId = "Measurement",
+              Mode = QiStreamMode.Continuous
+          }
+      }
+  };
+  behavior = await config.CreateBehaviorAsync(behavior);
 
 
+**Security**
+
+  Allowed for administrator accounts
+
+
+*********************
+
+``Update Behavior``
+----------------
+
+Updates a stream behavior. 
+
+**Request**
+
+::
+
+    PUT	api/Tenants/{tenantId}/Namespaces/{namespaceId}/Behaviors/{behaviorId}
+    
 **Parameters**
 
 ``string tenantId``
-  The tenant identifier for the request
+  The tenant identifier of the tenant where you want to update the stream
 ``string namespaceId``
-  The namespace identifier for the request
-``qibehavior``
-  The updated stream behavior
+  The namespace identifier of the namespace where you want to update the stream
+``string behaviorId``
+  The stream behavior identifier to be updated
+  
+The request content is the serialized QiStreamBehavior.  
+  
+
+**Response**
+
+The response includes a status code.
 
 
-**Returns**
-  An IEnumerable of all behavior objects
+**.NET Library**
 
-Security
-  Allowed by administrator accounts
+::
+
+  Task UpdateBehaviorAsync(string behaviorId, QiStreamBehavior qiBehavior);
+
+**Security**
+
+  Allowed for administrator accounts
+
+********************
+
+``Delete Behavior``
+----------------
+
+Deletes a stream behavior. You cannot delete a stream behavior that is associated with a stream.
+
+**Request**
+
+::
+
+   DELETE api/Tenants/{tenantId}/Namespaces/{namespaceId}/Behaviors/{behaviorId}
+   
+**Parameters**
+
+``string tenantId``
+  The tenant identifier
+``string namespaceId``
+  The namespace identifier
+``string behaviorId``
+  The stream behavior identifier
+
+
+**Response**
+
+The response includes a status code.
+
+
+**.NET Library**
+
+::
+
+  Task DeleteBehaviorAsync(string behaviorId);
+  
+**Security**
+
+  Allowed for administrator accounts
+
+
+
+
+
+
+
 
