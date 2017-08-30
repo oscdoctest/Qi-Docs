@@ -1,27 +1,44 @@
 Indexes
 =======
 
-Indexes are used to speed up search and to order the results of searches. A key is used to uniquely identify a record within a collection of records. Keys are unique within the collection.
+Indexes speed up and order the results of searches. A key uniquely identifies a record within 
+a collection of records. Keys are unique within the collection.
 
-In Qi, the key of a QiType is also an index. The key is often referred to as the “primary index,” while all other indexes are referred to as secondary indexes or secondaries.
+In Qi, the key of a QiType is also an index. The key is often referred to as the *primary index,* 
+while all other indexes are referred to as *secondary indexes* or *secondaries*.
 
-A QiType that is used to define a QiStream must specify its key. When inserting data into a QiStream, every key value must be unique. Qi will not store more than a single event for a given key; an event with a particular key may be deleted or updated, but two events with the same key cannot exist.
+A QiType that is used to define a QiStream must specify a key. When inserting data into a QiStream, every 
+key value must be unique. Qi will not store more than a single event for a given key; an event with 
+a particular key may be deleted or updated, but two events with the same key cannot exist.
 
-In .NET, the property of a type is identified by using either an OSIsoft.Qi.QiMemberAttribute and setting its IsKey property to true or by using the System.ComponentModel.DataAnnotations.KeyAttribute. In the QiType, the Property or Properties representing the key have their QiTypeProperty.IsKey field set to true.
+In .NET, the QiType properties that define the key are identified using an ``OSIsoft.Qi.QiMemberAttribute`` 
+and setting its ``IsKey`` field to true. If the key consists of only a single property it is permissible to 
+use the ``System.ComponentModel.DataAnnotations.KeyAttribute``. In the QiType, the Property or Properties 
+representing the key have their ``QiTypeProperty.IsKey`` field set to true.
 
-Secondary indexes are defined on QiStreams and are applied to a single property. You can define many Secondary indexes. In addition, secondary indexe values need not be unique.  
+Secondary indexes are defined on QiStreams and are applied to a single property. You can define many 
+secondary indexes. Secondary index values need not be unique.
+
 
 
 Compound Indexes
 ----------------
 
-Often, a single property (such as a DateTime), is adequate for defining an Index; however, for more complex scenarios Qi allows multiple properties to be defined. Indexes defined by multiple properties are called “compound indexes”. 
+Often, a single property (such as a DateTime), is adequate for defining an Index; however, 
+for more complex scenarios Qi allows multiple properties to be defined. Indexes defined by 
+multiple properties are *compound indexes*.
 
-When defining a Compound Index in .NET, you should apply the OSIsoft.Qi.QiMemberAttribute on each of the type’s properties that are combined to define the index. Set the IsKey property to true and give the Order field a value. The Order field defines the precedence of the property when sorting. A property with an order of 0 has highest precedence. When defining compound indexes outside of .NET, specify the IsKey and Order fields on the QiTypeProperty or Properties.
+When defining a compound index in .NET, you should apply the ``OSIsoft.Qi.QiMemberAttribute`` 
+on each of the type’s properties that are combined to define the index. Set the ``IsKey`` property 
+to true and give the ``Order`` field a zero-based index value. The Order field defines the 
+precedence of the property when sorting. A property with an order of 0 has highest precedence. 
+
+When defining compound indexes outside of .NET, specify the IsKey and Order fields on the 
+``QiTypeProperty`` or Properties. 
 
 Only the primary index (or key) supports compound indexes.
 
-The Qi REST API methods that use tuples were created to assist you to use compound indexes.
+The Qi REST API methods that use tuples were created to assist you when using compound indexes.
 
 
 Working with Indexes
@@ -34,7 +51,11 @@ Using .NET
 Simple Indexes
 --------------
 
-When working in .NET, use the QiTypeBuilder together with either the OSIsoft.Qi.QiMemberAttribute or the System.ComponentModel.DataAnnotations.KeyAttribute, to identify the Property that defines the simple Key. Using QiTypeBuilder eliminates potential errors that might occur when working with QiTypes manually.
+When working in .NET, use the QiTypeBuilder together with either the ``OSIsoft.Qi.QiMemberAttribute`` or the
+``System.ComponentModel.DataAnnotations.KeyAttribute`` to identify the Property that defines the simple Key. 
+The ``QiMemberAttribute`` is preferred. Using QiTypeBuilder eliminates potential errors that might occur 
+when working with QiTypes manually.
+
 
 ::
 
@@ -47,24 +68,25 @@ When working in .NET, use the QiTypeBuilder together with either the OSIsoft.Qi.
 
   public class Simple
   {
-    [Key]
+    [QiMember(IsKey = true, Order = 0) ]
     public DateTime Time { get; set; }
     public State State { get; set; }
     public Double Measurement { get; set; }
   }
 
   QiType simpleType = QiTypeBuilder.CreateQiType<Simple>();
-  simpleType.Description = "Basic sample type";
 
 
-To read data that is located between two indexes, ordered by the Key, define both a start index and an end index. For DateTime, use ISO 8601 representation of dates and times. For example, to query for a window of simple values between January 1, 2010 and February 1, 2010, you can define indexes and query as follows.
-
+To read data that is located between two indexes, ordered by the Key, define both a start index and 
+an end index. For DateTime, use ISO 8601 representation of dates and times. For example, to query 
+for a window of simple values between January 1, 2010 and February 1, 2010, you can define indexes 
+and query as follows.
 
 ::
 
-  IEnumerable<Simple> values =
-    client.GetWindowValuesAsync<Simple>(simpleStream.Id,
-    "2010-01-01T08:00:00.000Z","2010-02-01T08:00:00.000Z").GetAwaiter().GetResult();
+  IEnumerable<Simple> values = await
+  client.GetWindowValuesAsync<Simple>(simpleStream.Id,
+  "2010-01-01T08:00:00.000Z","2010-02-01T08:00:00.000Z");
 
 
 More information about querying data can be found in `Reading Data <https://qi-docs.readthedocs.org/en/latest/Reading_Data.html>`__.
@@ -74,79 +96,93 @@ More information about querying data can be found in `Reading Data <https://qi-d
 
 Secondary indexes are defined at the QiStream. To add indexes to a QiStream, you add them to the QiStream’s Indexes field.
 
-For example, to index the simple type defined in the previous simple index example by Measurement, use the following code: 
+For example, to add a second index on Measurement, use the following code:
 
 
 ::
 
   QiStreamIndex measurementIndex = new QiStreamIndex()
   {
-    QiTypePropertyId = simpleType.Properties.First(p =>p.Id.Equals("Measurement")).Id
+      QiTypePropertyId = simpleType.Properties.First(p => p.Id.Equals("Measurement")).Id
   };
-
-  QiStream streamWithSeconary = new QiStream()
+  QiStream secondary = new QiStream()
   {
-    Id = Guid.NewGuid().ToString(),
-    TypeId = type.Id,
-    Indexes = new List<QiStreamIndex>()
-    {
-      measurementIndex
-    }
+      Id = "Simple with Secondary",
+      TypeId = simpleType.Id,
+      Indexes = new List<QiStreamIndex>()
+      {
+          measurementIndex
+      }
   };
+  secondary = await config.GetOrCreateStreamAsync(secondary);
+
 
 To read data indexed by a secondary Index, use a filtered Get, as in the following:
 
 ::
 
-  DateTime t = DateTime.Now;
-  client.UpdateValuesAsync<Simple>(secondary.Id, new List<Simple>()
-  {
-    new Simple()
+  await client.UpdateValuesAsync<Simple>(secondary.Id, new List<Simple>()
     {
-      Time = t,
-      State = State.Ok,
-      Measurement = 5
-    },
-    new Simple()
-    {
-      Time = t + TimeSpan.FromSeconds(1),
-      State = State.Ok,
-      Measurement = 4
-    },
-    new Simple()
-    {
-      Time = t + TimeSpan.FromSeconds(2),
-      State = State.Ok,
-      Measurement = 3
-    },
-    new Simple()
-    {
-      Time = t + TimeSpan.FromSeconds(3),
-      State = State.Ok,
-      Measurement = 2
-    },
-    new Simple()
-    {
-      Time = t + TimeSpan.FromSeconds(4),
-      State = State.Ok,
-      Measurement = 1
-    },
-  }).GetAwaiter().GetResult();
+        new Simple()
+        {
+            Time = time,
+            State = State.Ok,
+            Measurement = 5
+        },
+        new Simple()
+        {
+            Time = time + TimeSpan.FromSeconds(1),
+            State = State.Ok,
+            Measurement = 4
+        },
+        new Simple()
+        {
+            Time = time + TimeSpan.FromSeconds(2),
+            State = State.Ok,
+            Measurement = 3
+        },
+        new Simple()
+        {
+            Time  = time + TimeSpan.FromSeconds(3),
+            State = State.Ok,
+            Measurement = 2
+        },
+        new Simple()
+        {
+            Time = time + TimeSpan.FromSeconds(4),
+            State = State.Ok,
+            Measurement = 1
+        },
+    });
 
-  IEnumerable<Simple> orderedBySecondary =
-  client.GetValuesAsync<Simple>(secondary.Id,
-    "Measurement gt 0 and Measurement lt 6").GetAwaiter().GetResult();
-    
-  foreach (Simple simple in orderedBySecondary)
-   Console.WriteLine(“{0}: {1}”, simple.Time, simple.Measurement);
+  IEnumerable<Simple> orderedByKey = await client.GetWindowValuesAsync<Simple>(secondary.Id, 
+      time.ToString("o"), time.AddSeconds(4).ToString("o"));
+  foreach (Simple value in orderedByKey)
+      Console.WriteLine("{0}: {1}", value.Time, value.Measurement);
+
+  Console.WriteLine();
+
+  IEnumerable<Simple> orderedBySecondary = await client.GetFilteredValuesAsync<Simple>(secondary.Id, 
+  "Measurement gt 0 and Measurement lt 6");
+  foreach (Simple value in orderedBySecondary)
+      Console.WriteLine("{0}: {1}", value.Time, value.Measurement);
+  Console.WriteLine();
 
   // Output:
-  // 12/13/2016 9:30:04 PM: 1
-  // 12/13/2016 9:30:03 PM: 2
-  // 12/13/2016 9:30:02 PM: 3
-  // 12/13/2016 9:30:01 PM: 4
-  // 12/13/2016 9:30:00 PM: 5
+  // 1/20/2017 12:00:00 AM: 5
+  // 1/20/2017 12:00:01 AM: 4
+  // 1/20/2017 12:00:02 AM: 3
+  // 1/20/2017 12:00:03 AM: 2
+  // 1/20/2017 12:00:04 AM: 1
+  //
+  // 1/20/2017 12:00:04 PM: 1
+  // 1/20/2017 12:00:03 PM: 2
+  // 1/20/2017 12:00:02 PM: 3
+  // 1/20/2017 12:00:01 PM: 4
+  // 1/20/2017 12:00:00 PM: 5
 
+  
+  
 Compound Indexes
 ----------------
 
@@ -165,7 +201,7 @@ Compound indexes are defined using the QiMemberAttribute as follows:
   public class DerivedCompoundIndex : Simple
   {
     [QiMember(IsKey = true, Order = 1)]
-    public DateTime Recorded { get; set; }
+    public DateTime Recorded { get; set; } 
   }
 
 
@@ -190,7 +226,7 @@ Events of type DerivedCompoundIndex are sorted first by the Time parameter and t
 | 02:00      | 14:00          | 6                 |
 +------------+----------------+-------------------+
 
-If the Order paremeter was swapped, and Recorded set to zero, the results would sort as follows:
+If the Order parameters were swapped, Recorded set to zero, and Time set to one, the results would sort as follows:
 
 +------------+----------------+-------------------+
 | **Time**   | **Recorded**   | **Measurement**   |
@@ -215,88 +251,81 @@ Were we to add values as follows:
 ::
 
   // estimates at 1/20/2017 00:00
-  client.UpdateValuesAsync(compoundStream.Id, new List<Compound>()
-  {
-    new Compound()
+  await client.UpdateValuesAsync(compoundStream.Id, new List<DerivedCompoundIndex>()
     {
-      Time = DateTime.Parse("1/20/2017 01:00"),
-      Recorded = DateTime.Parse("1/20/2017 00:00"),
-      State = State.Ok,
-      Measurement = 0
-    },
-    new Compound()
-    {
-      Time = DateTime.Parse("1/20/2017 02:00"),
-      Recorded = DateTime.Parse("1/20/2017 00:00"),
-      State = State.Ok,
-      Measurement = 1
-    },
-  }).GetAwaiter().GetResult();
+        new DerivedCompoundIndex()
+        {
+            Time = DateTime.Parse("1/20/2017 01:00"),
+            Recorded = DateTime.Parse("1/20/2017 00:00"),
+            State = State.Ok,
+            Measurement = 0
+        },
+        new DerivedCompoundIndex()
+        {
+            Time = DateTime.Parse("1/20/2017 02:00"),
+            Recorded = DateTime.Parse("1/20/2017 00:00"),
+            State = State.Ok,
+            Measurement = 1
+        },
+    });
 
   // measure and estimates at 1/20/2017 01:00
-  client.UpdateValuesAsync(compoundStream.Id, new List<Compound>()
-  {
-    new Compound()
+  await client.UpdateValuesAsync(compoundStream.Id, new List<DerivedCompoundIndex>()
     {
-      Time = DateTime.Parse("1/20/2017 01:00"),
-      Recorded = DateTime.Parse("1/20/2017 01:00"),
-      State = State.Ok,
-      Measurement = 2
-    },
-    new Compound()
-    {
-      Time = DateTime.Parse("1/20/2017 02:00"),
-      Recorded = DateTime.Parse("1/20/2017 01:00"),
-      State = State.Ok,
-      Measurement = 3
-    },
-  }).GetAwaiter().GetResult();
+        new DerivedCompoundIndex()
+        {
+            Time = DateTime.Parse("1/20/2017 01:00"),
+            Recorded = DateTime.Parse("1/20/2017 01:00"),
+            State = State.Ok,
+            Measurement = 2
+        },
+        new DerivedCompoundIndex()
+        {
+            Time = DateTime.Parse("1/20/2017 02:00"),
+            Recorded = DateTime.Parse("1/20/2017 01:00"),
+            State = State.Ok,
+            Measurement = 3
+        },
+    });
 
   // measure at 1/20/2017 02:00
-  client.UpdateValuesAsync(compoundStream.Id, new List<Compound>()
-  {
-    new Compound()
+  await client.UpdateValuesAsync(compoundStream.Id, new List<DerivedCompoundIndex>()
     {
-      Time = DateTime.Parse("1/20/2017 02:00"),
-      Recorded = DateTime.Parse("1/20/2017 02:00"),
-      State = State.Ok,
-      Measurement = 4
-    },
-  }).GetAwaiter().GetResult();
+        new DerivedCompoundIndex()
+        {
+            Time = DateTime.Parse("1/20/2017 02:00"),
+            Recorded = DateTime.Parse("1/20/2017 02:00"),
+            State = State.Ok,
+            Measurement = 4
+        },
+    });
 
   // adjust earlier values at 1/20/2017 14:00
-  client.UpdateValuesAsync(compoundStream.Id, new List<Compound>()
-  {
-    new Compound()
+  await client.UpdateValuesAsync(compoundStream.Id, new List<DerivedCompoundIndex>()
     {
-      Time = DateTime.Parse("1/20/2017 01:00"),
-      Recorded = DateTime.Parse("1/20/2017 14:00"),
-      State = State.Ok,
-      Measurement = 5
-    },
-    new Compound()
-    {
-      Time = DateTime.Parse("1/20/2017 02:00"),
-      Recorded = DateTime.Parse("1/20/2017 14:00"),
-      State = State.Ok,
-      Measurement = 6
-    },
-  }).GetAwaiter().GetResult();
+        new DerivedCompoundIndex()
+        {
+            Time = DateTime.Parse("1/20/2017 01:00"),
+            Recorded = DateTime.Parse("1/20/2017 14:00"),
+            State = State.Ok,
+            Measurement = 5
+        },
+        new DerivedCompoundIndex()
+        {
+            Time = DateTime.Parse("1/20/2017 02:00"),
+            Recorded = DateTime.Parse("1/20/2017 14:00"),
+            State = State.Ok,
+            Measurement = 6
+        },
+    });
 
+  var from = new Tuple<DateTime, DateTime>(DateTime.Parse("1/20/2017 01:00"), DateTime.Parse("1/20/2017 00:00"));
+  var to = new Tuple<DateTime, DateTime>(DateTime.Parse("1/20/2017 02:00"), DateTime.Parse("1/20/2017 14:00"));
 
-You can query against the compound index as follows:
+  var compoundValues = await client.GetWindowValuesAsync<DerivedCompoundIndex, DateTime, DateTime>(compoundStream.Id, from, to);
 
-::
-
-  IEnumerable<Compound> compoundValues = client.GetWindowValuesAsync<Compound, DateTime, DateTime>(
-    compoundStream.Id,
-  new Tuple<DateTime, DateTime>(DateTime.Parse("1/20/2017 01:00"),
-                                DateTime.Parse("1/20/2017 00:00")),
-  new Tuple<DateTime, DateTime>(DateTime.Parse("1/20/2017 02:00"),
-                                DateTime.Parse("1/20/2017 14:00"))).GetAwaiter().GetResult();
-
-  foreach (Compound value in compoundValues)
-    Console.WriteLine("{0}:{1} {2}", value.Time, value.Recorded,value.Measurement);
+  foreach (DerivedCompoundIndex value in compoundValues)
+     Console.WriteLine("{0}:{1} {2}", value.Time, value.Recorded, value.Measurement);
 
   // Output:
   // 1/20/2017 1:00:00 AM:1/20/2017 12:00:00 AM 0
@@ -307,6 +336,8 @@ You can query against the compound index as follows:
   // 1/20/2017 2:00:00 AM:1/20/2017 2:00:00 AM 4
   // 1/20/2017 2:00:00 AM:1/20/2017 2:00:00 PM 6
 
+Note that the ``GetWindowValuesAsync()`` call specifies an expected return type and the index types as generic parameters.
+
 
 Not Using .NET
 --------------
@@ -316,18 +347,16 @@ Simple Indexes
 --------------
 
 
-When the .NET QiTypeBuilder is unavailable, indexes must be built
-manually.
+When the .NET QiTypeBuilder is unavailable, indexes must be built manually.
 
-The following discusses the types defined in our
-`Python <https://github.com/osisoft/Qi-Samples/tree/master/Basic/Python>`__
+The following discusses the types defined in the
+ `Python <https://github.com/osisoft/Qi-Samples/tree/master/Basic/Python>`__
 and `Java
 Script <https://github.com/osisoft/Qi-Samples/tree/master/Basic/JavaScript>`__
 samples. Samples in other languages can be found
 `here <https://github.com/osisoft/Qi-Samples/tree/master/Basic>`__.
 
-If we wish to build a QiType representative of the following sample
-class:
+To build a QiType representation the following sample class, see the code: code_example_1_:
 
 *Python*
 
@@ -374,6 +403,7 @@ class:
     this.Value = null;
   }
 
+.. _code_example_1:
 
 To identify the Time property as the Key, define its QiTypeProperty as
 follows:
