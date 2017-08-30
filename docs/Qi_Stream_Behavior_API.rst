@@ -1,51 +1,67 @@
-QiStreamBehavior API calls
-==================
+QiStreamBehavior API
+====================
 
-The API calls in this section are all used to create and manipulate QiStreamBehaviors. 
-QiStreamBehavior management via the Qi Client Libraries is performed through 
-the ``IQiMetadataService`` interface, which is accessed via the 
-``QiService.GetMetadataService( )`` helper. 
+The REST APIs provide programmatic access to create and manipulate QiStreamBehaviors. 
+The APIs in this section interact with QiStreamBehavior. When working in .NET convenient 
+Qi Client libraries are available. The IQiMetadataService interface, accessed using the 
+``QiService.GetMetadataService()`` helper defines the available functions. 
+
 See `QiStreamBehavior <https://qi-docs-rst.readthedocs.org/en/latest/Qi_Stream_Behavior.html>`__ for 
-a list of properties, interpolation, extrapolation, and overrides.
+general QiStreamBehavior information.
 
 
 ***********************
 
 
-``DeleteBehaviorAsync()``
+`` Get Behavior``
 ----------------
 
-Deletes a QiStream behavior from the specified namespace that matches the specified behaviorId. You cannot delete a stream behavior that is associated with a stream.
+Returns a QiStreamBehavior corresponding to the specified behaviorId
 
-
-**Syntax**
-
-::
-
-    Task DeleteBehaviorAsync(string behaviorId);
-
-**Http**
+**Request**
 
 ::
 
-    DELETE Qi/{tenantId}/{namespaceId}/Behaviors/{behaviorId}
+    GET api/Tenants/{tenantId}/Namespaces/{namespaceId}/Behaviors/{behaviorId}
 
 **Parameters**
 
 ``string tenantId``
-  The tenant identifier for the request
+  The tenant identifier
 ``string namespaceId``
-  The namespace identifier for the request
- 
-``behaviorId``
-  The Id of the behavior to delete.
+  The namespace identifier
+``string behaviorId``
+  The stream behavior identifier
 
 
-**Returns**
-  A QiStream object for the specified typeId and namespace.
+**Response**
+
+The response includes a status code and a response body.
+
+  Response body:
+    The requested QiStreamBehavior
+    
+::
+
+  Sample response body
+  HTTP/1.1 200
+  Content-Type: application/json
+
+  {  
+     "Id":"Behavior",
+     "Name":"Behavior",
+     "Mode":1,
+     "ExtrapolationMode":1
+  }
+
+**.NET Library**
+
+::
+
+  Task<QiStreamBehavior> GetBehaviorAsync(string behaviorId);
 
 Security
-  Allowed by administrator accounts
+  Allowed for administrator and user accounts
 
 
 **********************
