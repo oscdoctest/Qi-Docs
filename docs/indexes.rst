@@ -356,7 +356,7 @@ Script <https://github.com/osisoft/Qi-Samples/tree/master/Basic/JavaScript>`__
 samples. Samples in other languages can be found
 `here <https://github.com/osisoft/Qi-Samples/tree/master/Basic>`__.
 
-To build a QiType representation the following sample class, see the code: code_example_1_:
+To build a QiType representation the following sample class, see code_example_1_:
 
 *Python*
 
@@ -380,11 +380,12 @@ To build a QiType representation the following sample class, see the code: code_
     def setState(self, state):
       self.__state = state
 
-  Measurement = property(getValue, setValue)
-  def getValue(self):
-    return self.__measurement
-  def setValue(self, measurement):
-    self.__measurement = measurement
+    Measurement = property(getValue, setValue)
+    def getValue(self):
+      return self.__measurement
+    def setValue(self, measurement):
+      self.__measurement = measurement
+
 
 *JavaScript*
 
@@ -405,50 +406,6 @@ To build a QiType representation the following sample class, see the code: code_
 
 .. _code_example_1:
 
-To identify the Time property as the Key, define its QiTypeProperty as
-follows:
-
-*Python*
-
-.. code-block:: python
-
-  # Time is the primary key
-  time = QiTypeProperty()
-  time.Id = "Time"
-  time.Name = "Time"
-  time.IsKey = True
-  time.QiType = QiType()
-  time.QiType.Id = "DateTime"
-  time.QiType.Name = "DateTime"
-  time.QiType.QiTypeCode = QiTypeCode.DateTime
-
-
-*JavaScript*
-
-.. code-block:: javascript
-
-  // Time is the primary key
-  var timeProperty = new QiObjects.QiTypeProperty({
-    "Id": "Time",
-    "IsKey": true,
-    "QiType": new QiObjects.QiType({
-      "Id": "dateType",
-      "QiTypeCode": QiObjects.qiTypeCodeMap.DateTime
-    })
-  });
-
-
-Note that the time.IsKey field is set to true.
-
-To read data using the key, you define a start index and an end index. For DateTime, use ISO 8601 representation of dates and times. To query for a window of values between January 1, 2010 and February 1, 2010, you would define indexes as "2010-01-01T08:00:00.000Z" and "2010-02-01T08:00:00.000Z", respectively.
-
-Additional information can be found in the `Reading Data <https://qi-docs.readthedocs.org/en/latest/Reading_Data.html>`__.
-
-**Secondary Indexes**
-
-Secondary Indexes are defined at the QiStream. To create a QiStream
-using the Simple class and add a Secondary index on the Measurement, we
-will use the QiType defined as follows
 
 *Python*
 
@@ -560,22 +517,74 @@ will use the QiType defined as follows
     "Properties": [timeProperty, stateProperty, valueProperty]
   });
 
-Creating the QiStream with the Measurement as a Secondary Index is shown in the following example:
+
+The Time property is identified as the Key by define its QiTypeProperty as follows:
+
+*Python*
+
+.. code-block:: python
+
+  # Time is the primary key
+  time = QiTypeProperty()
+  time.Id = "Time"
+  time.Name = "Time"
+  time.IsKey = True
+  time.QiType = QiType()
+  time.QiType.Id = "DateTime"
+  time.QiType.Name = "DateTime"
+  time.QiType.QiTypeCode = QiTypeCode.DateTime
+
+*JavaScript*
+
+.. code-block:: javascript
+
+  // Time is the primary key
+  var timeProperty = new QiObjects.QiTypeProperty({
+    "Id": "Time",
+    "IsKey": true,
+    "QiType": new QiObjects.QiType({
+      "Id": "dateType",
+      "QiTypeCode": QiObjects.qiTypeCodeMap.DateTime
+    })
+  });
+
+
+
+Note that the time.IsKey field is set to true.
+
+To read data using the key, you define a start index and an end index. For DateTime, use 
+ISO 8601 representation of dates and times. To query for a window of values between January 1, 
+2010 and February 1, 2010, you would define indexes as “2010-01-01T08:00:00.000Z” and 
+“2010-02-01T08:00:00.000Z”, respectively.
+
+Additional information can be found in the `Reading Data <https://qi-docs.readthedocs.org/en/latest/Reading_Data.html>`__.
+
+**Secondary Indexes**
+
+Secondary Indexes are defined at the QiStream. To create a QiStream 
+using the Simple class and add a Secondary index on the Measurement, 
+you use the previously defined QiType. Then you create a QiStreamIndex 
+specifying the measurement property and define a QiStream identifying the 
+Measurement as a Secondary Index as shown in the following example:
 
 
 *Python*
 
 .. code-block:: python
 
+  # Create the properties
+
   measurementIndex = QiStreamIndex()
   measurementIndex.QiTypePropertyId = measurement.Id
-  
+
   stream = QiStream()
   stream.Id = str(uuid.uuid4())
   stream.Name = "SimpleWithSecond"
   stream.Description = "Simple with secondary index"
   stream.TypeId = simple.Id
   stream.Indexes = [ measurementIndex ]
+
+
 
 *JavaScript*
 
@@ -604,13 +613,13 @@ Consider the following Python and JavaScript types:
 .. code-block:: python
 
   class Simple(object):
-    # First-order Key property
-    Time = property(getTime, setTime)
-    def getTime(self):
-      return self.__time
-    def setTime(self, time):
-      self.__time = time
-      
+  # First-order Key property
+  Time = property(getTime, setTime)
+  def getTime(self):
+    return self.__time
+  def setTime(self, time):
+    self.__time = time
+
   State = property(getState, setState)
   def getState(self):
     return self.__state
@@ -632,6 +641,7 @@ Consider the following Python and JavaScript types:
   def Recorded(self, recorded):
     self.__recorded = recorded
 
+
 *JavaScript*
 
 .. code-block:: javascript
@@ -647,14 +657,16 @@ Consider the following Python and JavaScript types:
     this.Recorded = null;
   }
 
-To turn the simple QiType shown in the example into a type supporting the DerivedCompoundIndex type with a compound index based on the Simple.Time and DerivedCompoundIndex.Recorded, you would extend the type as follows:
+
+To turn the simple QiType shown in the example into a type supporting the DerivedCompoundIndex 
+type with a compound index based on the ``Simple.Time`` and ``DerivedCompoundIndex.Recorded``, 
+extend the type as follows:
 
 *Python*
 
-# We set the Order for this property. The order of the key in Simple defaults to 0
-
 .. code-block:: python
 
+  # We set the Order for this property. The order of the first property defaulted to 0
   recorded = QiTypeProperty()
   recorded.Id = "Recorded"
   recorded.Name = "Recorded"
@@ -674,11 +686,13 @@ To turn the simple QiType shown in the example into a type supporting the Derive
   derived.QiTypeCode = QiTypeCode.Object
   derived.Properties = [ recorded ]
 
+
+
 *JavaScript*
 
 .. code-block:: javascript
 
-  // We set the Order for this property. The order of the key in Simple defaults to 0
+  // We set the Order for this property. The order of the first property defaulted to 0
   var recordedProperty = new QiObjects.QiTypeProperty({
     "Id": "Recorded",
     "Name": "Recorded",
@@ -701,7 +715,8 @@ To turn the simple QiType shown in the example into a type supporting the Derive
     "Properties": [recordedProperty]
   });
 
-If the Order was swapped and Recorded was set to zero, the results would sort as follows:
+ 
+Data in the stream will be ordered as follows:
 
 +------------+----------------+-------------------+
 | **Time**   | **Recorded**   | **Measurement**   |
@@ -721,8 +736,8 @@ If the Order was swapped and Recorded was set to zero, the results would sort as
 | 02:00      | 14:00          | 6                 |
 +------------+----------------+-------------------+
 
-Were the Order swapped, Recorded as zero, the results would sort as
-follows
+If the Order was swapped, and Recorded set as zero, the results would sort as
+follows:
 
 +------------+----------------+-------------------+
 | **Time**   | **Recorded**   | **Measurement**   |
@@ -742,10 +757,5 @@ follows
 | 02:00      | 14:00          | 6                 |
 +------------+----------------+-------------------+
 
-
-Summary
--------
-
-In this topic, you learned how to define and use both simple and compound indexes. Also described was how to create use QiTypeBuilder to easily create QiTypes, and how to create QiTypes without using QiTypeBuilder. Feel free to use the examples provided. 
 
 
