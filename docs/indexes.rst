@@ -246,7 +246,6 @@ If the Order parameters were swapped, Recorded set to zero, and Time set to one,
 | 02:00      | 14:00          | 6                 |
 +------------+----------------+-------------------+
 
-Were we to add values as follows:
 
 ::
 
@@ -354,7 +353,7 @@ The following discusses the types defined in the `Python <https://github.com/osi
 and `Java Script <https://github.com/osisoft/Qi-Samples/tree/master/Basic/JavaScript>`__
 samples. Samples in other languages can be found `here <https://github.com/osisoft/Qi-Samples/tree/master/Basic>`__.
 
-To build a QiType representation the following sample class, see code_example_1_:
+To build a QiType representation of the following sample class, see code_example_1_:
 
 *Python*
 
