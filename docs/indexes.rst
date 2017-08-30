@@ -349,12 +349,10 @@ Simple Indexes
 
 When the .NET QiTypeBuilder is unavailable, indexes must be built manually.
 
-The following discusses the types defined in the
- `Python <https://github.com/osisoft/Qi-Samples/tree/master/Basic/Python>`__
-and `Java
-Script <https://github.com/osisoft/Qi-Samples/tree/master/Basic/JavaScript>`__
-samples. Samples in other languages can be found
-`here <https://github.com/osisoft/Qi-Samples/tree/master/Basic>`__.
+
+The following discusses the types defined in the `Python <https://github.com/osisoft/Qi-Samples/tree/master/Basic/Python>`__
+and `Java Script <https://github.com/osisoft/Qi-Samples/tree/master/Basic/JavaScript>`__
+samples. Samples in other languages can be found `here <https://github.com/osisoft/Qi-Samples/tree/master/Basic>`__.
 
 To build a QiType representation the following sample class, see code_example_1_:
 
@@ -406,6 +404,7 @@ To build a QiType representation the following sample class, see code_example_1_
 
 .. _code_example_1:
 
+The following code is used to build a QiType representation of the sample class above:
 
 *Python*
 
