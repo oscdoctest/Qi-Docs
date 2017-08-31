@@ -115,351 +115,510 @@ The response includes a status code and a response body.
 
 **Security**
 
-Allowed by administrator and user accounts
+  Allowed by administrator and user accounts
+
+
+***********************
+
+``Get Types``
+------------
+
+Returns a list of types within a given namespace.
+
+**Request**
+
+::
+
+    GET api/Tenants/{tenantId}/Namespaces/{namespaceId}/Types?skip={skip}&count={count}
+
+
+**Parameters**
+
+``string tenantId``
+  The tenant identifier
+``string namespaceId``
+  The namespace identifier
+``int skip``
+  An optional value representing the zero-based offset of the first QiType to retrieve. If not specified, a default value of 0 is used.
+``int count``
+  An optional value representing the maximum number of QiTypes to retrieve. If not specified, a default value of 100 is used.
+
+**Response**
+
+  The response includes a status code and a response body.
+
+**Response body**
+
+  A collection of zero or more QiTypes.
+  
+  Sample response body:
+  
+::
+
+  HTTP/1.1 200
+  Content-Type: application/json
+
+  [  
+    {  
+        "Id":"f1a7ef61-d47f-3007-a260-449643a7c219",
+        "Name":"Simple",
+        "QiTypeCode":1,
+        "Properties":[  
+           {  
+              "Id":"Time",
+              "Name":"Time",
+              "IsKey":true,
+              "QiType":{  
+                 "Id":"19a87a76-614a-385b-ba48-6f8b30ff6ab2",
+                 "Name":"DateTime",
+                 "QiTypeCode":16
+              }
+           },
+           {  
+              "Id":"State",
+              "Name":"State",
+              "QiType":{  
+                 "Id":"e20bdd7e-590b-3372-ab39-ff61950fb4f3",
+                 "Name":"State",
+                 "QiTypeCode":609,
+                 "Properties":[  
+                    {  
+                       "Id":"Ok",
+                       "Value":0
+                    },
+                    {  
+                       "Id":"Warning",
+                       "Value":1
+                    },
+                    {  
+                       "Id":"Aalrm",
+                       "Value":2
+                    }
+                 ]
+              }
+           },
+           {  
+              "Id":"Measurement",
+              "Name":"Measurement",
+              "QiType":{  
+                 "$id":"574",
+                 "Id":"6fecef77-20b1-37ae-aa3b-e6bb838d5a86",
+                 "Name":"Double",
+                 "QiTypeCode":14
+              }
+           }
+        ]
+     },
+     …
+  ]
+
+
+
+**.NET Library**
+
+::
+
+  Task<IEnumerable<QiType>> GetTypesAsync(int skip = 0, int count = 100);
+
+
+**Security**
+
+  Allowed by administrator and user accounts
+
+
+***********************
+
+``Create Type``
+------------
+
+Creates the specified type.
+
+**Request**
+
+::
+
+    POST api/Tenants/{tenantId}/Namespaces/{namespaceId}/Types/{typeId}
+
+**Parameters**
+
+``string tenantId``
+  The tenant identifier
+``string namespaceId``
+  The namespace identifier
+``string typeId``
+  The type identifier. The identifier must match the QiType.Id field. 
+
+
+**Response**
+
+  The response includes a status code and a response body.
+
+**Response body**
+
+  The request content is the serialized QiType. If you are not using the Qi client libraries, we recommend using JSON.
+  
+  Sample QiType content:
+  
+::
+
+  {  
+     "Id":"Simple",
+     "Name":"Simple",
+     "Description":"Basic sample type",
+     "QiTypeCode":1,
+     "IsGenericType":false,
+     "IsReferenceType":false,
+     "GenericArguments":null,
+     "Properties":[  
+        {  
+           "Id":"Time",
+           "Name":"Time",
+           "Description":null,
+           "Order":0,
+           "IsKey":true,
+           "FixedSize":0,
+           "QiType":{  
+              "Id":"c48bfdf5-a271-384b-bf13-bd21d931c1bf",
+              "Name":"DateTime",
+              "Description":null,
+              "QiTypeCode":16,
+              "IsGenericType":false,
+              "IsReferenceType":false,
+              "GenericArguments":null,
+              "Properties":null,
+              "BaseType":null,
+              "DerivedTypes":null
+           },
+           "Value":null
+        },
+        {  
+           "Id":"State",
+           "Name":"State",
+           "Description":null,
+           "Order":0,
+           "IsKey":false,
+           "FixedSize":0,
+           "QiType":{  
+              "Id":"ba5d20e1-cd21-3ad0-99f3-c3a3b0146aa1",
+              "Name":"State",
+              "Description":null,
+              "QiTypeCode":609,
+              "IsGenericType":false,
+              "IsReferenceType":false,
+              "GenericArguments":null,
+              "Properties":[  
+                 {  
+                    "Id":"Ok",
+                    "Name":null,
+                    "Description":null,
+                    "Order":0,
+                    "IsKey":false,
+                    "FixedSize":0,
+                    "QiType":null,
+                    "Value":0
+                 },
+                 {  
+                    "Id":"Warning",
+                    "Name":null,
+                    "Description":null,
+                    "Order":0,
+                    "IsKey":false,
+                    "FixedSize":0,
+                    "QiType":null,
+                    "Value":1
+                 },
+                 {  
+                    "Id":"Alarm",
+                    "Name":null,
+                    "Description":null,
+                    "Order":0,
+                    "IsKey":false,
+                    "FixedSize":0,
+                    "QiType":null,
+                    "Value":2
+                 }
+              ],
+              "BaseType":null,
+              "DerivedTypes":null
+           },
+           "Value":null
+        },
+        {  
+           "Id":"Measurement",
+           "Name":"Measurement",
+           "Description":null,
+           "Order":0,
+           "IsKey":false,
+           "FixedSize":0,
+           "QiType":{  
+              "Id":"0f4f147f-4369-3388-8e4b-71e20c96f9ad",
+              "Name":"Double",
+              "Description":null,
+              "QiTypeCode":14,
+              "IsGenericType":false,
+              "IsReferenceType":false,
+              "GenericArguments":null,
+              "Properties":null,
+              "BaseType":null,
+              "DerivedTypes":null
+           },
+           "Value":null
+        }
+     ],
+     "BaseType":null,
+     "DerivedTypes":null
+  }
+
+
+  Response
+
+  The response includes a status code and a response body.
+  
+  Response body
+  
+::
+
+  HTTP/1.1 200
+  Content-Type: application/json
+
+  {  
+     "Id":"Simple",
+     "Name":"Simple",
+     "Description":"Basic sample type",
+     "QiTypeCode":1,
+     "Properties":[  
+        {  
+           "Id":"Time",
+           "Name":"Time",
+           "IsKey":true,
+           "QiType":{  
+              "$id":"596",
+              "Id":"c48bfdf5-a271-384b-bf13-bd21d931c1bf",
+              "Name":"DateTime",
+              "QiTypeCode":16
+           }
+        },
+        {  
+           "Id":"State",
+           "Name":"State",
+           "QiType":{  
+              "$id":"598",
+              "Id":"ba5d20e1-cd21-3ad0-99f3-c3a3b0146aa1",
+              "Name":"State",
+              "QiTypeCode":609,
+              "Properties":[  
+                 {  
+                    "Id":"Ok",
+                    "Value":0
+                 },
+                 {  
+                    "Id":"Warning",
+                    "Value":1
+                 },
+                 {  
+                    "Id":"Alarm",
+                    "Value":2
+                 }
+              ]
+           }
+        },
+        {  
+           "Id":"Measurement",
+           "Name":"Measurement",
+           "QiType":{  
+              "Id":"0f4f147f-4369-3388-8e4b-71e20c96f9ad",
+              "Name":"Double",
+              "QiTypeCode":14
+           }
+        }
+     ]
+  }
+  
+
+
+
+**.NET Library**
+
+
+  ``Task<QiType> CreateTypeAsync(QiType qiType);``
+  
+  A Found error response is returned when a type with a matching identifier already exists.
+  
+  ``Task<QiType> GetOrCreateTypeAsync(QiType qiType);``
+  
+  If a type with a matching identifier already exists, the client redirects a GET to the Location header.
+
+
+**Security**
+
+  Allowed by administrator accounts
 
 
 ***********************
 
 
-``GetTypeAsync()``
-----------------
 
-Returns the type of the specified ``typeId`` from the specified namespace. 
+``Update Type``
+------------
 
-**Syntax**
+Returns 
 
-::
-
-    Task<QiType> GetTypeAsync(string typeId);
-
-*Http*
+**Request**
 
 ::
 
-    GET Qi/{tenantId}/{namespaceId}/Types/{typeId}
+    GET api/Tenants/{tenantId}/Namespaces/{namespaceId}/Types/{typeId}
+
 
 **Parameters**
 
 ``string tenantId``
-  The tenant identifier for the request
+  The tenant identifier
 ``string namespaceId``
-  The namespace identifier for the request
+  The namespace identifier
 ``string typeId``
-  The Id of the type to retrieve
+  The type identifier
 
 
-**Returns**
-  A QiType specified by the typeId
+**Response**
 
-Security
+  The response includes a status code and a response body.
+
+**Response body**
+
+  The requested QiType
+  
+  Sample response body:
+  
+::
+
+  HTTP/1.1 200
+  Content-Type: application/json
+
+
+**.NET Library**
+
+::
+
+  Task<QiType> GetTypeAsync(string typeId);
+
+
+**Security**
+
   Allowed by administrator and user accounts
 
 
 ***********************
 
 
-``GetTypesAsync()``
-----------------
 
-Returns a list of all types within a given namespace. 
+``Get Type``
+------------
 
-**Syntax**
+Returns 
 
-::
-
-    Task<IEnumerable<QiType>> GetTypesAsync( );
-
-
-*Http*
+**Request**
 
 ::
 
-    GET Qi/Types
+    GET api/Tenants/{tenantId}/Namespaces/{namespaceId}/Types/{typeId}
 
 
 **Parameters**
 
 ``string tenantId``
-  The tenant identifier for the request
+  The tenant identifier
 ``string namespaceId``
-  The namespace identifier for the request
-
-**Returns**
-
-  IEnumerable QiType of all types in the namespace
+  The namespace identifier
+``string typeId``
+  The type identifier
 
 
-Security
+**Response**
+
+  The response includes a status code and a response body.
+
+**Response body**
+
+  The requested QiType
+  
+  Sample response body:
+  
+::
+
+  HTTP/1.1 200
+  Content-Type: application/json
+
+
+**.NET Library**
+
+::
+
+  Task<QiType> GetTypeAsync(string typeId);
+
+
+**Security**
+
   Allowed by administrator and user accounts
 
 
 ***********************
 
 
-``GetOrCreateTypeAsync()``
-----------------
 
-Returns the type of the specified ``typeId`` within a namespace, or creates the type if the ``typeId`` does not already exist. If the ``typeId`` exists, it is returned to the caller unchanged. 
+``Get Type``
+------------
 
+Returns 
 
-**Syntax**
-
-::
-
-    Task<QiType> GetOrCreateTypeAsync(QiType qitype);
-
-*Http*
+**Request**
 
 ::
 
-    POST Qi/{tenantId}/{namespaceId}/Types
-
+    GET api/Tenants/{tenantId}/Namespaces/{namespaceId}/Types/{typeId}
 
 
 **Parameters**
 
 ``string tenantId``
-  The tenant identifier for the request
+  The tenant identifier
 ``string namespaceId``
-  The namespace identifier for the request
-``QiType qitype``
-  The type of the stream for which the type request is made
-
-
-**Returns**
-
-  Qitype
-
-
-Security
-  Allowed by administrator account
-
-**Notes**
-
-.. _Introducing JSON: http://json.org/index.html
-
- For HTTP requests, the message content (the event) must be serialized in JSON format. JSON objects consist of a 
- series of name-value property pairs enclosed within brackets. Because QiType objects can become complex (particularly 
- when properties themselves are QiTypes), OSIsoft recommends using a JSON serializer (available at `Introducing JSON`_). 
- The following example shows the serialization of the QiType object from the WaveData example. See the Qi code 
- samples for the complete WaveData example.
-
-
-::
-
-	{
-		"Id":"WaveData_SampleType",
-		"Name":"Wave Data Type",
-		"Description":"This is a type for WaveData events",
-		"QiTypeCode":0,
-		"Properties":[
-			{
-				"Id":"Order",
-				"Name":null,
-				"Description":null,
-				"QiType":
-					{
-						"Id":"intType",
-						"Name":null,
-						"Description":null,
-						"QiTypeCode":9,
-						"Properties":null
-					},
-				"IsKey":true
-			},
-			{
-				"Id":"Tau",
-				"Name":null,
-				"Description":null,
-				"QiType":
-					{
-						"Id":"doubleType",
-						"Name":null,
-						"Description":null,
-						"QiTypeCode":14,
-						"Properties":null
-					},
-				"IsKey":false
-			},
-			{
-				"Id":"Radians",
-				"Name":null,
-				"Description":null,
-				"QiType":
-					{
-						"Id":"doubleType",
-						"Name":null,
-						"Description":null,
-						"QiTypeCode":14,
-						"Properties":null
-					},
-				"IsKey":false
-			},
-			{
-				"Id":"Sin",
-				"Name":null,
-				"Description":null,
-				"QiType":
-					{
-						"Id":"doubleType",
-						"Name":null,
-						"Description":null,
-						"QiTypeCode":14,
-						"Properties":null
-					},
-					"IsKey":false
-			},
-			{
-				"Id":"Cos",
-				"Name":null,
-				"Description":null,
-				"QiType":
-					{
-						"Id":"doubleType",
-						"Name":null,
-						"Description":null,
-						"QiTypeCode":14,
-						"Properties":null
-					},
-				"IsKey":false
-			},
-			{
-				"Id":"Tan",
-				"Name":null,
-				"Description":null,
-				"QiType":
-					{
-						"Id":"doubleType",
-						"Name":null,
-						"Description":null,
-						"QiTypeCode":14,
-						"Properties":null
-					},
-				"IsKey":false
-			},
-			{
-				"Id":"Sinh",
-				"Name":null,
-				"Description":null,
-				"QiType":
-					{
-						"Id":"doubleType",
-						"Name":null,
-						"Description":null,
-						"QiTypeCode":14,
-						"Properties":null
-					},
-				"IsKey":false
-			},
-			{
-				"Id":"cosh",
-				"Name":null,
-				"Description":null,
-				"QiType":
-					{	
-						"Id":"doubleType",
-						"Name":null,
-						"Description":null,
-						"QiTypeCode":14,
-						"Properties":null
-					},
-				"IsKey":false
-			},
-			{
-				"Id":"Tanh",
-				"Name":null,
-				"Description":null,
-				"QiType":
-					{
-						"Id":"doubleType",
-						"Name":null,
-						"Description":null,
-						"QiTypeCode":14,
-						"Properties":null
-					},
-				"IsKey":false
-			}
-		]
-	}
-
-***********************
-
-
-``DeleteTypeAsync()``
-----------------
-
-Deletes a type from the specified namespace. Note that a type cannot be deleted if any 
-streams are associated with it.
-
-**Syntax**
-
-::
-
-    Task DeleteTypeAsync(string typeId);
-
-*Http*
-
-::
-
-    DELETE Qi/{tenantId}/{namespaceId}/Types/{typeId}
-
-
-
-**Parameters**
-
-``string tenantId``
-  The tenant identifier for the request
-``string namespaceId``
-  The namespace identifier for the request
+  The namespace identifier
 ``string typeId``
-  The Id of the type to delete
-
-**Returns**
-
-  Qitype
+  The type identifier
 
 
-Security
-  Allowed by administrator account
+**Response**
+
+  The response includes a status code and a response body.
+
+**Response body**
+
+  The requested QiType
+  
+  Sample response body:
+  
+::
+
+  HTTP/1.1 200
+  Content-Type: application/json
+
+
+**.NET Library**
+
+::
+
+  Task<QiType> GetTypeAsync(string typeId);
+
+
+**Security**
+
+  Allowed by administrator and user accounts
 
 
 ***********************
 
 
-``UpdateTypeAsync()``
-----------------
-
-Updates the definition of a type. Note that a type cannot be updated if any streams are 
-associated with it. Also, certain parameters cannot be changed after they are defined.
-
-**Syntax**
-
-::
-
-    Task UpdateTypeAsync(string typeId, QiType qitype);
-
-*Http*
-
-::
-
-    PUT Qi/{tenantId}/{namespaceId}/Types/{typeId}
 
 
-Content is a serialized QiType object.
 
-**Parameters**
-
-``string tenantId``
-  The tenant identifier for the request
-``string namespaceId``
-  The namespace identifier for the request
-``string qitype``
-  The qitype of the type to update
-
-
-**Returns**
-
-  Qitype
-
-Security
-  Allowed by Administrator account
