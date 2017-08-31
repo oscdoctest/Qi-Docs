@@ -10,7 +10,6 @@ for general QiType information.
 
 ***********************
 
-
 ``Get Type``
 ------------
 
@@ -37,11 +36,86 @@ Returns the type corresponding to the specified typeId within a given namespace.
 
 The response includes a status code and a response body.
 
-  Qitype type definition
+**Response body**
+
+  The requested QiType
+  
+  Sample response body:
+  
+::
+
+  HTTP/1.1 200
+  Content-Type: application/json
+
+  {  
+     "Id":"f1a7ef61-d47f-3007-a260-449643a7c219",
+     "Name":"Simple",
+     "QiTypeCode":1,
+     "Properties":[  
+        {  
+           "Id":"Time",
+           "Name":"Time",
+           "IsKey":true,
+           "QiType":{  
+              "$id":"567",
+              "Id":"19a87a76-614a-385b-ba48-6f8b30ff6ab2",
+              "Name":"DateTime",
+              "QiTypeCode":16
+           }
+        },
+        {  
+           "Id":"State",
+          "Name":"State",
+           "QiType":{  
+              "$id":"569",
+              "Id":"e20bdd7e-590b-3372-ab39-ff61950fb4f3",
+              "Name":"State",
+              "QiTypeCode":609,
+              "Properties":[  
+                 {  
+                    "$id":"570",
+                    "Id":"Ok",
+                    "Value":0
+                 },
+                 {  
+                    "$id":"571",
+                    "Id":"Warning",
+                    "Value":1
+                 },
+                 {  
+                    "$id":"572",
+                    "Id":"Aalrm",
+                    "Value":2
+                 }
+              ]
+           }
+        },
+        {  
+           "$id":"573",
+           "Id":"Measurement",
+           "Name":"Measurement",
+           "QiType":{  
+              "$id":"574",
+              "Id":"6fecef77-20b1-37ae-aa3b-e6bb838d5a86",
+              "Name":"Double",
+              "QiTypeCode":14
+           }
+        }
+     ]
+  }
 
 
-Security
-  Allowed by administrator and user accounts
+
+**.NET Library**
+
+::
+
+  Task<QiType> GetTypeAsync(string typeId);
+
+
+**Security**
+
+Allowed by administrator and user accounts
 
 
 ***********************
