@@ -461,13 +461,15 @@ Creates the specified type.
 ``Update Type``
 ------------
 
-Returns 
+Updates the definition of a type. Note that a type cannot be updated if any streams are 
+associated with it. Also, certain parameters, including the type id, cannot be changed after 
+they are defined.
 
 **Request**
 
 ::
 
-    GET api/Tenants/{tenantId}/Namespaces/{namespaceId}/Types/{typeId}
+    PUT api/Tenants/{tenantId}/Namespaces/{namespaceId}/Types/{typeId}
 
 
 **Parameters**
@@ -486,43 +488,36 @@ Returns
 
 **Response body**
 
-  The requested QiType
+  The content is set to true on success.
   
-  Sample response body:
-  
-::
-
-  HTTP/1.1 200
-  Content-Type: application/json
-
 
 **.NET Library**
 
 ::
 
-  Task<QiType> GetTypeAsync(string typeId);
+  Task UpdateTypeAsync(string typeId, QiType qiType);
 
 
 **Security**
 
-  Allowed by administrator and user accounts
+  Allowed by administrator accounts
 
 
 ***********************
 
 
 
-``Get Type``
+``Delete Type``
 ------------
 
-Returns 
+Deletes a type from the specified tenant and namespace. Note that a type cannot be deleted if any streams reference it.
 
 **Request**
 
 ::
 
-    GET api/Tenants/{tenantId}/Namespaces/{namespaceId}/Types/{typeId}
-
+    DELETE	api/Tenants/{tenantId}/Namespaces/{namespaceId}/Types/{typeId}
+    
 
 **Parameters**
 
@@ -536,89 +531,18 @@ Returns
 
 **Response**
 
-  The response includes a status code and a response body.
-
-**Response body**
-
-  The requested QiType
-  
-  Sample response body:
-  
-::
-
-  HTTP/1.1 200
-  Content-Type: application/json
+  The response includes a status code.
 
 
 **.NET Library**
 
 ::
 
-  Task<QiType> GetTypeAsync(string typeId);
+  Task DeleteTypeAsync(string typeId);
 
 
 **Security**
 
-  Allowed by administrator and user accounts
-
-
-***********************
-
-
-
-``Get Type``
-------------
-
-Returns 
-
-**Request**
-
-::
-
-    GET api/Tenants/{tenantId}/Namespaces/{namespaceId}/Types/{typeId}
-
-
-**Parameters**
-
-``string tenantId``
-  The tenant identifier
-``string namespaceId``
-  The namespace identifier
-``string typeId``
-  The type identifier
-
-
-**Response**
-
-  The response includes a status code and a response body.
-
-**Response body**
-
-  The requested QiType
-  
-  Sample response body:
-  
-::
-
-  HTTP/1.1 200
-  Content-Type: application/json
-
-
-**.NET Library**
-
-::
-
-  Task<QiType> GetTypeAsync(string typeId);
-
-
-**Security**
-
-  Allowed by administrator and user accounts
-
-
-***********************
-
-
-
+  Allowed by administrator accounts
 
 
