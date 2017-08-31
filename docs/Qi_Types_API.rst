@@ -1,45 +1,41 @@
-QiType API calls
-==================
+QiType API
+==========
 
-The API calls in this section are all used to create and manipulate QiTypes. 
-QiType management via the Qi Client Libraries is performed through the 
-``IQiMetadataService`` interface, which is accessed using the 
-``QiService.GetMetadataService( )`` helper.  
-See `QiTypes <https://qi-docs.readthedocs.org/en/latest/Qi_Types.html>`__ 
-for general QiType information, working with compound indexes, and supported QiTypes.
+The REST APIs provide programmatic access to read and write Qi data. The APIs in this section 
+interact with QiTypes. When working in .NET convenient Qi Client libraries are available. 
+The IQiMetadataService interface, accessed using theQiService.GetMetadataService( ) helper, 
+defines the available functions. See `QiTypes <https://qi-docs.readthedocs.org/en/latest/Qi_Types.html>`__ 
+for general QiType information.
 
 
 ***********************
 
 
-``GetStreamTypeAsync()``
-----------------
+``Get Type``
+------------
 
-Returns the type definition that is associated with a given stream from the specified namespace.
+Returns the type corresponding to the specified typeId within a given namespace.
 
-**Syntax**
+**Request**
 
 ::
 
-    Task<QiType> GetStreamTypeAsync(string streamId);
-
-*Http*
-::
-
-    GET Qi/{tenantId}/{namespaceId}/Streams/{streamId}/Type
+    GET api/Tenants/{tenantId}/Namespaces/{namespaceId}/Types/{typeId}
 
 
 **Parameters**
 
 ``string tenantId``
-  The tenant identifier for the request
+  The tenant identifier
 ``string namespaceId``
-  The namespace identifier for the request
-``string streamId``
-  The Id of the stream to search for the specified type definition
+  The namespace identifier
+``string typeId``
+  The type identifier
 
 
-**Returns**
+**Response**
+
+The response includes a status code and a response body.
 
   Qitype type definition
 
