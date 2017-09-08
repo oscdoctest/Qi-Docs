@@ -2,21 +2,31 @@
 QiType information
 ======================
 
-This section contains information about how to configure and use QiTypes. To use Qi, you define QiTypes that describe the kinds of data you want to store in QiStreams. QiTypes are the model that define QiStreams.
 
-QiTypes can define simple atomic types, such as integers, floats or strings, or they can define complex types by grouping other QiTypes. You can construct complex, nested data types by using the Properties collection of a QiType. QiTypes that define atomic types do not need Properties defined. 
+Qi stores streams of events and provides convenient ways find and associating events. Events are 
+stored in streams, called QiStreams. A QiType defines the shape or structure of the event in a QiStream.
 
-A QiType that is used to define a QiStream must have a Key. A Key is a Property, or a combination of Properties that constitute an ordered, unique identity. The Key is ordered, so it functions as an index; it is also known as the Primary Index. While a timestamp (DateTime) is a very common type of Key, any ordered value is permitted. Other indexes (secondary indexes), are defined in the QiStream.
+QiTypes can define simple atomic types, such as integers, floats, strings, arrays and dictionaries or 
+they can define complex types using QiTypes. Define complex, nested types using the Properties collection of a QiType. 
 
-You refer to a QiType by its identifier or Id field. QiType identifiers must be unique within a Namespace.
+A QiType used to define a QiStream must have a Key. A Key is a Property, or a combination of Properties 
+that constitute an ordered, unique identity. The Key is ordered, so it functions as an index; it is 
+known as the Primary Index. While a timestamp (DateTime) is a very common type of Key, any type that 
+can be ordered is permitted. Other indexes (secondary indexes), are defined in the QiStream. 
+Indexes are discussed in greater detail here: `Indexes <https://qi-docs.readthedocs.org/en/latest/indexes.html>`__.
+
+A QiType is referenced by its identifier or Id field. QiType identifiers must be unique within a Namespace.
 
 QiTypes are immutable; after a QiType is created it cannot be changed, and it can only be deleted if no streams reference it.
 
-QiType management using the .NET Qi Client Libraries is performed through the ``IQiMetadataService`` interface, which is accessed using the ``QiService.GetMetadataService()`` helper. 
+QiType management using the .NET Qi Client Libraries is performed through the ``IQiMetadataService``. 
+Create the IQiMetadataService using one of the ``QiService.GetMetadataService()`` factory methods.
 
-Only QiTypes that are used to define QiStreams need to be added to Qi. QiTypes that define Properties or the base type are contained within the parent  QiType.
+Only QiTypes used to define QiStreams need to be added to Qi. QiTypes that define Properties or base types 
+are contained within the parent QiType and do not need to be added to Qi independently.
 
-The .NET libraries provide QiTypeBuilder to help build QiTypes.
+The .NET libraries provide QiTypeBuilder to help build QiTypes from .NET types. QiTypeBuilder is 
+discussed in greater detail below.
 
 The following table shows the required and optional QiType fields. Fields that are not included are reserved for internal Qi use.
 
@@ -61,11 +71,14 @@ The following table shows the required and optional QiType fields. Fields that a
 QiTypeCode
 ----------
 
-The QiTypeCode is a numeric identifier used by Qi to identify QiTypes. A QiTypeCode exists for every supported type.
+The QiTypeCode is a numeric identifier used by Qi to identify QiTypes. A QiTypeCode exists for 
+every supported type.
 
-Atomic types, such as strings and floats, are defined entirely by the QiTypeCode.  
+Atomic types, such as strings, floats and arrays, are defined entirely by the QiTypeCode. Atomic 
+types do not need QiType Properties defined.
 
-Types requiring additional definition, such as enums and objects, must have a more generic QiTypeCode, such as ByteEnum, Int32Enum, NullableInt32Enum, or Object, and are defined using Properties. 
+Types requiring additional definition, such as enums and objects, are identified using a generic 
+QiTypeCode, such as ByteEnum, Int32Enum, NullableInt32Enum, or Object, and are defined using Properties.
 
 
 Supported Types
@@ -103,9 +116,11 @@ VersionArray
 QiTypeProperty
 --------------
 
-The collection of Properties for a QiType are each defined by a ``QiTypeProperty``.
+A QiTypePropertyis used to define the collection of fields or Properties in a QiType. 
+An instance of a QiType is represented by its Properties or members.
 
-The following table shows the required and optional QiTypeProperty fields. Fields that are not included are reserved for internal Qi use.
+The following table shows the required and optional QiTypeProperty fields. Fields that 
+are not included are reserved for internal Qi use.
 
 +------------------+-------------------------+-------------+-------------------------------------+
 | Property         | Type                    | Optionality | Details                             |
@@ -130,18 +145,16 @@ The following table shows the required and optional QiTypeProperty fields. Field
 +------------------+-------------------------+-------------+-------------------------------------+
 
 
-The QiTypeProperty’s identifier follows the same rules as the QiType.Id.
+The QiTypeProperty’s identifier follows the same rules as the QiType’s identifier.
 
-IsKey is a Boolean value used to identify the QiType’s Key. A Key that is defined by more than one Property is called a *compound key*. In a compound key, each Property that is included in the Key is specified as IsKey. The Order field is used to define the precedence of fields applied to the Index.
+IsKey is a Boolean value used to identify the QiType’s Key. A Key defined by more than one 
+Property is called a compound key. In a compound key, each Property that is included in the 
+Key is specified as IsKey. The Order field defines the precedence of fields applied to the Index.
 
-The Value field is used for properties that represent a value. An example of a property with a value is an enum’s named constant. When representing an enum in a QiType, the QiType’s Properies collection defines the enum’s constant list. The QiTypeProperty’s Identifier represents the constant’s name and the QiTypeProperty’s Value represents the constant’s value.
-
-Indexes
--------
-
-Indexes are used to speed up searching and to order results. A Key is a property or collection of properties that are unique. In Qi, the Key is also an index; it is ordered. The Key is often referred to as the Primary Index. All other Indexes are secondary indexes, or Secondaries.
-
-Indexes are discussed in greater detail here: `Indexes <https://qi-docs.readthedocs.org/en/latest/indexes.html>`__.
+The Value field is used for properties that represent a value. An example of a property with a 
+value is an enum’s named constant. When representing an enum in a QiType, the QiType’s 
+Properies collection defines the enum’s constant list. The QiTypeProperty’s Identifier represents 
+the constant’s name and the QiTypeProperty’s Value represents the constant’s value.
 
 
 Working with QiTypes
@@ -149,9 +162,11 @@ Working with QiTypes
 
 **Using .Net**
 
-When working in .NET, use the QiTypeBuilder to create QiTypes. The QiTypeBuilder eliminates potential errors that can occur when working with QiTypes manually.
+When working in .NET, use the QiTypeBuilder to create QiTypes. The QiTypeBuilder eliminates 
+potential errors that can occur when working with QiTypes manually.
 
-There are several ways to work with the builder. The most convenient is to use the static methods, as shown here:
+There are several ways to work with the builder. The most convenient is to use the static 
+methods, as shown here:
 
 ::
 
@@ -159,33 +174,30 @@ There are several ways to work with the builder. The most convenient is to use t
   {
       Ok,
       Warning,
-      Aalrm
+      Alarm
   }
 
   public class Simple
   {
-      [Key]
+      [QiMember(IsKey = true, Order = 0)]
       public DateTime Time { get; set; }
       public State State { get; set; }
-      public Double Value { get; set; }
+      public Double Measurement { get; set; }
   }
+
   QiType simpleType = QiTypeBuilder.CreateQiType<Simple>();
+  simpleType.Id = "Simple";
+  simpleType.Name = "Simple";
   simpleType.Description = "Basic sample type";
 
-QiTypeBuilder recognizes the ``System.ComponentModel.DataAnnotations.KeyAttribute`` and its own ``OSIsoft.Qi.QiMemberAttribute``.  When using the QiMemberAttribute to specify the Primary Index, set the IsKey to true.
 
-::
+QiTypeBuilder recognizes the ``System.ComponentModel.DataAnnotations.KeyAttribute`` and 
+its own ``OSIsoft.Qi.QiMemberAttribute``. When using the QiMemberAttribute to specify 
+the Primary Index, set the IsKey to true.
 
-  public class Simple
-  {
-      [QiMember(IsKey = true)]
-      public DateTime Time { get; set; }
-      public State State { get; set; }
-      public Double Value { get; set; }
-  }
+The type is created with the following parameters. QiTypeBuilder automatically generates 
+unique identifiers. Note that the following table contains only a partial list of fields.
 
-
-The type is created with the following parameters. QiTypeBuilder automatically generates unique identifiers. Note that the following table contains only a partial list of parameters.
 
 +------------------+-------------------------+-------------+--------------------------------------+
 | Field            | Values                                                                       |
@@ -296,12 +308,17 @@ The type is created with the following parameters. QiTypeBuilder automatically g
 +------------------+-------------------------+-------------+--------------------------------------+
 
 
-The QiTypeBuilder also supports derived types. Note that you need not add the base types to Qi before using QiTypeBuilder.
+The QiTypeBuilder also supports derived types. Note that you need not add the base types to 
+Qi before using QiTypeBuilder.
 
 Defining QiTypes when not using .NET
 ------------------------------------
 
-QiTypes must be built manually when .NET QiTypeBuilder is unavailable. The following discussion refers to the types that are defined in  `Python <https://github.com/osisoft/Qi-Samples/tree/master/Basic/Python>`__ and `JavaScript <https://github.com/osisoft/Qi-Samples/tree/master/Basic/JavaScript>`__ samples. Samples in other languages can be found here: `Samples <https://github.com/osisoft/Qi-Samples/tree/master/Basic>`__.
+QiTypes must be built manually when .NET QiTypeBuilder is unavailable. The following discussion 
+refers to the types that are defined in  
+`Python <https://github.com/osisoft/Qi-Samples/tree/master/Basic/Python>`__ and 
+`JavaScript <https://github.com/osisoft/Qi-Samples/tree/master/Basic/JavaScript>`__ samples. 
+Samples in other languages can be found here: `Samples <https://github.com/osisoft/Qi-Samples/tree/master/Basic>`__.
 
 In the sample code, ``QiType``, ``QiTypeProperty``, and ``QiTypeCode`` are defined as in the code snippets shown here:
 
@@ -318,10 +335,10 @@ In the sample code, ``QiType``, ``QiTypeProperty``, and ``QiTypeCode`` are defin
         ...
   class QiTypeProperty(object):
       """Qi type property definition"""
-  
+
       def __init__(self):
               self.__isKey = False
-            
+
       @property
       def Id(self):
           return self.__id
@@ -357,7 +374,7 @@ In the sample code, ``QiType``, ``QiTypeProperty``, and ``QiTypeCode`` are defin
       @Id.setter
       def Id(self, id):
           self.__id = id
-    
+
         ...
 
       @property
@@ -366,7 +383,7 @@ In the sample code, ``QiType``, ``QiTypeProperty``, and ``QiTypeCode`` are defin
       @BaseType.setter
       def BaseType(self, baseType):
           self.__baseType = baseType
-    
+
       @property
       def QiTypeCode(self):
           return self.__typeCode
@@ -381,6 +398,8 @@ In the sample code, ``QiType``, ``QiTypeProperty``, and ``QiTypeCode`` are defin
       def Properties(self, properties):
           self.__properties = properties
 
+ 
+  
 **JavaScript**
 
 ::
@@ -428,7 +447,9 @@ In the sample code, ``QiType``, ``QiTypeProperty``, and ``QiTypeCode`` are defin
   },
 
 
-Suppose you had the following class defined (both Python and JavaScript classes are shown):
+
+Working with the following types (both Python and JavaScript classes are shown):
+
 
 **Python**
 
@@ -452,11 +473,12 @@ Suppose you had the following class defined (both Python and JavaScript classes 
       def setState(self, state):
           self.__state = state
 
-      Value = property(getValue, setValue)
-      def getValue(self):
-          return self.__value
-      def setValue(self, value):
-          self.__value = value
+      Measurement = property(getMeasurement, setMeasurement)
+      def getMeasurement(self):
+          return self.__measurement
+      def setMeasurement(self, measurement):
+          self.__measurement = measurement
+
 
 **JavaScript**
 
@@ -468,14 +490,15 @@ Suppose you had the following class defined (both Python and JavaScript classes 
         Warning: 1,
         Aalrm: 2,
     }
-
+ 
     var Simple = function () {
         this.Time = null;
         this.State = null;
-        this.Value = null;
+        this.Measurement = null;
     }
+
  
-You can define the QiType for the previous classes as follows:
+Define the QiType as follows:
 
 **Python**
 
@@ -483,53 +506,53 @@ You can define the QiType for the previous classes as follows:
 
     # Create the properties
 
-    # Time is the primary key
-    time = QiTypeProperty()
-    time.Id = "Time"
-    time.Name = "Time"
-    time.IsKey = True
-    time.QiType = QiType()
-    time.QiType.Id = "DateTime"
-    time.QiType.Name = "DateTime"
-    time.QiType.QiTypeCode = QiTypeCode.DateTime
+  # Time is the primary key
+  time = QiTypeProperty()
+  time.Id = "Time"
+  time.Name = "Time"
+  time.IsKey = True
+  time.QiType = QiType()
+  time.QiType.Id = "DateTime"
+  time.QiType.Name = "DateTime"
+  time.QiType.QiTypeCode = QiTypeCode.DateTime
 
-    # State is not a pre-defined type. A QiType must be defined to represent the enum
-    stateTypePropertyOk = QiTypeProperty()
-    stateTypePropertyOk.Id = "Ok"
-    stateTypePropertyOk.Value = State.Ok
-    stateTypePropertyWarning = QiTypeProperty()
-    stateTypePropertyWarning.Id = "Warning"
-    stateTypePropertyWarning.Value = State.Warning
-    stateTypePropertyAlarm = QiTypeProperty()
-    stateTypePropertyAlarm.Id = "Alarm"
-    stateTypePropertyAlarm.Value = State.Alarm
+  # State is not a pre-defined type. A QiType must be defined to represent the enum
+  stateTypePropertyOk = QiTypeProperty()
+  stateTypePropertyOk.Id = "Ok"
+  stateTypePropertyOk.Value = State.Ok
+  stateTypePropertyWarning = QiTypeProperty()
+  stateTypePropertyWarning.Id = "Warning"
+  stateTypePropertyWarning.Value = State.Warning
+  stateTypePropertyAlarm = QiTypeProperty()
+  stateTypePropertyAlarm.Id = "Alarm"
+  stateTypePropertyAlarm.Value = State.Alarm
 
-    stateType = QiType()
-    stateType.Id = "State"
-    stateType.Name = "State"
-    stateType.Properties = [ stateTypePropertyOk, stateTypePropertyWarning, \
-                            stateTypePropertyAlarm ]
+  stateType = QiType()
+  stateType.Id = "State"
+  stateType.Name = "State"
+  stateType.Properties = [ stateTypePropertyOk, stateTypePropertyWarning, \
+                          stateTypePropertyAlarm ]
 
-    state = QiTypeProperty()
-    state.Id = "State"
-    state.Name = "State"
-    state.QiType = stateType
-   
-    # Value property is a simple non-indexed, pre-defined type
-    value = QiTypeProperty()
-    value.Id = "Value"
-    value.Name = "Value"
-    value.QiType = QiType()
-    value.QiType.Id = "Double"
-    value.QiType.Name = "Double"
-    
-    # Create the Simple QiType
-    simple = QiType()
-    simple.Id = str(uuid.uuid4())
-    simple.Name = "Simple"
-    simple.Description = "Basic sample type"
-    simple.QiTypeCode = QiTypeCode.Object
-    simple.Properties = [ time ]
+  state = QiTypeProperty()
+  state.Id = "State"
+  state.Name = "State"
+  state.QiType = stateType
+
+  # Value property is a simple non-indexed, pre-defined type
+  value = QiTypeProperty()
+  value.Id = "Measurement"
+  value.Name = "Measurement"
+  value.QiType = QiType()
+  value.QiType.Id = "Double"
+  value.QiType.Name = "Double"
+
+  # Create the Simple QiType
+  simpleType = QiType()
+  simpleType.Id = "Simple"
+  simpleType.Name = "Simple"
+  simpleType.Description = "Basic sample type"
+  simpleType.QiTypeCode = QiTypeCode.Object
+  simpleType.Properties = [ time ]
 
 
 **JavaScript**
@@ -568,9 +591,10 @@ You can define the QiType for the previous classes as follows:
           stateTypePropertyAlarm, stateTypePropertyRed]
   });
 
-  // Value property is a simple non-indexed, pre-defined type
-  var valueProperty = new QiObjects.QiTypeProperty({
-      "Id": "Value",
+  // Measurement property is a simple non-indexed, pre-defined type
+  var measurementProperty = new QiObjects.QiTypeProperty({
+      "Id": "Measurement",
+      "Name": "Measurement",
       "QiType": new QiObjects.QiType({
           "Id": "doubleType",
           "QiTypeCode": QiObjects.qiTypeCodeMap.Double
@@ -580,13 +604,14 @@ You can define the QiType for the previous classes as follows:
   // Create the Simple QiType
   var simpleType = new QiObjects.QiType({
       "Id": "Simple",
-      "Name": "Simple",
+      "Name": "Simple", 
       "Description": " This is a simple Qi type ",
       "QiTypeCode": QiObjects.qiTypeCodeMap.Object,
-      "Properties": [timeProperty, stateProperty, valueProperty]
+      "Properties": [timeProperty, stateProperty, measurementProperty]
   });
 
-Now suppose that you have the following derived class:
+
+ Working with a derived class is easy. For the following derived class:
 
 ::
 
@@ -599,29 +624,30 @@ Now suppose that you have the following derived class:
           self.__observation = observation
 
 
-You would extend the QiType as follows:
+Extend the QiType as follows:
 
 **Python**
 
 ::
 
-    # Observation property is a simple non-inexed, standard data type
-    observation = QiTypeProperty()
-    observation.Id = "Observation"
-    observation.Name = "Observation"
-    observation.QiType = QiType()
-    observation.QiType.Id = "String"
-    observation.QiType.Name = "String"
-    observation.QiType.QiTypeCode = QiTypeCode.String
+  # Observation property is a simple non-inexed, standard data type
+  observation = QiTypeProperty()
+  observation.Id = "Observation"
+  observation.Name = "Observation"
+  observation.QiType = QiType()
+  observation.QiType.Id = "String"
+  observation.QiType.Name = "String"
+  observation.QiType.QiTypeCode = QiTypeCode.String
 
-    # Create the Derived QiType
-    derived = QiType()
-    derived.Id = str(uuid.uuid4())
-    derived.Name = "Derived"
-    derived.Description = "Derived sample type"
-    derived.BaseType = simple # Set the base type to the derived type
-    derived.QiTypeCode = QiTypeCode.Object
-    derived.Properties = [ observation ]
+  # Create the Derived QiType
+  derived = QiType()
+  derived.Id = "Derived"
+  derived.Name = "Derived"
+  derived.Description = "Derived sample type"
+  derived.BaseType = simpleType # Set the base type to the derived type
+  derived.QiTypeCode = QiTypeCode.Object
+  derived.Properties = [ observation ]
+    
 
 **JavaScript**
 
@@ -638,7 +664,7 @@ You would extend the QiType as follows:
   var derivedType = new QiObjects.QiType({
       "Id": "Derived",
       "Name": "Derived",
-      "Description": "This is a derieved Qi type for storing events",
+      "Description": " Derived sample type",
       "BaseType": simpleType,
       "QiTypeCode": QiObjects.qiTypeCodeMap.Object,
       "Properties": [ observationProprety ]
