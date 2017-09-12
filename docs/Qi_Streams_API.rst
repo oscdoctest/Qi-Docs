@@ -1,229 +1,505 @@
-QiStream API calls
-==================
+QiStream API
+============
 
+The REST APIs provide programmatic access to read and write Qi data. The APIs in this 
+section interact with QiStreams. When working in .NET convenient Qi Client libraries are 
+available. The ``IQiMetadataService`` interface, accessed using the ``QiService.GetMetadataService( )`` helper, 
+defines the available functions. See `QiStreams <https://qi-docs-rst.readthedocs.org/en/latest/Qi_Streams.html>`__ for general 
+QiStream information. 
 
-The API calls in this section are all used to create and manipulate QiStreams. 
-See `QiStreams <https://qi-docs-rst.readthedocs.org/en/latest/Qi_Streams.html>`__ for a list of supported QiTypes, a discussion of compound indexes, and general information about QiTypes. 
-
-QiStream management via the Qi Client Libraries is performed through the ``IQiMetadataService`` 
-interface, which you access using the ``QiService.GetMetadataService( )`` helper.
 
 ***********************
 
-``GetStreamAsync()``
---------------------
+``Get Stream``
+--------------
 
-Returns a QiStream object from the specified namespace that matches the specified namespace and streamId.
-
-**Syntax**
+Returns the specified stream.
 
 
-::
-
-    Task<QiStream> GetStreamAsync (string streamId);
-
-*Http*
+**Request**
 
 ::
 
-    GET Qi/{tenantId}/{namespaceId}/Streams/{streamId}
+    GET api/Tenants/{tenantId}/Namespaces/{namespaceId}/Streams/{streamId}
+
 
 **Parameters**
 
 ``string tenantId``
-  The tenant identifier for the request
+  The tenant identifier
 ``string namespaceId``
-  The namespace identifier for the request
+  The namespace identifier
+``string typeId``
+  The type identifier
+
+
+**Response**
+
+  The response includes a status code and a response body.
+  
+
+**Response body**
+
+  The requested QiStream.
+
+  Sample response body:
+
+::
+  
+  HTTP/1.1 200
+  Content-Type: application/json
+
+  {  
+     "Id":"Simple"
+     "Name":"Simple"
+     "TypeId":"Simple",
+  }
+
+
+**.NET Library**
+
+::
+
+  Task<QiStream> GetStreamAsync(string streamId);
+
+
+**Security**
+
+  Allowed by administrator accounts
+
+
+***********************
+
+``Get Streams``
+--------------
+
+Returns a list of streams.
+
+If the optional search parameter is specified, the list of streams returned are filtered to match 
+the search criteria. If the optional search parameter is not specified, the list includes all streams 
+in the Namespace. See `Searching for QiStreams <https://qi-docs-rst.readthedocs.org/en/latest/Searching.html>`__ 
+for information about specifying the search parameter.
+
+**Request**
+
+::
+
+    GET	api/Tenants/{tenantId}/Namespaces/{namespaceId}/Streams?query={query}
+        &skip={skip}&count={count}
+
+
+
+
+**Parameters**
+
+``string tenantId``
+  The tenant identifier
+``string namespaceId``
+  The namespace identifier
+``string query``
+  An optional parameter representing a string search. 
+  See `Searching for QiStreams <https://qi-docs-rst.readthedocs.org/en/latest/Searching.html>`__ 
+  for information about specifying the search parameter.
+``int skip``
+  An optional parameter representing the zero-based offset of the first QiStream to retrieve. 
+  If not specified, a default value of 0 is used.
+``int count``
+  An optional parameter representing the maximum number of QiStreams to retrieve. 
+  If not specified, a default value of 100 is used.
+
+
+**Response**
+
+  The response includes a status code and a response body.
+  
+
+**Response body**
+
+  A collection of zero or more QiStreams.
+  
+  Sample response body:
+
+::
+  
+  HTTP/1.1 200
+  Content-Type: application/json
+
+   [  
+     {  
+        "Id":"Simple",
+        "TypeId":"Simple"
+     },
+     {  
+        "Id":"Simple with Secondary",
+        "TypeId":"Simple",
+        "Indexes":[  
+           {  
+              "QiTypePropertyId":"Measurement"
+           }
+        ]
+     },
+     {  
+        "Id":"Compound",
+        "TypeId":"Compound"
+     },
+     ...
+  ]
+
+
+**.NET Library**
+
+::
+
+  Task<IEnumerable<QiStream>> GetStreamsAsync(string query = "", int skip = 0, 
+      int count = 100);
+
+
+
+**Security**
+
+  Allowed for administrator and user accounts
+
+***********************
+
+``Get Stream Type``
+-------------------
+
+Returns the type definition that is associated with a given stream.
+
+
+**Request**
+
+::
+
+    GET api/Tenants/{tenantId}/Namespaces/{namespaceId}/Streams/{streamId}/Type
+
+**Parameters**
+
+``string tenantId``
+  The tenant identifier
+``string namespaceId``
+  The namespace identifier
 ``string streamId``
-  The Id of the stream to retrieve
+  The stream identifier
 
 
-**Returns**
-  A QiStream object for the specified streamId and namespace
+**Response**
 
-Security
+  The response includes a status code and a response body.
+  
+
+**Response body**
+
+  The requested QiType.
+
+
+**.NET Library**
+
+::
+
+  Task<QiType> GetStreamTypeAsync(string streamId);
+
+
+**Security**
+
   Allowed by administrator and user accounts
 
 
 ***********************
 
+``Create Stream``
+-----------------
 
-``GetStreamsAsync()``
-----------------
+Creates the specified stream.
 
-Returns all streams from the specified namespace or Searches for and returns streams that fit search criteria. Also see `Searching for QiStreams <https://qi-docs-rst.readthedocs.org/en/latest/Searching.html>`__ for information about how to search for streams. 
 
-**Syntax**
-
-::
-
-    Task<IEnumerable<QiStream>> GetStreamsAsync ( );
-    Task<IEnumerable<QiStream>> GetStreamsAsync (string searchText, int skip, int count);
-
-*Http*
+**Request**
 
 ::
 
-    GET Qi/{tenantId}/{namespaceId}/Streams
+    POST api/Tenants/{tenantId}/Namespaces/{namespaceId}/Streams/{streamId}
+
 
 **Parameters**
 
 ``string tenantId``
-  The tenant identifier for the request
+  The tenant identifier
 ``string namespaceId``
-  The namespace identifier for the request
-``searchText``
-  Optional. The text to search for.
-``skip``
-  Optional. The number of matched stream names to skip over before returning the matching streams.
-``count``
-  Optional. The maximum number of streams to return. 
+  The namespace identifier
+``string streamId``
+  The stream identifier. The stream identifier must match the identifier in content. 
+  The request content is the serialized QiStream.
 
-**Returns**
-  IEnumerable of all QiStreams meeting specified criteria in the namespace of the defined tenant.
+**Response**
 
-Security
-  Allowed by administrator and user accounts
+  The response includes a status code and a response body.
   
+
+**Response body**
+
+  The newly created QiStream.
+  
+
+**.NET Library**
+
+::
+
+  Task<QiStream> CreateStreamAsync(QiStream qiStream);
+  
+A Found error response is returned when a stream with a matching identifier already exists.
+
+::
+
+  Task<QiStream> GetOrCreateStreamAsync(QiStream qiStream);
+
+If a stream with a matching identifier already exists, the client redirects a GET to the Location header.
+
+
+**Security**
+
+  Allowed for administrator accounts
+
+
+***********************
+
+`` ``
+--------------
+
+Returns 
+
+
+**Request**
+
+::
+
+    GET api/Tenants/{tenantId}/Namespaces/{namespaceId}/Streams/{streamId}
+
+
+**Parameters**
+
+``string tenantId``
+  The tenant identifier
+``string namespaceId``
+  The namespace identifier
+``string typeId``
+  The type identifier
+
+
+**Response**
+
+  The response includes a status code and a response body.
+  
+
+**Response body**
+
+  The requested QiStream.
+
+  Sample response body:
+
+::
+  
+  HTTP/1.1 200
+  Content-Type: application/json
+
+  {  
+     "Id":"Simple"
+     "Name":"Simple"
+     "TypeId":"Simple",
+  }
+
+
+**.NET Library**
+
+::
+
+  Task<QiStream> GetStreamAsync(string streamId);
+
+
+**Security**
+
+  Allowed by administrator accounts
+
+
+***********************
+
+`` ``
+--------------
+
+Returns 
+
+
+**Request**
+
+::
+
+    GET api/Tenants/{tenantId}/Namespaces/{namespaceId}/Streams/{streamId}
+
+
+**Parameters**
+
+``string tenantId``
+  The tenant identifier
+``string namespaceId``
+  The namespace identifier
+``string typeId``
+  The type identifier
+
+
+**Response**
+
+  The response includes a status code and a response body.
+  
+
+**Response body**
+
+  The requested QiStream.
+
+  Sample response body:
+
+::
+  
+  HTTP/1.1 200
+  Content-Type: application/json
+
+  {  
+     "Id":"Simple"
+     "Name":"Simple"
+     "TypeId":"Simple",
+  }
+
+
+**.NET Library**
+
+::
+
+  Task<QiStream> GetStreamAsync(string streamId);
+
+
+**Security**
+
+  Allowed by administrator accounts
+
+
+***********************
+
+`` ``
+--------------
+
+Returns 
+
+
+**Request**
+
+::
+
+    GET api/Tenants/{tenantId}/Namespaces/{namespaceId}/Streams/{streamId}
+
+
+**Parameters**
+
+``string tenantId``
+  The tenant identifier
+``string namespaceId``
+  The namespace identifier
+``string typeId``
+  The type identifier
+
+
+**Response**
+
+  The response includes a status code and a response body.
+  
+
+**Response body**
+
+  The requested QiStream.
+
+  Sample response body:
+
+::
+  
+  HTTP/1.1 200
+  Content-Type: application/json
+
+  {  
+     "Id":"Simple"
+     "Name":"Simple"
+     "TypeId":"Simple",
+  }
+
+
+**.NET Library**
+
+::
+
+  Task<QiStream> GetStreamAsync(string streamId);
+
+
+**Security**
+
+  Allowed by administrator accounts
+
+
+***********************
+
+`` ``
+--------------
+
+Returns 
+
+
+**Request**
+
+::
+
+    GET api/Tenants/{tenantId}/Namespaces/{namespaceId}/Streams/{streamId}
+
+
+**Parameters**
+
+``string tenantId``
+  The tenant identifier
+``string namespaceId``
+  The namespace identifier
+``string typeId``
+  The type identifier
+
+
+**Response**
+
+  The response includes a status code and a response body.
+  
+
+**Response body**
+
+  The requested QiStream.
+
+  Sample response body:
+
+::
+  
+  HTTP/1.1 200
+  Content-Type: application/json
+
+  {  
+     "Id":"Simple"
+     "Name":"Simple"
+     "TypeId":"Simple",
+  }
+
+
+**.NET Library**
+
+::
+
+  Task<QiStream> GetStreamAsync(string streamId);
+
+
+**Security**
+
+  Allowed by administrator accounts
+
 
 ***********************
 
 
-``GetOrCreateStreamAsync()``
-----------------
-
-Returns a stream that matches the QiStream qistream within the specified namespace, or creates the stream if it does not already exist. If the stream exists, it is returned to the caller unchanged.
-
-**Syntax**
-
-::
-
-    Task<QiStream> GetOrCreateStreamAsync (QiStream qistream);
-
-*Http*
-
-::
-
-    POST Qi/{tenantId}/{namespaceId}/Streams
-
-**Parameters**
-
-``string tenantId``
-  The tenant identifier for the request
-``string namespaceId``
-  The namespace identifier for the request
-``qistream``
-  Qi Stream object
- 
-
-**Returns**
-  An QiStream
-
-Security
-  Allowed by administrator accounts
-  
-**Notes**
-  For HTTP requests, the QiStream object must be formatted as a serialized JSON object and sent in the message body. 
-  The following is a sample QiStream serialized in JSON:
-
-::
-
-	{
-		"Id":"WaveData_SampleStream",
-		"Name":"WaveData_SampleStream",
-		"Description":null,
-		"TypeId":"WaveData_SampleType",
-		"BehaviorId":null
-	}
-***********************
-
-
-``UpdateStreamAsync()``
-----------------
-
-Updates a specified stream in a specified namespace with the properties in the specified QiStream qistream. The following changes are permitted:
-
-• Name
-
-• BehaviorId
-
-• Description
-
-An exception is thrown on unpermitted change attempt (and the stream is
-left unchanged)
-
-The *UpdateStreamAsync()* method applies to the entire entity. Optional fields
-that are omitted from the entity will remove the field from the stream if the fields had been set previously.
-
-
-**Syntax**
-
-::
-
-    Task UpdateStreamAsync(string streamId, QiStream qistream);
-
-*Http*
-
-::
-
-    PUT Qi/{tenantId}/{namespaceId}/Streams/{streamId}
-
-Content is a serialized QiStream object.
-
-
-**Parameters**
-
-``string tenantId``
-  The tenant identifier for the request
-``string namespaceId``
-  The namespace identifier for the request
-``streamId``
-  Identifier of the stream to modify
-``qistream``
-  Updated stream object
- 
-
-**Returns**
-  A QiStream
-
-Security
-  Allowed by administrator accounts
-  
-
-***********************
-
-
-``DeleteStreamAsync()``
-----------------
-
-Deletes a stream that matches the QiStream entity within the specified tenantId and namespace.
-
-**Syntax**
-
-::
-
-    Task DeleteStreamAsync(string streamId);
-
-*Http*
-
-::
-
-    DELETE Qi/{tenantId}/{namespaceId}/Streams/{streamId}
-
-
-**Parameters**
-
-``string tenantId``
-  The tenant identifier for the request
-``string namespaceId``
-  The namespace identifier for the request.
-``streamId``
-  The identifier of the stream to delete.
-
-
-**Returns**
-  A QiStream
-
-Security
-  Allowed by administrator accounts
-  
