@@ -1,11 +1,24 @@
 QiStream information
 ====================
 
-A QiStream is the fundamental unit of storage in Qi. A stream
-represents an ordered series of events or observations for a particular
-item of interest.
+Qi stores collections of events and provides convenient ways to find and associating events. Events 
+of consistent structure are stored in streams, called QiStreams.  A QiType defines the structure 
+of events in a QiStream.
 
-QiStream management using the .NET Qi Client Libraries is performed through the ``IQiMetadataService`` interface, which may be accessed via the ``QiService.GetMetadataService()`` helper.
+QiStreams are referenced by their identifier or Id field. QiStream identifiers must be unique 
+within a Namespace.
+
+A QiStream must include a TypeId that references the identifier of an existing QiType. Once 
+they contain data, QiStreams are immutable. The type of the stream cannot be replaced.
+
+Behavior determines read characteristics on the stream. If BehaviorId is omitted, the default 
+behavior mode is set to continuous and extrapolation is set to all. Set the BehaviorId field 
+to the identifier of an existing QiStreamBehavior. See 
+`QiStreamBehaviors <https://qi-docs-rst.readthedocs.org/en/latest/Qi_Stream_Behavior.html>`__ 
+for more information.
+
+QiStream management using the .NET Qi Client Libraries is performed through IQiMetadataService. 
+Create the IQiMetadataService, using one of the ``QiService.GetMetadataService()`` factory methods.
 
 The following table shows the required and optional QiStream fields. Fields not listed are reserved
 for internal Qi use. 
@@ -36,18 +49,6 @@ for internal Qi use.
 | Indexes       | IList<QiStreamIndex>         | Optional    | Used to define secondary indexes for stream  |
 +---------------+------------------------------+-------------+----------------------------------------------+
 
-A stream is always referenced by its identifier or Id field. QiStream identifiers are unique within a Namespace.
-
-
-A QiStream must include a TypeId that references the identifier of an existing QiType. The QiType 
-defines the structure of the QiStream.
-
-
-You can optionally set the BehaviorId field to the identifier of an existing QiStreamBehavior. If
-BehaviorId is omitted, the default behavior mode is set to *continuous* and *extrapolation*
-is set to *all*. See 
-`QiStreamBehaviors <https://qi-docs-rst.readthedocs.org/en/latest/Qi_Stream_Behavior.html>`__
-for more information.
 
 **Rules for Identifier (QiStream.Id)**
 
