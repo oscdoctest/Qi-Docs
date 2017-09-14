@@ -496,7 +496,7 @@ they are defined.
 
 ::
 
-  Task CreateOrUpdateTypeAsync(QiType qiType);
+  Task UpdateStreamTypeAsync(string streamId, string viewId);
 
 
 **Security**
