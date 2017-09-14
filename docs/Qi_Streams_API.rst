@@ -244,15 +244,12 @@ Creates the specified stream.
 
 ::
 
-  Task<QiStream> CreateStreamAsync(QiStream qiStream);
-  
-A Found error response is returned when a stream with a matching identifier already exists.
-
-::
-
   Task<QiStream> GetOrCreateStreamAsync(QiStream qiStream);
 
-If a stream with a matching identifier already exists, the client redirects a GET to the Location header.
+
+If a stream with a matching identifier already exists and it matches the stream in the request body, 
+the client redirects a GET to the Location header. If the existing stream does not match the stream 
+in the request body, a Conflict error response is returned and the client library method throws an exception. 
 
 
 **Security**
@@ -262,10 +259,11 @@ If a stream with a matching identifier already exists, the client redirects a GE
 
 ***********************
 
-``Update Stream``
----------------
+``Create or Update Stream``
+-------------------------
 
-Updates the stream definition. The following changes are permitted: 
+Creates the specified stream. If a stream with the same Id already exists, the definition of the stream is updated. 
+The following changes are permitted:
 
 •	Name
 •	BehaviorId
@@ -302,7 +300,7 @@ The request content is the serialized QiStream.
 
 ::
 
-  Task UpdateStreamAsync(string streamId, QiStream qiStream);
+  Task CreateOrUpdateStreamAsync(QiStream qiStream);
 
 
 **Security**
