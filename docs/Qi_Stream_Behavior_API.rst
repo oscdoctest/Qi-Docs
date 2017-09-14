@@ -183,7 +183,7 @@ The response includes a status code and a response body.
 **********************
 
 ``Create Behavior``
-----------------
+------------------
 
 Creates the specified stream behavior.
 
@@ -270,8 +270,10 @@ no extrapolation and an override of a Property.
 
 
 *********************
+
+
 ``Create or Update Behavior``
-----------------
+---------------------------
 
 Creates the specified behavior. If a behavior with the same Id already exists, the definition 
 of the behavior is updated.
