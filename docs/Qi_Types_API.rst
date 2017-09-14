@@ -439,14 +439,13 @@ Creates the specified type.
 
 **.NET Library**
 
-
-  ``Task<QiType> CreateTypeAsync(QiType qiType);``
-  
-  A Found error response is returned when a type with a matching identifier already exists.
-  
+ 
   ``Task<QiType> GetOrCreateTypeAsync(QiType qiType);``
-  
-  If a type with a matching identifier already exists, the client redirects a GET to the Location header.
+
+  If a type with a matching identifier already exists and it matches the type in the request body, 
+  the client redirects a GET to the Location header. If the existing type does not match the type
+  in the request body, a Conflict error response is returned and the client library method throws an exception. 
+
 
 
 **Security**
@@ -458,10 +457,12 @@ Creates the specified type.
 
 
 
-``Update Type``
+``Create or Update Type``
 ------------
 
-Updates the definition of a type. Note that a type cannot be updated if any streams are 
+Creates the specified type. If a type with the same Id already exists, the definition of the type is updated.
+
+Note that a type cannot be updated if any streams are 
 associated with it. Also, certain parameters, including the type id, cannot be changed after 
 they are defined.
 
@@ -495,7 +496,7 @@ they are defined.
 
 ::
 
-  Task UpdateTypeAsync(string typeId, QiType qiType);
+  Task CreateOrUpdateTypeAsync(QiType qiType);
 
 
 **Security**
