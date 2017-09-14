@@ -229,7 +229,7 @@ Returns a list of types within a given namespace.
 ***********************
 
 ``Create Type``
-------------
+-------------
 
 Creates the specified type.
 
@@ -458,7 +458,7 @@ Creates the specified type.
 
 
 ``Create or Update Type``
-------------
+------------------------
 
 Creates the specified type. If a type with the same Id already exists, the definition of the type is updated.
 
@@ -495,8 +495,8 @@ they are defined.
 **.NET Library**
 
 ::
-
-  Task CreateOrUpdateTypeAsync(QiType qiType);
+ 
+  Task CreateOrUpdateTypeAsync(QiType qiType)
 
 
 **Security**
