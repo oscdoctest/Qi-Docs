@@ -351,7 +351,7 @@ The request contains no content.
 
 ::
 
-  Task UpdateStreamAsync(string streamId, QiStream qiStream);
+  Task UpdateStreamTypeAsync(string streamId, string viewId);
 
 
 **Security**
