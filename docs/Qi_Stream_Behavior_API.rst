@@ -270,8 +270,7 @@ no extrapolation and an override of a Property.
 
 
 *********************
-
-``Update Behavior``
+``Create or Update Behavior``
 ----------------
 
 Creates the specified behavior. If a behavior with the same Id already exists, the definition 
@@ -304,7 +303,8 @@ The response includes a status code.
 
 ::
 
-  Task UpdateBehaviorAsync(QiStreamBehavior qiBehavior);
+ Task CreateOrUpdateBehaviorAsync(QiStreamBehavior qiBehavior);
+
 
 
 **Security**
