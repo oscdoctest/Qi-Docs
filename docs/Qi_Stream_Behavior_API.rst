@@ -234,10 +234,12 @@ The response includes a status code and a response body.
 
 **.NET Library**
 
-``Task<QiStreamBehavior> CreateBehaviorAsync(QiStreamBehavior qiBehavior);``
-  A Found error response is returned when a behavior with a matching identifier already exists.
 ``Task<QiStreamBehavior> GetOrCreateBehaviorAsync(QiStreamBehavior qiBehavior);``
-  If a behavior with a matching identifier already exists, the client redirects a GET to the Location header.
+
+  If a behavior with a matching identifier already exists and it matches the behavior in the request body, 
+  the client redirects a GET to the Location header. If the existing behavior does not match the behavior 
+  in the request body, a Conflict error response is returned and the client library method throws an exception. 
+
 
 The following sample shows how to create a stream behavior with a Mode of StepwiseContinuousLeading, 
 no extrapolation and an override of a Property.
@@ -272,7 +274,8 @@ no extrapolation and an override of a Property.
 ``Update Behavior``
 ----------------
 
-Updates a stream behavior. 
+Creates the specified behavior. If a behavior with the same Id already exists, the definition 
+of the behavior is updated.
 
 **Request**
 
@@ -301,11 +304,13 @@ The response includes a status code.
 
 ::
 
-  Task UpdateBehaviorAsync(string behaviorId, QiStreamBehavior qiBehavior);
+  Task UpdateBehaviorAsync(QiStreamBehavior qiBehavior);
+
 
 **Security**
 
   Allowed for administrator accounts
+
 
 ********************
 
