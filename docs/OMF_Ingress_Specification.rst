@@ -1,14 +1,14 @@
 Using OMF with Cloud Services
 =============================
 
-The OMF specification (located `here <http://omf-docs.osisoft.com>`) is generic in that it does
+The OMF specification (located `here <http://omf-docs.osisoft.com>`_) is generic in that it does
 not speciy a particular back-end system. This is a companion document which describes how
 OMF is interpreted by OSIsoft Cloud Services back-end system. 
 
 Headers
 -------
 
-A description of each of the headers can be found in the `OMF spec <http://omf-docs.osisoft.com>`. When 
+A description of each of the headers can be found in the `OMF spec <http://omf-docs.osisoft.com>`_. When 
 sending messages to OSIsoft Cloud Services, the value of the ``producertoken`` header must be 
 set to a security token obtained from the OCS Portal. This security token is used to authenticate 
 the sender and authorize for use with a particular Tenant and Publisher.
