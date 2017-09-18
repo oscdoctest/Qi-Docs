@@ -31,6 +31,7 @@ easily obtain needed information.
    Reading_Data_API
    OMF_Ingress_intro
    OMF_Ingress_API
+   Qi_Calc
    Qi_Calc_API
    Searching
    Filter Expressions
