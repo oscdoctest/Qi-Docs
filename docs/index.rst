@@ -29,8 +29,8 @@ easily obtain needed information.
    Writing_Data_API
    Reading_Data
    Reading_Data_API
-   parse_intro
-   parse_API
+   OMF_Ingress_intro
+   OMF_Ingress_API
    Qi_Calc
    Qi_Calc_API
    Searching

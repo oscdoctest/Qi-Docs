@@ -1,14 +1,14 @@
 Using OMF with Cloud Services
 =============================
 
-This document describes how the OSIsoft Message Format (OMF) is interpreted by OSIsoft Cloud Services 
-(OCS) back-end system. 
+The OMF specification (located `here <http://omf-docs.osisoft.com>`_) is generic in that it does
+not speciy a particular back-end system. This is a companion document which describes how
+OMF is interpreted by OSIsoft Cloud Services back-end system. 
 
 Headers
 -------
 
-A description of each of the headers can be found in the OMF documentation 
-located `here <http://omf-docs.readthedocs.io/en/v0.9/>`_. When 
+A description of each of the headers can be found in the `OMF spec <http://omf-docs.osisoft.com>`_. When 
 sending messages to OSIsoft Cloud Services, the value of the ``producertoken`` header must be 
 set to a security token obtained from the OCS Portal. This security token is used to authenticate 
 the sender and authorize for use with a particular Tenant and Publisher.
@@ -25,7 +25,7 @@ OMF message types fall into three categories: Type, Container, and Data.
   Type definition are interpreted as follows:
   
   + ``id``: Corresponds to the QiType Id field. It must conform to the rules defined for a 
-    typeId specified `here <http://qi-docs-rst.readthedocs.io/en/latest/Qi_Types.html>`_
+    typeId specified `here <http://qi-docs.osisoft.com/en/latest/Qi_Types.html>`_
     
   + ``classification``: Only the ``dynamic`` classification is currently supported.
   + ``version``: Versioning of QiTypes is not supported.
@@ -52,7 +52,7 @@ OMF message types fall into three categories: Type, Container, and Data.
 
   OMF supports setting the ``format`` keyword to specify how a particular JSON type should 
   be interpreted. The following is a mapping for the OSC Data Store supported 
-  types (see `QiType information <http://qi-docs-rst.readthedocs.io/en/latest/Qi_Types.html>`_)
+  types (see `QiType information <http://qi-docs.osisoft.com/en/latest/Qi_Types.html>`_)
 
 
 ========  ===========  ============
@@ -82,7 +82,7 @@ A Container message is interpreted as a QiStream in the OCS Data Store. The keyw
 in the Container definition are interpreted as follows:
 
 * ``id``: Corresponds to the QiStream Id field. It must conform to the rules defined for 
-  a QiStream.Id specified here: `here <http://qi-docs-rst.readthedocs.io/en/latest/Qi_Streams.html>`_)
+  a QiStream.Id specified `here <http://qi-docs.osisoft.com/en/latest/Qi_Streams.html>`_)
 * ``typeid``: Corresponds to the QiStream TypeId field.
 * ``typeversion``: Versioning of QiTypes is not supported.
 * ``name``: Corresponds to the QiStream Name field. This is a friendly name for the stream.
