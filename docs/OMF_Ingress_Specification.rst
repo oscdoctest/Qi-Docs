@@ -2,7 +2,7 @@ Using OMF with Cloud Services
 =============================
 
 The OMF specification (located `here <http://omf-docs.osisoft.com>`_) is generic in that it does
-not speciy a particular back-end system. This is a companion document which describes how
+not speciy a particular back-end system. This topic is a companion to the OMF specification which describes how
 OMF is interpreted by OSIsoft Cloud Services back-end system. 
 
 Headers
@@ -10,17 +10,17 @@ Headers
 
 A description of each of the headers can be found in the `OMF spec <http://omf-docs.osisoft.com>`_. When 
 sending messages to OSIsoft Cloud Services, the value of the ``producertoken`` header must be 
-set to a security token obtained from the OCS Portal. This security token is used to authenticate 
-the sender and authorize for use with a particular Tenant and Publisher.
+set to a security token obtained from the OCS Portal. The security token is used to authenticate 
+the sender and to authorize the sender for use with a particular Tenant and Publisher.
 
 Message Types
 -------------
 
-OMF message types fall into three categories: Type, Container, and Data. 
+OMF message types fall into three categories: Type, Container, and Data, which are described below. 
 
 * **Type messages**
 
-  A Type message is interpreted by OSIsoft Cloud Services as a QiType in the OSC Data Store. 
+  A Type message is interpreted by OSIsoft Cloud Services as a QiType in the OCS Data Store. 
   Because QiTypes are immutable, update operations are not supported. The keywords in the 
   Type definition are interpreted as follows:
   
@@ -51,15 +51,15 @@ OMF message types fall into three categories: Type, Container, and Data.
 * **Property Types and Formats**
 
   OMF supports setting the ``format`` keyword to specify how a particular JSON type should 
-  be interpreted. The following is a mapping for the OSC Data Store supported 
+  be interpreted. The following is a mapping for the OCS Data Store supported 
   types (see `QiType information <http://qi-docs.osisoft.com/en/latest/Qi_Types.html>`_)
 
 
 ========  ===========  ============
 Type      Format       QiTypeCode
 ========  ===========  ============
-array		           IEnumerable
-boolean		           boolean
+array		               IEnumerable
+boolean		             boolean
 integer	  int64        Int64
 integer   int32        Int32
 integer   int16        Int16
@@ -94,7 +94,7 @@ in the Container definition are interpreted as follows:
 Data messages
 -------------
 
-A Data message is mapped to generic Qi values in the OSC Data Store. The keywords in the 
+A Data message is mapped to generic Qi values in the OCS Data Store. The keywords in the 
 Data definitions are interpreted as follows:
 
 * ``typeid``: Data that is not grouped by containerId is not supported.
