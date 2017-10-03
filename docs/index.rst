@@ -24,6 +24,8 @@ easily obtain needed information.
    Qi_Streams_API
    Qi_Stream_Behavior
    Qi_Stream_Behavior_API
+   QiView_information
+   QiView_API
    indexes
    Writing_Data
    Writing_Data_API
