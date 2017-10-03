@@ -49,8 +49,6 @@ The following table shows the required and optional QiView fields. Fields that a
 7. Cannot contain consecutive periods.
 8. Cannot consist of only periods.
 
-Measurement to a double Value. Then map a double Measurement to an int Measurement. Then show the 
-failure to map a double Measurement to an int Value … introduce Properties
 
 Properties / QiViewProperty
 ---------------------------
