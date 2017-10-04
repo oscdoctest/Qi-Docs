@@ -228,10 +228,15 @@ Returns a list of types within a given namespace.
 
 ***********************
 
-``Create Type``
+``Get or Create Type``
 -------------
 
-Creates the specified type.
+Creates the specified type. If a type with a matching identifier exists, the existing type is compared with the 
+type in the content. If the types are identical, the type is returned. If the types do not match, the 
+Found (302) error is returned.
+
+If no matching identifier exists, the specified type is created.
+
 
 **Request**
 
@@ -370,11 +375,11 @@ Creates the specified type.
   }
 
 
-  Response
+Response
 
-  The response includes a status code and a response body.
+The response includes a status code and a response body.
   
-  Response body
+Response body
   
 ::
 
