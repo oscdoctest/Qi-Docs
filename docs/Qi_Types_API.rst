@@ -235,7 +235,7 @@ Creates the specified type. If a type with a matching identifier already exists,
 with the type that was sent. If the types are identical, a ``Found`` (302) error is returned with the Location header set to 
 the URI where the type may be retrieved using a Get function. If the types do not match, a ``Conflict`` (409) error is returned.
 
-For a matching type (``Found``), clients that are capable of performing a redirect including the authorization header can 
+For a matching type (``Found``), clients that are capable of performing a redirect that includes the authorization header can 
 automatically redirect to retrieve the type. However, most clients, including the .NET HttpClient, consider redirecting 
 with the authorization token to be a security vulnerability. 
 
