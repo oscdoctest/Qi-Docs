@@ -1,18 +1,19 @@
 QiView information
 ******************
 
-Views provide a way to map Stream data, on a request, from one Type to another. A View can be applied 
-to any read or GET. The QiView specifies mapping using a source and target type. 
+A QiView provides a way to map Stream data requests from one data type to another. You can apply 
+a View to any read or GET operation. QiView is used to specify the mapping between source and target types.
 
-Qi attempts to determine how to map Properties from the source to the destination. 
-When the mapping is straightforward, such as when the properties are in the same position and of the same type, or when 
-the properties are of the same name, Qi will map the properties automatically. 
+Qi attempts to determine how to map Properties from the source to the destination. When the mapping 
+is straightforward, such as when the properties are in the same position and of the same data type, 
+or when the properties have the same name, Qi will map the properties automatically.
 
-When Qi is unable to determine how to map a source property, the property is removed. When Qi encounters 
-a property on the target that it cannot map to, it will add the property and leave it at the default value.
+When Qi is unable to determine how to map a source property, the property is removed. If Qi encounters 
+a target property that it cannot map to, the property is added and configured with a default value.
 
 To map a property that is beyond the ability of Qi to map on its own, you should define a QiViewProperty 
 and add it to the QiVeiw’s Properties collection.
+
 
 QiView
 ------
