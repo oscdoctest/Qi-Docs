@@ -228,14 +228,20 @@ Returns a list of types within a given namespace.
 
 ***********************
 
-``Get or Create Type``
+``Create Type``
 -------------
 
-Creates the specified type. If a type with a matching identifier exists, the existing type is compared with the 
-type in the content. If the types are identical, the type is returned. If the types do not match, the 
-Found (302) error is returned.
+Creates the specified type. If a type with a matching identifier already exists, Qi compares the existing type 
+with the type that was sent. If the types are identical, a ``Found`` (302) error is returned with the Location header set to 
+the URI where the type may be retrieved using a Get function. If the types do not match, a ``Conflict`` (409) error is returned.
 
-If no matching identifier exists, the specified type is created.
+For a matching type (``Found``), clients that are capable of performing a redirect including the authorization header can 
+automatically redirect to retrieve the type. However, most clients, including the .NET HttpClient, consider redirecting 
+with the authorization token to be a security vulnerability. 
+
+When a client performs a redirect, the authorization header 
+is stripped. Qi cannot authorize the request and returns ``Unauthorized`` (401). For this reason, it is 
+recommended that you disable automatic redirect for clients that include the authorization token.
 
 
 **Request**
@@ -451,7 +457,7 @@ Response body
   the client redirects a GET to the Location header. If the existing type does not match the type
   in the request body, a Conflict error response is returned and the client library method throws an exception. 
 
-
+  The Qi .NET Libraries manage redirects.
 
 **Security**
 
