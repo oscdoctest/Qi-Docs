@@ -239,9 +239,9 @@ For a matching type (``Found``), clients that are capable of performing a redire
 automatically redirect to retrieve the type. However, most clients, including the .NET HttpClient, consider redirecting 
 with the authorization token to be a security vulnerability. 
 
-When a client performs a redirect, the authorization header 
-is stripped. Qi cannot authorize the request and returns ``Unauthorized`` (401). For this reason, it is 
-recommended that you disable automatic redirect for clients that include the authorization token.
+When a client performs a redirect and strips the authorization header, Qi cannot authorize the request 
+and returns ``Unauthorized`` (401). For this reason, it is recommended that when using clients that do 
+not redirect with the authorization header, you should disable automatic redirect.
 
 
 **Request**
