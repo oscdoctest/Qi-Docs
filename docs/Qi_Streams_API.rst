@@ -210,7 +210,18 @@ Returns the type definition that is associated with a given stream.
 ``Create Stream``
 -----------------
 
-Creates the specified stream.
+Creates the specified stream. If a stream with a matching identifier already exists, Qi compares the 
+existing stream with the stream that was sent. If the streams are identical, a ``Found`` (302) error 
+is returned with the Location header set to the URI where the stream may be retrieved using a Get function. 
+If the streams do not match, a ``Conflict`` (409) error is returned.
+
+For a matching stream (Found), clients that are capable of performing a redirect that includes the 
+authorization header can automatically redirect to retrieve the stream. However, most clients, 
+including the .NET HttpClient, consider redirecting with the authorization token to be a security vulnerability.
+
+When a client performs a redirect and strips the authorization header, Qi cannot authorize the request and 
+returns ``Unauthorized`` (401). For this reason, it is recommended that when using clients that do not 
+redirect with the authorization header, you should disable automatic redirect.
 
 
 **Request**
