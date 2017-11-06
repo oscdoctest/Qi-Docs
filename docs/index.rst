@@ -40,6 +40,9 @@ easily obtain needed information.
    samples
    support
    preview
+   Account_Intro
+   AccountAPI_Index
+   
    
    
    
