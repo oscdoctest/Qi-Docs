@@ -12,7 +12,7 @@ When Qi is unable to determine how to map a source property, the property is rem
 a target property that it cannot map to, the property is added and configured with a default value.
 
 To map a property that is beyond the ability of Qi to map on its own, you should define a QiViewProperty 
-and add it to the QiVeiw’s Properties collection.
+and add it to the QiView’s Properties collection.
 
 
 QiView
@@ -83,7 +83,7 @@ QiViewMap
 When a QiView is added, Qi defines a plan mapping. Plan details are retrieved as a QiViewMap. 
 The QiViewMap provides a detailed Property-by-Property definition of the mapping. 
 
-The following table shows the QiViewMap fields. The QiVeiwMap cannot be written to Qi, 
+The following table shows the QiViewMap fields. The QiViewMap cannot be written to Qi, 
 so required and optional have no meaning.
 
 +---------------------------+--------------------------------+--------------------------------------------------+
@@ -109,7 +109,7 @@ Properties / QiViewMapProperty
 The QiViewMapProperty is similar a QiViewProperty but adds a Mode detailing one or more actions taken on 
 the Property.
 
-The following table shows the QiViewMapProperty fields. The QiVeiwMap cannot be written, it can only be 
+The following table shows the QiViewMapProperty fields. The QiViewMap cannot be written, it can only be 
 retrieved from Qi, so required and optional have no meaning.
 
 +---------------------------+--------------------------------+--------------------------------------------------+
