@@ -20,7 +20,7 @@ Retrieves an existing namespace.
 
 ::
 
-    GET "Qi/{tenantId}/Namespaces/{namespaceId}”
+    GET "api/{tenantId}/Namespaces/{namespaceId}”
 
 
 **Parameters**
@@ -56,7 +56,7 @@ Retrieves a list of existing namespaces.
 
 ::
 
-    GET "Qi/{tenantId}/Namespaces"
+    GET "api/{tenantId}/Namespaces"
 
 
 **Parameters**
@@ -91,7 +91,7 @@ executable only by an administrator account.
 
 ::
 
-    POST "Qi/{tenantId}/Namespaces/"
+    POST "api/{tenantId}/Namespaces/"
 
 
 **Parameters**
@@ -134,7 +134,7 @@ Deletes the namespace with the specified namespaceId from the tenant specified b
 
 ::
 
-    DELETE "Qi/{tenantId}/Namespaces/{namespaceId}”
+    DELETE "api/{tenantId}/Namespaces/{namespaceId}”
 
 **Parameters**
 
