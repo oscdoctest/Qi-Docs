@@ -25,7 +25,7 @@ Inserts data into the specified stream. Throws an exception if data is already p
 
 ::
 
-    POST Qi/{tenantId}/{namespaceId}/Streams/{streamId}/Data/InsertValue
+    POST api/{tenantId}/{namespaceId}/Streams/{streamId}/Data/InsertValue
 
 Content is serialized event of type T
 	
@@ -95,7 +95,7 @@ Inserts items into the specified stream. Throws an exception if data is already 
 
 ::
 
-    POST Qi/{tenantId}/{namespaceId}/Streams/{streamId}/Data/InsertValues
+    POST api/{tenantId}/{namespaceId}/Streams/{streamId}/Data/InsertValues
 
 	
 Content is serialized list of events of type T	
@@ -189,7 +189,7 @@ Modifies the specified stream event. PatchValue affects only the data item param
 
 ::
 
-    PATCH Qi/{tenantId}/{namespaceId}/Streams/{streamId}/Data/PatchValue?select={selectExpression}
+    PATCH api/{tenantId}/{namespaceId}/Streams/{streamId}/Data/PatchValue?select={selectExpression}
 
 	
 Content is serialized patch property
@@ -247,7 +247,7 @@ Patches values of the selected fields for multiple events in the stream.
 
 ::
 
-    PATCH Qi/{tenantId}/{namespaceId}/Streams/{streamId}/Data/PatchValues?select={selectExpression}
+    PATCH api/{tenantId}/{namespaceId}/Streams/{streamId}/Data/PatchValues?select={selectExpression}
 
 Content is serialized list of patch property values
 
@@ -306,7 +306,7 @@ Removes the event at the index from the specified stream. Different overloads ar
 
 ::
 
-    DELETE Qi/{tenantId}/{namespaceId}/Streams/{streamId}/Data/RemoveValue?index={index}
+    DELETE api/{tenantId}/{namespaceId}/Streams/{streamId}/Data/RemoveValue?index={index}
 
 	
 **Parameters**
@@ -353,7 +353,7 @@ Removes the event at each index from the specified stream. Different overloads a
 
 ::
 
-    DELETE Qi/{tenantId}/{namespaceId}/Streams/{streamId}/Data/RemoveValues?index={index}
+    DELETE api/{tenantId}/{namespaceId}/Streams/{streamId}/Data/RemoveValues?index={index}
 
 	
 **Parameters**
@@ -404,7 +404,7 @@ Removes a range of values at and between the given indices.
 
 ::
 
-    DELETE Qi/{tenantId}/{namespaceId}/Streams/{streamId}/Data/RemoveWindowValues?startIndex={startIndex}&endIndex={endIndex}
+    DELETE api/{tenantId}/{namespaceId}/Streams/{streamId}/Data/RemoveWindowValues?startIndex={startIndex}&endIndex={endIndex}
 
 	
 **Parameters**
@@ -452,7 +452,7 @@ Writes an item over an existing event in the specified stream.
 
 ::
 
-    PUT Qi/{tenantId}/{namespaceId}/Streams/{streamId}/Data/ReplaceValue
+    PUT api/{tenantId}/{namespaceId}/Streams/{streamId}/Data/ReplaceValue
 
 Content is serialized replacement object
 
@@ -496,7 +496,7 @@ Writes **items** over existing events in the specified stream.
 
 ::
 
-    PUT Qi/{tenantId}/{namespaceId}/Streams/{streamId}/Data/ReplaceValues
+    PUT api/{tenantId}/{namespaceId}/Streams/{streamId}/Data/ReplaceValues
 
 Content is serialized list of replacement values
 
@@ -543,7 +543,7 @@ Writes **item** to the specified stream.
 
 ::
 
-    PUT Qi/{tenantId}/{namespaceId}/Streams/{streamId}/Data/UpdateValue
+    PUT api/{tenantId}/{namespaceId}/Streams/{streamId}/Data/UpdateValue
 
 Content is serialized updated value
 
@@ -588,7 +588,7 @@ Writes items to the specified stream.
 
 ::
 
-    PUT Qi/{tenantId}/{namespaceId}/Streams/{streamId}/Data/UpdateValues
+    PUT api/{tenantId}/{namespaceId}/Streams/{streamId}/Data/UpdateValues
 
 	
 Content is serialized list of updated values	
