@@ -13,7 +13,6 @@ easily obtain needed information.
 
 .. toctree::
 
-   Whats_New
    Introducing_Qi
    Quick_Start
    Qi_Namespaces
