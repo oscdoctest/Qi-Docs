@@ -26,9 +26,7 @@ easily obtain needed information.
    QiView_information
    QiView_API
    indexes
-   Writing_Data
-   Writing_Data_API
-   Reading_Data
+   Reading_Data
    Reading_Data_API
    OMF_Ingress_intro
    OMF_Ingress_API
