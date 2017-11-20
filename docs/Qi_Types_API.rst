@@ -4,7 +4,8 @@ QiType API
 The REST APIs provide programmatic access to read and write Qi data. The APIs in this section 
 interact with QiTypes. When working in .NET convenient Qi Client libraries are available. 
 The IQiMetadataService interface, accessed using theQiService.GetMetadataService( ) helper, 
-defines the available functions. See `QiTypes <https://qi-docs.readthedocs.org/en/latest/Qi_Types.html>`__ 
+defines the available functions. See
+`Qi Types <https://qi-docs.readthedocs.io/en/latest/Qi_Types.html>`__.
 for general QiType information.
 
 
