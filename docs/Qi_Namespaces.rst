@@ -3,7 +3,7 @@ Qi Namespace information
 
 A Qi tenant is divided into one or more Namespaces. Each Namespace is a logical entity 
 within a tenant and holds its own set of Qi Types, Qi Streams, and Qi Stream Behaviors.
-For more information see `Qi namespaces API <https://qi-docs.readthedocs.org/en/latest/Qi_Namespaces_API.html>`__.
+For more information see `Qi namespaces API <https://qi-docs.readthedocs.io/en/latest/Qi_Namespaces_API.html>`__.
 
 Within a Qi Tenant you must have at least one Namespace in which to work.
 You may create up to five namespaces within a tenant. If you use all five of your namespaces 
