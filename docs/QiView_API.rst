@@ -4,7 +4,7 @@ QiView API
 The REST APIs provide programmatic access to read and write Qi data. The APIs in this section interact 
 with QiViews. When working in .NET convenient Qi Client libraries are available. The IQiMetadataService 
 interface, accessed using the ``QiService.GetMetadataService()`` helper, defines the available functions. 
-See QiTypes for general QiView information.
+See `Qi View information <https://qi-docs.readthedocs.io/en/latest/QiView_information.html>`__ for general QiView information.
 
 ***********************
 
