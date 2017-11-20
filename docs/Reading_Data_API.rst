@@ -748,7 +748,7 @@ Retrieves values between the specified start and end indexes.
 		      &continuationToken={continuationToken}
     GET Qi/{tenantId}/{namespaceId}/Streams/{streamId}/Data/GetWindowValues?startIndex={startIndex}
                       &startBoundaryType={startBoundaryType}&endIndex={endIndex}&endBoundaryType={endBoundaryType}
-                      &filter={filterExpression}&selectExpression={selectExpression}
+                      &filter={filterExpression}&select={selectExpression}
     GET Qi/{tenantId}/{namespaceId}/Streams/{streamId}/Data/GetWindowValues?startIndex={startIndex}
                       &endIndex={endIndex}&boundaryType={boundaryType}&count={count}
 		      &continuationToken={continuationToken}
