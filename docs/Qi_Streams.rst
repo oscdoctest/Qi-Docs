@@ -39,13 +39,6 @@ for internal Qi use.
 | BehaviorId    | String                       | Optional    | The identifier of the QiStreamBehavior for   |
 |               |                              |             | this stream.                                 |
 +---------------+------------------------------+-------------+----------------------------------------------+
-| Tag           | String                       | Optional    | A collection of strings that permit          |
-|               |                              |             | classifying and identifying individual       |
-|               |                              |             | streams.                                     |
-+---------------+------------------------------+-------------+----------------------------------------------+
-| Metadata      | iDictionary<string, string>  | Optional    | A dictionary for users to store information  |
-|               |                              |             | that is relevant to the stream               |
-+---------------+------------------------------+-------------+----------------------------------------------+
 | Indexes       | IList<QiStreamIndex>         | Optional    | Used to define secondary indexes for stream  |
 +---------------+------------------------------+-------------+----------------------------------------------+
 
