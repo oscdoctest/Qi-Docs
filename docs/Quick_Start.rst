@@ -251,8 +251,6 @@ To create the stream without the libraries, post a JSON representation of the QI
      "TypeId":"Simple",
      "BehaviorId":null,
      "Indexes":null, 
-     "Metadata":null,
-     "Tags":null
   }
 
 
