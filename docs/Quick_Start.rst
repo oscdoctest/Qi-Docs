@@ -229,7 +229,7 @@ Create a QiStream of Simple events using the .NET Qi libraries as follows:
   {
       Id = "Simple",
       Name = "Simple",
-      TypeId = simpleType.Id,
+      TypeId = simpleType.Id
   };
 
   simpleStream = config.CreateStreamAsync(simpleStream);
