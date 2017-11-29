@@ -22,11 +22,9 @@ The following table shows the required and optional Qi namespace properties:
 **Rules for namespaceId**
 
 1. Not case sensitive
-2. Spaces are allowed
+2. Only alphanumeric characters, spaces, periods, dashes and underscores are allowed
 3. Cannot start with two underscores ("\_\_")
-4. Cannot contain forward slash or backslash characters ("/" or "\\")
-5. Maximum length of 260 characters
-6. Cannot start or end with a period.
-7. Cannot contain consecutive periods.
-8. Cannot consist of only periods. 
+4. Cannot start or end with a period
+5. Cannot contain consecutive periods
+6. Maximum length of 260 characters 
 
