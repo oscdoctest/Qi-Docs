@@ -1,5 +1,8 @@
+.. _Quick_start_topic:
+
+===========
 Quick start
-###########
+===========
 
 .. contents:: Topics in this section:
     :depth: 3
