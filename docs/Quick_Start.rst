@@ -66,7 +66,7 @@ DateTime is a common index for time-series stores.
 
 Qi supports a wide variety of property types, including simple types like integers, strings and floats 
 and complex types like lists, arrays and enumerations. Properties can be of any complex QiType. 
-For additional information, including a detailed list of supported data types, refer to QiTypes.
+For additional information, including a detailed list of supported data types, refer to :ref:`Qi_Types_topic`.
 
 To create a  QiType in .NET, use the .NET Qi libraries QiTypeBuilder.
 
