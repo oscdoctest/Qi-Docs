@@ -1,5 +1,8 @@
+.. _Introducing_Qi_topic:
+
+==============
 Introducing Qi
-##############
+==============
 
 .. contents:: Topics in this section:
     :depth: 3
@@ -39,7 +42,7 @@ that highlights some of the sample’s functionality. Be sure to read the readme
 how the sample works.
 
 After you have finished this introduction and worked with one of the samples, refer to 
-the `Quick Start <https://qi-docs.readthedocs.io/en/latest/Quick_Start.html>`__ section, which describes the interaction of 
+the :ref:`Quick_start_topic` section, which describes the interaction of 
 various Qi objects and will help you get started with your own application.
 
 
