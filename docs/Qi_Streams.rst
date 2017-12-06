@@ -1,3 +1,5 @@
+.. _Qi_Stream_topic:
+
 QiStream information
 ====================
 
