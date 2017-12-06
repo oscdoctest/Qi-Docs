@@ -1,3 +1,5 @@
+.. _Qi_OMF_API_topic:
+
 OMF Ingress API
 ===============
 
