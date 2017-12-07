@@ -955,15 +955,39 @@ Get Window Values also supports paging for large result sets. Results for paged 
 as a QiResultPage.
 
 
-STOPPED HERE
++-------------------+------------------------------+----------------------------------------------------------+
+| Property          | Type                         | Details                                                  |
++===================+==============================+==========================================================+
+| Results           | IList                        | Collection of events of type T                           |
++-------------------+------------------------------+----------------------------------------------------------+
+| ContinuationToken | String                       | The token used to retrieve the next page of data         |
++-------------------+------------------------------+----------------------------------------------------------+
+
+To retrieve the next page of values, include the ContinuationToken from the results of the previous request. 
+For the first request, specify a null or empty string for the ContinuationToken.
 
 
 **Request**
 
 ::
 
-    GET	api/Tenants/{tenantId}/Namespaces/{namespaceId}/Streams/{streamId}/Data/GetValue
-        ?index={index}&viewId={viewId}
+  GET api/Tenants/{tenantId}/Namespaces/{namespaceId}/Streams/{streamId}/Data/GetWindowValues 
+      ?startIndex={startIndex}&endIndex={endIndex}&boundaryType={boundaryType} 
+      &filter={filter}&count={count}&viewId={viewId}
+
+  GET api/Tenants/{tenantId}/Namespaces/{namespaceId}/Streams/{streamId}/Data/GetWindowValues 
+      ?startIndex={startIndex}&startBoundaryType={startBoundaryType} 
+      &endIndex={endIndex}&endBoundaryType={endBoundaryType}&filter={filter}&count={count} 
+      &viewId={viewId}
+
+  GET api/Tenants/{tenantId}/Namespaces/{namespaceId}/Streams/{streamId}/Data/GetWindowValues 
+      ?startIndex={startIndex}&endIndex={endIndex}&boundaryType={boundaryType} 
+      &filter={filter}&count={count}&continuationToken={continuationToken}&viewId={viewId}
+
+  GET api/Tenants/{tenantId}/Namespaces/{namespaceId}/Streams/{streamId}/Data/GetWindowValues 
+      ?startIndex={startIndex}&startBoundaryType={startBoundaryType} 
+      &endIndex={endIndex}&endBoundaryType={endBoundaryType}&filter={filter}&count={count} 
+      &continuationToken={continuationToken}&viewId={viewId}
 
 
 
@@ -975,22 +999,36 @@ STOPPED HERE
   The namespace identifier
 ``string streamId``
   The stream identifier
-``string index``
-  The index
+``string startIndex``
+  Index bounding the beginning of the series of events to return
+``string endIndex``
+  Index bounding the end of the series of events to return
+``string count``
+  Optional maximum number of events to return
+``QiBoundaryType boundaryType``
+  Optional QiBoundaryType specifies handling of events at or near the start and end indexes
+``QiBoundaryType startBoundaryType``
+  Optional QiBoundaryType specifies the first value in the result in relation to the start index
+``QiBoundaryType endBoundaryType``
+  Optional QiBoundaryType specifies the last value in the result in relation to the end index
+``string filter``
+  Optional filter expression
 ``string viewId``
   Optional view identifier
 
 
+
 **Response**
 
-  The response includes a status code and a response body containing a serialized event.
-  Consider a stream of type Simple with the default QiStreamBehavior Mode of Interpolation and 
-  ExtrapolationMode of All. In the following request, the specified index matches an existing stored event:
+  The response includes a status code and a response body containing a serialized collection of events.
+  
+  For a stream of type Simple, the following requests all stored events between 13:30 and 15:30: 
+
 
 ::
 
-  api/Tenants/{tenantId}/Namespaces/{namespaceId}/Streams/Simple/Data/GetValue 
-     ?index=2017-11-23T13:00:00Z``
+  api/Tenants/{tenantId}/Namespaces/{namespaceId}/Streams/Simple/Data/ 
+      GetWindowValues?startIndex=2017-11-23T12:30:00Z&endIndex=2017-11-23T15:30:00Z
 
 The response will contain the event stored at the specified index:
 
@@ -998,25 +1036,35 @@ The response will contain the event stored at the specified index:
 
 ::
   
-  HTTP/1.1 200
   Content-Type: application/json
 
-  {  
-     "Time":"2017-11-23T13:00:00Z",
-     "Measurement":10.0
-  }
+  [  
+     {  
+        "Time":"2017-11-23T13:00:00Z",
+        "Measurement":10.0
+     },
+     {  
+        "Time":"2017-11-23T14:00:00Z",
+        "Measurement":20.0
+     },
+     {  
+        "Time":"2017-11-23T15:00:00Z",
+        "Measurement":30.0
+     }
+  ] 
+
 
 Note that State is not included in the JSON as its value is the default value.
 
-The following request specifies an index for which no stored event exists:
+When the request is modified to specify a boundary type of Outside, the value 
+before 13:30 and the value after 15:30 are included:
 
 ::
 
-  api/Tenants/{tenantId}/Namespaces/{namespaceId}/Streams/Simple/Data/GetValue 
-      ?index=2017-11-23T13:30:00Z
+  api/Tenants/{tenantId}/Namespaces/{namespaceId}/Streams/Simple/Data/ 
+      GetWindowValues?startIndex=2017-11-23T12:30:00Z&endIndex=2017-11-23T15:30:00Z 
+      &boundaryType=2
       
-Because the index is a valid type for interpolation and the stream behavior specifies a mode of interpolate, 
-this request receives a response with an event interpolated at the specified index:
       
 **Response body**
 
@@ -1025,12 +1073,136 @@ this request receives a response with an event interpolated at the specified ind
   HTTP/1.1 200
   Content-Type: application/json
 
+  [  
+     {  
+        "Time":"2017-11-23T12:00:00Z"
+     },
+     {  
+        "Time":"2017-11-23T13:00:00Z",
+        "Measurement":10.0
+     },
+     {  
+        "Time":"2017-11-23T14:00:00Z",
+        "Measurement":20.0
+     },
+     {  
+        "Time":"2017-11-23T15:00:00Z",
+       "Measurement":30.0
+     },
+     {  
+        "Time":"2017-11-23T16:00:00Z",
+        "Measurement":40.0
+     }
+  ] 
+
+Note that State is not included in the JSON as its value is the default value. 
+Further, Measurement is not include in the second, 12:00:00, event as zero is the default 
+value for numbers.
+
+If instead a start boundary of Inside, only values inside the start boundary (after 13:30) 
+are included in the result. With an end boundary of Outside one value outside the end index 
+(after 15:30) is included:
+
+::
+
+  api/Tenants/{tenantId}/Namespaces/{namespaceId}/Streams/Simple/Data/ 
+      GetWindowValues?startIndex=2017-11-23T12:30:00Z&&startBoundaryType=1 
+      &endIndex=2017-11-23T15:30:00Z&endBoundaryType=2
+
+**Response body**
+
+::
+
+  HTTP/1.1 200
+  Content-Type: application/json
+
+  [  
+     {  
+        "Time":"2017-11-23T13:00:00Z",
+        "Measurement":10.0
+     },
+     {  
+        "Time":"2017-11-23T14:00:00Z",
+        "Measurement":20.0
+     },
+     {  
+        "Time":"2017-11-23T15:00:00Z",
+        "Measurement":30.0
+     },
+     {  
+        "Time":"2017-11-23T16:00:00Z",
+        "Measurement":40.0
+     }
+  ] 
+
+
+Note that State is not included in the JSON as its value is the default value.
+
+In order to page the results of the request, a continuation token may be specified. 
+This requests the first page of the first two stored events between start index and 
+end index by indicating count is 2 and continuationToken is an empty string:
+
+::
+
+  api/Tenants/{tenantId}/Namespaces/{namespaceId}/Streams/Simple/Data/ 
+      GetWindowValues?startIndex=2017-11-23T12:30:00Z&endIndex=2017-11-23T15:30:00Z 
+      &count=2&continuationToken=
+
+*Response body**
+
+::
+
+  HTTP/1.1 200
+  Content-Type: application/json
+
   {  
-     "Time":"2017-11-23T13:30:00Z",
-     "Measurement":15.0
-  }
+     "Results":[  
+        {  
+           "Time":"2017-11-23T13:00:00Z",
+           "Measurement":10.0
+        },
+        {  
+           "Time":"2017-11-23T14:00:00Z",
+           "Measurement":20.0
+        }
+     ],
+     "ContinuationToken":"2017-11-23T14:00:00.0000000Z"
+  } 
 
 
+Note that State is not included in the JSON as its value is the default value.
+
+This Get Window Values request uses the continuation token from the previous 
+page to request the next page of stored events:
+
+::
+
+  api/Tenants/{tenantId}}/Namespaces/{namespaceId}/Streams/Simple/Data/ 
+      GetWindowValues?startIndex=2017-11-23T12:30:00Z&endIndex=2017-11-23T15:30:00Z 
+      &count=2&continuationToken=2017-11-23T14:00:00Z
+
+
+**Response body**
+
+::
+
+  HTTP/1.1 200
+  Content-Type: application/json
+
+  {  
+     "Results":[  
+        {  
+           "Time":"2017-11-23T15:00:00Z",
+           "Measurement":30.0
+        }
+     ]
+  } 
+  
+  
+In this case, the results contain the final event. The returned continuation token is null 
+(not shown because it null is the default value for a JSON string). 
+
+Note that State is not included in the JSON as its value is the default value.
 
 
 
@@ -1038,12 +1210,90 @@ this request receives a response with an event interpolated at the specified ind
 
 ::
 
-  Task<T> GetValueAsync<T>(string streamId, string index, 
-  string viewId = null);
-  Task<T> GetValueAsync<T, T1>(string streamId, Tuple<T1> index, 
-  string viewId = null);
-  Task<T> GetValueAsync<T, T1, T2>(string streamId, Tuple<T1, T2> index, 
-  string viewId = null);
+  Task<IEnumerable<T>> GetWindowValuesAsync<T>(string streamId, string startIndex, 
+      string endIndex, string viewId = null);
+  Task<IEnumerable<T>> GetWindowValuesAsync<T, T1>(string streamId, T1 startIndex,
+      T1 endIndex, string viewId = null);
+  Task<IEnumerable<T>> GetWindowValuesAsync<T, T1, T2>(string streamId, T
+      uple<T1, T2> startIndex, Tuple<T1, T2> endIndex, string viewId = null);
+
+  Task<IEnumerable<T>> GetWindowValuesAsync<T>(string streamId, string startIndex, 
+      string endIndex, QiBoundaryType boundaryType, string viewId = null);
+  Task<IEnumerable<T>> GetWindowValuesAsync<T, T1>(string streamId, T1 startIndex, 
+      T1 endIndex, QiBoundaryType boundaryType, string viewId = null);
+  Task<IEnumerable<T>> GetWindowValuesAsync<T, T1, T2>(string streamId, 
+      Tuple<T1, T2> startIndex, Tuple<T1, T2> endIndex, 
+  QiBoundaryType boundaryType, string viewId = null);
+
+  Task<IEnumerable<T>> GetWindowFilteredValuesAsync<T>(string streamId, 
+      string startIndex, string endIndex, QiBoundaryType boundaryType, 
+      string filter, string viewId = null);
+  Task<IEnumerable<T>> GetWindowFilteredValuesAsync<T, T1>(string streamId, 
+      T1 startIndex, T1 endIndex, QiBoundaryType boundaryType, string filter, string viewId = null);
+  Task<IEnumerable<T>> GetWindowFilteredValuesAsync<T, T1, T2>(string streamId, 
+      Tuple<T1, T2> startIndex, Tuple<T1, T2> endIndex, 
+      QiBoundaryType boundaryType, string filter, string viewId = null);
+
+  Task<IEnumerable<T>> GetWindowFilteredValuesAsync<T>(string streamId, 
+      string startIndex, QiBoundaryType startBoundaryType, string endIndex, 
+      QiBoundaryType endBoundaryType, string filter, string viewId = null);
+  Task<IEnumerable<T>> GetWindowFilteredValuesAsync<T, T1>(string streamId,
+      T1 startIndex, QiBoundaryType startBoundaryType, 
+      T1 endIndex, QiBoundaryType endBoundaryType, 
+      string filter, string viewId = null);
+  Task<IEnumerable<T>> GetWindowFilteredValuesAsync<T, T1, T2>(string streamId, 
+      Tuple<T1, T2> startIndex, QiBoundaryType startBoundaryType, 
+      Tuple<T1, T2> endIndex, QiBoundaryType endBoundaryType, 
+      string filter, string viewId = null);
+
+  Task<QiResultPage<T>> GetWindowValuesAsync<T>(string streamId, string startIndex,
+      string endIndex, QiBoundaryType boundaryType, int count, 
+      string continuationToken, string viewId = null);
+  Task<QiResultPage<T>> GetWindowValuesAsync<T, T1>(string streamId, T1 startIndex, 
+      T1 endIndex, QiBoundaryType boundaryType, int count, 
+      string continuationToken, string viewId = null);
+  Task<QiResultPage<T>> GetWindowValuesAsync<T, T1, T2>(string streamId, 
+      Tuple<T1, T2> startIndex, Tuple<T1, T2> endIndex, 
+      QiBoundaryType boundaryType, int count, string continuationToken, 
+      string viewId = null);
+
+  Task<QiResultPage<T>> GetWindowFilteredValuesAsync<T>(string streamId, 
+      string startIndex, string endIndex, QiBoundaryType boundaryType, 
+      string filter, int count, string continuationToken, string viewId = null);
+  Task<QiResultPage<T>> GetWindowFilteredValuesAsync<T, T1>(string streamId, 
+      T1 startIndex, T1 endIndex, QiBoundaryType boundaryType, string filter, 
+      int count, string continuationToken, string viewId = null);
+  Task<QiResultPage<T>> GetWindowFilteredValuesAsync<T, T1, T2>(string streamId, 
+      Tuple<T1, T2> startIndex, Tuple<T1, T2> endIndex, 
+      QiBoundaryType boundaryType, string filter, int count, 
+      string continuationToken, string viewId = null);
+
+  Task<QiResultPage<T>> GetWindowValuesAsync<T>(string streamId, 
+      string startIndex, QiBoundaryType startBoundaryType, 
+      string endIndex, QiBoundaryType endBoundaryType, 
+      int count, string continuationToken, string viewId = null);
+  Task<QiResultPage<T>> GetWindowValuesAsync<T, T1>(string streamId, 
+      T1 startIndex, QiBoundaryType startBoundaryType, 
+      T1 endIndex, QiBoundaryType endBoundaryType, 
+      int count, string continuationToken, string viewId = null);
+  Task<QiResultPage<T>> GetWindowValuesAsync<T, T1, T2>(string streamId, 
+      Tuple<T1, T2> startIndex, QiBoundaryType startBoundaryType, 
+      Tuple<T1, T2> endIndex, QiBoundaryType endBoundaryType, 
+      int count, string continuationToken, string viewId = null);
+
+  Task<QiResultPage<T>> GetWindowFilteredValuesAsync<T>(string streamId, 
+      string startIndex, QiBoundaryType startBoundaryType, 
+      string endIndex, QiBoundaryType endBoundaryType, 
+      string filter, int count, string continuationToken, string viewId = null);
+  Task<QiResultPage<T>> GetWindowFilteredValuesAsync<T, T1>(string streamId, 
+      T1 startIndex, QiBoundaryType startBoundaryType, 
+      T1 endIndex, QiBoundaryType endBoundaryType, 
+      string filter, int count, string continuationToken, string viewId = null);
+  Task<QiResultPage<T>> GetWindowFilteredValuesAsync<T, T1, T2>(string streamId, 
+      Tuple<T1, T2> startIndex, QiBoundaryType startBoundaryType, 
+      Tuple<T1, T2> endIndex, QiBoundaryType endBoundaryType, 
+      string filter, int count, string continuationToken, string viewId = null);
+
 
 
 **Security**
@@ -1053,19 +1303,72 @@ this request receives a response with an event interpolated at the specified ind
 
 ***********************
 
-``Get Value``
+``Get Intervals``
 --------------
 
-Returns the value at the specified index. If no stored event exists at the specified index, the stream’s 
-:ref:`Qi_Stream_behavior_topic` determines how the returned event is calculated.
+*Note: Get Intervals is exposed as a preview only. The return format and supported summaries are subject to change.*
+
+Returns summary intervals between a specified start and end index. Returns summary intervals between 
+a specified start and end index. Index types that cannot be interpolated, such as string indexes, do not 
+support GetIntervals requests.
+
+Returns summary intervals between a specified start and end index. Index types that cannot be interpolated, 
+such as string indexes, do not support GetIntervals requests.
+
+Results are returned as a collection of QiIntervals. Each QiInterval has a start, end, and collection of 
+summary values.
+
++-------------------+------------------------------+----------------------------------------------------------+
+| Property          | Type                         | Details                                                  |
++===================+==============================+==========================================================+
+| Start             | T                            | The start of the interval                                |
++-------------------+------------------------------+----------------------------------------------------------+
+| End               | T                            | The end of the interval                                  |
++-------------------+------------------------------+----------------------------------------------------------+
+| Summaries         | IDictionary<QiSummaryType,   | The summary values for the interval, keyed by            |
+|                   | IDictionary<string, object>  | summary type. The nested dictionary contains             |
+|                   | Summaries                    | property name keys and summary calculation result        |
+|                   |                              | values.                                                  |
++-------------------+------------------------------+----------------------------------------------------------+
+
+
+Summary values supported by QiSummaryType enum:
+
++----------------------------------------------------------------+------------------------------+
+| Summary                                                        | Enumeration value            | 
++================================================================+==============================+
+| Count                                                          | 1                            | 
++----------------------------------------------------------------+------------------------------+
+| Minimum                                                        | 2                            | 
++----------------------------------------------------------------+------------------------------+
+| Maximum                                                        | 4                            | 
++----------------------------------------------------------------+------------------------------+
+| Range                                                          | 8                            | 
++----------------------------------------------------------------+------------------------------+
+| Mean                                                           | 16                           | 
++----------------------------------------------------------------+------------------------------+
+| StandardDeviation                                              | 64                           | 
++----------------------------------------------------------------+------------------------------+
+| Total                                                          | 128                          | 
++----------------------------------------------------------------+------------------------------+
+| Skewness                                                       | 256                          | 
++----------------------------------------------------------------+------------------------------+
+| Kurtosis                                                       | 512                          | 
++----------------------------------------------------------------+------------------------------+
+| WeightedMean                                                   | 1024                         | 
++----------------------------------------------------------------+------------------------------+
+| WeightedStandardDeviation                                      | 2048                         | 
++----------------------------------------------------------------+------------------------------+
+| WeightedPopulationStandardDeviatio                             | 4096                         | 
++----------------------------------------------------------------+------------------------------+
 
 
 **Request**
 
 ::
 
-    GET	api/Tenants/{tenantId}/Namespaces/{namespaceId}/Streams/{streamId}/Data/GetValue
-        ?index={index}&viewId={viewId}
+   GET api/Tenants/{tenantId}/Namespaces/{namespaceId}/Streams/{streamId}/Data/GetIntervals
+       ?startIndex={startIndex}&endIndex={endIndex}&count={count}&filter={filter}&viewId={viewId}
 
 
 
@@ -1077,62 +1380,137 @@ Returns the value at the specified index. If no stored event exists at the speci
   The namespace identifier
 ``string streamId``
   The stream identifier
-``string index``
-  The index
+``string startIndex``
+  The start index for the intervals
+``string endIndex``
+  The end index for the intervals
+``string count``
+  The number of intervals requested
+``string filter``
+  Optional filter expression
 ``string viewId``
   Optional view identifier
 
-
 **Response**
 
-  The response includes a status code and a response body containing a serialized event.
-  Consider a stream of type Simple with the default QiStreamBehavior Mode of Interpolation and 
-  ExtrapolationMode of All. In the following request, the specified index matches an existing stored event:
+  The response includes a status code and a response body containing a serialized collection of QiIntervals.
+  
+For a stream of type Simple, the following requests calculates two summary intervals between the first 
+and last events: 
+
 
 ::
 
-  api/Tenants/{tenantId}/Namespaces/{namespaceId}/Streams/Simple/Data/GetValue 
-     ?index=2017-11-23T13:00:00Z``
+  api/Tenants/{tenantId}/Namespaces/{namespaceId}/Streams/Simple/Data/ 
+    GetIntervals?startIndex=2017-11-23T12:00:00Z&endIndex=2017-11-23T16:00:00Z&count=2
 
-The response will contain the event stored at the specified index:
+
 
 **Response body**
 
 ::
   
-  HTTP/1.1 200
-  Content-Type: application/json
-
-  {  
-     "Time":"2017-11-23T13:00:00Z",
-     "Measurement":10.0
-  }
-
-Note that State is not included in the JSON as its value is the default value.
-
-The following request specifies an index for which no stored event exists:
-
-::
-
-  api/Tenants/{tenantId}/Namespaces/{namespaceId}/Streams/Simple/Data/GetValue 
-      ?index=2017-11-23T13:30:00Z
-      
-Because the index is a valid type for interpolation and the stream behavior specifies a mode of interpolate, 
-this request receives a response with an event interpolated at the specified index:
-      
-**Response body**
-
-::
-
-  HTTP/1.1 200
-  Content-Type: application/json
-
-  {  
-     "Time":"2017-11-23T13:30:00Z",
-     "Measurement":15.0
-  }
-
-
+  [{
+      "Start":{  
+         "Time":"2017-11-24T20:00:00Z"
+      },
+      "End":{  
+         "Time":"2017-11-24T22:00:00Z",
+         "Measurement":20.0
+      },
+      "Summaries":{  
+         "Count":{  
+            "Measurement":2
+         },
+         "Minimum":{  
+            "Measurement":0.0
+         },
+         "Maximum":{  
+            "Measurement":20.0
+         },
+         "Range":{  
+            "Measurement":20.0
+         },
+         "Total":{  
+            "Measurement":20.0
+         },
+         "Mean":{  
+            "Measurement":10.0
+         },
+         "StandardDeviation":{  
+            "Measurement":7.0710678118654755
+         },
+         "PopulationStandardDeviation":{  
+            "Measurement":5.0
+         },
+         "WeightedMean":{  
+            "Measurement":10.0
+         },
+         "WeightedStandardDeviation":{  
+            "Measurement":7.0710678118654755
+         },
+         "WeightedPopulationStandardDeviation":{  
+            "Measurement":5.0
+         },
+         "Skewness":{  
+            "Measurement":0.0
+         },
+         "Kurtosis":{  
+            "Measurement":-2.0
+         }
+      }
+   },
+   {  
+      "Start":{  
+         "Time":"2017-11-24T22:00:00Z",
+         "Measurement":20.0
+      },
+      "End":{  
+         "Time":"2017-11-25T00:00:00Z",
+         "Measurement":40.0
+      },
+      "Summaries":{  
+         "Count":{  
+            "Measurement":2
+         },
+         "Minimum":{  
+            "Measurement":20.0
+         },
+         "Maximum":{  
+            "Measurement":40.0
+         },
+         "Range":{  
+            "Measurement":20.0
+         },
+         "Total":{  
+            "Measurement":60.0
+         },
+         "Mean":{  
+            "Measurement":30.0
+         },
+         "StandardDeviation":{  
+            "Measurement":7.0710678118654755
+         },
+         "PopulationStandardDeviation":{  
+            "Measurement":5.0
+         },
+         "WeightedMean":{  
+            "Measurement":30.0
+         },
+         "WeightedStandardDeviation":{  
+            "Measurement":7.0710678118654755
+         },
+         "WeightedPopulationStandardDeviation":{  
+            "Measurement":5.0
+         },
+         "Skewness":{  
+            "Measurement":0.0
+         },
+         "Kurtosis":{  
+            "Measurement":-2.0
+         }
+      }
+}]
 
 
 
@@ -1140,12 +1518,28 @@ this request receives a response with an event interpolated at the specified ind
 
 ::
 
-  Task<T> GetValueAsync<T>(string streamId, string index, 
-  string viewId = null);
-  Task<T> GetValueAsync<T, T1>(string streamId, Tuple<T1> index, 
-  string viewId = null);
-  Task<T> GetValueAsync<T, T1, T2>(string streamId, Tuple<T1, T2> index, 
-  string viewId = null);
+  Task<IEnumerable<QiInterval<T>>> GetIntervalsAsync<T>(string streamId, string 
+      startIndex, string endIndex, int count, string viewId = null);
+       
+  Task<IEnumerable<QiInterval<T>>> GetIntervalsAsync<T, T1>(string streamId, T1 
+      startIndex, T1 endIndex, int count, string viewId = null);
+        
+  Task<IEnumerable<QiInterval<T>>> GetIntervalsAsync<T, T1, T2>(string streamId, 
+      Tuple<T1, T2> startIndex, Tuple<T1, T2> endIndex, int count, 
+      string viewId = null);
+
+  Task<IEnumerable<QiInterval<T>>> GetFilteredIntervalsAsync<T>(string streamId, 
+      string startIndex, string endIndex, int count, string filter, 
+      string viewId = null);
+        
+  Task<IEnumerable<QiInterval<T>>> GetFilteredIntervalsAsync<T, T1>(string streamId, 
+      T1 startIndex, T1 endIndex, int count, string filter, 
+      string viewId = null);
+        
+  Task<IEnumerable<QiInterval<T>>> GetFilteredIntervalsAsync<T, T1, T2>(string 
+      streamId, Tuple<T1, T2> startIndex, Tuple<T1, T2> endIndex, int count, 
+      string filter, string viewId = null);
+
 
 
 **Security**
