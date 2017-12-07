@@ -1510,7 +1510,7 @@ and last events:
             "Measurement":-2.0
          }
       }
-}]
+  }]
 
 
 
