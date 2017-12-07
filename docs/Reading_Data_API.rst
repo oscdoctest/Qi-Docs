@@ -698,23 +698,27 @@ Note that State is not included in the JSON as its value is the default value.
 
 
 
-STOPPED HERE
 
 ***********************
 
-``Get Value``
+``Get Range Values``
 --------------
 
-Returns the value at the specified index. If no stored event exists at the specified index, the stream’s 
-:ref:`Qi_Stream_behavior_topic` determines how the returned event is calculated.
+Returns a collection of values as determined by a start index and count. 
+
+Additional optional parameters specify the direction of the range, how to handle events near or 
+at the start index, whether to skip a certain number of events at the start of the range, and 
+how to filter the data.
+
 
 
 **Request**
 
 ::
 
-    GET	api/Tenants/{tenantId}/Namespaces/{namespaceId}/Streams/{streamId}/Data/GetValue
-        ?index={index}&viewId={viewId}
+    GET	api/Tenants/{tenantId}/Namespaces/{namespaceId}/Streams/{streamId}/Data/GetRangeValues 
+        ?startIndex={startIndex}&count={count}&skip={skip}&reversed={reversed} 
+        &boundaryType={boundaryType}&filter={filter}&viewId={viewId}
 
 
 
@@ -726,24 +730,39 @@ Returns the value at the specified index. If no stored event exists at the speci
   The namespace identifier
 ``string streamId``
   The stream identifier
-``string index``
-  The index
+``string startIndex``
+  Index identifying the beginning of the series of events to return
+``string count``
+  The number of events to return
+``integer skip``
+  Optional value specifying the number of events to skip at the beginning of the result
+``bool reversed``
+  Optional specification of the direction of the request. By default, range requests move forward 
+  from startIndex, collecting events after startIndex from the stream. A reversed request will 
+  collect events before startIndex from the stream.
+``QiBoundaryType boundaryType``
+  Optional QiBoundaryType specifies the handling of events at or near startIndex
+``string filter``
+  Optional filter expression
 ``string viewId``
   Optional view identifier
+  
+ 
 
 
 **Response**
 
-  The response includes a status code and a response body containing a serialized event.
-  Consider a stream of type Simple with the default QiStreamBehavior Mode of Interpolation and 
-  ExtrapolationMode of All. In the following request, the specified index matches an existing stored event:
+  The response includes a status code and a response body containing a serialized collection of events.
+  
+  For a stream of type Simple, the following request will return a response with up to 100 events starting 
+  at 13:00 and extending forward toward the end of the stream: 
 
 ::
 
-  api/Tenants/{tenantId}/Namespaces/{namespaceId}/Streams/Simple/Data/GetValue 
-     ?index=2017-11-23T13:00:00Z``
+  api/Tenants/{tenantId}/Namespaces/{namespaceId}/Streams/Simple/Data/ 
+      GetRangeValues?startIndex=2017-11-23T13:00:00Z&count=100
 
-The response will contain the event stored at the specified index:
+
 
 **Response body**
 
@@ -752,22 +771,37 @@ The response will contain the event stored at the specified index:
   HTTP/1.1 200
   Content-Type: application/json
 
-  {  
-     "Time":"2017-11-23T13:00:00Z",
-     "Measurement":10.0
-  }
+  [  
+     {  
+        "Time":"2017-11-23T13:00:00Z",
+        "Measurement":10.0
+     },
+     {  
+        "Time":"2017-11-23T14:00:00Z",
+        "Measurement":20.0
+     },
+     {  
+        "Time":"2017-11-23T15:00:00Z",
+        "Measurement":30.0
+     },
+     {  
+       "Time":"2017-11-23T16:00:00Z",
+        "Measurement":40.0
+     }
+  ] 
+
 
 Note that State is not included in the JSON as its value is the default value.
 
-The following request specifies an index for which no stored event exists:
+To reverse the direction of the request, set reversed to true. This request will 
+return up to 100 events starting at 13:00 and extending back toward the start of the stream:
 
 ::
 
-  api/Tenants/{tenantId}/Namespaces/{namespaceId}/Streams/Simple/Data/GetValue 
-      ?index=2017-11-23T13:30:00Z
+  api/Tenants/{tenantId}/Namespaces/{namespaceId}/Streams/Simple/Data/ 
+      GetRangeValues?startIndex=2017-11-23T13:00:00Z&count=100&reversed=true
       
-Because the index is a valid type for interpolation and the stream behavior specifies a mode of interpolate, 
-this request receives a response with an event interpolated at the specified index:
+
       
 **Response body**
 
@@ -776,12 +810,84 @@ this request receives a response with an event interpolated at the specified ind
   HTTP/1.1 200
   Content-Type: application/json
 
-  {  
-     "Time":"2017-11-23T13:30:00Z",
-     "Measurement":15.0
-  }
+  [  
+     {  
+        "Time":"2017-11-23T13:00:00Z",
+        "Measurement":10.0
+     },
+     {  
+        "Time":"2017-11-23T12:00:00Z"
+     }
+  ] 
+
+Note that State is not included in the JSON as its value is the default value. 
+Further, Measurement is not include in the second, 12:00:00, event as zero is the default value for numbers.
+
+The following request specifies a boundary type of Outside for a reversed-direction range request. 
+The response will contain up to 100 events. The boundary type Outside indicates that up to one 
+event outside the boundary will be included in the response. For a reverse direction range request, 
+this means one event forward of the specified start index. In a default direction range request, 
+it would mean one event before the specified start index.
+
+::
+
+  api/Tenants/{tenantId}/Namespaces/{namespaceId}/Streams/Simple/Data/ 
+      GetRangeValues?startIndex=2017-11-23T13:00:00Z&count=100&reversed=true 
+      &boundaryType=2
+
+**Response body**
+
+::
+
+  HTTP/1.1 200
+  Content-Type: application/json
+
+  [  
+     {  
+        "Time":"2017-11-23T14:00:00Z",
+        "Measurement":20.0
+     },
+     {  
+        "Time":"2017-11-23T13:00:00Z",
+        "Measurement":10.0
+     },
+     {  
+        "Time":"2017-11-23T12:00:00Z"
+     }
+  ] 
 
 
+The event outside of the index is the next event or the event at 14:00 because the 
+request operates in reverse.
+
+Note that State is not included in the JSON as its value is the default value. Further 
+Measurement is not included in the last event as its value is default.
+
+Adding a filter to the request means only events that meet the filter criteria are returned:
+
+::
+
+  api/Tenants/{tenantId}/Namespaces/{namespaceId}/Streams/Simple/Data/ 
+      GetRangeValues?startIndex=2017-11-23T13:00:00Z&count=100&reversed=true 
+      &boundaryType=2&filter=Measurement gt 10
+
+**Response body**
+
+::
+
+  HTTP/1.1 200
+  Content-Type: application/json
+
+  [  
+     {  
+        "Time":"2017-11-23T14:00:00Z",
+        "Measurement":20.0
+     },
+     {  
+        "Time":"2017-11-23T13:00:00Z",
+        "Measurement":10.0
+     },
+  ] 
 
 
 
@@ -789,12 +895,45 @@ this request receives a response with an event interpolated at the specified ind
 
 ::
 
-  Task<T> GetValueAsync<T>(string streamId, string index, 
-  string viewId = null);
-  Task<T> GetValueAsync<T, T1>(string streamId, Tuple<T1> index, 
-  string viewId = null);
-  Task<T> GetValueAsync<T, T1, T2>(string streamId, Tuple<T1, T2> index, 
-  string viewId = null);
+  Task<IEnumerable<T>> GetRangeValuesAsync<T>(string streamId, string startIndex, 
+      int count, string viewId = null);
+  Task<IEnumerable<T>> GetRangeValuesAsync<T, T1>(string streamId, T1 startIndex, 
+      int count, string viewId = null);
+  Task<IEnumerable<T>> GetRangeValuesAsync<T, T1, T2>(string streamId, Tuple<T1, T2> 
+      startIndex, int count, string viewId = null);
+
+  Task<IEnumerable<T>> GetRangeValuesAsync<T>(string streamId, string startIndex, 
+      int count, bool reversed, string viewId = null);
+  Task<IEnumerable<T>> GetRangeValuesAsync<T, T1>(string streamId, T1 startIndex, 
+      int count, bool reversed, string viewId = null);
+  Task<IEnumerable<T>> GetRangeValuesAsync<T, T1, T2>(string streamId, 
+      Tuple<T1, T2> startIndex, int count, bool reversed, string viewId = null);
+
+  Task<IEnumerable<T>> GetRangeValuesAsync<T>(string streamId, string startIndex, 
+      int count, QiBoundaryType boundaryType, string viewId = null);
+  Task<IEnumerable<T>> GetRangeValuesAsync<T, T1>(string streamId, T1 startIndex, 
+      int count, QiBoundaryType boundaryType, string viewId = null);
+  Task<IEnumerable<T>> GetRangeValuesAsync<T, T1, T2>(string streamId, 
+      Tuple<T1, T2> startIndex, int count, QiBoundaryType boundaryType, string viewId = null);
+
+  Task<IEnumerable<T>> GetRangeValuesAsync<T>(string streamId, string startIndex, 
+      int skip, int count, bool reversed, QiBoundaryType boundaryType, string viewId = null);
+  Task<IEnumerable<T>> GetRangeValuesAsync<T, T1>(string streamId, T1 startIndex, 
+      int skip, int count, bool reversed, QiBoundaryType boundaryType, string viewId = null);
+  Task<IEnumerable<T>> GetRangeValuesAsync<T, T1, T2>(string streamId, Tuple<T1, T2> 
+      startIndex, int skip, int count, bool reversed, QiBoundaryType 
+      boundaryType, string viewId = null);
+
+  Task<IEnumerable<T>> GetRangeFilteredValuesAsync<T>(string streamId, string startIndex, 
+      int skip, int count, bool reversed, QiBoundaryType boundaryType, string filter, 
+      string viewId = null);
+  Task<IEnumerable<T>> GetRangeFilteredValuesAsync<T, T1>(string streamId, T1 startIndex, 
+      int skip, int count, bool reversed, QiBoundaryType boundaryType, string filter, 
+      string viewId = null);
+  Task<IEnumerable<T>> GetRangeFilteredValuesAsync<T, T1, T2>(string streamId, 
+      Tuple<T1, T2> startIndex, int skip, int count, bool reversed, QiBoundaryType boundaryType, 
+      string filter, string viewId = null);
+
 
 
 **Security**
@@ -804,11 +943,19 @@ this request receives a response with an event interpolated at the specified ind
 
 ***********************
 
-``Get Value``
---------------
+``Get Window Values``
+--------------------
 
-Returns the value at the specified index. If no stored event exists at the specified index, the stream’s 
-:ref:`Qi_Stream_behavior_topic` determines how the returned event is calculated.
+Get Window Values returns a collection of stored events based on specified start and end indexes. 
+For handling events at and near the boundaries of the window, a single QiBoundaryType that applies 
+to both the start and end indexes can be passed with the request, or separate boundary types may 
+be passed for the start and end individually. 
+
+Get Window Values also supports paging for large result sets. Results for paged requests are returned 
+as a QiResultPage.
+
+
+STOPPED HERE
 
 
 **Request**
