@@ -6,6 +6,7 @@
 
 .. toctree::
 
+	Account_Applications
 	Account_Namespace
 	Account_NamespaceTier
 	Account_Role
