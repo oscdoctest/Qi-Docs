@@ -212,6 +212,152 @@ Deletes the metadata for the specified stream.
 ***********************
 
 
+QiStream Tags API 
+=================
 
+
+``Get stream tags``
+----------------------
+
+Returns the tag list for the specified stream. 
+
+
+**Request**
+
+::
+
+    GET api/Tenants/{tenantId}/Namespaces/{namespaceId}/Streams/{streamId}/Tags 
+    
+
+**Parameters**
+
+``string tenantId``
+  The tenant identifier
+``string namespaceId``
+  The namespace identifier
+``string streamId``
+  The stream identifier
+
+
+**Response**
+
+  The response includes a status code and a response body.
+
+**Response body**
+
+  The tags for the specified QiStream. 
+
+**Sample response body**
+
+::
+  
+  HTTP/1.1 200 
+  Content-Type: application/json 
+  [ 
+      "a tag", 
+      "another tag" 
+  ] 
+  
+  
+**.NET Library**
+
+::
+
+  Task<IList<string>> GetStreamTagsAsync(string streamId); 
+
+
+**Security**
+
+  Allowed for administrator and user accounts
+
+
+***********************
+
+``Update stream tags``
+---------------------
+
+Replaces the tag list for the specified stream with the tags listed in the request body.  
+Overwrites any existing tags; does not merge. 
+
+
+**Request**
+
+::
+
+    PUT api/Tenants/{tenantId}/Namespaces/{namespaceId}/Streams/{streamId}/Tags 
+
+
+**Parameters**
+
+``string tenantId``
+  The tenant identifier
+``string namespaceId``
+  The namespace identifier
+``string streamId``
+  The stream identifier
+
+  The request content is the serialized list of tags. 
+
+**Response**
+
+  The response includes a status code.
+
+
+**.NET Library**
+
+::
+
+   Task UpdateStreamTagsAsync(string streamId, IList<string> tags); 
+
+
+**Security**
+
+  Allowed by administrator accounts.
+
+
+***********************
+
+
+``Delete stream metadata``
+------------------------
+
+Deletes the tag list for the specified stream. 
+
+
+**Request**
+
+::
+
+   DELETE api/Tenants/{tenantId}/Namespaces/{namespaceId}/Streams/{streamId}/Tags 
+
+
+**Parameters**
+
+``string tenantId``
+  The tenant identifier
+``string namespaceId``
+  The namespace identifier
+``string streamId``
+  The stream identifier
+
+
+**Response**
+
+  The response includes a status code.
+
+
+**.NET Library**
+
+::
+
+   Task DeleteStreamTagsAsync(string streamId); 
+   
+
+**Security**
+
+  Allowed for administrator accounts.
+
+
+***********************
 
 
