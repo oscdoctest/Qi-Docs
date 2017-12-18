@@ -9,7 +9,7 @@ QiStream Metadata API
 ---------------------
 
 ``Get stream metadata``
---------------
+----------------------
 
 Returns the metadata dictionary for the specified stream. 
 
@@ -64,3 +64,154 @@ Returns the metadata dictionary for the specified stream.
 
 
 ***********************
+
+
+``Get stream metadata value``
+----------------------
+
+Returns the value for the specified key in the metadata dictionary of the specified stream. 
+
+
+**Request**
+
+::
+
+    GET api/Tenants/{tenantId}/Namespaces/{namespaceId}/Streams/{streamId}/Metadata/{key} 
+
+
+**Parameters**
+
+``string tenantId``
+  The tenant identifier
+``string namespaceId``
+  The namespace identifier
+``string streamId``
+  The stream identifier
+``string key``
+  The key specifying the metadata value of interest 
+  
+  
+
+**Response**
+
+  The response includes a status code and a response body.
+
+**Response body**
+
+  The metadata for the specified QiStream. 
+
+**Sample response body**
+
+::
+  
+  HTTP/1.1 200 
+  Content-Type: application/json 
+  { 
+      "a metadata value” 
+  } 
+
+
+**.NET Library**
+
+::
+
+  Task<string> GetStreamMetadataValueAsync(string streamId, string key); 
+
+
+**Security**
+
+  Allowed for administrator and user accounts
+
+
+***********************
+
+``Update stream metadata``
+------------------------
+
+Replaces the metadata for the specified stream with the metadata in the request body. 
+Overwrites any existing metadata; does not merge. 
+
+
+**Request**
+
+::
+
+    PUT api/Tenants/{tenantId}/Namespaces/{namespaceId}/Streams/{streamId}/Metadata 
+
+
+**Parameters**
+
+``string tenantId``
+  The tenant identifier
+``string namespaceId``
+  The namespace identifier
+``string streamId``
+  The stream identifier
+
+
+**Response**
+
+  The response includes a status code.
+
+
+**.NET Library**
+
+::
+
+   Task UpdateStreamMetadataAsync(string streamId, IDictionary<string, string> metadata); 
+
+
+**Security**
+
+  Allowed for administrator accounts
+
+
+***********************
+
+
+
+``Delete stream metadata``
+------------------------
+
+Deletes the metadata for the specified stream.  
+
+**Request**
+
+::
+
+    DELETE api/Tenants/{tenantId}/Namespaces/{namespaceId}/Streams/{streamId}/Metadata 
+
+
+**Parameters**
+
+``string tenantId``
+  The tenant identifier
+``string namespaceId``
+  The namespace identifier
+``string streamId``
+  The stream identifier
+
+
+**Response**
+
+  The response includes a status code.
+
+
+**.NET Library**
+
+::
+
+    Task DeleteStreamMetadataAsync(string streamId); 
+
+
+**Security**
+
+  Allowed for administrator accounts
+
+
+***********************
+
+
+
+
+
