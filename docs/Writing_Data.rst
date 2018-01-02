@@ -244,6 +244,66 @@ Has values as follows:
 All times are represented at offset 0, GMT.
 
 
+***********************
+
+``Insert value``
+----------------
+
+Inserts an event into the specified stream. If an event exists at the same primary index, 
+insert fails, returning HTTP Status Code Conflict, 409.
+
+
+**Request**
+
+::
+
+    POST	api/Tenants/{tenantId}/Namespaces/{namespaceId}/Streams/{streamId}/Data/InsertValue
+
+
+**Parameters**
+
+``string tenantId``
+  The tenant identifier
+``string namespaceId``
+  The namespace identifier
+``string streamId``
+  The stream identifier
+
+The request content is the serialized object matching the stream type. If you are not 
+using the Qi client libraries, we recommend using JSON.
+
+A sample of serialized Simple type content is shown here:
+
+::
+
+  {  
+     "Time":"2017-11-23T12:00:00Z",
+     "State":0,
+     "Measurement":1000.0
+  }
+
+
+
+**Response**
+
+  The response includes a status code. On error, the response body contains a serialized description of the error.
+
+
+
+**.NET Library**
+
+::
+
+  Task InsertValueAsync<T>(string streamId, T item);
+
+
+**Security**
+
+  Allowed for administrator accounts.
+
+
+***********************
+
 
 
 
