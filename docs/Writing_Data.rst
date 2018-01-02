@@ -36,15 +36,212 @@ The base URI for writing Qi data is:
 
   api/Tenants/{tenantId}/Namespaces/{namespaceId}/Streams/{streamId}/Data
 
-where
+**Parameters**
 
-string tenantId
+``string tenantId``
   The tenant identifier
-string namespaceId
-The namespace identifier
-string streamId
-The stream identifier
+``string namespaceId``
+  The namespace identifier
+``string streamId``
+  The stream identifier
+  
 
+Response Format
+---------------
+
+Supported response formats include JSON, verbose JSON, and Qi. 
+
+The default response format for reading data is JSON, which is used in all examples in this document. 
+Default JSON responses do not include any values that are equal to the default value for their type.
+
+Verbose JSON responses include all values in the returned JSON payload, including defaults.
+To specify verbose JSON return, add the header ``Accept-Verbosity`` with a value of ``verbose`` to the request. 
+
+Verbose has no impact on writes; writes return only error messages.
+
+To specify Qi format, set the ``Accept`` header in the request to ``application/qi``.
+
+Indexes
+-------
+
+Qi writes rely on the primary index for positioning within streams and locating existing events. 
+Most writes use the index as specified by the value. Deletes are the exception to this rule. When deleting, 
+indexes are specified as strings in the URI, or, when using the Qi Client libraries, the index may be 
+passed as-is to delete methods that take the index type as a generic argument. More details about working 
+with indexes can be found on the :ref:`Qi_Indexes_topic` page. 
+
+To specify compound indexes in the URI, specify each field that composes the index, in the specified order, 
+separated by the pipe character, ‘|’.
+
+Examples
+--------
+
+Many of the API methods described below contain sample JSON. 
+
+When specifying a parameter of type ``enum``, the API accepts both the name of the field and the numeric 
+value of the field. Samples vary to highlight enum flexibility.
+
+Samples use the following types:
+
+* Type with a simple index, named *Simple*:
+
+**.NET**
+
+::
+
+
+  public enum State 
+  {
+    Ok,
+    Warning,
+    Alarm
+  }
+
+  public class Simple
+  {
+    [QiMember(IsKey = true, Order = 0) ] 
+    public DateTime Time { get; set; }
+    public State State { get; set; }
+    public Double Measurement { get; set; }
+  }
+
+**Python**
+
+::
+
+  class State(Enum):
+    Ok = 0
+    Warning = 1
+    Alarm = 2
+
+  class Simple(object):
+    Time = property(getTime, setTime)
+    def getTime(self):
+      return self.__time
+    def setTime(self, time):
+      self.__time = time
+
+    State = property(getState, setState)
+    def getState(self):
+      return self.__state
+    def setState(self, state):
+      self.__state = state
+
+    Measurement = property(getValue, setValue)
+    def getValue(self):
+      return self.__measurement
+    def setValue(self, measurement):
+      self.__measurement = measurement
+
+**JavaScript**
+
+::
+
+  var State =
+  {
+    Ok: 0,
+    Warning: 1,
+    Aalrm: 2,
+  }
+
+  var Simple = function () {
+    this.Time = null;
+    this.State = null;
+    this.Value = null;
+  }
+  
+  
+Has values as follows:
+
+::
+
+  11/23/2017 12:00:00 PM: Ok  0
+  11/23/2017  1:00:00 PM: Ok 10
+  11/23/2017  2:00:00 PM: Ok 20
+  11/23/2017  3:00:00 PM: Ok 30
+  11/23/2017  4:00:00 PM: Ok 40
+
+* Type with Compound Index, named DerivedCompoundIndex
+
+.NET
+
+::
+
+  public class Simple
+  {
+    [QiMember(IsKey = true, Order = 0)]
+    public DateTime Time { get; set; }
+    public State State { get; set; }
+    public Double Measurement { get; set; }
+  }
+
+  public class DerivedCompoundIndex : Simple
+  {
+    [QiMember(IsKey = true, Order = 1)]
+    public DateTime Recorded { get; set; }
+  }
+  
+Python
+
+::
+
+  class Simple(object):
+  # First-order Key property
+  Time = property(getTime, setTime)
+  def getTime(self):
+    return self.__time
+  def setTime(self, time):
+    self.__time = time
+
+  State = property(getState, setState)
+  def getState(self):
+    return self.__state
+  def setState(self, state):
+    self.__state = state
+
+  Measurement = property(getValue, setValue)
+  def getValue(self):
+    return self.__measurement
+  def setValue(self, measurement):
+    self.__measurement = measurement
+
+  class DerivedCompoundIndex(Simple):
+  # Second-order Key property
+  @property
+  def Recorded(self):
+    return self.__recorded
+   @Recorded.setter
+  def Recorded(self, recorded):
+    self.__recorded = recorded
+
+JavaScript
+
+::
+
+  var Simple = function () {
+    this.Time = null;
+    this.State = null;
+    this.Value = null;
+  }
+
+  var DerivedCompoundIndex = function() {
+    Simple.call(this);
+    this.Recorded = null;
+  }
+  
+Has values as follows:
+
+::
+
+  1/20/2017 1:00:00 AM : 1/20/2017 12:00:00 AM 	0
+  1/20/2017 1:00:00 AM : 1/20/2017  1:00:00 AM 	2
+  1/20/2017 1:00:00 AM : 1/20/2017  2:00:00 PM 	5
+  1/20/2017 2:00:00 AM : 1/20/2017 12:00:00 AM 	1
+  1/20/2017 2:00:00 AM : 1/20/2017  1:00:00 AM 	3
+  1/20/2017 2:00:00 AM : 1/20/2017  2:00:00 AM 	4
+  1/20/2017 2:00:00 AM : 1/20/2017  2:00:00 PM 	6
+  
+All times are represented at offset 0, GMT.
 
 
 
