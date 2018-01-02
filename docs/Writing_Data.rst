@@ -151,7 +151,7 @@ Samples use the following types:
   }
   
   
-Has values as follows:
+The values produced by the above code is as follows:
 
 ::
 
@@ -492,7 +492,7 @@ the remove operation fails, returning HTTP status code Not Found, 404.
 
 ::
 
-    DELETE	api/Tenants/{tenantId}/Namespaces/{namespaceId}/Streams/{streamId}/Data/ 
+    DELETE api/Tenants/{tenantId}/Namespaces/{namespaceId}/Streams/{streamId}/Data/ 
          RemoveValue?index={index}
 
 
@@ -694,7 +694,7 @@ A sample of serialized Simple type content is shown here:
 ***********************
 
 
-``Patch values``
+``Replace values``
 ----------------
 
 Replaces a collection of events with events that match primary indexes. If there is not an event with a 
@@ -705,7 +705,8 @@ matching index, replace fails, returning HTTP status code Not Found, 404.
 
 ::
 
-    POST api/Tenants/{tenantId}/Namespaces/{namespaceId}/Streams/{streamId}/Data/InsertValues
+   PUT api/Tenants/{tenantId}/Namespaces/{namespaceId}/Streams/{streamId}/Data/ReplaceValues
+
 
 
 **Parameters**
