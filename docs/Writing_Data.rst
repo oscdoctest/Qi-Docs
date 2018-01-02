@@ -249,8 +249,8 @@ All times are represented at offset 0, GMT.
 ``Insert value``
 ----------------
 
-Inserts an event into the specified stream. If an event exists at the same primary index, 
-insert fails, returning HTTP Status Code Conflict, 409.
+Inserts an event into the specified stream. If an event already exists at the specified primary index, 
+the insert operation fails, and returns HTTP status code Conflict, 409.
 
 
 **Request**
@@ -308,7 +308,7 @@ A sample of serialized Simple type content is shown here:
 ----------------
 
 Updates fields in an event. Use the select parameter to specify the fields to update. If there is 
-not an event with a matching primary index, patch fails, returning HTTP status code Not Found, 404.
+not an event with a matching primary index, the patch operation fails and returns HTTP status code Not Found, 404.
 
 
 **Request**
@@ -369,7 +369,7 @@ and the measurement to 500, set the index to ``state,measurement``.
 ----------------
 
 Replaces an existing event with an event with matching primary index. If there is not an event with a 
-matching index, replace fails, returning HTTP status code Not Found, 404.
+matching index, the replace operation fails and returns HTTP status code Not Found, 404.
 
 
 **Request**
@@ -427,7 +427,7 @@ A sample of serialized Simple type content is shown here:
 ``Update value``
 ----------------
 
-Replaces an existing event with an event with matching primary index. If there is not an event with 
+Replaces an existing event with an event that has a matching primary index. If there is not an event with 
 a matching index, the event is inserted.
 
 
@@ -484,8 +484,8 @@ A sample of serialized Simple type content is shown here:
 ``Remove value``
 ----------------
 
-Removes an event that contains a matching primary index. If there is not an event with a matching index, 
-the remove operation fails, returning HTTP status code Not Found, 404.
+Removes an event that matches a primary index. If there is not an event with a matching index, 
+the remove operation fails and returns HTTP status code Not Found, 404.
 
 
 **Request**
@@ -534,7 +534,7 @@ the remove operation fails, returning HTTP status code Not Found, 404.
 ----------------
 
 Inserts a collection of events into the specified stream. If an event exists at the same primary 
-index as any of the values, insert fails, returning HTTP status code Conflict, 409.
+index as any of the values, the insert operation fails and returns HTTP status code Conflict, 409.
 
 
 **Request**
@@ -614,7 +614,7 @@ A sample of serialized Simple type content is shown here:
 ----------------
 
 Updates fields for a collection of events in the specified stream. If there is not an event with 
-a matching index, patch fails, returning HTTP status code Not Found, 404.
+a matching index, the patch operation fails and returns HTTP status code Not Found, 404.
 
 
 **Request**
@@ -698,7 +698,7 @@ A sample of serialized Simple type content is shown here:
 ----------------
 
 Replaces a collection of events with events that match primary indexes. If there is not an event with a 
-matching index, replace fails, returning HTTP status code Not Found, 404.
+matching index, the replace operation fails and returns HTTP status code Not Found, 404.
 
 
 **Request**
@@ -747,7 +747,7 @@ using the Qi client libraries, using JSON is recommended.
 ``Update values``
 ----------------
 
-Replaces a collection of events with events that contain matching primary indexes. If there is not an events with a 
+Replaces a collection of events with events that contain matching primary indexes. If there is not a collectin of events with a 
 matching index, the events are inserted.
 
 
@@ -796,7 +796,7 @@ using the Qi client libraries, using JSON is recommended.
 ----------------
 
 Removes events at matching primary indexes. If there is not an event with a matching index, 
-remove fails, returning HTTP status code Not Found, 404.
+the remove operation fails and returns HTTP status code Not Found, 404.
 
 
 **Request**
