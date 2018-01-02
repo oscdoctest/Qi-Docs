@@ -257,7 +257,7 @@ insert fails, returning HTTP Status Code Conflict, 409.
 
 ::
 
-    POST	api/Tenants/{tenantId}/Namespaces/{namespaceId}/Streams/{streamId}/Data/InsertValue
+    POST api/Tenants/{tenantId}/Namespaces/{namespaceId}/Streams/{streamId}/Data/InsertValue
 
 
 **Parameters**
@@ -270,7 +270,7 @@ insert fails, returning HTTP Status Code Conflict, 409.
   The stream identifier
 
 The request content is the serialized object matching the stream type. If you are not 
-using the Qi client libraries, we recommend using JSON.
+using the Qi client libraries, using JSON is recommended.
 
 A sample of serialized Simple type content is shown here:
 
@@ -295,6 +295,608 @@ A sample of serialized Simple type content is shown here:
 ::
 
   Task InsertValueAsync<T>(string streamId, T item);
+
+
+**Security**
+
+  Allowed for administrator accounts.
+
+
+***********************
+
+``Patch value``
+----------------
+
+Updates fields in an event. Use the select parameter to specify the fields to update. If there is 
+not an event with a matching primary index, patch fails, returning HTTP status code Not Found, 404.
+
+
+**Request**
+
+::
+
+    PATCH api/Tenants/{tenantId}/Namespaces/{namespaceId}/Streams/{streamId}/Data/ 
+          PatchValue?select={select}
+
+**Parameters**
+
+``string tenantId``
+  The tenant identifier
+``string namespaceId``
+  The namespace identifier
+``string streamId``
+  The stream identifier
+``string select``
+  Comma-separated list of fields to update
+  
+
+The request content is the serialized object matching the stream type. If you are not 
+using the Qi client libraries, using JSON is recommended.
+
+A sample of serialized Simple type content is shown here:
+
+::
+
+  {  
+    "Time":"2017-11-23T12:00:00Z",
+    "State":”Warning”,
+    "Measurement":500.0
+  }
+
+To update the state field to Warning, set the index to ``state``. To update the state to Warning 
+and the measurement to 500, set the index to ``state,measurement``.
+
+**Response**
+
+  The response includes a status code. On error, the response body contains a serialized description of the error.
+
+
+**.NET Library**
+
+::
+
+  Task PatchValueAsync<T>(string streamId, string select, T item);
+
+
+**Security**
+
+  Allowed for administrator accounts.
+
+
+***********************
+
+``Replace value``
+----------------
+
+Replaces an existing event with an event with matching primary index. If there is not an event with a 
+matching index, replace fails, returning HTTP status code Not Found, 404.
+
+
+**Request**
+
+::
+
+    PUT api/Tenants/{tenantId}/Namespaces/{namespaceId}/Streams/{streamId}/Data/ReplaceValue
+
+
+**Parameters**
+
+``string tenantId``
+  The tenant identifier
+``string namespaceId``
+  The namespace identifier
+``string streamId``
+  The stream identifier
+
+The request content is the serialized object matching the stream type. If you are not 
+using the Qi client libraries, using JSON is recommended.
+
+A sample of serialized Simple type content is shown here:
+
+::
+
+  {  
+    "Time":"2017-11-23T12:00:00Z",
+    "State":0,
+    "Measurement":1000.0
+  }
+
+
+
+
+**Response**
+
+  The response includes a status code. On error, the response body contains a serialized description of the error.
+
+
+
+**.NET Library**
+
+::
+
+  Task ReplaceValueAsync<T>(string streamId, T item);
+
+
+**Security**
+
+  Allowed for administrator accounts.
+
+
+***********************
+
+``Update value``
+----------------
+
+Replaces an existing event with an event with matching primary index. If there is not an event with 
+a matching index, the event is inserted.
+
+
+**Request**
+
+::
+
+    PUT	api/Tenants/{tenantId}/Namespaces/{namespaceId}/Streams/{streamId}/Data/UpdateValue
+
+
+**Parameters**
+
+``string tenantId``
+  The tenant identifier
+``string namespaceId``
+  The namespace identifier
+``string streamId``
+  The stream identifier
+
+The request content is the serialized object matching the stream type. If you are not 
+using the Qi client libraries, using JSON is recommended.
+
+A sample of serialized Simple type content is shown here:
+
+::
+
+  {  
+     "Time":"2017-11-23T12:00:00Z",
+     "State":0,
+     "Measurement":1000.0
+  }
+
+
+
+**Response**
+
+  The response includes a status code. On error, the response body contains a serialized description of the error.
+
+
+**.NET Library**
+
+::
+
+  Task UpdateValueAsync<T>(string streamId, T item);
+
+
+**Security**
+
+  Allowed for administrator accounts.
+
+
+***********************
+
+``Remove value``
+----------------
+
+Removes an event that contains a matching primary index. If there is not an event with a matching index, 
+the remove operation fails, returning HTTP status code Not Found, 404.
+
+
+**Request**
+
+::
+
+    DELETE	api/Tenants/{tenantId}/Namespaces/{namespaceId}/Streams/{streamId}/Data/ 
+         RemoveValue?index={index}
+
+
+**Parameters**
+
+``string tenantId``
+  The tenant identifier
+``string namespaceId``
+  The namespace identifier
+``string streamId``
+  The stream identifier
+``string index``
+  The primary index identifying the event
+  
+
+**Response**
+
+  The response includes a status code. On error, the response body contains a serialized description of the error.
+
+
+
+**.NET Library**
+
+::
+
+  Task RemoveValueAsync(string streamId, string index);
+  Task RemoveValueAsync<T1>(string streamId, T1 index);
+  Task RemoveValueAsync<T1, T2>(string streamId, Tuple<T1, T1> index);
+
+
+**Security**
+
+  Allowed for administrator accounts.
+
+
+***********************
+
+``Insert values``
+----------------
+
+Inserts a collection of events into the specified stream. If an event exists at the same primary 
+index as any of the values, insert fails, returning HTTP status code Conflict, 409.
+
+
+**Request**
+
+::
+
+    POST api/Tenants/{tenantId}/Namespaces/{namespaceId}/Streams/{streamId}/Data/InsertValues
+
+
+**Parameters**
+
+``string tenantId``
+  The tenant identifier
+``string namespaceId``
+  The namespace identifier
+``string streamId``
+  The stream identifier
+
+The request content is the serialized object matching the stream type. If you are not 
+using the Qi client libraries, using JSON is recommended.
+
+A sample of serialized Simple type content is shown here:
+
+::
+
+  [  
+    {  
+       "Time":"2017-11-23T12:00:00Z",
+       "State":0,
+       "Measurement":0.0
+    },
+    {  
+       "Time":"2017-11-23T13:00:00Z",
+       "State":0,
+       "Measurement":10.0
+    },
+    {  
+       "Time":"2017-11-23T14:00:00Z",
+       "State":0,
+       "Measurement":20.0
+    },
+    {  
+       "Time":"2017-11-23T15:00:00Z",
+       "State":0,
+       "Measurement":30.0
+    },
+    {  
+       "Time":"2017-11-23T16:00:00Z",
+       "State":0,
+       "Measurement":40.0
+    }
+  ]
+
+
+
+**Response**
+
+  The response includes a status code. On error, the response body contains a serialized description of the error.
+
+
+
+**.NET Library**
+
+::
+
+   Task InsertValuesAsyncs<T>(string streamId, IList<T> items);
+
+
+**Security**
+
+  Allowed for administrator accounts.
+
+
+***********************
+
+``Patch values``
+----------------
+
+Updates fields for a collection of events in the specified stream. If there is not an event with 
+a matching index, patch fails, returning HTTP status code Not Found, 404.
+
+
+**Request**
+
+::
+
+    POST api/Tenants/{tenantId}/Namespaces/{namespaceId}/Streams/{streamId}/Data/PatchValues 
+         ?select={select}
+
+
+**Parameters**
+
+``string tenantId``
+  The tenant identifier
+``string namespaceId``
+  The namespace identifier
+``string streamId``
+  The stream identifier
+``string select``
+  Comma separated list of fields to update
+  
+
+The request content is the serialized object matching the stream type. If you are not 
+using the Qi client libraries, using JSON is recommended.
+
+To patch the State of the sample stream shown previously, a URI resembles the following:
+
+::
+
+  api/Tenants/{tenantId}/Namespaces/{namespaceId}/Streams/{simpleStream.Id}/ 
+      Data/PatchValues?select=state
+
+
+A sample of serialized Simple type content is shown here:
+
+::
+
+  [  
+    {  
+       "Time":"2017-11-23T12:00:00Z",
+       "State":1
+    },
+    {  
+       "Time":"2017-11-23T13:00:00Z",
+       "State":1
+    },
+    {  
+       "Time":"2017-11-23T14:00:00Z",
+       "State":1
+    },
+    {  
+       "Time":"2017-11-23T15:00:00Z",
+       "State":1
+    }
+  ]
+
+
+
+**Response**
+
+  The response includes a status code. On error, the response body contains a serialized description of the error.
+
+
+
+**.NET Library**
+
+::
+
+   Task PatchValuesAsync<T>(string streamId, string select, IList<T> items);
+
+
+**Security**
+
+  Allowed for administrator accounts.
+
+
+***********************
+
+
+``Patch values``
+----------------
+
+Replaces a collection of events with events that match primary indexes. If there is not an event with a 
+matching index, replace fails, returning HTTP status code Not Found, 404.
+
+
+**Request**
+
+::
+
+    POST api/Tenants/{tenantId}/Namespaces/{namespaceId}/Streams/{streamId}/Data/InsertValues
+
+
+**Parameters**
+
+``string tenantId``
+  The tenant identifier
+``string namespaceId``
+  The namespace identifier
+``string streamId``
+  The stream identifier
+
+The request content is the serialized object matching the stream type. If you are not 
+using the Qi client libraries, using JSON is recommended.
+
+
+
+**Response**
+
+  The response includes a status code. On error, the response body contains a serialized description of the error.
+
+
+
+**.NET Library**
+
+::
+
+   Task ReplaceValuesAsync<T>(string streamId, IList<T> items);
+
+
+**Security**
+
+  Allowed for administrator accounts.
+
+
+***********************
+
+
+``Update values``
+----------------
+
+Replaces a collection of events with events that contain matching primary indexes. If there is not an events with a 
+matching index, the events are inserted.
+
+
+**Request**
+
+::
+
+    PUT api/Tenants/{tenantId}/Namespaces/{namespaceId}/Streams/{streamId}/Data/UpdateValues
+
+
+**Parameters**
+
+``string tenantId``
+  The tenant identifier
+``string namespaceId``
+  The namespace identifier
+``string streamId``
+  The stream identifier
+
+The request content is the serialized object matching the stream type. If you are not 
+using the Qi client libraries, using JSON is recommended.
+
+
+
+**Response**
+
+  The response includes a status code. On error, the response body contains a serialized description of the error.
+
+
+
+**.NET Library**
+
+::
+
+   Task UpdateValuesAsync<T>(string streamId, T item);
+
+**Security**
+
+  Allowed for administrator accounts.
+
+
+***********************
+
+
+``Remove values``
+----------------
+
+Removes events at matching primary indexes. If there is not an event with a matching index, 
+remove fails, returning HTTP status code Not Found, 404.
+
+
+**Request**
+
+::
+
+    DELETE api/Tenants/{tenantId}/Namespaces/{namespaceId}/Streams/{streamId}/Data/ 
+           RemoveValues?index={index}
+
+
+**Parameters**
+
+``string tenantId``
+  The tenant identifier
+``string namespaceId``
+  The namespace identifier
+``string streamId``
+  The stream identifier
+``string index``
+  The collection of indexes identifying the events
+  
+Each index is treated like a separate parameter. For example, to delete three events, the URI 
+should resebble the following:
+
+::
+
+  api/Tenants/{tenantId}/Namespaces/{namespaceId}/Streams/{streamId}/Data/ 
+       RemoveValues?index=2017-01-20T01:00:00Z|2017-01-20T00:00:00Z
+       &index=2017-01-20T01:00:00Z|2017-01-20T01:00:00Z
+       &index=2017-01-20T01:00:00Z|2017-01-20T14:00:00Z
+
+
+
+**Response**
+
+  The response includes a status code. On error, the response body contains a serialized description of the error.
+
+
+
+**.NET Library**
+
+::
+
+   Task RemoveValuesAsync(string streamId, IEnumerable<string>> index);
+   Task RemoveValuesAsync<T1>(string streamId, IEnumerable<T1> index);
+   Task RemoveValuesAsync<T1, T2>(string streamId, IEnumerable<Tuple<T1, T1>> index);
+
+
+
+**Security**
+
+  Allowed for administrator accounts.
+
+
+***********************
+
+
+``Remove window values``
+----------------------
+
+Removes events that fall within a window defined by start and end primary indexes. Events that fall 
+at the start or end index are also deleted. 
+
+
+**Request**
+
+::
+
+    DELETE api/Tenants/{tenantId}/Namespaces/{namespaceId}/Streams/{streamId}/Data/ 
+           RemoveWindowValues?startIndex={startIndex}&endIndex={endIndex}
+
+
+**Parameters**
+
+``string tenantId``
+  The tenant identifier
+``string namespaceId``
+  The namespace identifier
+``string streamId``
+  The stream identifier
+``string startIndex``
+  Index defining the beginning of the window
+``string endIndex``
+  The Index defining the end of the window
+
+
+
+**Response**
+
+  The response includes a status code. On error, the response body contains a serialized description of the error.
+
+
+
+**.NET Library**
+
+::
+
+   Task RemoveWindowValuesAsync (string streamId, string startIndex, string endIndex);
+   Task RemoveWindowValuesAsync <T1>(string streamId, T1 startIndex, T1 endIndex);
+   Task RemoveWindowValuesAsync <T1, T2>(string streamId, Tuple<T1, T1> startIndex, Tuple<T1, T1>endIndex);
+
 
 
 **Security**
