@@ -1,37 +1,52 @@
-Writing data
-============
+Writing Qi data
+===============
 
-The Qi API library includes an assortment of methods that are used to write, replace, 
-and remove data from streams.
-Methods can be used to operate on one or more data events in a single call. All methods 
-that write or manipulate data values are  allowed only by the administrator security accounts.
+The Qi REST APIs provide programmatic access to read and write Qi data. This section describes 
+the APIs used to write QiStream data.
 
-Reading and writing data with the Qi Client Libraries is performed through 
-the ``IQiDataService`` interface, which is accessed with the ``QiService.GetDataService( )`` helper.
+When working in .NET, convenient Qi Client libraries are available. The ``IQiDataServiceinterface``, accessed using the
+``QiService.GetDataService( )`` helper, defines the available functions.
+
+All writes rely on stream’s key or primary index. Preexisting values and positioning within the stream 
+is determined exclusively by the primary index. Secondary indexes are updated, but they do not contribute 
+to the request. All references to indexes are to the primary index.
+
+The following single value write methods are available:
+
+* **Insert Value** inserts a value at the specified primary index. 
+* **Patch Value** updates specific fields in an existing value identified by the primary index.
+* **Replace Value** replaces the value at the specified primary index.
+* **Update Value** replaces the value with matching primary index. If no value exists the value is added.
+* **Remove Value** deletes the value at the specified primary index.
 
 
-Write exception handling
-------------------------
+The following support writing multiple values:
 
-If a method that acts upon multiple data events encounters a problem while carrying
-out the operation, an exception is thrown and none of the list of
-elements is acted upon. For example, when `InsertValuesAsync <https://qi-docs-rst.readthedocs.org/en/latest/Writing_Data_API.html#insertvaluesasync>`__
-is called with a list of events and one of the events uses an index
-at which data is already present, an exception is thrown and
-all of the events are rolled back. The event at which the error occurred is identified in
-the exception and no inserts are performed.
+* **Insert Values** inserts a collection of values.
+* **Patch Values** updates specific fields for a collection of values.
+* **Replace Values** replaces a collection of values.
+* **Update Values** replaces or adds a collection of values.
+* **Remove Values** deletes the values at the specified primary indexes.
+* **Remove Window Values** removes values that fall within the window defined by the start and end primary indexes.
 
-For example:
+
+The base URI for writing Qi data is:
 
 ::
 
-    {
-      await _dataService.InsertValuesAsync(streamId, writeEvents);
-    }
-    catch (QiHttpClientException e)
-    {
-        :
-      //  e.Errors.Values[0] indicates the streamId of the exception
-      //  e.Errors.Values[1] indicates the TimeId of the exception
-        :
-    }
+  api/Tenants/{tenantId}/Namespaces/{namespaceId}/Streams/{streamId}/Data
+
+where
+
+string tenantId
+  The tenant identifier
+string namespaceId
+The namespace identifier
+string streamId
+The stream identifier
+
+
+
+
+
+
