@@ -135,7 +135,7 @@ Samples use the following types:
 
 **JavaScript**
 
-::
+.. code-block:: none
 
   var State =
   {
@@ -153,7 +153,7 @@ Samples use the following types:
   
 The values produced by the above code is as follows:
 
-::
+.. code-block:: none
 
   11/23/2017 12:00:00 PM: Ok  0
   11/23/2017  1:00:00 PM: Ok 10
@@ -165,7 +165,7 @@ The values produced by the above code is as follows:
 
 .NET
 
-::
+.. code-block:: none
 
   public class Simple
   {
@@ -183,7 +183,7 @@ The values produced by the above code is as follows:
   
 Python
 
-::
+.. code-block:: none
 
   class Simple(object):
   # First-order Key property
@@ -216,7 +216,7 @@ Python
 
 JavaScript
 
-::
+.. code-block:: none
 
   var Simple = function () {
     this.Time = null;
@@ -231,7 +231,7 @@ JavaScript
   
 Has values as follows:
 
-::
+.. code-block:: none
 
   1/20/2017 1:00:00 AM : 1/20/2017 12:00:00 AM 	0
   1/20/2017 1:00:00 AM : 1/20/2017  1:00:00 AM 	2
@@ -274,7 +274,7 @@ using the Qi client libraries, using JSON is recommended.
 
 A sample of serialized Simple type content is shown here:
 
-::
+.. code-block:: none
 
   {  
      "Time":"2017-11-23T12:00:00Z",
@@ -292,7 +292,7 @@ A sample of serialized Simple type content is shown here:
 
 **.NET Library**
 
-::
+.. code-block:: none
 
   Task InsertValueAsync<T>(string streamId, T item);
 
@@ -313,7 +313,7 @@ not an event with a matching primary index, the patch operation fails and return
 
 **Request**
 
-::
+.. code-block:: none
 
     PATCH api/Tenants/{tenantId}/Namespaces/{namespaceId}/Streams/{streamId}/Data/ 
           PatchValue?select={select}
@@ -335,7 +335,7 @@ using the Qi client libraries, using JSON is recommended.
 
 A sample of serialized Simple type content is shown here:
 
-::
+.. code-block:: none
 
   {  
     "Time":"2017-11-23T12:00:00Z",
@@ -393,7 +393,7 @@ using the Qi client libraries, using JSON is recommended.
 
 A sample of serialized Simple type content is shown here:
 
-::
+.. code-block:: none
 
   {  
     "Time":"2017-11-23T12:00:00Z",
@@ -452,7 +452,7 @@ using the Qi client libraries, using JSON is recommended.
 
 A sample of serialized Simple type content is shown here:
 
-::
+.. code-block:: none
 
   {  
      "Time":"2017-11-23T12:00:00Z",
@@ -558,7 +558,7 @@ using the Qi client libraries, using JSON is recommended.
 
 A sample of serialized Simple type content is shown here:
 
-::
+.. code-block:: none
 
   [  
     {  
@@ -650,7 +650,7 @@ To patch the State of the sample stream shown previously, a URI resembles the fo
 
 A sample of serialized Simple type content is shown here:
 
-::
+.. code-block:: none
 
   [  
     {  
