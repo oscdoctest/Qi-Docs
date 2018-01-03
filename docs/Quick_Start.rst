@@ -373,4 +373,17 @@ additional properties:
   if an InsertValues call failed because it conflicted with an existing event in the stream, the index of the 
   conflicting event will be included in this dictionary.
 
+Qi Timeout Request Header
+-------------------------
+
+Handling timeout issues can be difficult and confusing in a distributed programming environment. Often, when a client 
+times out, the request is terminated before a response is received from the server, resulting in the application being
+unaware of the state of the server.
+
+One solution is to use the Request-Timeout header, which is recognized by many OSIsoft Cloud Services. Using the 
+header, you can tell the server how long to spend on a particular request before timing out. If possible, the server 
+terminates the request if the time it takes to process the request exceeds the timeout value set in the header.
+
+To specify the request timeout value, include the Request-Timeout header and specify the value in seconds.
+
 
