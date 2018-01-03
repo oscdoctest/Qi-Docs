@@ -213,7 +213,7 @@ Deletes the metadata for the specified stream.
 
 
 QiStream Tags API 
-=================
+-----------------
 
 
 ``Get stream tags``
