@@ -7,7 +7,7 @@ the APIs used to write QiStream data.
 When working in .NET, convenient Qi Client libraries are available. The ``IQiDataServiceinterface``, accessed using the
 ``QiService.GetDataService( )`` helper, defines the available functions.
 
-All writes rely on stream’s key or primary index. Preexisting values and positioning within the stream 
+All writes rely on a stream’s key or primary index. Preexisting values and positioning within the stream 
 is determined exclusively by the primary index. Secondary indexes are updated, but they do not contribute 
 to the request. All references to indexes are to the primary index.
 
@@ -107,7 +107,7 @@ Samples use the following types:
 
 **Python**
 
-::
+.. code-block:: none
 
   class State(Enum):
     Ok = 0
