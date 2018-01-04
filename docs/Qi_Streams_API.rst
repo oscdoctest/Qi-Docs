@@ -414,7 +414,7 @@ Deletes a stream.
 
 
 QiStream Metadata and Tags
-==========================
+--------------------------
 
 QiStream metadata is represented as a dictionary of string keys and associated string values. 
 It can be used to associate additional information with a stream. QiStream tags are represented 
@@ -628,7 +628,7 @@ Deletes the metadata for the specified stream.
 
 
 QiStream Tags API 
-=================
+-----------------
 
 
 ``Get stream tags``
