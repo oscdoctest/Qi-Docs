@@ -92,12 +92,6 @@ so required and optional have no meaning.
 +---------------------------+--------------------------+--------------+--------------------------------------------------+
 | Property                  | Type                     | Optionality  | Details                                          |
 +===========================+==========================+==============+==================================================+
-| Id                        | String                   | Required     | Identifier of referencing the QiView             |
-+---------------------------+--------------------------+--------------+--------------------------------------------------+
-| Name                      | String                   | Optional     | QiView friendly name                             |
-+---------------------------+--------------------------+--------------+--------------------------------------------------+
-| Description               | String                   | Optional     | QiView description                               |
-+---------------------------+--------------------------+--------------+--------------------------------------------------+
 | SourceTypeId              | String                   | Required     | Identifier of the QiType of the QiStream. The    |
 |                           |                          |              | source type                                      |
 +---------------------------+--------------------------+--------------+--------------------------------------------------+
@@ -112,7 +106,7 @@ Properties / QiViewMapProperty
 The QiViewMapProperty is similar a QiViewProperty but adds a Mode detailing one or more actions taken on 
 the Property.
 
-The following table shows the QiViewMapProperty fields. The QiViewMap cannot be written, it can only be 
+The following table shows the QiViewMapProperty fields. The QiViewMap cannot be written; it can only be 
 retrieved from Qi, so required and optional have no meaning.
 
 +---------------------------+--------------------------------+--------------------------------------------------+
@@ -157,7 +151,7 @@ Changing Stream Type
 --------------------
 
 Views can be used to change the Type defining a Stream. You cannot modify the QiType; types are immutable. 
-But you map a stream from its current type to a new type.
+But you can map a stream from its current type to a new type.
 
 To update a Stream Type, define a QiView and PUT the view to the following:
 
@@ -166,7 +160,7 @@ To update a Stream Type, define a QiView and PUT the view to the following:
    api/Tenants/{tenantId}/Namespaces/{namespaceId}/Streams/{streamId}/Type?viewId={viewId}
 
 
-For details, see QiView API.
+For details, see :ref:`Qi_View_API_topic`.
 
 Working with QiViews
 --------------------
@@ -177,7 +171,7 @@ When working in .NET, use the Qi Client libraries’ IQiMetadataService.
 
 Given the following:
 
-:: 
+.. code-block:: none
 
   public enum State
   {
@@ -236,10 +230,11 @@ Given the following:
   //  4 / 1 / 2017 7:08:00 AM: Warning, 8
   //  4 / 1 / 2017 7:09:00 AM: Warning, 9
 
+
 To map the Measurement property to a property in the same location of the same type, allow Qi to 
 automatically determine mapping.
 
-::
+.. code-block:: none
 
   public class Simple1
   {
@@ -264,7 +259,7 @@ automatically determine mapping.
   view = await config.GetOrCreateViewAsync(view);
 
   QiViewMap map = await config.GetViewMapAsync(view.Id);
-  Console.WriteLine($"{map.Id}: {map.SourceTypeId} to {map.TargetTypeId}");
+  Console.WriteLine($"{map.SourceTypeId} to {map.TargetTypeId}");
   for (int i = 0; i < map.Properties.Count; i++)
       Console.WriteLine($"\t{i}) {map.Properties[i].SourceId} to {map.Properties[i].TargetId} - {map.Properties[i].Mode}");
   Console.WriteLine();
@@ -275,7 +270,7 @@ automatically determine mapping.
       Console.WriteLine($"{value.Time}: {value.State}, {value.Value}");
 
   // The example displays the following output:
-  //    View: Simple to Simple1
+  //    Simple to Simple1
   //        0) Time to Time - None
   //        1) State to State - None
   //        2) Measurement to Value - FieldRename
@@ -297,7 +292,7 @@ to Value involved a rename.
 Qi can also determine mapping of properties of the same name but different type. Note that the 
 location of the Measurement property is also different yet it is still mapped.
 
-::
+.. code-block:: none
 
   public class Simple2
   {
@@ -312,7 +307,7 @@ location of the Measurement property is also different yet it is still mapped.
   simple2Type.Name = "Simple2";
   simple2Type = await config.GetOrCreateTypeAsync(simple2Type);
 
-  view = new QiView()
+  view = new QiView() 
   {
       Id = "View1",
       Name = "View1",
@@ -322,7 +317,7 @@ location of the Measurement property is also different yet it is still mapped.
   view = await config.GetOrCreateViewAsync(view);
 
   map = await config.GetViewMapAsync(view.Id);
-  Console.WriteLine($"{map.Id}: {map.SourceTypeId} to {map.TargetTypeId}");
+  Console.WriteLine($"{map.SourceTypeId} to {map.TargetTypeId}");
   for (int i = 0; i < map.Properties.Count; i++)
       Console.WriteLine($"\t{i}) {map.Properties[i].SourceId} to {map.Properties[i].TargetId} - {map.Properties[i].Mode}");
   Console.WriteLine();
@@ -333,7 +328,7 @@ location of the Measurement property is also different yet it is still mapped.
       Console.WriteLine($"{value.Time}: {value.State}, {value.Measurement}");
 
   //The example displays the following output:
-  //    View: Simple to Simple2
+  //    Simple to Simple2
   //        0) Time to Time - None
   //        1) State to State - None
   //        2) Measurement to Measurement - FieldConversion
@@ -349,13 +344,12 @@ location of the Measurement property is also different yet it is still mapped.
   //    4 / 1 / 2017 7:08:00 AM: Warning, 8
   //    4 / 1 / 2017 7:09:00 AM: Warning, 9
 
-
 The QiViewMap shows that the source, floating point Measurement is converted to the target, integer Measurement.
 
 When neither the field name nor field type and location match, Qi does not determine mapping. 
 The source is eliminated and target is added and assigned the default value.
 
-::
+.. code-block:: none
 
   public class Simple3
   {
@@ -380,7 +374,7 @@ The source is eliminated and target is added and assigned the default value.
   view = await config.GetOrCreateViewAsync(view);
 
   map = await config.GetViewMapAsync(view.Id);
-  Console.WriteLine($"{map.Id}: {map.SourceTypeId} to {map.TargetTypeId}");
+  Console.WriteLine($"{map.SourceTypeId} to {map.TargetTypeId}");
   for (int i = 0; i < map.Properties.Count; i++)
       Console.WriteLine($"\t{i}) {map.Properties[i].SourceId} to {map.Properties[i].TargetId} - {map.Properties[i].Mode}");
   Console.WriteLine();
@@ -391,7 +385,7 @@ The source is eliminated and target is added and assigned the default value.
       Console.WriteLine($"{value.Time}: {value.State}, {value.Value}");
 
   //The example displays the following output:
-  //    View2 : Simple to Simple3
+  //    Simple to Simple3
   //        0) Time to Time - None
   //        1) State to State - None
   //        2) Measurement to  -FieldRemove
@@ -411,7 +405,7 @@ The source is eliminated and target is added and assigned the default value.
 
 To map when Qi cannot determine mapping, use QiView Properties.
 
-::
+.. code-block:: none
 
   view = new QiView()
   {
@@ -441,7 +435,7 @@ To map when Qi cannot determine mapping, use QiView Properties.
   view = await config.GetOrCreateViewAsync(view);
 
   map = await config.GetViewMapAsync(view.Id);
-  Console.WriteLine($"{map.Id}: {map.SourceTypeId} to {map.TargetTypeId}");
+  Console.WriteLine($"{map.SourceTypeId} to {map.TargetTypeId}");
   for (int i = 0; i < map.Properties.Count; i++)
       Console.WriteLine($"\t{i}) {map.Properties[i].SourceId} to {map.Properties[i].TargetId} - {map.Properties[i].Mode}");
   Console.WriteLine();
@@ -452,7 +446,7 @@ To map when Qi cannot determine mapping, use QiView Properties.
       Console.WriteLine($"{value.Time}: {value.State}, {value.Value}");
 
   //The example displays the following output:
-  //    View3 : Simple to Simple3
+  //    Simple to Simple3
   //        0) Time to Time - None
   //        1) State to State - None
   //        2) Measurement to Value - FieldRename, FieldConversion
@@ -478,7 +472,8 @@ the sample code. Both Python and JavaScript samples have QiView definitions.
 The JSON for a simple mapping between a source type with identifier Sample and a target 
 type with identifier Sample1 would appear as follows.
 
-::
+.. code-block:: none
+
 
   {  
      "Id":"View",
@@ -489,7 +484,7 @@ type with identifier Sample1 would appear as follows.
 
 The QiViewMap would appear as follows.
 
-::
+.. code-block:: none
  
   {  
      "SourceTypeId":"Simple",
