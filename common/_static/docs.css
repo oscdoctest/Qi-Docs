@@ -11,7 +11,7 @@ body, p, .wy-menu-vertical a {
 
 .wy-nav-content-wrap{Background:none!important;}
  .rst-content tt.literal, .rst-content tt.literal, .rst-content code.literal {
-    color: #000000;
+    color: #000;
 }
 hr.docutils {
     background-color: #000;
@@ -34,14 +34,13 @@ hr.docutils {
 	display: none!important;
 }
 .wy-nav-side {
-	background: #233240!important;
+	background: #2c3e50!important;
 }
 .wy-menu-vertical a:hover {
-    background-color: #2C3E50!important;
     color:white!important;
 }
 .rst-versions{	
-     	background: #233240!important;
+     	background: #2c3e50!important;
      	border-top: solid 4px #e67e22!important;
 }
 .rst-versions .rst-current-version{
