@@ -1,6 +1,10 @@
 Qi Namespace information
 ========================
 
+.. toctree::
+   Qi_Namespaces_API
+
+
 A Qi tenant is divided into one or more Namespaces. Each Namespace is a logical entity 
 within a tenant and holds its own set of Qi Types, Qi Streams, and Qi Stream Behaviors.
 For more information see `Qi namespaces API <https://qi-docs.readthedocs.io/en/latest/Qi_Namespaces_API.html>`__.
