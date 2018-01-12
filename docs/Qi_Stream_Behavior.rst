@@ -1,7 +1,7 @@
 .. _Qi_Stream_behavior_topic:
 
-QiStreamBehavior information
-============================
+Qi Stream Behaviors
+===================
 
 Qi stores collections of events and provides convenient ways to find and associating events. 
 Events of consistent structure are stored in streams, called QiStreams. The stream’s behavior 
