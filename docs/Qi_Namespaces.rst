@@ -1,5 +1,5 @@
-Qi Namespace information
-========================
+Qi Namespaces
+=============
 
 
 A Qi tenant is divided into one or more Namespaces. Each Namespace is a logical entity 
