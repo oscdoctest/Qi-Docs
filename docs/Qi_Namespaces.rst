@@ -1,9 +1,6 @@
 Qi Namespace information
 ========================
 
-.. toctree::
-   Qi_Namespaces_API
-
 
 A Qi tenant is divided into one or more Namespaces. Each Namespace is a logical entity 
 within a tenant and holds its own set of Qi Types, Qi Streams, and Qi Stream Behaviors.
@@ -31,4 +28,8 @@ The following table shows the required and optional Qi namespace properties:
 4. Cannot start or end with a period
 5. Cannot contain consecutive periods
 6. Maximum length of 260 characters 
+
+
+.. toctree::
+   Qi_Namespaces_API
 
