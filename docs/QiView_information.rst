@@ -508,6 +508,12 @@ The QiViewMap would appear as follows.
 
 
 
+.. toctree::
+
+   QiView_API
+
+
+
 
 
 
