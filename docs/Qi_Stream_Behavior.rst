@@ -214,3 +214,9 @@ The *Override* object has the following structure:
 When specifying overrides, a Mode setting of Discrete cannot be overridden. When Mode is set to Discrete, 
 a null value is returned for the entire event. 
 
+
+.. toctree::
+
+   Qi_Stream_Behavior_API
+
+
