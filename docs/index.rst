@@ -22,12 +22,10 @@ easily obtain needed information.
    QiView_information
    indexes
    Reading_Data
-   Reading_Data_API
    Writing_Data
    OMF_Ingress_intro
    OMF_Ingress_API
    Qi_Calc
-   Qi_Calc_API
    Searching
    Filter Expressions
    samples
