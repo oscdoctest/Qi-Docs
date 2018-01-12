@@ -70,3 +70,11 @@ compound secondary indexes. Only QiTypeCodes
 that can be ordered are supported for use in a secondary index.
 
 Indexes are discussed in greater detail here: `Indexes <https://qi-docs-rst.readthedocs.org/en/latest/indexes.html>`__
+
+
+
+.. toctree::
+
+   Qi_Streams_API
+
+
