@@ -1,8 +1,8 @@
 .. _Qi_Types_topic:
 
-==================
-QiType information
-==================
+
+Qi Types
+========
 
 
 Qi stores streams of events and provides convenient ways find and associating events. Events are 
