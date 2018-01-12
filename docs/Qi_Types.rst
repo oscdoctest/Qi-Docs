@@ -743,3 +743,7 @@ Extend the QiType as follows:
       "Properties": [ observationProprety ]
   });
 
+
+.. toctree::
+
+   Qi_Types_API
