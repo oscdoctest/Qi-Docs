@@ -1,8 +1,8 @@
 .. _Qi_View_topic:
 
-==================
-QiView information
-==================
+
+Qi Views
+========
 
 A QiView provides a way to map Stream data requests from one data type to another. You can apply 
 a View to any read or GET operation. QiView is used to specify the mapping between source and target types.
