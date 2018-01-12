@@ -51,6 +51,8 @@ The following table shows the required and optional Qi calculation properties:
 8. Cannot consist of only periods. 
 
 
+.. toctree::
+   Qi_Calc_API
 
    
    
