@@ -16,16 +16,11 @@ easily obtain needed information.
    Introducing_Qi
    Quick_Start
    Qi_Namespaces
-   Qi_Namespaces_API
    Qi_Types
-   Qi_Types_API
    Qi_Streams
-   Qi_Streams_API
    Qi_Stream_Behavior
-   Qi_Stream_Behavior_API
    QiView_information
-   QiView_API
-   indexes
+   indexes
    Reading_Data
    Reading_Data_API
    Writing_Data
