@@ -2,7 +2,7 @@ Qi preview
 ##########
 
 Qi is currently in a closed preview phase. During the preview the 
-Qi5service is being made available to a select number of customers 
+Qi service is being made available to a select number of customers 
 to use the service and to provide feedback. Please keep the following 
 in mind during this preview phase:
 
