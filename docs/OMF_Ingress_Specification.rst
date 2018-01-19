@@ -2,7 +2,7 @@ Using OMF with Cloud Services
 =============================
 
 The OMF specification (located `here <http://omf-docs.osisoft.com>`_) is generic in that it does
-not speciy a particular back-end system. This topic is a companion to the OMF specification which describes how
+not specify a particular back-end system. This topic is a companion to the OMF specification which describes how
 OMF is interpreted by OSIsoft Cloud Services back-end system. 
 
 Headers
