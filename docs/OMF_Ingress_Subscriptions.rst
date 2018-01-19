@@ -1,7 +1,8 @@
 Subscriptions 
 =============
 
-Subscription information A Subscription is used to consume data from a topic. Multiple subscriptions can retrieve data from a single topic.  
+
+A Subscription is used to consume data from a topic. Multiple subscriptions can retrieve data from a single topic.  
 
 There are two types of Subscriptions with different behaviors. 
 
