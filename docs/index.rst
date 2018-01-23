@@ -13,27 +13,13 @@ easily obtain needed information.
 
 .. toctree::
 
-   Introducing_Qi
-   Quick_Start
-   Qi_Namespaces
-   Qi_Types
-   Qi_Streams
-   Qi_Stream_Behavior
-   QiView_information
-   indexes
-   Reading_Data
-   Writing_Data
-   OMF_Ingress_intro
-   OMF_Ingress_API
-   Qi_Calc
-   Searching
-   Filter Expressions
+   OSIsoft_Cloud_Services.rst
+   Management_Overview.rst
+   Data_Store_and_Qi.rst
+   Data_Ingress.rst
    samples
    support
-   preview
-   Account_Intro
-   AccountAPI_Index
-   
-   
+
+ 
    
    
