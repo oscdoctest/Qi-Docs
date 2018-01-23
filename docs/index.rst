@@ -13,10 +13,10 @@ easily obtain needed information.
 
 .. toctree::
 
-   OSIsoft_Cloud_Services.rst
-   Management_Overview.rst
-   Data_Store_and_Qi.rst
-   Data_Ingress.rst
+   OSIsoft_Cloud_Services
+   Management_Overview
+   Data_Store_and_Qi
+   Data_Ingress
    samples
    support
 
