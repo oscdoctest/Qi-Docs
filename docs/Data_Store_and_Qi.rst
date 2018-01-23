@@ -7,3 +7,16 @@ that uses Qi.
 
 .. toctree::
    Introducing_Qi
+   Quick_Start
+   Qi_Types
+   Qi_Streams
+   QiStreamExtra
+   Qi_Stream_Behavior
+   QiView_information
+   indexes
+   Filter Expressions
+   Reading_Data
+   Writing_Data
+   Searching
+  
+
