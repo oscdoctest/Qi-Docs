@@ -17,6 +17,7 @@ easily obtain needed information.
    Management_Overview
    Data_Store_and_Qi
    Data_Ingress
+   Qi_Calc_API
    samples
    support
 
