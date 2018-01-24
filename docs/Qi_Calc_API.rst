@@ -6,7 +6,6 @@ The API calls in this topic are used to create calculations. For more informatio
 
 .. toctree::
 
-   Qi_Calc
    QI_Calculations
    Qi_Calculation_Types
    Qi_Scripts
