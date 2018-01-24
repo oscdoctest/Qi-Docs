@@ -6,6 +6,7 @@ This topic should explain the difference between Qi the technology and the OCS d
 that uses Qi. 
 
 .. toctree::
+
    Introducing_Qi
    Quick_Start
    Qi_Types
