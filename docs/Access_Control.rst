@@ -1,12 +1,26 @@
-Granular Access Control 
+Granular access control 
 =======================
+
+Within OCS, granular access control to entities such as Namespaces, Documents, Streams, and so on, is managed using an Access 
+Control List (ACL) and an Owner object. 
 
 Entities (e.g. Namespaces, Documents, Streams...) in the OCS system support granular access control through the use of an AccessControlList and Owner. 
 
 
 
-AccessControlLists
+Access Control Lists
 --------------------
+
+You use access control lists (ACLs) to control access to entities. Entities are assigned either user or application identies based on one or more 
+roles. A role is made up from a set of access control entries each with a trustee, AccessType, and AccessRights.
+
+A user or application attempting to Read, Write, Delete, or Manage Access Control of an entity using an access control list 
+must be assigned a role that has Allowed AccessType for that operation. 
+
+AccessRights are the bitwise union of all of the access rights they encompass. For example, ``AccessRights 3`` indicates that
+Read and Write access is permittted. 
+
+Roles are currently the only TrusteeType supported for AccessControlLists.
 
 AccessControlLists control access to an entity based on a Identity's (User or Application) set of roles.
 They consist of a set of access control entries each with a trustee, AccessType, and AccessRights.
@@ -25,28 +39,35 @@ Roles are currently the only TrusteeType supported for AccessControlLists.
 =======================  =====
 TrusteeType              TypeId
 -----------------------  -----
-User 						1
-Role 						3
-Application					4
+User                     1
+Role                     3
+Application              4
 =======================  =====
 
 =======================  =====
 AccessType               TypeId
 -----------------------  -----
-Allowed						0
-Denied						1
+Allowed                  0
+Denied                   1
 =======================  =====
 
-=======================  ===== ==========
-AccessRights              int   bitwise
------------------------  ----- ----------
-None						0	0000
-Read						1	0001
-Write						2	0010
-Delete						4	0100
-ManageAccessControl			8	1000
-All							15	1111
-=======================  ===== =========
+
++-----------------------+------+---------+
+| AccessRights          | int  | bitwise |
++=======================+======+=========+
+| None                  | 0    |    0000 |
++-----------------------+------+---------+
+| Read                  | 1    |    0001 |
++-----------------------+------+---------+
+| Write                 | 2    |    0010 |
++-----------------------+------+---------+
+| Delete                | 4    |    0100 |
++-----------------------+------+---------+
+| ManageAccessControl   | 8    |    1000 |
++-----------------------+------+---------+
+| All                   |  15  |    1111 |
++=======================+======+=========+
+
 
 
 **Body**
