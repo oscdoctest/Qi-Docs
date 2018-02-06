@@ -16,7 +16,7 @@ A user or application that attempts to read, write, delete, or manage access con
 must be assigned a role that has ``AccessType`` set to ``Allowed`` for that operation. 
 
 AccessRights are the bitwise union of all of the access rights they encompass. For example, ``AccessRights 3`` indicates that
-Read and Write access is permittted. 
+Read and Write access is permitted. 
 
 Roles are currently the only TrusteeType supported for AccessControlLists. Currently only Users and Applications are valid owners for entities.
 
