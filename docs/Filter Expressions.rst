@@ -4,9 +4,9 @@
 Filter expressions
 ==================
 
-Filter expressions can be included in overloads for ``GetRangeValuesAsync()``
-and ``GetWindowValuesAsync()``. The filter expression is applied to returned events
-so you can conditionally filter out certain events.
+Filter expressions can be applied to any read that returns multiple values, including 
+``Get Values``, ``Get Range Values``, ``Get Window Values``, and ``Get Intervals``.”
+
 
 QiTypeCodes
 ------------
