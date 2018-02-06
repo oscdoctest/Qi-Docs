@@ -5,6 +5,18 @@ Data store and Qi
 This topic should explain the difference between Qi the technology and the OCS data store 
 that uses Qi. 
 
+The OSIsoft Cloud Services (OCS) Data Store is an optimized sequential data store based on Qi technology.
+
+Qi is an OSIsoft technology that implements a data store that is optimized for dynamic data. Some of the features 
+of the data store include:
+
+* Support for complex data types
+* Support for complex indexes
+
+The Data store is hosted by OSIsoft, LLC. The Data store is easy to use and access using REST APIs.
+
+
+
 .. toctree::
 
    Introducing_Qi
@@ -15,8 +27,9 @@ that uses Qi.
    Qi_Stream_Behavior
    QiView_information
    indexes
-   Filter Expressions
    Reading_Data
+   Filter Expressions
+   table_format
    Writing_Data
    Searching
   
