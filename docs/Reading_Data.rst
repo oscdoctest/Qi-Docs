@@ -1,7 +1,12 @@
 .. _Qi_Reading_data_topic:
 
-Reading Qi data
-===============
+Reading data
+============
+
+The REST APIs provide programmatic access to read and write data. This section identifies and describes 
+the APIs used to read :ref:`Qi_Stream_topic` data. Results are influenced by :ref:`Qi_Stream_behavior_topic`, 
+:ref:`Qi_View_topic`, :ref:`Qi_Filter_expressions_topic`, and :ref:`Qi_Table_format_topic`.
+
 
 The REST APIs provide programmatic access to read and write Qi data. This section identifies and describes 
 the APIs used to read :ref:`Qi_Stream_topic` data. Results are influenced by :ref:`Qi_Stream_behavior_topic` 
@@ -26,7 +31,7 @@ In addition, the following methods support reading multiple values:
   a filter expression and count, or a starting index, ending index, and count.
 * ``Get Range Values`` retrieves a collection of stored values based on the specified start index and count.
 * ``Get Window Values`` retrieves a collection of stored values based on specified start and end indexes.
-* ``Get Intervals (preview*)`` retrieves a collection of evenly spaced summary intervals based on a count 
+* ``Get Intervals`` retrieves a collection of evenly spaced summary intervals based on a count 
   and specified start and end indexes.
 
 All reads are HTTP GET actions. Reading data involves getting events from streams. The base reading URI is as follows:
@@ -76,6 +81,31 @@ Working with views is covered in detail in the :ref:`Qi_View_topic` section.
 When data is requested at an index for which no stored event exists, the type of the index and 
 the QiStreamBehavior for the stream determine whether the result is an error, null event, interpolated event, 
 or extrapolated event. QiStreamBehavior is discussed in the Get Value, GetValues and GetWindowValues samples.
+
+Filter Expressions
+------------------
+
+Filter expressions can be applied to any read that returns multiple values, including Get Values, Get Range Values, 
+Get Window Values, and Get Intervals. The filter expression is applied to the collection events conditionally 
+filtering events that do not meet the filter conditions.
+
+Filter expressions are covered in detail in the :ref:`Qi_Filter_expressions_topic` section.
+
+Table Format
+------------
+
+Results of a query can be organized into tables by directing the form parameter to return a table. 
+Two forms of table are available: table and header table.
+
+When the form parameter is specified as table, ``?form=table``, events are returned in row column form. 
+Results include a collection named ``Columns`` that lists column name and type and a collection named 
+``Rows`` containing a collection of rows matching the order of the columns.
+
+Specifying a form of type ``table-headers``, ``?form=tableh``, results in a collection where the Rows collection 
+contains a column header list.
+
+Table formats are covered in detail in the :ref:`Qi_Table_format_topic` section.
+
 
 QiBoundaryType
 --------------
