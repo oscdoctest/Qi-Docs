@@ -4,37 +4,30 @@ Granular access control
 Within OCS, granular access control to entities such as Namespaces, Documents, Streams, and so on, is managed using an Access 
 Control List (ACL) and an Owner object. 
 
-Entities (e.g. Namespaces, Documents, Streams...) in the OCS system support granular access control through the use of an AccessControlList and Owner. 
-
-
 
 Access Control Lists
 --------------------
 
-You use access control lists (ACLs) to control access to entities. Entities are assigned either user or application identies based on one or more 
-roles. A role is made up from a set of access control entries each with a trustee, AccessType, and AccessRights.
+You use access control lists (ACLs) to control access to entities. Entities are assigned owners. 
+Currently only users and applications are valid owners for entities. Roles are made up from a set of access control 
+entries each with a trustee, AccessType, and AccessRights.
 
-A user or application attempting to Read, Write, Delete, or Manage Access Control of an entity using an access control list 
-must be assigned a role that has Allowed AccessType for that operation. 
+A user or application that attempts to read, write, delete, or manage access control of an entity using an access control list 
+must be assigned a role that has ``AccessType`` set to ``Allowed`` for that operation. 
 
 AccessRights are the bitwise union of all of the access rights they encompass. For example, ``AccessRights 3`` indicates that
 Read and Write access is permittted. 
 
-Roles are currently the only TrusteeType supported for AccessControlLists.
-
-AccessControlLists control access to an entity based on a Identity's (User or Application) set of roles.
-They consist of a set of access control entries each with a trustee, AccessType, and AccessRights.
-A user or application attempting to Read/Write/Delete/ManageAccessControl a entity with an access control list must be assigned 
-a role with Allowed AccessType for that operation. 
-AccessRights are the bitwise union of all the access rights they encompass (i.e. AccessRights 3 means Read or Write. 
-Roles are currently the only TrusteeType supported for AccessControlLists.
+Roles are currently the only TrusteeType supported for AccessControlLists. Currently only Users and Applications are valid owners for entities.
 
 *Note*
-	If an operation requires more than one access right then an identity can obtain those rights from multiple AccessControlEntries.
+  If an operation requires more than one access right then an identity can obtain 
+  those rights from multiple ACL entries.
 	
 *Note*
-	AccessType.Denied takes precedence over Allowed (e.g. an role assigned AccessType.Denied for AccessRights.All will receive a forbidden for all
-	requests unless they are the owner of the entity)
+  ``AccessType.Denied`` takes precedence over ``Allowed``. For example, a role that is assigned ``AccessType.Denied`` for
+  ``AccessRights.All`` will receive a forbidden for all  requests unless they are the owner of the entity.
+
 
 =======================  =====
 TrusteeType              TypeId
@@ -68,7 +61,7 @@ Denied                   1
 | All                   |  15  |    1111 |
 +=======================+======+=========+
 
-
+The following code sample shows the structure and format for an ACL:
 
 **Body**
   
@@ -108,10 +101,17 @@ Denied                   1
 	],
 	}
 	
+
 Owner
---------------------
-Owner objects on OCS entities grant access for all operations on the entity regardless of the entity's AccessControlList's AccessControlEntries. 
+-----
+
+Owner objects on OCS entities are used to grant access for all operations on the entity regardless of the 
+entity's ACL's AccessControlEntries. 
+
 Currently only Users and Applications are valid owners for entities.  
+
+The following code sample shows the format and structure of an owner object:
+
 
 **User Owner Body**
 
@@ -130,4 +130,5 @@ Currently only Users and Applications are valid owners for entities.
 		"TenantId": "55555555-5555-5555-5555-555555555555",
 		"ApplicationId": "55555555-5555-5555-5555-555555555551"
 	},
+
 
