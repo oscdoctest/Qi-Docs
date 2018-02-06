@@ -1,5 +1,5 @@
-Qi Calculation API calls
-======================
+Calculations
+============
 
 The API calls in this topic are used to create calculations. For more information see `Qi Calculations <https://qi-docs.readthedocs.org/en/latest/Qi_Calc.html>`__.
 
