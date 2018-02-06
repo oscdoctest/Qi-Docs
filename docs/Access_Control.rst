@@ -58,7 +58,7 @@ Denied                   1
 +-----------------------+------+---------+
 | ManageAccessControl   | 8    |    1000 |
 +-----------------------+------+---------+
-| All                   |  15  |    1111 |
+| All                   | 15   |    1111 |
 +=======================+======+=========+
 
 The following code sample shows the structure and format for an ACL:
