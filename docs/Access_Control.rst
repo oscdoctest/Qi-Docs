@@ -25,7 +25,7 @@ that Read and Write access is permitted.
   those rights from multiple ACL entries.
 	
 *Note*
-  ``AccessType.Denied`` takes precedence over ``Allowed``. For example, a role that is assigned ``AccessType.Denied`` for
+  ``AccessType.Denied`` takes precedence over ``AccessType.Allowed``. For example, a role that is assigned ``AccessType.Denied`` for
   ``AccessRights.All`` will receive a ``forbidden`` for all  requests unless they are the owner of the entity.
   
 *Note*
@@ -34,7 +34,7 @@ that Read and Write access is permitted.
 
 
 =======================  =====
-TrusteeType              TypeId
+*TrusteeType*            *TypeId*
 -----------------------  -----
 User                     1
 Role                     3
@@ -42,7 +42,7 @@ Application              4
 =======================  =====
 
 =======================  =====
-AccessType               TypeId
+*AccessType*             *TypeId*
 -----------------------  -----
 Allowed                  0
 Denied                   1
@@ -65,7 +65,9 @@ Denied                   1
 | All                   | 15   |    1111 |
 +=======================+======+=========+
 
-The following code sample shows the structure and format for an ACL:
+The following code sample shows the structure and format for an ACL
+that gives Role 1 Read Access, Role 2 All access 
+but denies Role 3 ManageAccessControl Access:
 
 **Body**
   
@@ -81,15 +83,15 @@ The following code sample shows the structure and format for an ACL:
 		{
 			"Trustee": {
 				"Type": 3,
-				"RoleId": "55555555-5555-5555-5555-555555555551"
+				"RoleId": "11111111-1111-1111-1111-111111111111"
 			},
 			"AccessType": 0,
-			"AccessRights": 3
+			"AccessRights": 1
 		},
 		{
 			"Trustee": {
 				"Type": 3,
-				"RoleId": "55555555-5555-5555-5555-555555555552"
+				"RoleId": "22222222-2222-2222-2222-222222222222"
 			},
 			"AccessType": 0,
 			"AccessRights": 15
@@ -97,10 +99,10 @@ The following code sample shows the structure and format for an ACL:
 		{
 			"Trustee": {
 				"Type": 3,
-				"RoleId": "55555555-5555-5555-5555-555555555553"
+				"RoleId": "33333333-3333-3333-3333-333333333333"
 			},
-			"AccessType": 0,
-			"AccessRights": 1
+			"AccessType": 1,
+			"AccessRights": 8
 		}
 	],
 	}
@@ -115,7 +117,7 @@ entity's AccessControlList's AccessControlEntries.
 *Note*
   Currently, only Users and Applications are valid owners for entities.  
 
-The following code sample shows the format and structure of an owner object:
+The following code samples shows the format and structure of an owner object:
 
 
 **User Owner Body**
@@ -124,7 +126,7 @@ The following code sample shows the format and structure of an owner object:
 	"Owner": {
 		"Type": 1,
 		"TenantId": "55555555-5555-5555-5555-555555555555",
-		"ObjectId": "55555555-5555-5555-5555-555555555551"
+		"ObjectId": "44444444-4444-4444-4444-444444444444"
 	},
 	
 **Application Owner Body**
@@ -133,7 +135,7 @@ The following code sample shows the format and structure of an owner object:
 	"Owner": {
 		"Type": 4,
 		"TenantId": "55555555-5555-5555-5555-555555555555",
-		"ApplicationId": "55555555-5555-5555-5555-555555555551"
+		"ApplicationId": "66666666-6666-6666-6666-666666666666"
 	},
 
 
