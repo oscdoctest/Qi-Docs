@@ -1,10 +1,10 @@
-Granular access control 
-=======================
+Role-based access control 
+=========================
 
-Within OCS, granular access control to entities such as Namespaces, Streams, and so on, is managed using an Access Control 
-List (ACL) and an Owner object assigned to each entity. ACLs control access to entities based on their OCS Roles. Owners 
+Within OCS, role-based access control to entities such as Namespaces, Streams, and so on, is managed using an Access Control 
+List (ACL) and an Owner identity assigned to each entity. ACLs control access to entities based on their OCS Roles. Owners 
 are granted access for all operations regardless of the contents of the ACL. Not all entities in the OCS system support 
-granular access control at this time, but the list will quickly grow and currently includes Namespaces and several unreleased 
+role-based access control at this time, but the list will quickly grow and currently includes Namespaces and several unreleased 
 entities.
 
 
@@ -15,7 +15,7 @@ Access Control Lists (ACLs) contain sets of Access Control Entries (ACEs) each w
 as a role, user, or application), AccessType, and AccessRights. 
 
 A user or application that attempts to read, write, delete, or manage access control of an entity assigned an ACL must be 
-assigned a trustee that has ``AccessType`` set to ``Allowed`` for that right corresponding to that operation.
+assigned a trustee that has ``AccessType`` set to ``Allowed`` for the AccessRight corresponding to that operation.
 
 AccessRights are the bitwise union of all of the access rights they encompass. For example, ``AccessRights 3`` indicates 
 that Read and Write access is permitted.
@@ -29,7 +29,7 @@ that Read and Write access is permitted.
   ``AccessRights.All`` will receive a ``forbidden`` for all  requests unless they are the owner of the entity.
   
 *Note*
-  Currently, Roles are the only TrusteeType supported for AccessControlList ACEs.
+  Roles are the only TrusteeType supported for AccessControlList ACEs.
 
 
 +-----------------------+--------+
