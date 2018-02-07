@@ -34,7 +34,7 @@ that Read and Write access is permitted.
 
 
 =======================  =====
-*TrusteeType*            *TypeId*
+**TrusteeType**         **TypeId**
 -----------------------  -----
 User                     1
 Role                     3
@@ -42,7 +42,7 @@ Application              4
 =======================  =====
 
 =======================  =====
-*AccessType*             *TypeId*
+**AccessType**          **TypeId**
 -----------------------  -----
 Allowed                  0
 Denied                   1
@@ -63,7 +63,7 @@ Denied                   1
 | ManageAccessControl   | 8    |    1000 |
 +-----------------------+------+---------+
 | All                   | 15   |    1111 |
-+=======================+======+=========+
++-----------------------+------+---------+
 
 The following code sample shows the structure and format for an ACL
 that gives Role 1 Read Access, Role 2 All access 
