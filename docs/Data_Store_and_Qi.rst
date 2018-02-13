@@ -17,6 +17,7 @@ The Data store is hosted by OSIsoft, LLC. The Data store is easy to use and acce
 
    Introducing_Qi
    Quick_Start
+   Qi_Namespaces
    Qi_Types
    Qi_Streams
    QiStreamExtra
