@@ -37,9 +37,9 @@ that Read and Write access is permitted.
 +=======================+========+
 | User                  | 1      |
 +-----------------------+--------+
-| Role                  | 3      |
+| Application           | 2      |
 +-----------------------+--------+
-| Application           | 4      |
+| Role                  | 3      |
 +-----------------------+--------+
 
 
@@ -136,7 +136,7 @@ The following code samples shows the format and structure of an owner object:
 
 ::
 	"Owner": {
-		"Type": 4,
+		"Type": 2,
 		"TenantId": "55555555-5555-5555-5555-555555555555",
 		"ApplicationId": "66666666-6666-6666-6666-666666666666"
 	},
