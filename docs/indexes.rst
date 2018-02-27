@@ -39,7 +39,7 @@ Properties.
 
 Only the primary index (or key) supports compound indexes.
 
-The maximum number of Properties that can define a compound index is three.
+You can specify a maximum of three Properties to define a compound index.
 
 The Qi REST API methods that use tuples were created to assist you when using compound indexes.
 
