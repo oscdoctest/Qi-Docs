@@ -26,19 +26,20 @@ secondary indexes. Secondary index values need not be unique.
 Compound Indexes
 ----------------
 
-Often, a single property (such as a DateTime), is adequate for defining an Index; however, 
-for more complex scenarios Qi allows multiple properties to be defined. Indexes defined by 
-multiple properties are *compound indexes*.
+Often, a single property (such as a DateTime), is adequate for defining an index; however, for more complex 
+scenarios, Qi allows you to define multiple properties. Indexes defined by multiple properties are known as *compound indexes*.
 
-When defining a compound index in .NET, you should apply the ``OSIsoft.Qi.QiMemberAttribute`` 
-on each of the type’s properties that are combined to define the index. Set the ``IsKey`` property 
-to true and give the ``Order`` field a zero-based index value. The Order field defines the 
-precedence of the property when sorting. A property with an order of 0 has highest precedence. 
+When defining a compound index in .NET, you should apply the ``OSIsoft.Qi.QiMemberAttribute`` on each of the type’s 
+properties that are combined to define the index. Set the ``IsKey`` property to ``true`` and give ``Orderfield`` a 
+zero-based index value. The ``Order`` field defines the precedence of the property when sorting. A property with 
+an order of 0 has highest precedence.
 
-When defining compound indexes outside of .NET, specify the IsKey and Order fields on the 
-``QiTypeProperty`` or Properties. 
+When defining compound indexes outside of .NET, specify the ``IsKey`` and ``Order`` fields on the ``QiTypePropertyor``
+Properties.
 
 Only the primary index (or key) supports compound indexes.
+
+The maximum number of Properties that can define a compound index is three.
 
 The Qi REST API methods that use tuples were created to assist you when using compound indexes.
 
