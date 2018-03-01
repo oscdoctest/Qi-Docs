@@ -189,7 +189,7 @@ VersionArray             222
 QiTypeProperty
 --------------
 
-A QiTypePropertyis used to define the collection of fields or Properties in a QiType. 
+A QiTypeProperty is used to define the collection of fields or Properties in a QiType. 
 An instance of a QiType is represented by its Properties or members. The maximum number of 
 Properties that can define a compound key is three.
 
