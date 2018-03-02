@@ -1306,14 +1306,12 @@ Note that State is not included in the JSON as its value is the default value.
 ``Get Intervals``
 --------------
 
-*Note: Get Intervals is exposed as a preview only. The return format and supported summaries are subject to change.*
+Returns summary intervals between a specified start and end index. 
 
-Returns summary intervals between a specified start and end index. Returns summary intervals between 
-a specified start and end index. Index types that cannot be interpolated, such as string indexes, do not 
-support GetIntervals requests.
-
-Returns summary intervals between a specified start and end index. Index types that cannot be interpolated, 
-such as string indexes, do not support GetIntervals requests.
+Index types that cannot be interpolated do not 
+support GetIntervals requests. Strings are an example of indexes that cannot be interpolated. Compound 
+indexes are not supported; interpolating between two indexes represented by multiple properties is 
+non-determinant. 
 
 Results are returned as a collection of QiIntervals. Each QiInterval has a start, end, and collection of 
 summary values.
