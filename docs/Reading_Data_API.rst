@@ -1309,9 +1309,9 @@ Note that State is not included in the JSON as its value is the default value.
 Returns summary intervals between a specified start and end index. 
 
 Index types that cannot be interpolated do not 
-support GetIntervals requests. Strings are an example of indexes that cannot be interpolated. Compound 
-indexes are not supported; interpolating between two indexes represented by multiple properties is 
-non-determinant. 
+support GetIntervals requests. Strings are an example of indexes that cannot be interpolated. The 
+Get Intervals method does not support compound indexes. Interpolating between two indexes 
+that consist of multiple properties is not defined and results in non-determinant behavior.
 
 Results are returned as a collection of QiIntervals. Each QiInterval has a start, end, and collection of 
 summary values.
