@@ -59,7 +59,9 @@ Properties / QiViewProperty
 
 The QiView Properties collection provides detailed instructions for specifying the mapping of 
 event properties. Each QiViewProperty in the Properties collection defines the mapping of an 
-event’s property. 
+event’s property. QiView Properties are required only when property mapping is not straightforward. 
+Additionally, if you do not want a type property mapped, it is not necessary to create a QiView 
+property for it.
 
 The following table shows the required and optional QiViewProperty fields.
 
