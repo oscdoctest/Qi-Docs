@@ -231,10 +231,9 @@ Properies collection defines the enum’s constant list. The QiTypeProperty’s 
 the constant’s name and the QiTypeProperty’s Value represents the constant’s value.
 
 
-Working with QiTypes
---------------------
+Working with QiTypes using .NET
+-------------------------------
 
-**Using .Net**
 
 When working in .NET, use the QiTypeBuilder to create QiTypes. The QiTypeBuilder eliminates 
 potential errors that can occur when working with QiTypes manually.
@@ -385,8 +384,10 @@ unique identifiers. Note that the following table contains only a partial list o
 The QiTypeBuilder also supports derived types. Note that you need not add the base types to 
 Qi before using QiTypeBuilder.
 
-Defining QiTypes when not using .NET
-------------------------------------
+
+Working with QiTypes when not using .NET
+-----------------------------------
+
 
 QiTypes must be built manually when .NET QiTypeBuilder is unavailable. The following discussion 
 refers to the types that are defined in  
