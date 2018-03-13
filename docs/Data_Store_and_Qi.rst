@@ -14,14 +14,22 @@ The Data store is hosted by OSIsoft, LLC. The Data store is easy to use and acce
 
 
 .. toctree::
-   :maxdepth 3
-
+   :maxdepth 2
+   
    Introducing_Qi
    Quick_Start
+   
+.. toctree::
+   :caption: QI types
+   
    Qi_Types
-      QI_Types_NET
-      Qi_Types_noNET
-      Qi_Types_API
+   QI_Types_NET
+   Qi_Types_noNET
+   Qi_Types_API
+
+.. toctree::
+   :caption: QI streams
+
    Qi_Streams
    QiStreamExtra
    Qi_Stream_Behavior
