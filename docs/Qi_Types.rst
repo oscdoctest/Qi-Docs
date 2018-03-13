@@ -237,5 +237,5 @@ the constant’s name and the QiTypeProperty’s Value represents the constant�
 
    QI_Types_NET
    Qi_Types_noNET.rst
-   QI_Types_API
+   Qi_Types_API
 
