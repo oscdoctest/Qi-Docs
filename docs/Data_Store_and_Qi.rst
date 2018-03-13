@@ -22,7 +22,6 @@ The Data store is hosted by OSIsoft, LLC. The Data store is easy to use and acce
       QI_Types_NET.rst
       Qi_Types_noNET.rst
       Qi_Types_API
-    
    Qi_Streams
    QiStreamExtra
    Qi_Stream_Behavior
