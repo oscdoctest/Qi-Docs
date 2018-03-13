@@ -235,7 +235,7 @@ the constant’s name and the QiTypeProperty’s Value represents the constant�
 
 .. toctree::
 
-   Qi_Types_NET
-   Qi_Types_noNET
+   QI_Types_NET
+   Qi_Types_noNET.rst
    QI_Types_API
 
