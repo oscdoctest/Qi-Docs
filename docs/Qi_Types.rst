@@ -15,7 +15,7 @@ A QiType used to define a QiStream must have a Key. A Key is a Property, or a co
 that constitute an ordered, unique identity. The Key is ordered, so it functions as an index; it is 
 known as the Primary Index. While a timestamp (DateTime) is a very common type of Key, any type that 
 can be ordered is permitted. Other indexes (secondary indexes), are defined in the QiStream. 
-Indexes are discussed in greater detail here: :doc:`Indexes`
+Indexes are discussed in greater detail here: :doc:`indexes`
 
 A QiType is referenced by its identifier or Id field. QiType identifiers must be unique within a Namespace.
 
