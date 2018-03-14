@@ -160,8 +160,8 @@ To update a Stream Type, define a QiView and PUT the view to the following:
 
 For details, see :ref:`Qi_View_API_topic`.
 
-Working with QiViews
---------------------
+Working with QiViews when using .NET
+------------------------------------
 
 **Using .Net**
 
