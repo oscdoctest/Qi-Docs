@@ -1,7 +1,7 @@
 .. _Qi_Stream_topic:
 
-Qi Streams
-==========
+Streams
+=======
 
 Qi stores collections of events and provides convenient ways to find and associating events. Events 
 of consistent structure are stored in streams, called QiStreams.  A QiType defines the structure 
