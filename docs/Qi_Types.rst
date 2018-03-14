@@ -745,7 +745,7 @@ Extend the QiType as follows:
   
   
 QiType API
-==========
+----------
 
 The REST APIs provide programmatic access to read and write Qi data. The APIs in this section 
 interact with QiTypes. When working in .NET convenient Qi Client libraries are available. 
