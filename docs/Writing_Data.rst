@@ -1,5 +1,5 @@
-Writing Qi data
-===============
+Writing data
+============
 
 The Qi REST APIs provide programmatic access to read and write Qi data. This section describes 
 the APIs used to write QiStream data.
