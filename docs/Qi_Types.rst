@@ -1,5 +1,7 @@
 .. _Qi_Types_topic:
 
+.. contents:: Topics in this section:
+    :depth: 3
 
 Qi Types
 ========
