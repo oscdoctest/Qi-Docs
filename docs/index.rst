@@ -12,6 +12,8 @@ easily obtain needed information.
 
 
 .. toctree::
+   :maxdepth: 3
+   :caption: OCS Documentation
 
    OSIsoft_Cloud_Services
    Management_Overview
