@@ -20,7 +20,6 @@ The Data store is hosted by OSIsoft, LLC. The Data store is easy to use and acce
    Qi_Types
    Qi_Streams
    QiStreamExtra
-   Qi_Stream_Behavior
    QiView_information
    indexes
    Reading_Data
