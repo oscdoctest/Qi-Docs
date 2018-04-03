@@ -104,7 +104,7 @@ When working outside of .NET,  Qi libraries are unavailable. The QiType is defin
   Authorization: Bearer <bearer-token>
   Content-Length: 1562
   Content-Type: application/json
-  Host: qi-data.osisoft.com
+  Host: dat-a.osisoft.com
   {  
      "$id":"1",
      "Id":"Simple",
@@ -245,7 +245,7 @@ To create the stream without the libraries, post a JSON representation of the QI
   Authorization: Bearer <bearer-token>
   Content-Length: 139
   Content-Type: application/json
-  Host: qi-data.osisoft.com
+  Host: dat-a.osisoft.com
   {  
      "$id":"1",
      "Id":"Simple",
@@ -286,7 +286,7 @@ To POST a JSON serialized event to the OSIsoft Cloud Services.
   Authorization: Bearer <bearer-token>
   Content-Length: 57
   Content-Type: application/json
-  Host: qi-data.osisoft.com
+  Host: dat-a.osisoft.com
   {  
      "Time":"2017-08-17T17:21:36.3494129Z",
      "State":0,
@@ -330,7 +330,7 @@ To read using REST:
   Authorization: Bearer <bearer-token>
   Content-Length: 0
   Content-Type: 
-  Host: qi-data.osisoft.com
+  Host: dat-a.osisoft.com
       
 Additional information about reading data can be found in Reading data.
 
