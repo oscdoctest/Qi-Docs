@@ -10,7 +10,7 @@ The syntax of the client libraries method is as follows:
   _metadataService.GetStreamsAsync(string searchText, int skip, int count);
 
 
-Searching on streams is also possible via our REST API when specifying the optional ``query`` parameter:
+Searching for streams is also possible using the REST API and specifying the optional ``query`` parameter, as shown here:
 
 ::
 
