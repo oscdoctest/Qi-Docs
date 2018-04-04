@@ -10,6 +10,13 @@ The syntax of the client libraries method is as follows:
   _metadataService.GetStreamsAsync(string searchText, int skip, int count);
 
 
+Searching on streams is also possible via our REST API when specifying the optional ``query`` parameter:
+
+::
+
+  GET api/Tenants/{tenantId}/Namespaces/{namespaceId}/Streams?query={query}&skip={skip}&count={count}
+
+
 The ``GetStreamsAsync`` overload returns QiStreams that match specific search criteria within a given namespace. 
 You use the ``searchText`` parameter to specify a search string. The ``GetStreamsAsync`` method then returns any QiStream that matches the search string in the ``name``, ``description``, or ``tag`` list. 
 
@@ -29,20 +36,20 @@ stream3         calcA           calculation from     “temperature”,
 
 Using the stream data above, the following table shows the results of a ``GetStreamsAsync`` call with different ``SearchText`` values:
 
-================     ========================================
-**SearchText**       **Streams returned**
-----------------     ----------------------------------------
-``“temp*”``            stream1 and stream3 returned.
+==================     ========================================
+**SearchText**         **Streams returned**
+------------------     ----------------------------------------
+``“temperature”``      stream1 and stream3 returned.
 ``“calc*”``            Only stream3 returned.
 ``“DeviceA*”``         All three streams returned.
 ``“humidity*”``        No streams returned.
-================     ========================================
+==================     ========================================
 
-When searching for a stream, be aware that a string of contiguous characters is indexed as a solid block of text. For example, suppose that a stream has the name "Tank:ABC". Searching for “Tank:A*” would find the stream, but searching for “ABC*” would not find it. By inserting spaces you break up the contiguous block and allow for in-string searching. For example, if the stream Name is "Tank ABC" instead of "Tank:ABC" then searches for “Tank A*” or for “ABC*” would both be successful.
+When searching for a stream, be aware that a string of contiguous, non-whitespace characters is indexed as a solid block of text. For example, suppose that a stream has the name "Tank:ABC". Searching for “Tan*” would find the stream, but searching for “AB*” would not find it. By inserting spaces you break up the contiguous block and allow for in-string searching. For example, if the stream Name is "Tank ABC" instead of "Tank:ABC" then searches for “Tan*” or for “AB*” would both be successful.
 
 The ``skip`` and ``count`` parameters determine which streams are returned when a large number of streams match the ``searchText`` criteria. 
 
-The asterisk (*) character is a wildcard which matches zero or more characters (see Search operators_).  
+The asterisk (*) character is a suffix-only wildcard which matches zero or more characters (see Search operators_).  
 
 ``count`` indicates the maximum number of streams returned by the ``GetStreamsAsync()`` call. The maximum value of the ``count`` parameter is 1000. 
 
@@ -69,24 +76,35 @@ You can specify search operators in the ``searchText`` string to return more spe
 
 .. _operators: 
 
-=======  ============================================================
-``+``    AND operator. For example, ``"cat+dog"`` searches for streams
-         containing both "cat" and "dog".
-``|``    OR operator. For example, "cat|dog" searches for documents
-         containing either "cat" or "dog" or both.
-``-``    NOT operator. For example, "cat –dog" searches for streams 
-         that have the "cat" term or do not have "dog" 
-``*``    Suffix operator. For example, "cat*" searches for streams 
+=======  ==================================================================
+``AND``  AND operator. For example, ``"cat AND dog"`` searches for streams
+         containing both "cat" and "dog".  AND must be in all caps.
+``OR``   OR operator. For example, ``"cat OR dog"`` searches for documents
+         containing either "cat" or "dog" or both.  OR must be in all caps.
+``NOT``  NOT operator. For example, ``"cat NOT dog"`` searches for streams 
+         that have the "cat" term or do not have "dog".  NOT must be in
+         all caps.
+``*``    Suffix operator. For example, ``"cat*"`` searches for streams 
          that have a term that starts with "cat", ignoring case.
-``"``    Phrase search operator. For example, while Roach Motel 
+``:``    Field-scoped query.  For example, ``id:stream*`` will search for 
+         streams where the ``id`` field starts with "stream", but will not 
+         search on other fields like ``name`` or ``description``.  *Note
+         that field names are camel case and are case sensitive.*
+``" "``  Phrase search operator. For example, while ``Roach Motel`` 
          (without quotes) would search for documents containing 
-         Roach Motel anywhere in any order, "Roach Motel" 
+         Roach Motel anywhere in any order, ``"Roach Motel"`` 
          (with quotes) will only match documents that contain the 
          whole phrase together and in that order.
-``( )``  Precedence operator. For example, motel+(wifi|luxury) 
+``( )``  Precedence operator. For example, ``motel AND (wifi OR luxury)`` 
          searches for documents containing the motel term and 
          either wifi or luxury (or both).
-=======  ============================================================
+=======  ==================================================================
+
+Note that the suffix operator ``*`` is not the same as a generic wildcard operator that you may be used to.  It can only be used at the end of a search term, not the beginning.  Also, it can't be combined when searching for a phrase using the ``" "`` operators which combine multiple ordered search terms.  It only works when specifying a single search term.  For example, you can search for ``Tank*``, but not ``*Tank`` or ``"Tank1 Meter*"``.
 
 
+Searching on Metadata
+---------------------
+
+Qi streams can have metadata collections associated with them.  Metadata allows you to specify arbitrary key-value pairs to help organize and add context your streams.  To search for streams by metadata, use the following syntax: ``"key:value"``.  Because the colon is a special character used in field-scoped queries, the search term for metadata *must* be enclosed in double quotes.  For example, to search for all streams with a key of "Manufacturer" and a value of "OSI", you would use ``"Manufacturer:OSI"``.  If you want to search for a stream with a key of "Manufacturer" and any value, you could drop the quotes and the colon and search for ``Manufacturer*``.  While searching for a key with a wildcard value is supported, searching on a value with a wildcard key is not supported.
 
