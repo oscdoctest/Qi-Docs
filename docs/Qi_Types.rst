@@ -1,9 +1,5 @@
 .. _Qi_Types_topic:
 
-.. contents:: Topics in this section:
-    :depth: 2
-
-
 Types
 =====
 
@@ -11,6 +7,11 @@ Types
 The Sequential Data Store (SDS) stores streams of events and provides convenient ways to find and associate 
 events. Events are stored in streams, called SdsStreams. An SdsType defines the shape or structure of the 
 event in an SdsStream.
+
+.. contents:: Topics in this section:
+    :depth: 2
+
+
 
 SdsTypes can define simple atomic types, such as integers, floats, strings, arrays, and dictionaries, or 
 they can define complex types using SdsTypes. You can define complex, nested types using the Properties 
@@ -374,7 +375,7 @@ unique identifiers. Note that the following table contains only a partial list o
 +                  +-------------------------+-------------+--------------------------------------+
 |                  | IsKey                   | false                                              |
 +                  +-------------------------+-------------+--------------------------------------+
-|                  | SdsType                  | Id         | 0f4f147f-4369-3388-8e4b-71e20c96f9ad |
+|                  | SdsType                 | Id          | 0f4f147f-4369-3388-8e4b-71e20c96f9ad |
 +                  +                         +-------------+--------------------------------------+
 |                  |                         | Name        | Double                               |
 +                  +                         +-------------+--------------------------------------+
