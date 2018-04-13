@@ -61,7 +61,7 @@ The following table shows the required and optional SdsType fields. Fields that 
 | GenericArguments | IList<SdsType>          | Optional    | List of type arguments satisfying   |
 |                  |                         |             | the generic                         |
 +------------------+-------------------------+-------------+-------------------------------------+
-| Properties       | IList<SdsTypeProperty>  | Optional    | List of SdsTypeProperty items       |
+| Properties       | IList<SdsTypeProperty>  | Required    | List of SdsTypeProperty items       |
 +------------------+-------------------------+-------------+-------------------------------------+
 
 
