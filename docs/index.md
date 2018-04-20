@@ -14,13 +14,13 @@ easily obtain needed information.
 .. toctree::
    :maxdepth: 3
 
-   OSIsoft_Cloud_Services
-   Management_Overview
-   Data_Store_and_Qi
-   Data_Ingress
-   Access_Control
-   samples
-   support
+   [OSIsoft_Cloud_Services](OSIsoft_Cloud_Services.md)
+   [Management_Overview](Management_Overview.md)
+   [Data_Store_and_Qi](Data_Store_and_Qi.md)
+   [Data_Ingress](Data_Ingress.md)
+   [Access_Control](Access_Control.md)
+   [samples](samples.md)
+   [support](support.md)
 
  
    
